@@ -6,17 +6,17 @@ export const ExplainableScoreCard = ({ explanation, binCode }) => {
 
   const { score, tier, breakdown, ai_recommendation } = explanation;
 
-  let badgeColor = "bg-rose-950 text-rose-300 border-rose-600";
-  if (tier === "HIGH") badgeColor = "bg-amber-950 text-amber-300 border-amber-600";
-  if (tier === "MEDIUM") badgeColor = "bg-blue-950 text-blue-300 border-blue-600";
-  if (tier === "LOW") badgeColor = "bg-emerald-950 text-emerald-300 border-emerald-600";
+  let badgeColor = "bg-[#FEE2E2] text-[#991B1B] border-[#FECACA]";
+  if (tier === "HIGH") badgeColor = "bg-[#FFFBEB] text-[#92400E] border-[#FDE68A]";
+  if (tier === "MEDIUM") badgeColor = "bg-[#EFF6FF] text-[#1E40AF] border-[#BFDBFE]";
+  if (tier === "LOW") badgeColor = "bg-[#DCFCE7] text-[#0B5D3B] border-[#BBF7D0]";
 
   return (
-    <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-4 shadow-lg">
-      <div className="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
+    <div className="bg-[#F7FAF8] border border-[#E3EAE6] rounded-2xl p-4 shadow-sm">
+      <div className="flex items-center justify-between border-b border-[#E3EAE6] pb-3 mb-3">
         <div className="flex items-center gap-2">
-          <Zap className="w-4 h-4 text-emerald-400" />
-          <h4 className="text-xs font-bold uppercase tracking-wider text-slate-300">
+          <Zap className="w-4 h-4 text-[#16845B]" />
+          <h4 className="text-xs font-bold uppercase tracking-wider text-[#17201B]">
             Why is {binCode || 'this bin'} {tier}?
           </h4>
         </div>
@@ -24,8 +24,8 @@ export const ExplainableScoreCard = ({ explanation, binCode }) => {
           <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold border ${badgeColor}`}>
             {tier}
           </span>
-          <span className="font-mono text-base font-extrabold text-white">
-            {score}<span className="text-xs text-slate-400 font-normal">/100</span>
+          <span className="font-mono text-base font-black text-[#17201B]">
+            {score}<span className="text-xs text-[#66736C] font-normal">/100</span>
           </span>
         </div>
       </div>
@@ -33,14 +33,14 @@ export const ExplainableScoreCard = ({ explanation, binCode }) => {
       {/* Factor Breakdown List */}
       <div className="space-y-2 mb-4">
         {breakdown && breakdown.map((item, idx) => (
-          <div key={idx} className="flex items-center justify-between text-xs py-1 px-2 rounded-lg bg-slate-950/60 hover:bg-slate-800/50 transition-colors">
+          <div key={idx} className="flex items-center justify-between text-xs py-1.5 px-2.5 rounded-xl bg-white border border-[#E3EAE6] hover:border-[#16845B] transition-colors shadow-sm">
             <div className="flex flex-col">
-              <span className="font-medium text-slate-200">{item.factor}</span>
-              <span className="text-[11px] text-slate-400">{item.description}</span>
+              <span className="font-bold text-[#17201B]">{item.factor}</span>
+              <span className="text-[11px] text-[#66736C]">{item.description}</span>
             </div>
-            <div className="flex items-center gap-1.5 shrink-0 ml-3">
-              <span className="text-[11px] font-mono text-slate-400">({item.raw_value})</span>
-              <span className="font-mono font-bold text-emerald-400 bg-emerald-950/60 px-1.5 py-0.5 rounded border border-emerald-800/60">
+            <div className="flex items-center gap-2 shrink-0 ml-3">
+              <span className="text-[11px] font-mono text-[#66736C]">({item.raw_value})</span>
+              <span className="font-mono font-bold text-[#0B5D3B] bg-[#DCFCE7] px-2 py-0.5 rounded-md border border-[#BBF7D0]">
                 +{item.points}
               </span>
             </div>
@@ -49,11 +49,11 @@ export const ExplainableScoreCard = ({ explanation, binCode }) => {
       </div>
 
       {/* AI Recommendation */}
-      <div className="p-3 bg-emerald-950/40 border border-emerald-800/40 rounded-lg">
-        <div className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider mb-1 flex items-center gap-1">
-          <CheckCircle className="w-3 h-3" /> AI Recommendation
+      <div className="p-3 bg-[#F0FDF4] border border-[#BBF7D0] rounded-xl">
+        <div className="text-[11px] font-bold text-[#0B5D3B] uppercase tracking-wider mb-1 flex items-center gap-1">
+          <CheckCircle className="w-3.5 h-3.5 text-[#16845B]" /> AI Recommendation
         </div>
-        <p className="text-xs text-slate-200 leading-relaxed font-medium">
+        <p className="text-xs text-[#17201B] leading-relaxed font-medium">
           {ai_recommendation}
         </p>
       </div>

@@ -7,8 +7,8 @@ export const ProvenanceBadge = ({ source, confidence }) => {
 
   if (isDetected) {
     return (
-      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold bg-emerald-950/80 text-emerald-300 border border-emerald-500/40 shadow-sm">
-        <Camera className="w-3 h-3 text-emerald-400" />
+      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-bold bg-[#DCFCE7] text-[#0B5D3B] border border-[#BBF7D0] shadow-sm">
+        <Camera className="w-3.5 h-3.5 text-[#16845B]" />
         <span>AI Detected from Image</span>
         {confidence && <span className="opacity-75 text-[10px] ml-0.5">({confidence}%)</span>}
       </span>
@@ -17,8 +17,8 @@ export const ProvenanceBadge = ({ source, confidence }) => {
 
   if (isEstimated) {
     return (
-      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold bg-blue-950/80 text-blue-300 border border-blue-500/40 shadow-sm">
-        <Sparkles className="w-3 h-3 text-blue-400" />
+      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-bold bg-[#EFF6FF] text-[#1E40AF] border border-[#BFDBFE] shadow-sm">
+        <Sparkles className="w-3.5 h-3.5 text-[#2878C8]" />
         <span>AI Estimated from Telemetry</span>
         {confidence && <span className="opacity-75 text-[10px] ml-0.5">({confidence}%)</span>}
       </span>
@@ -26,8 +26,8 @@ export const ProvenanceBadge = ({ source, confidence }) => {
   }
 
   return (
-    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700">
-      <Radio className="w-3 h-3 text-slate-400" />
+    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold bg-[#F1F6F3] text-[#17201B] border border-[#E3EAE6]">
+      <Radio className="w-3.5 h-3.5 text-[#66736C]" />
       <span>Sensor Measured</span>
     </span>
   );

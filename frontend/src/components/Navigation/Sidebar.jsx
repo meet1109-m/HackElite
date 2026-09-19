@@ -16,20 +16,22 @@ import {
 } from 'lucide-react';
 import { useWasteData } from '../../context/WasteDataContext';
 
-export const Sidebar = ({ activeTab, onTabChange }) => {
+export const Sidebar = ({ currentPage, activeTab, onNavigate, onTabChange }) => {
+  const currentTab = currentPage || activeTab || 'command-center';
+  const handleNav = onNavigate || onTabChange;
   const { bins } = useWasteData();
   const criticalCount = bins.filter(b => b.status === 'Critical' || b.status === 'Overflow Risk').length;
 
   const navItems = [
     { id: 'landing', label: 'Public Portal', icon: <Globe className="w-4 h-4" /> },
-    { id: 'command', label: 'Command Center', icon: <LayoutDashboard className="w-4 h-4" /> },
+    { id: 'command-center', label: 'Command Center', icon: <LayoutDashboard className="w-4 h-4" /> },
     { id: 'operations', label: 'Live Operations', icon: <Map className="w-4 h-4" /> },
     { 
       id: 'bins', 
       label: 'Bin Intelligence', 
       icon: <Trash2 className="w-4 h-4" />,
       badge: criticalCount > 0 ? criticalCount : null,
-      badgeColor: 'bg-rose-500 text-white'
+      badgeColor: 'bg-[#FEE2E2] text-[#991B1B] border border-[#FECACA]'
     },
     { id: 'vision', label: 'Waste Vision AI', icon: <Camera className="w-4 h-4" /> },
     { id: 'routes', label: 'Route Optimizer', icon: <Truck className="w-4 h-4" /> },
@@ -37,36 +39,36 @@ export const Sidebar = ({ activeTab, onTabChange }) => {
     { id: 'recycling', label: 'Recycling & Circularity', icon: <Recycle className="w-4 h-4" /> },
     { id: 'simulator', label: 'What-If Simulator', icon: <FlaskConical className="w-4 h-4" /> },
     { id: 'events', label: 'Events & AI Placement', icon: <CalendarDays className="w-4 h-4" /> },
-    { id: 'ai-manager', label: 'AI Waste Manager', icon: <Bot className="w-4 h-4 text-emerald-400" /> },
+    { id: 'ai-assistant', label: 'AI Waste Manager', icon: <Bot className="w-4 h-4 text-[#16845B]" /> },
     { id: 'settings', label: 'Priority Weights & IoT', icon: <Sliders className="w-4 h-4" /> },
   ];
 
   return (
-    <aside className="w-64 bg-slate-900/95 border-r border-slate-800 flex flex-col justify-between shrink-0 h-[calc(100vh-4rem)] sticky top-16 select-none">
+    <aside className="w-64 bg-white border-r border-[#E3EAE6] flex flex-col justify-between shrink-0 h-[calc(100vh-4rem)] sticky top-16 select-none shadow-sm">
       <div className="p-3 space-y-1 overflow-y-auto flex-1">
-        <div className="px-3 py-2 text-[10px] uppercase tracking-widest font-extrabold text-slate-500">
+        <div className="px-3 py-2 text-[10px] uppercase tracking-widest font-extrabold text-[#66736C]">
           Command Modules
         </div>
         {navItems.map(item => {
-          const isActive = activeTab === item.id;
+          const isActive = currentTab === item.id || (item.id === 'command-center' && currentTab === 'command') || (item.id === 'ai-assistant' && currentTab === 'ai-manager');
           return (
             <button
               key={item.id}
-              onClick={() => onTabChange(item.id)}
+              onClick={() => handleNav(item.id)}
               className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all group ${
                 isActive
-                  ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-950/40 font-bold'
-                  : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/70'
+                  ? 'bg-[#16845B] text-white shadow-md shadow-[#16845B]/20 font-bold'
+                  : 'text-[#66736C] hover:text-[#17201B] hover:bg-[#F0FDF4]'
               }`}
             >
               <div className="flex items-center gap-3">
-                <span className={`${isActive ? 'text-white' : 'text-slate-400 group-hover:text-emerald-400'} transition-colors`}>
+                <span className={`${isActive ? 'text-white' : 'text-[#66736C] group-hover:text-[#16845B]'} transition-colors`}>
                   {item.icon}
                 </span>
                 <span>{item.label}</span>
               </div>
               {item.badge && (
-                <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${item.badgeColor || 'bg-slate-800 text-slate-200'}`}>
+                <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${item.badgeColor}`}>
                   {item.badge}
                 </span>
               )}
@@ -76,16 +78,16 @@ export const Sidebar = ({ activeTab, onTabChange }) => {
       </div>
 
       {/* System Status Footer */}
-      <div className="p-4 border-t border-slate-800 bg-slate-950/50">
-        <div className="flex items-center justify-between text-[11px] text-slate-400 mb-1">
-          <span className="flex items-center gap-1.5 font-medium">
-            <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+      <div className="p-4 border-t border-[#E3EAE6] bg-[#F7FAF8]">
+        <div className="flex items-center justify-between text-[11px] text-[#66736C] mb-1">
+          <span className="flex items-center gap-1.5 font-semibold text-[#17201B]">
+            <span className="w-2 h-2 rounded-full bg-[#16845B]"></span>
             Ahmedabad AMC Node
           </span>
-          <span className="font-mono font-bold text-emerald-400">ONLINE</span>
+          <span className="font-mono font-bold text-[#16845B]">ONLINE</span>
         </div>
-        <div className="text-[10px] text-slate-500 truncate">
-          v1.0.0 • Closed-Loop Intelligence
+        <div className="text-[10px] text-[#94A39D] truncate">
+          SmartBinX v1.0 • Closed-Loop AI
         </div>
       </div>
     </aside>

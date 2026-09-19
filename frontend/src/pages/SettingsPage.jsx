@@ -3,7 +3,7 @@ import { useWasteData } from '../context/WasteDataContext';
 import { Settings, Sliders, Database, Radio, RefreshCw, CheckCircle2, ShieldCheck, Server } from 'lucide-react';
 
 export default function SettingsPage() {
-  const { priorityWeights, updatePriorityWeights, refreshData } = useWasteData();
+  const { priorityWeights, updatePriorityWeights, refreshData, showToast } = useWasteData();
   const [fillWeight, setFillWeight] = useState(priorityWeights?.fill_weight || 35);
   const [overflowWeight, setOverflowWeight] = useState(priorityWeights?.overflow_weight || 30);
   const [streamWeight, setStreamWeight] = useState(priorityWeights?.stream_weight || 15);
@@ -47,40 +47,45 @@ export default function SettingsPage() {
     setTimeout(() => setSavedSuccess(false), 3000);
   };
 
+  const handlePurge = async () => {
+    await refreshData();
+    showToast('✓ State purged and auto-seeded with 120 Ahmedabad telemetry nodes.', 'success');
+  };
+
   return (
-    <div className="p-8 space-y-8 max-w-5xl mx-auto">
+    <div className="p-4 sm:p-8 space-y-8 max-w-5xl mx-auto">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-3">
-            <h1 className="text-3xl font-bold tracking-tight text-white flex items-center gap-2">
-              <Settings className="w-8 h-8 text-emerald-400" />
+            <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-[#17201B] flex items-center gap-2">
+              <Settings className="w-7 h-7 text-[#16845B]" />
               System Settings & AI Parameters
             </h1>
-            <span className="px-3 py-1 text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full">
+            <span className="px-3 py-1 text-xs font-bold bg-[#DCFCE7] text-[#0B5D3B] border border-[#BBF7D0] rounded-full">
               Configurable Heuristics & IoT Adapters
             </span>
           </div>
-          <p className="text-slate-400 text-sm mt-1">
+          <p className="text-[#66736C] text-xs sm:text-sm mt-1">
             Fine-tune multi-factor priority weights, configure municipal AMC telemetry bridges, and manage synthetic models.
           </p>
         </div>
       </div>
 
       {/* SECTION 1: PRIORITY SCORING WEIGHTS */}
-      <div className="bg-slate-900/80 border border-slate-800 rounded-3xl p-6 backdrop-blur-xl shadow-xl space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-4">
+      <div className="bg-white border border-[#E3EAE6] rounded-3xl p-6 shadow-sm space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#E3EAE6] pb-4">
           <div>
-            <h2 className="text-base font-bold text-white flex items-center gap-2">
-              <Sliders className="w-5 h-5 text-emerald-400" />
+            <h2 className="text-base font-extrabold text-[#17201B] flex items-center gap-2">
+              <Sliders className="w-5 h-5 text-[#16845B]" />
               Explainable Priority Scoring Formula Configuration
             </h2>
-            <p className="text-xs text-slate-400">Customize how bin urgency is computed across all 120 digital twins</p>
+            <p className="text-xs text-[#66736C]">Customize how bin urgency is computed across all 120 digital twins</p>
           </div>
 
           <div className="flex items-center gap-2">
             <span className={`text-xs font-mono font-bold px-3 py-1 rounded-full border ${
-              totalWeight === 100 ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30' : 'bg-red-500/10 text-red-400 border-red-500/30'
+              totalWeight === 100 ? 'bg-[#DCFCE7] text-[#0B5D3B] border-[#BBF7D0]' : 'bg-[#FEE2E2] text-[#991B1B] border-[#FECACA]'
             }`}>
               Total: {totalWeight}% {totalWeight === 100 ? '(Balanced)' : '(Must equal 100%)'}
             </span>
@@ -90,10 +95,10 @@ export default function SettingsPage() {
         {/* Sliders Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Fill weight */}
-          <div className="space-y-2 bg-slate-950/60 p-4 rounded-xl border border-slate-800">
+          <div className="space-y-2 bg-[#F7FAF8] p-4 rounded-2xl border border-[#E3EAE6]">
             <div className="flex justify-between text-xs">
-              <span className="text-white font-semibold">1. Current Fill Level Percentage</span>
-              <span className="font-mono font-bold text-emerald-400">{fillWeight}%</span>
+              <span className="text-[#17201B] font-bold">1. Current Fill Level Percentage</span>
+              <span className="font-mono font-black text-[#16845B]">{fillWeight}%</span>
             </div>
             <input
               type="range"
@@ -101,16 +106,16 @@ export default function SettingsPage() {
               max="60"
               value={fillWeight}
               onChange={(e) => setFillWeight(Number(e.target.value))}
-              className="w-full accent-emerald-500 bg-slate-900 rounded-lg cursor-pointer"
+              className="w-full accent-[#16845B] bg-[#CBD8D2] rounded-lg cursor-pointer"
             />
-            <p className="text-[11px] text-slate-400">Sensory fill height measured by ultrasonic/optical sensor.</p>
+            <p className="text-[11px] text-[#66736C]">Sensory fill height measured by ultrasonic/optical sensor.</p>
           </div>
 
           {/* Overflow risk weight */}
-          <div className="space-y-2 bg-slate-950/60 p-4 rounded-xl border border-slate-800">
+          <div className="space-y-2 bg-[#F7FAF8] p-4 rounded-2xl border border-[#E3EAE6]">
             <div className="flex justify-between text-xs">
-              <span className="text-white font-semibold">2. Predicted Overflow Countdown Time</span>
-              <span className="font-mono font-bold text-red-400">{overflowWeight}%</span>
+              <span className="text-[#17201B] font-bold">2. Predicted Overflow Countdown Time</span>
+              <span className="font-mono font-black text-[#D64545]">{overflowWeight}%</span>
             </div>
             <input
               type="range"
@@ -118,16 +123,16 @@ export default function SettingsPage() {
               max="60"
               value={overflowWeight}
               onChange={(e) => setOverflowWeight(Number(e.target.value))}
-              className="w-full accent-red-500 bg-slate-900 rounded-lg cursor-pointer"
+              className="w-full accent-[#D64545] bg-[#CBD8D2] rounded-lg cursor-pointer"
             />
-            <p className="text-[11px] text-slate-400">ML forecasted time-to-full threshold based on recent velocity.</p>
+            <p className="text-[11px] text-[#66736C]">ML forecasted time-to-full threshold based on recent velocity.</p>
           </div>
 
           {/* Waste stream recyclability */}
-          <div className="space-y-2 bg-slate-950/60 p-4 rounded-xl border border-slate-800">
+          <div className="space-y-2 bg-[#F7FAF8] p-4 rounded-2xl border border-[#E3EAE6]">
             <div className="flex justify-between text-xs">
-              <span className="text-white font-semibold">3. Waste Stream & Recyclable Value</span>
-              <span className="font-mono font-bold text-blue-400">{streamWeight}%</span>
+              <span className="text-[#17201B] font-bold">3. Waste Stream & Recyclable Value</span>
+              <span className="font-mono font-black text-[#2878C8]">{streamWeight}%</span>
             </div>
             <input
               type="range"
@@ -135,16 +140,16 @@ export default function SettingsPage() {
               max="40"
               value={streamWeight}
               onChange={(e) => setStreamWeight(Number(e.target.value))}
-              className="w-full accent-blue-500 bg-slate-900 rounded-lg cursor-pointer"
+              className="w-full accent-[#2878C8] bg-[#CBD8D2] rounded-lg cursor-pointer"
             />
-            <p className="text-[11px] text-slate-400">Prioritizes high-grade recyclables and odor-prone organic streams.</p>
+            <p className="text-[11px] text-[#66736C]">Prioritizes high-grade recyclables and odor-prone organic streams.</p>
           </div>
 
           {/* Zone sensitivity */}
-          <div className="space-y-2 bg-slate-950/60 p-4 rounded-xl border border-slate-800">
+          <div className="space-y-2 bg-[#F7FAF8] p-4 rounded-2xl border border-[#E3EAE6]">
             <div className="flex justify-between text-xs">
-              <span className="text-white font-semibold">4. Location & Footfall Sensitivity</span>
-              <span className="font-mono font-bold text-amber-400">{zoneWeight}%</span>
+              <span className="text-[#17201B] font-bold">4. Location & Footfall Sensitivity</span>
+              <span className="font-mono font-black text-[#E89A27]">{zoneWeight}%</span>
             </div>
             <input
               type="range"
@@ -152,16 +157,16 @@ export default function SettingsPage() {
               max="30"
               value={zoneWeight}
               onChange={(e) => setZoneWeight(Number(e.target.value))}
-              className="w-full accent-amber-500 bg-slate-900 rounded-lg cursor-pointer"
+              className="w-full accent-[#E89A27] bg-[#CBD8D2] rounded-lg cursor-pointer"
             />
-            <p className="text-[11px] text-slate-400">Promenade, heritage, transit, and market sensitivity factor.</p>
+            <p className="text-[11px] text-[#66736C]">Promenade, heritage, transit, and market sensitivity factor.</p>
           </div>
 
           {/* Generation rate */}
-          <div className="space-y-2 bg-slate-950/60 p-4 rounded-xl border border-slate-800 md:col-span-2">
+          <div className="space-y-2 bg-[#F7FAF8] p-4 rounded-2xl border border-[#E3EAE6] md:col-span-2">
             <div className="flex justify-between text-xs">
-              <span className="text-white font-semibold">5. Historical Generation Velocity</span>
-              <span className="font-mono font-bold text-purple-400">{genWeight}%</span>
+              <span className="text-[#17201B] font-bold">5. Historical Generation Velocity</span>
+              <span className="font-mono font-black text-[#0D9488]">{genWeight}%</span>
             </div>
             <input
               type="range"
@@ -169,17 +174,17 @@ export default function SettingsPage() {
               max="30"
               value={genWeight}
               onChange={(e) => setGenWeight(Number(e.target.value))}
-              className="w-full accent-purple-500 bg-slate-900 rounded-lg cursor-pointer"
+              className="w-full accent-[#0D9488] bg-[#CBD8D2] rounded-lg cursor-pointer"
             />
-            <p className="text-[11px] text-slate-400">Average kg/day generation gradient across 30-day baseline.</p>
+            <p className="text-[11px] text-[#66736C]">Average kg/day generation gradient across 30-day baseline.</p>
           </div>
         </div>
 
         {/* Action buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2 border-t border-slate-800">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2 border-t border-[#E3EAE6]">
           <button
             onClick={handleResetDefaults}
-            className="text-xs text-slate-400 hover:text-white flex items-center gap-1.5 transition"
+            className="text-xs text-[#66736C] hover:text-[#17201B] font-bold flex items-center gap-1.5 transition"
           >
             <RefreshCw className="w-3.5 h-3.5" />
             Reset to Recommended Defaults (35/30/15/10/10)
@@ -187,14 +192,14 @@ export default function SettingsPage() {
 
           <div className="flex items-center gap-3">
             {savedSuccess && (
-              <span className="text-xs text-emerald-400 font-semibold flex items-center gap-1 animate-fade-in">
-                <CheckCircle2 className="w-4 h-4" /> Weights Saved & Scores Recalculated
+              <span className="text-xs text-[#0B5D3B] font-bold flex items-center gap-1 animate-fade-in">
+                <CheckCircle2 className="w-4 h-4 text-[#16845B]" /> Weights Applied Successfully
               </span>
             )}
             <button
               onClick={handleSaveWeights}
               disabled={totalWeight !== 100}
-              className="px-5 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold text-xs rounded-xl transition disabled:opacity-40"
+              className="px-6 py-3 bg-[#16845B] hover:bg-[#0B5D3B] text-white font-bold text-xs rounded-xl transition shadow-md shadow-[#16845B]/20 disabled:opacity-40"
             >
               Apply Scoring Formula
             </button>
@@ -203,37 +208,37 @@ export default function SettingsPage() {
       </div>
 
       {/* SECTION 2: MUNICIPAL AMC IOT & REST BRIDGES */}
-      <div className="bg-slate-900/80 border border-slate-800 rounded-3xl p-6 backdrop-blur-xl shadow-xl space-y-5">
-        <div className="border-b border-slate-800 pb-3">
-          <h2 className="text-base font-bold text-white flex items-center gap-2">
-            <Server className="w-5 h-5 text-blue-400" />
-            Ahmedabad Municipal Corporation (AMC) IoT Telemetry Gateway
+      <div className="bg-white border border-[#E3EAE6] rounded-3xl p-6 shadow-sm space-y-5">
+        <div className="border-b border-[#E3EAE6] pb-3">
+          <h2 className="text-base font-extrabold text-[#17201B] flex items-center gap-2">
+            <Server className="w-5 h-5 text-[#2878C8]" />
+            Ahmedabad Municipal Corporation (AMC) IoT Gateway
           </h2>
-          <p className="text-xs text-slate-400">Connect to municipal smart city sensor feeds or run in isolated prototype mode</p>
+          <p className="text-xs text-[#66736C]">Connect to municipal smart city sensor feeds or run in isolated sandbox mode</p>
         </div>
 
         <div className="space-y-4">
-          <div className="flex items-center gap-4">
-            <label className="flex items-center gap-2 text-xs font-semibold text-white cursor-pointer">
+          <div className="flex flex-wrap items-center gap-4">
+            <label className="flex items-center gap-2 text-xs font-bold text-[#17201B] cursor-pointer">
               <input
                 type="radio"
                 name="dataMode"
                 value="simulated"
                 checked={dataSourceMode === 'simulated'}
                 onChange={() => setDataSourceMode('simulated')}
-                className="accent-emerald-500"
+                className="accent-[#16845B]"
               />
-              Simulated Synthetic Prototype Mode (Default)
+              Simulated Synthetic Sandbox (Default)
             </label>
 
-            <label className="flex items-center gap-2 text-xs font-semibold text-slate-400 cursor-pointer">
+            <label className="flex items-center gap-2 text-xs font-semibold text-[#66736C] cursor-pointer">
               <input
                 type="radio"
                 name="dataMode"
                 value="live"
                 checked={dataSourceMode === 'live'}
                 onChange={() => setDataSourceMode('live')}
-                className="accent-emerald-500"
+                className="accent-[#16845B]"
               />
               Live AMC Open Data / IoT Bridge (Staging)
             </label>
@@ -241,35 +246,35 @@ export default function SettingsPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-1.5 text-xs">
-              <label className="text-slate-400 font-medium">AMC REST API Endpoint</label>
+              <label className="text-[#66736C] font-semibold">AMC REST API Endpoint</label>
               <input
                 type="text"
                 value={amcApiUrl}
                 onChange={(e) => setAmcApiUrl(e.target.value)}
-                className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-300 font-mono text-xs focus:outline-none focus:border-emerald-500"
+                className="w-full px-3.5 py-2.5 bg-[#F7FAF8] border border-[#E3EAE6] rounded-xl text-[#17201B] font-mono text-xs focus:outline-none focus:border-[#16845B]"
               />
             </div>
 
             <div className="space-y-1.5 text-xs">
-              <label className="text-slate-400 font-medium">MQTT Telemetry Topic</label>
+              <label className="text-[#66736C] font-semibold">MQTT Telemetry Topic</label>
               <input
                 type="text"
                 value={mqttBroker}
                 onChange={(e) => setMqttBroker(e.target.value)}
-                className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-300 font-mono text-xs focus:outline-none focus:border-emerald-500"
+                className="w-full px-3.5 py-2.5 bg-[#F7FAF8] border border-[#E3EAE6] rounded-xl text-[#17201B] font-mono text-xs focus:outline-none focus:border-[#16845B]"
               />
             </div>
           </div>
         </div>
 
-        <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 flex items-center justify-between text-xs text-slate-400">
-          <span className="flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-emerald-400" />
+        <div className="bg-[#F7FAF8] p-4 rounded-2xl border border-[#E3EAE6] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#66736C]">
+          <span className="flex items-center gap-2 font-medium">
+            <ShieldCheck className="w-4 h-4 text-[#16845B]" />
             Environment: Local Synthetic Sandbox (FastAPI + OR-Tools + Scikit-Learn)
           </span>
           <button
-            onClick={refreshData}
-            className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-white rounded-lg transition text-xs font-semibold"
+            onClick={handlePurge}
+            className="px-4 py-2 bg-white hover:bg-[#F1F6F3] text-[#17201B] border border-[#E3EAE6] rounded-xl transition text-xs font-bold shadow-sm"
           >
             Purge & Re-seed State
           </button>

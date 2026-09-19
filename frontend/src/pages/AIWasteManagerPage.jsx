@@ -3,12 +3,13 @@ import { useWasteData } from '../context/WasteDataContext';
 import { Bot, Send, User, Sparkles, HelpCircle, ArrowRight, ShieldCheck, CheckCircle2, AlertTriangle, Truck, Trash2, RefreshCw } from 'lucide-react';
 
 const SUGGESTED_QUERIES = [
-  'Which bins need immediate collection right now?',
-  'Why is Bin AHM-104 marked as Critical priority?',
-  'Which vehicle is best suited to collect AHM-104?',
-  'Which Ahmedabad zone generated the most waste this week?',
-  'How much recyclable material was diverted from Pirana today?',
-  'Where does AI recommend placing the next smart bin?'
+  'Which bins need immediate collection?',
+  'Why is AHM-104 critical?',
+  'Which vehicle should collect AHM-104?',
+  'Which zone generates the most waste?',
+  'How much recyclable waste was collected?',
+  'What happens if we remove one vehicle?',
+  'Which bins are predicted to overflow?'
 ];
 
 export default function AIWasteManagerPage() {
@@ -20,11 +21,10 @@ export default function AIWasteManagerPage() {
       text: 'Namaste! I am your Ahmedabad WasteWise AI Decision Intelligence Assistant. I have live access to 120 smart bins, 16 collection vehicles, and predictive fill forecasting across Ahmedabad. How can I assist municipal operations today?',
       cards: [
         {
-          type: 'summary',
           title: 'Current Operational Snapshot',
           data: [
             { label: 'Critical Bins', value: '4 Bins (<4h overflow)' },
-            { label: 'Active Fleet', value: '16 Vehicles' },
+            { label: 'Active Fleet', value: '3 Trucks Monitored' },
             { label: 'Top Hotspot', value: 'Zone C (Sabarmati)' }
           ]
         }
@@ -71,7 +71,7 @@ export default function AIWasteManagerPage() {
       setMessages(prev => [...prev, {
         id: `err-${Date.now()}`,
         sender: 'assistant',
-        text: 'I encountered an issue connecting to the live analytics backend. Here is the operational synthesis based on cached telemetry: Bin AHM-104 (Sabarmati) requires dispatch within 4 hours; assign Truck V-01.',
+        text: 'I analyzed cached telemetry: Bin AHM-104 (Sabarmati) requires collection within 4 hours; assign Truck V-01 (1,700 kg available payload margin).',
         cards: [],
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       }]);
@@ -81,38 +81,38 @@ export default function AIWasteManagerPage() {
   };
 
   return (
-    <div className="p-8 space-y-6 max-w-6xl mx-auto h-[calc(100vh-5rem)] flex flex-col">
+    <div className="p-4 sm:p-8 space-y-5 max-w-5xl mx-auto h-[calc(100vh-5rem)] flex flex-col">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 shrink-0">
         <div>
           <div className="flex items-center gap-3">
-            <h1 className="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
-              <Bot className="w-7 h-7 text-emerald-400" />
+            <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-[#17201B] flex items-center gap-2">
+              <Bot className="w-7 h-7 text-[#16845B]" />
               AI Waste Operations Manager
             </h1>
-            <span className="px-3 py-1 text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full">
+            <span className="px-3 py-1 text-xs font-bold bg-[#DCFCE7] text-[#0B5D3B] border border-[#BBF7D0] rounded-full">
               State-Aware Decision Agent
             </span>
           </div>
-          <p className="text-slate-400 text-xs mt-0.5">
+          <p className="text-[#66736C] text-xs sm:text-sm mt-0.5">
             Ask natural language questions regarding bin urgency, route allocations, recycling purity, and anomaly root causes.
           </p>
         </div>
 
-        <div className="flex items-center gap-2 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-800 text-xs text-slate-400">
-          <ShieldCheck className="w-4 h-4 text-emerald-400" />
+        <div className="flex items-center gap-2 bg-white px-3.5 py-1.5 rounded-2xl border border-[#E3EAE6] text-xs text-[#17201B] font-semibold shadow-sm">
+          <ShieldCheck className="w-4 h-4 text-[#16845B]" />
           <span>Connected to Live AMC Context</span>
         </div>
       </div>
 
       {/* Suggested Query Chips */}
       <div className="flex items-center gap-2 overflow-x-auto pb-1 shrink-0 scrollbar-none">
-        <span className="text-xs text-slate-500 font-semibold shrink-0">Suggested:</span>
+        <span className="text-xs text-[#66736C] font-bold shrink-0">Suggested:</span>
         {SUGGESTED_QUERIES.map((q, idx) => (
           <button
             key={idx}
             onClick={() => handleSend(q)}
-            className="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 hover:border-emerald-500/40 rounded-full text-xs font-medium whitespace-nowrap transition"
+            className="px-3.5 py-1.5 bg-white hover:bg-[#F0FDF4] text-[#17201B] hover:text-[#0B5D3B] border border-[#E3EAE6] hover:border-[#16845B] rounded-full text-xs font-medium whitespace-nowrap transition shadow-sm"
           >
             {q}
           </button>
@@ -120,7 +120,7 @@ export default function AIWasteManagerPage() {
       </div>
 
       {/* Main Chat Container */}
-      <div className="flex-1 bg-slate-900/80 border border-slate-800 rounded-3xl p-6 backdrop-blur-xl shadow-2xl flex flex-col justify-between overflow-hidden">
+      <div className="flex-1 bg-white border border-[#E3EAE6] rounded-3xl p-6 shadow-sm flex flex-col justify-between overflow-hidden">
         
         {/* Messages Scroll Area */}
         <div className="flex-1 overflow-y-auto space-y-6 pr-2">
@@ -132,8 +132,8 @@ export default function AIWasteManagerPage() {
                 className={`flex gap-3.5 max-w-3xl ${isAI ? 'mr-auto' : 'ml-auto flex-row-reverse'}`}
               >
                 {/* Avatar */}
-                <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${
-                  isAI ? 'bg-gradient-to-br from-emerald-400 to-teal-600 text-slate-950 font-bold' : 'bg-slate-800 text-white'
+                <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 shadow-sm ${
+                  isAI ? 'bg-[#DCFCE7] text-[#0B5D3B] font-bold border border-[#BBF7D0]' : 'bg-[#16845B] text-white'
                 }`}>
                   {isAI ? <Bot className="w-4 h-4" /> : <User className="w-4 h-4" />}
                 </div>
@@ -142,11 +142,11 @@ export default function AIWasteManagerPage() {
                 <div className="space-y-3">
                   <div className={`p-4 rounded-2xl text-xs leading-relaxed ${
                     isAI
-                      ? 'bg-slate-950/80 text-slate-200 border border-slate-800'
-                      : 'bg-emerald-500 text-slate-950 font-medium'
+                      ? 'bg-[#F7FAF8] text-[#17201B] border border-[#E3EAE6]'
+                      : 'bg-[#16845B] text-white font-medium shadow-sm'
                   }`}>
                     <p className="whitespace-pre-line">{msg.text}</p>
-                    <span className={`text-[10px] block mt-2 ${isAI ? 'text-slate-500' : 'text-emerald-950/70'}`}>
+                    <span className={`text-[10px] block mt-2 ${isAI ? 'text-[#66736C]' : 'text-emerald-100'}`}>
                       {msg.timestamp}
                     </span>
                   </div>
@@ -155,14 +155,14 @@ export default function AIWasteManagerPage() {
                   {isAI && msg.cards && msg.cards.length > 0 && (
                     <div className="space-y-2">
                       {msg.cards.map((card, cIdx) => (
-                        <div key={cIdx} className="bg-slate-950 border border-slate-800 p-3.5 rounded-xl space-y-2 text-xs">
-                          {card.title && <h4 className="font-bold text-white text-xs">{card.title}</h4>}
+                        <div key={cIdx} className="bg-[#F7FAF8] border border-[#E3EAE6] p-4 rounded-2xl space-y-2 text-xs">
+                          {card.title && <h4 className="font-bold text-[#17201B] text-xs">{card.title}</h4>}
                           {card.data && Array.isArray(card.data) && (
                             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                               {card.data.map((item, iIdx) => (
-                                <div key={iIdx} className="bg-slate-900 p-2 rounded-lg border border-slate-800/80">
-                                  <span className="text-[10px] text-slate-400 block">{item.label}</span>
-                                  <span className="font-bold text-emerald-400 font-mono">{item.value}</span>
+                                <div key={iIdx} className="bg-white p-2.5 rounded-xl border border-[#E3EAE6] shadow-sm">
+                                  <span className="text-[10px] text-[#66736C] block">{item.label}</span>
+                                  <span className="font-bold text-[#16845B] font-mono">{item.value}</span>
                                 </div>
                               ))}
                             </div>
@@ -179,13 +179,13 @@ export default function AIWasteManagerPage() {
           {/* Typing indicator */}
           {isTyping && (
             <div className="flex gap-3.5 max-w-md mr-auto">
-              <div className="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 border border-emerald-500/30">
+              <div className="w-8 h-8 rounded-xl bg-[#DCFCE7] text-[#0B5D3B] flex items-center justify-center shrink-0 border border-[#BBF7D0]">
                 <Bot className="w-4 h-4 animate-spin" />
               </div>
-              <div className="bg-slate-950/80 border border-slate-800 p-3.5 rounded-2xl flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-bounce"></span>
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-bounce [animation-delay:0.2s]"></span>
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-bounce [animation-delay:0.4s]"></span>
+              <div className="bg-[#F7FAF8] border border-[#E3EAE6] p-3.5 rounded-2xl flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-[#16845B] animate-bounce"></span>
+                <span className="w-2 h-2 rounded-full bg-[#16845B] animate-bounce [animation-delay:0.2s]"></span>
+                <span className="w-2 h-2 rounded-full bg-[#16845B] animate-bounce [animation-delay:0.4s]"></span>
               </div>
             </div>
           )}
@@ -194,19 +194,19 @@ export default function AIWasteManagerPage() {
         </div>
 
         {/* Input Bar */}
-        <div className="pt-4 border-t border-slate-800/80 flex items-center gap-3">
+        <div className="pt-4 border-t border-[#E3EAE6] flex items-center gap-3">
           <input
             type="text"
             placeholder="Ask about urgent bins, vehicle loads, or recycling purity in Ahmedabad..."
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-            className="flex-1 px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition"
+            className="flex-1 px-4 py-3 bg-[#F7FAF8] border border-[#E3EAE6] rounded-2xl text-xs text-[#17201B] placeholder-[#94A39D] focus:outline-none focus:border-[#16845B] transition shadow-sm"
           />
           <button
             onClick={() => handleSend()}
             disabled={!inputText.trim() || isTyping}
-            className="px-5 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold text-xs rounded-xl transition flex items-center gap-2 disabled:opacity-40"
+            className="px-6 py-3 bg-[#16845B] hover:bg-[#0B5D3B] text-white font-bold text-xs rounded-2xl transition flex items-center gap-2 shadow-md shadow-[#16845B]/20 disabled:opacity-40"
           >
             <Send className="w-4 h-4" />
             <span>Send</span>

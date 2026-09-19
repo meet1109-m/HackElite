@@ -20,7 +20,7 @@ import AIWasteManagerPage from './pages/AIWasteManagerPage';
 import SettingsPage from './pages/SettingsPage';
 
 function AppContent() {
-  const [currentPage, setCurrentPage] = useState('landing'); // default landing
+  const [currentPage, setCurrentPage] = useState('landing');
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const { isAIDemoOpen, closeAIDemo } = useWasteData();
 
@@ -29,36 +29,38 @@ function AppContent() {
       case 'landing':
         return <LandingPage onLaunchApp={() => setCurrentPage('command-center')} onNavigate={setCurrentPage} />;
       case 'command-center':
-        return <CommandCenterPage onNavigate={setCurrentPage} />;
+      case 'command':
+        return <CommandCenterPage onNavigate={setCurrentPage} onNavigateTab={setCurrentPage} />;
       case 'operations':
-        return <LiveOperationsPage />;
+        return <LiveOperationsPage onNavigate={setCurrentPage} onNavigateTab={setCurrentPage} />;
       case 'bins':
-        return <BinIntelligencePage />;
+        return <BinIntelligencePage onNavigate={setCurrentPage} />;
       case 'vision':
-        return <WasteVisionPage />;
+        return <WasteVisionPage onNavigate={setCurrentPage} />;
       case 'routes':
-        return <RouteOptimizerPage />;
+        return <RouteOptimizerPage onNavigate={setCurrentPage} />;
       case 'analytics':
-        return <AnalyticsHotspotsPage />;
+        return <AnalyticsHotspotsPage onNavigate={setCurrentPage} />;
       case 'recycling':
-        return <RecyclingIntelligencePage />;
+        return <RecyclingIntelligencePage onNavigate={setCurrentPage} />;
       case 'simulator':
-        return <WhatIfSimulatorPage />;
+        return <WhatIfSimulatorPage onNavigate={setCurrentPage} />;
       case 'events':
-        return <EventPlacementPage />;
+        return <EventPlacementPage onNavigate={setCurrentPage} />;
       case 'ai-assistant':
-        return <AIWasteManagerPage />;
+      case 'ai-manager':
+        return <AIWasteManagerPage onNavigate={setCurrentPage} />;
       case 'settings':
-        return <SettingsPage />;
+        return <SettingsPage onNavigate={setCurrentPage} />;
       default:
-        return <CommandCenterPage onNavigate={setCurrentPage} />;
+        return <CommandCenterPage onNavigate={setCurrentPage} onNavigateTab={setCurrentPage} />;
     }
   };
 
   const isLanding = currentPage === 'landing';
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-slate-950">
+    <div className="min-h-screen bg-[#F7FAF8] text-[#17201B] flex flex-col font-sans selection:bg-[#16845B] selection:text-white">
       {/* Top Navbar */}
       <Navbar
         currentPage={currentPage}
@@ -84,7 +86,7 @@ function AppContent() {
       </div>
 
       {/* Global Digital Twin Modal */}
-      <BinDigitalTwinModal />
+      <BinDigitalTwinModal onNavigateTab={setCurrentPage} />
 
       {/* Global 10-Step AI Demo Modal */}
       <AIDemoModal isOpen={isAIDemoOpen} onClose={closeAIDemo} />

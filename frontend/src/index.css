@@ -4,35 +4,37 @@
 
 @layer base {
   body {
-    @apply bg-slate-950 text-slate-100 antialiased font-sans;
+    @apply bg-[#F7FAF8] text-[#17201B] antialiased font-sans;
+    background-color: #F7FAF8;
+    color: #17201B;
   }
 }
 
-/* Custom Scrollbars */
+/* Custom Clean Light Scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: #F1F6F3;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #CBD8D2;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #059669;
+  background: #16845B;
 }
 
-/* Glassmorphic card styling */
+/* Glassmorphic card styling for Light Theme */
 .glass-panel {
-  background: rgba(30, 41, 59, 0.7);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(51, 65, 85, 0.6);
+  border: 1px solid #E3EAE6;
 }
 
 .glass-panel-hover {
@@ -40,33 +42,34 @@
 }
 
 .glass-panel-hover:hover {
-  background: rgba(30, 41, 59, 0.9);
-  border-color: rgba(16, 185, 129, 0.4);
+  background: #FFFFFF;
+  border-color: #16845B;
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 25px -5px rgba(22, 132, 91, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
 }
 
-/* Leaflet Map overrides for dark theme */
+/* Leaflet Map overrides for light theme */
 .leaflet-container {
   width: 100%;
   height: 100%;
-  background-color: #0f172a !important;
+  background-color: #e5ece8 !important;
   font-family: inherit;
 }
 
 .leaflet-popup-content-wrapper {
-  background: #1e293b !important;
-  color: #f8fafc !important;
-  border-radius: 0.75rem !important;
-  border: 1px solid #334155 !important;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5) !important;
+  background: #FFFFFF !important;
+  color: #17201B !important;
+  border-radius: 0.875rem !important;
+  border: 1px solid #E3EAE6 !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04) !important;
+  padding: 2px !important;
 }
 
 .leaflet-popup-tip {
-  background: #1e293b !important;
+  background: #FFFFFF !important;
 }
 
-/* Shimmer animation */
+/* Shimmer animation for light theme */
 @keyframes shimmer {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
@@ -84,8 +87,8 @@
   background-image: linear-gradient(
     90deg,
     rgba(255, 255, 255, 0) 0,
-    rgba(255, 255, 255, 0.08) 20%,
-    rgba(255, 255, 255, 0.15) 60%,
+    rgba(22, 132, 91, 0.06) 20%,
+    rgba(22, 132, 91, 0.12) 60%,
     rgba(255, 255, 255, 0)
   );
   animation: shimmer 2.5s infinite;

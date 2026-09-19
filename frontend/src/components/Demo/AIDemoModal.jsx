@@ -91,7 +91,7 @@ const DEMO_STEPS = [
     icon: '🌱',
     description: 'Collection completed! Metrics updated: 23.4 km transit avoided, 5.1L diesel saved, 12.4 kg CO2e offset, 64% landfill diversion from Pirana, and predictive models updated with new telemetry velocity.',
     detailBadge: 'Closed Loop Complete: Model Weights Refined for Tomorrow',
-    highlight: ' अहमदाबाद स्मार्ट सिटी (Ahmedabad Smart City) Operations Optimized.'
+    highlight: 'अहमदाबाद स्मार्ट सिटी (Ahmedabad Smart City) Operations Optimized.'
   }
 ];
 
@@ -128,41 +128,41 @@ export default function AIDemoModal({ isOpen, onClose }) {
   const stepData = DEMO_STEPS[currentStep];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md animate-fade-in">
-      <div className="bg-slate-900 border border-emerald-500/40 w-full max-w-3xl rounded-3xl overflow-hidden shadow-2xl relative flex flex-col">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm animate-fade-in">
+      <div className="bg-white border border-[#BBF7D0] w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl relative flex flex-col">
         
         {/* Top Header */}
-        <div className="p-6 bg-slate-950/90 border-b border-slate-800 flex items-center justify-between">
+        <div className="p-6 bg-[#F7FAF8] border-b border-[#E3EAE6] flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center text-slate-950 font-bold text-lg shadow-lg shadow-emerald-500/30">
-              <Sparkles className="w-5 h-5 text-slate-950" />
+            <div className="w-10 h-10 rounded-2xl bg-[#DCFCE7] border border-[#BBF7D0] flex items-center justify-center text-[#0B5D3B] font-bold text-lg shadow-sm">
+              <Sparkles className="w-5 h-5 text-[#16845B]" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="text-lg font-bold text-white">SmartBinX Autonomous AI Demo</h3>
-                <span className="px-2.5 py-0.5 text-[10px] font-black uppercase tracking-wider bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 rounded-full">
+                <h3 className="text-base sm:text-lg font-black text-[#17201B]">SmartBinX Autonomous AI Demo</h3>
+                <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-[#DCFCE7] text-[#0B5D3B] border border-[#BBF7D0] rounded-full">
                   Step {currentStep + 1} of 10
                 </span>
               </div>
-              <p className="text-xs text-slate-400">Ahmedabad End-to-End Decision Intelligence Simulation</p>
+              <p className="text-xs text-[#66736C]">Ahmedabad End-to-End Decision Intelligence Simulation</p>
             </div>
           </div>
 
           <button
             onClick={onClose}
-            className="p-2 text-slate-400 hover:text-white rounded-xl hover:bg-slate-800 transition"
+            className="p-2 text-[#66736C] hover:text-[#17201B] rounded-xl hover:bg-[#E5ECE8] transition"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Step Progress Bar */}
-        <div className="w-full bg-slate-950 h-1.5 flex">
+        <div className="w-full bg-[#E3EAE6] h-1.5 flex">
           {DEMO_STEPS.map((s, idx) => (
             <div
               key={idx}
               className={`h-full flex-1 transition-all duration-300 ${
-                idx <= currentStep ? 'bg-emerald-400' : 'bg-slate-800'
+                idx <= currentStep ? 'bg-[#16845B]' : 'bg-[#E3EAE6]'
               }`}
             />
           ))}
@@ -172,8 +172,8 @@ export default function AIDemoModal({ isOpen, onClose }) {
         <div className="p-8 space-y-6 flex-1">
           {/* Tag & Icon */}
           <div className="flex items-center justify-between">
-            <span className="px-3 py-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-xs font-bold font-mono rounded-full flex items-center gap-1.5">
-              <Zap className="w-3.5 h-3.5" />
+            <span className="px-3 py-1 bg-[#DCFCE7] text-[#0B5D3B] border border-[#BBF7D0] text-xs font-bold font-mono rounded-full flex items-center gap-1.5">
+              <Zap className="w-3.5 h-3.5 text-[#16845B]" />
               {stepData.tag}
             </span>
             <span className="text-3xl">{stepData.icon}</span>
@@ -181,52 +181,52 @@ export default function AIDemoModal({ isOpen, onClose }) {
 
           {/* Title & Description */}
           <div className="space-y-2">
-            <h2 className="text-2xl font-black text-white tracking-tight">
+            <h2 className="text-xl sm:text-2xl font-black text-[#17201B] tracking-tight">
               {stepData.title}
             </h2>
-            <p className="text-slate-300 text-sm leading-relaxed">
+            <p className="text-[#66736C] text-sm leading-relaxed">
               {stepData.description}
             </p>
           </div>
 
           {/* Highlight Badge Box */}
-          <div className="bg-slate-950/80 border border-slate-800 p-4 rounded-2xl space-y-2">
+          <div className="bg-[#F7FAF8] border border-[#E3EAE6] p-4 rounded-2xl space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-mono font-bold text-emerald-400">{stepData.detailBadge}</span>
-              <span className="text-[10px] text-slate-500 uppercase tracking-wider font-mono">Live Telemetry Stamped</span>
+              <span className="text-xs font-mono font-bold text-[#16845B]">{stepData.detailBadge}</span>
+              <span className="text-[10px] text-[#66736C] uppercase tracking-wider font-mono font-bold">Live Telemetry Stamped</span>
             </div>
-            <div className="text-xs text-slate-400 flex items-center gap-2 pt-1 border-t border-slate-800/80">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+            <div className="text-xs text-[#17201B] flex items-center gap-2 pt-1 border-t border-[#E3EAE6] font-medium">
+              <CheckCircle2 className="w-4 h-4 text-[#16845B] shrink-0" />
               <span>{stepData.highlight}</span>
             </div>
           </div>
         </div>
 
         {/* Bottom Control Bar */}
-        <div className="p-6 bg-slate-950/90 border-t border-slate-800 flex items-center justify-between">
+        <div className="p-5 bg-[#F7FAF8] border-t border-[#E3EAE6] flex items-center justify-between">
           <div className="flex items-center gap-2">
             <button
               onClick={() => setIsPlaying(prev => !prev)}
-              className="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-xl text-xs font-semibold flex items-center gap-1.5 transition"
+              className="px-3 py-2 bg-white hover:bg-[#F1F6F3] text-[#17201B] border border-[#E3EAE6] rounded-xl text-xs font-bold flex items-center gap-1.5 transition shadow-sm"
             >
               {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
-              <span>{isPlaying ? 'Pause Demo' : 'Auto Play'}</span>
+              <span>{isPlaying ? 'Pause' : 'Auto Play'}</span>
             </button>
 
             <button
               onClick={() => setCurrentStep(prev => Math.max(0, prev - 1))}
               disabled={currentStep === 0}
-              className="p-2 text-slate-400 hover:text-white rounded-xl hover:bg-slate-800 transition disabled:opacity-30"
+              className="p-2 text-[#66736C] hover:text-[#17201B] bg-white border border-[#E3EAE6] rounded-xl hover:bg-[#F1F6F3] transition disabled:opacity-30 shadow-sm"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-4 h-4" />
             </button>
 
             <button
               onClick={() => setCurrentStep(prev => Math.min(DEMO_STEPS.length - 1, prev + 1))}
               disabled={currentStep === DEMO_STEPS.length - 1}
-              className="p-2 text-slate-400 hover:text-white rounded-xl hover:bg-slate-800 transition disabled:opacity-30"
+              className="p-2 text-[#66736C] hover:text-[#17201B] bg-white border border-[#E3EAE6] rounded-xl hover:bg-[#F1F6F3] transition disabled:opacity-30 shadow-sm"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-4 h-4" />
             </button>
           </div>
 
@@ -234,14 +234,14 @@ export default function AIDemoModal({ isOpen, onClose }) {
             {currentStep === DEMO_STEPS.length - 1 ? (
               <button
                 onClick={onClose}
-                className="px-5 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs uppercase tracking-wider rounded-xl transition shadow-lg shadow-emerald-500/20"
+                className="px-5 py-2.5 bg-[#16845B] hover:bg-[#0B5D3B] text-white font-extrabold text-xs uppercase tracking-wider rounded-xl transition shadow-md shadow-[#16845B]/20"
               >
-                Close & Explore Command Center
+                Close & Explore
               </button>
             ) : (
               <button
                 onClick={() => setCurrentStep(prev => Math.min(DEMO_STEPS.length - 1, prev + 1))}
-                className="px-4 py-2 bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 border border-emerald-500/40 text-xs font-bold rounded-xl transition flex items-center gap-1.5"
+                className="px-4 py-2 bg-[#16845B] hover:bg-[#0B5D3B] text-white text-xs font-bold rounded-xl transition flex items-center gap-1.5 shadow-sm"
               >
                 <span>Next Step</span>
                 <ChevronRight className="w-4 h-4" />
