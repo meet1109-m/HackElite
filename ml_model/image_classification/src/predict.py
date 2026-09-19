@@ -52,7 +52,8 @@ class WasteImageClassifier:
                 raise FileNotFoundError(f"Missing image_classifier.pt in {MODELS_DIR}")
                 
             model = WasteClassifier(num_classes=len(self._classes), pretrained=False)
-            model.load_state_dict(torch.save_loaded := torch.load(model_weights, map_location=self._device))
+            state_dict = torch.load(model_weights, map_location=self._device)
+            model.load_state_dict(state_dict)
             model.to(self._device)
             model.eval()
             self._model = model

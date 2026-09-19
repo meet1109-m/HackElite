@@ -114,6 +114,42 @@ def test_anomaly_detection():
     assert "anomaly_status" in data
     print("  [PASS] /predict/anomaly ->", data)
 
+def test_image_prediction_file():
+    from io import BytesIO
+    from PIL import Image
+    
+    img = Image.new("RGB", (224, 224), color=(100, 150, 200))
+    buf = BytesIO()
+    img.save(buf, format="PNG")
+    buf.seek(0)
+    
+    files = {"file": ("test.png", buf, "image/png")}
+    res = client.post("/predict/image", files=files)
+    assert res.status_code == 200
+    data = res.json()
+    assert data["source"] == "AI Detected from Image"
+    assert data["predicted_class"] in ["Plastic", "Other", "Metal", "Paper", "Glass"]
+    assert 0.0 <= data["confidence"] <= 1.0
+    print("  [PASS] /predict/image ->", data)
+
+def test_image_prediction_base64():
+    import base64
+    from io import BytesIO
+    from PIL import Image
+    
+    img = Image.new("RGB", (224, 224), color=(50, 120, 80))
+    buf = BytesIO()
+    img.save(buf, format="PNG")
+    b64_str = base64.b64encode(buf.getvalue()).decode("utf-8")
+    
+    payload = {"image_base64": b64_str}
+    res = client.post("/predict/image-base64", json=payload)
+    assert res.status_code == 200
+    data = res.json()
+    assert data["source"] == "AI Detected from Image"
+    assert data["predicted_class"] in ["Plastic", "Other", "Metal", "Paper", "Glass"]
+    print("  [PASS] /predict/image-base64 ->", data)
+
 if __name__ == "__main__":
     print("Running FastAPI Endpoint Verification Suite...")
     test_health()
@@ -122,4 +158,6 @@ if __name__ == "__main__":
     test_composition_prediction()
     test_waste_forecast()
     test_anomaly_detection()
+    test_image_prediction_file()
+    test_image_prediction_base64()
     print("\nALL FASTAPI ENDPOINTS VERIFIED SUCCESSFULLY!")

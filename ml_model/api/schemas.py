@@ -121,6 +121,14 @@ class AnomalyResponse(BaseModel):
     anomaly_score: float
     anomaly_status: str
 
+# ----------------- Image Classification Schemas ----------------- #
+class ImageClassificationResponse(BaseModel):
+    predicted_class: str
+    confidence: float
+    waste_stream: str
+    probabilities: Dict[str, float]
+    source: str = "AI Detected from Image"
+
 # ----------------- Health Check Schema ----------------- #
 class HealthResponse(BaseModel):
     status: str
