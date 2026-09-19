@@ -1,0 +1,16 @@
+{
+  "architecture": "MobileNetV2_Enhanced",
+  "classifier_head": "Linear(in,128)->BatchNorm->SiLU->Dropout->Linear(128,5)",
+  "num_classes": 5,
+  "classes": [
+    "Plastic",
+    "Other",
+    "Metal",
+    "Paper",
+    "Glass"
+  ],
+  "test_accuracy": 0.5847,
+  "macro_f1": 0.3747,
+  "weighted_f1": 0.6059,
+  "source_provenance": "AI Detected from Image"
+}

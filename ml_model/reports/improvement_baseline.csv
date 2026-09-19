@@ -1,0 +1,8 @@
+model,version,task,MAE,RMSE,R2,accuracy,precision,recall,F1,PR_AUC,other_metrics
+Fill_Prediction_6h,baseline_v1,Regression (6h Fill),8.117,13.2682,0.7178,,,,,,"Test Size: 141,753"
+Fill_Prediction_12h,baseline_v1,Regression (12h Fill),10.8062,15.9561,0.5917,,,,,,"Test Size: 141,753"
+Fill_Prediction_24h,baseline_v1,Regression (24h Fill),10.7584,16.1072,0.5829,,,,,,"Test Size: 141,753"
+Waste_Composition,baseline_v1,Multi-Target Regression (6 Streams),3.252,4.3889,0.7484,,,,,,"Sum to 100%: True (Tolerance 1e-4), Test Size: 9,129"
+Zone_Waste_Forecasting,baseline_v1,Time Series Regression (Zone Waste kg),245.3677,424.1383,0.9887,,,,,,"Test Size: 1,980"
+Anomaly_Detection_IsolationForest,baseline_v1,Unsupervised Anomaly Detection,,,,0.979,0.1245,0.4167,0.1917,0.2789,"ROC-AUC: 0.9456, Contamination: 0.02, Evaluated: 12,045"
+Waste_Image_Classifier_MobileNetV2,baseline_v1,Vision Waste Classification,,,,0.6186,0.3556,0.3642,0.3579,,"Weighted F1: 0.6118, Test Images: 118"
