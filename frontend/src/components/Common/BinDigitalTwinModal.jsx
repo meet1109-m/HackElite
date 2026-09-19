@@ -23,8 +23,16 @@ export const BinDigitalTwinModal = (props) => {
       apiService.getBinReadings(bin.id).then(r => setReadings(r || []));
       setBestVehicle(null);
       setPredictionRun(false);
+
+      const handleKeyDown = (e) => {
+        if (e.key === 'Escape') {
+          onClose();
+        }
+      };
+      window.addEventListener('keydown', handleKeyDown);
+      return () => window.removeEventListener('keydown', handleKeyDown);
     }
-  }, [bin]);
+  }, [bin, onClose]);
 
   if (!bin) return null;
 
@@ -46,33 +54,48 @@ export const BinDigitalTwinModal = (props) => {
   const pred = bin.prediction || {};
 
   return (
-    <div className="fixed inset-y-0 right-0 z-50 w-full max-w-xl bg-white/95 backdrop-blur-xl border-l border-[#E3EAE6] shadow-2xl overflow-y-auto flex flex-col animate-fade-in">
-      {/* Header */}
-      <div className="p-5 border-b border-[#E3EAE6] bg-white sticky top-0 z-10 flex items-center justify-between shadow-sm">
-        <div className="flex items-center gap-3">
-          <div className="p-2.5 bg-[#DCFCE7] border border-[#BBF7D0] rounded-2xl text-[#0B5D3B]">
-            <Cpu className="w-5 h-5 text-[#16845B]" />
-          </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <h2 className="text-lg font-black text-[#17201B] font-mono">{bin.bin_code}</h2>
-              <span className="text-xs px-2.5 py-0.5 rounded-full bg-[#F1F6F3] text-[#17201B] font-bold border border-[#E3EAE6]">
-                {bin.waste_stream}
-              </span>
+    <>
+      {/* Modal Backdrop Layer (Strictly above Leaflet maps and markers) */}
+      <div 
+        className="fixed inset-0 bg-black/40 backdrop-blur-[2px] z-[1000] transition-opacity animate-fade-in"
+        onClick={onClose}
+        aria-hidden="true"
+      />
+
+      {/* Digital Twin Panel */}
+      <div 
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="digital-twin-title"
+        className="fixed inset-y-0 right-0 z-[1100] w-full max-w-xl bg-white/95 backdrop-blur-xl border-l border-[#E3EAE6] shadow-2xl overflow-y-auto flex flex-col animate-fade-in"
+      >
+        {/* Header */}
+        <div className="p-5 border-b border-[#E3EAE6] bg-white sticky top-0 z-10 flex items-center justify-between shadow-sm">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 bg-[#DCFCE7] border border-[#BBF7D0] rounded-2xl text-[#0B5D3B]">
+              <Cpu className="w-5 h-5 text-[#16845B]" />
             </div>
-            <p className="text-xs text-[#66736C] flex items-center gap-1 mt-0.5 font-medium">
-              <MapPin className="w-3.5 h-3.5 text-[#16845B] shrink-0" />
-              <span className="truncate max-w-[280px]">{bin.address}</span>
-            </p>
+            <div>
+              <div className="flex items-center gap-2">
+                <h2 id="digital-twin-title" className="text-lg font-black text-[#17201B] font-mono">{bin.bin_code}</h2>
+                <span className="text-xs px-2.5 py-0.5 rounded-full bg-[#F1F6F3] text-[#17201B] font-bold border border-[#E3EAE6]">
+                  {bin.waste_stream}
+                </span>
+              </div>
+              <p className="text-xs text-[#66736C] flex items-center gap-1 mt-0.5 font-medium">
+                <MapPin className="w-3.5 h-3.5 text-[#16845B] shrink-0" />
+                <span className="truncate max-w-[280px]">{bin.address}</span>
+              </p>
+            </div>
           </div>
+          <button
+            onClick={onClose}
+            aria-label="Close Digital Twin Panel"
+            className="p-2 text-[#66736C] hover:text-[#17201B] bg-[#F1F6F3] hover:bg-[#E5ECE8] rounded-xl transition-colors"
+          >
+            <X className="w-5 h-5" />
+          </button>
         </div>
-        <button
-          onClick={onClose}
-          className="p-2 text-[#66736C] hover:text-[#17201B] bg-[#F1F6F3] hover:bg-[#E5ECE8] rounded-xl transition-colors"
-        >
-          <X className="w-5 h-5" />
-        </button>
-      </div>
 
       <div className="p-6 space-y-5 flex-1 text-[#17201B]">
         {/* Overflow Countdown Hero Card */}
@@ -246,6 +269,7 @@ export const BinDigitalTwinModal = (props) => {
         </div>
       </div>
     </div>
+  </>
   );
 };
 

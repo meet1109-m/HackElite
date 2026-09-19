@@ -94,3 +94,71 @@
   animation: shimmer 2.5s infinite;
   content: '';
 }
+
+/* Subtle Page-Specific Thematic Background Patterns */
+.bg-pattern-command {
+  background-color: #F7FAF8;
+  background-image: radial-gradient(rgba(22, 132, 91, 0.06) 1.5px, transparent 1.5px), radial-gradient(rgba(40, 120, 200, 0.04) 1px, transparent 1px);
+  background-size: 36px 36px, 18px 18px;
+  background-position: 0 0, 18px 18px;
+}
+
+.bg-pattern-operations {
+  background-color: #F7FAF8;
+  background-image: linear-gradient(rgba(203, 216, 210, 0.25) 1px, transparent 1px), linear-gradient(90deg, rgba(203, 216, 210, 0.25) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.bg-pattern-bins {
+  background-color: #F7FAF8;
+  background-image: radial-gradient(circle, rgba(22, 132, 91, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.bg-pattern-vision {
+  background-color: #F7FAF8;
+  background-image: radial-gradient(rgba(13, 148, 136, 0.07) 1.5px, transparent 1.5px), linear-gradient(rgba(203, 216, 210, 0.15) 1px, transparent 1px);
+  background-size: 32px 32px, 32px 32px;
+}
+
+.bg-pattern-routes {
+  background-color: #F7FAF8;
+  background-image: radial-gradient(rgba(232, 154, 39, 0.06) 1.5px, transparent 1.5px), radial-gradient(rgba(22, 132, 91, 0.06) 1px, transparent 1px);
+  background-size: 44px 44px, 22px 22px;
+}
+
+.bg-pattern-analytics {
+  background-color: #F7FAF8;
+  background-image: linear-gradient(0deg, rgba(40, 120, 200, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(40, 120, 200, 0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.bg-pattern-recycling {
+  background-color: #F7FAF8;
+  background-image: radial-gradient(rgba(22, 132, 91, 0.07) 2px, transparent 2px);
+  background-size: 30px 30px;
+}
+
+.bg-pattern-simulator {
+  background-color: #F7FAF8;
+  background-image: radial-gradient(rgba(11, 93, 59, 0.06) 1.5px, transparent 1.5px), linear-gradient(45deg, rgba(203, 216, 210, 0.12) 1px, transparent 1px);
+  background-size: 32px 32px, 64px 64px;
+}
+
+.bg-pattern-events {
+  background-color: #F7FAF8;
+  background-image: radial-gradient(rgba(232, 154, 39, 0.08) 2px, transparent 2px);
+  background-size: 36px 36px;
+}
+
+.bg-pattern-ai {
+  background-color: #F7FAF8;
+  background-image: radial-gradient(rgba(22, 132, 91, 0.07) 1.5px, transparent 1.5px), radial-gradient(rgba(13, 148, 136, 0.05) 1.5px, transparent 1.5px);
+  background-size: 28px 28px, 14px 14px;
+}
+
+.bg-pattern-iot {
+  background-color: #F7FAF8;
+  background-image: linear-gradient(rgba(203, 216, 210, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(203, 216, 210, 0.3) 1px, transparent 1px);
+  background-size: 30px 30px;
+}

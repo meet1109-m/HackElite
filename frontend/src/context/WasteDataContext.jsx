@@ -28,13 +28,27 @@ export const WasteDataProvider = ({ children }) => {
   // What-If Simulation Result
   const [simulationResult, setSimulationResult] = useState(null);
 
-  // Priority Weights Config
+  // Priority Weights Config (7 Normalized Factors totaling 100%)
   const [priorityWeights, setPriorityWeights] = useState({
-    fill_weight: 35,
-    overflow_weight: 30,
-    stream_weight: 15,
+    fill_weight: 30,
+    overflow_weight: 25,
+    gen_weight: 15,
+    stream_weight: 10,
     zone_weight: 10,
-    gen_weight: 10
+    freq_weight: 5,
+    delay_weight: 5
+  });
+
+  // IoT Sensor Telemetry State
+  const [iotStatus, setIotStatus] = useState({
+    totalNodes: 120,
+    activeNodes: 116,
+    offlineNodes: 4,
+    telemetryFrequencySec: 60,
+    fillSensorHealthPct: 98.4,
+    weightSensorHealthPct: 95.8,
+    cameraHealthPct: 88.2,
+    lastPing: 'Just now (1s ago)'
   });
 
   // Ahmedabad Event Mode & AI Bin Placement
@@ -85,7 +99,7 @@ export const WasteDataProvider = ({ children }) => {
     setToasts(prev => [...prev, { id, message, type }]);
     setTimeout(() => {
       setToasts(prev => prev.filter(t => t.id !== id));
-    }, 4000);
+    }, 4500);
   }, []);
 
   const removeToast = useCallback((id) => {
@@ -148,7 +162,7 @@ export const WasteDataProvider = ({ children }) => {
     if (res) {
       setActiveRoute(res);
       setRoutes(prev => ({ ...prev, [vehicleId]: res }));
-      showToast(`✓ Route for ${vehicleId} optimized successfully (${res.distance_km} km, ${res.duration_minutes}m).`, 'success');
+      showToast(`✓ Route for ${vehicleId} optimized: ${res.distance_km} km (${res.duration_minutes} min, ${res.collected_weight_kg} kg payload).`, 'success');
     }
     setLoading(false);
     return res;
@@ -196,23 +210,106 @@ export const WasteDataProvider = ({ children }) => {
     return res;
   }, [showToast]);
 
-  // Priority Weights Updater
+  // Priority Weights Updater with comprehensive 7-factor calculation
   const updatePriorityWeights = useCallback((newWeights) => {
     setPriorityWeights(newWeights);
-    // Recalculate priority scores across bins
+    // Recalculate priority scores across all bins
     setBins(prevBins => prevBins.map(bin => {
-      const fillPart = (bin.fill_percentage / 100) * (newWeights.fill_weight || 35);
-      const overflowPart = Math.max(0, (24 - bin.predicted_overflow_hours) / 24) * (newWeights.overflow_weight || 30);
-      const genPart = Math.min(20, (bin.avg_daily_generation_kg / 50) * (newWeights.gen_weight || 10));
-      const newScore = Math.min(100, Math.round(fillPart + overflowPart + genPart + 15));
+      const fillPart = (bin.fill_percentage / 100) * (newWeights.fill_weight || 30);
+      const overflowPart = Math.max(0, (24 - bin.predicted_overflow_hours) / 24) * (newWeights.overflow_weight || 25);
+      const genPart = Math.min(20, (bin.avg_daily_generation_kg / 50) * (newWeights.gen_weight || 15));
+      const streamPart = (bin.waste_stream?.includes('Plastic') ? 1.0 : (bin.waste_stream?.includes('Organic') ? 0.8 : 0.6)) * (newWeights.stream_weight || 10);
+      const zonePart = (bin.zone?.includes('Sabarmati') ? 1.0 : (bin.zone?.includes('Navrangpura') ? 0.85 : 0.6)) * (newWeights.zone_weight || 10);
+      const freqPart = (newWeights.freq_weight || 5) * 0.7;
+      const delayPart = (newWeights.delay_weight || 5) * 0.8;
+
+      const totalRaw = fillPart + overflowPart + genPart + streamPart + zonePart + freqPart + delayPart;
+      const newScore = Math.min(99, Math.max(15, Math.round(totalRaw)));
+      
+      const newStatus = newScore >= 85 ? 'Critical' : (newScore >= 70 ? 'High Priority' : (bin.fill_percentage >= 50 ? 'Filling' : 'Healthy'));
+      
       return {
         ...bin,
         priority_score: newScore,
-        status: newScore >= 85 ? 'Critical' : (newScore >= 70 ? 'High Priority' : (bin.fill_percentage >= 50 ? 'Filling' : 'Healthy'))
+        status: newStatus
       };
     }));
-    showToast('✓ Priority scoring weights updated and scores recalculated.', 'success');
+    showToast('✓ Priority scoring weights updated and scores recalculated across 120 digital twins.', 'success');
   }, [showToast]);
+
+  // Telemetry Simulation Functions (Prototype Actions)
+  const simulateFillIncrease = useCallback(() => {
+    setBins(prevBins => prevBins.map(bin => {
+      if (bin.bin_code === 'AHM-104' || bin.bin_code === 'AHM-118' || bin.bin_code === 'AHM-156') {
+        const newFill = Math.min(100, Math.round(bin.fill_percentage + 12));
+        const newWeight = Number((bin.estimated_weight_kg * 1.15).toFixed(1));
+        const newHours = Math.max(0.3, Number((bin.predicted_overflow_hours * 0.6).toFixed(1)));
+        return {
+          ...bin,
+          fill_percentage: newFill,
+          current_fill: newFill,
+          estimated_weight_kg: newWeight,
+          predicted_overflow_hours: newHours,
+          predicted_overflow_text: `${Math.floor(newHours)}h ${Math.round((newHours % 1) * 60)}m`,
+          status: 'Critical',
+          priority_score: Math.min(99, bin.priority_score + 6)
+        };
+      }
+      return bin;
+    }));
+    showToast('⚡ [Simulated Telemetry] Rapid fill increase injected (+12% on Sabarmati/Navrangpura nodes).', 'warning');
+  }, [showToast]);
+
+  const simulateOverflowRisk = useCallback(() => {
+    setBins(prevBins => prevBins.map(bin => {
+      if (bin.status === 'Critical' || bin.priority_score >= 80) {
+        return {
+          ...bin,
+          predicted_overflow_hours: 0.5,
+          predicted_overflow_text: '00h 30m',
+          priority_score: 98,
+          status: 'Critical'
+        };
+      }
+      return bin;
+    }));
+    showToast('🚨 [Simulated Telemetry] Imminent overflow surge triggered on critical nodes (<30m countdown).', 'error');
+  }, [showToast]);
+
+  const simulateSensorOffline = useCallback(() => {
+    setIotStatus(prev => ({
+      ...prev,
+      activeNodes: 112,
+      offlineNodes: 8,
+      fillSensorHealthPct: 93.3
+    }));
+    setBins(prevBins => prevBins.map((bin, i) => {
+      if (i === 4 || i === 5) {
+        return {
+          ...bin,
+          status: 'Sensor Offline',
+          sensor_offline: true
+        };
+      }
+      return bin;
+    }));
+    showToast('⚠️ [Simulated Telemetry] 4 IoT nodes entered offline heartbeat warning state.', 'warning');
+  }, [showToast]);
+
+  const refreshTelemetry = useCallback(async () => {
+    await fetchData();
+    setIotStatus({
+      totalNodes: 120,
+      activeNodes: 116,
+      offlineNodes: 4,
+      telemetryFrequencySec: 60,
+      fillSensorHealthPct: 98.4,
+      weightSensorHealthPct: 95.8,
+      cameraHealthPct: 88.2,
+      lastPing: 'Just now (0s ago)'
+    });
+    showToast('✓ Telemetry reset to baseline AMC operational state.', 'info');
+  }, [fetchData, showToast]);
 
   // Event Mode Toggle
   const toggleEventMode = useCallback((event) => {
@@ -273,24 +370,26 @@ export const WasteDataProvider = ({ children }) => {
       startAIDemo,
       closeAIDemo,
       loading,
-      refreshData: fetchData
+      refreshData: fetchData,
+      iotStatus,
+      setIotStatus,
+      simulateFillIncrease,
+      simulateOverflowRisk,
+      simulateSensorOffline,
+      refreshTelemetry
     }}>
       {children}
       
-      {/* Global Toast Notification Container */}
-      <div className="fixed bottom-5 right-5 z-[100] space-y-2.5 max-w-sm w-full pointer-events-none">
+      {/* Global Toast Notification Container with high z-index above modals & maps */}
+      <div className="fixed bottom-5 right-5 z-[2000] space-y-2.5 max-w-sm w-full pointer-events-none">
         {toasts.map(toast => {
           let bg = 'bg-white border-[#E3EAE6] text-[#17201B] shadow-xl';
-          let iconColor = 'text-[#16845B]';
           if (toast.type === 'warning') {
             bg = 'bg-[#FFFBEB] border-[#FDE68A] text-[#92400E] shadow-xl';
-            iconColor = 'text-[#E89A27]';
           } else if (toast.type === 'error') {
             bg = 'bg-[#FEF2F2] border-[#FECACA] text-[#991B1B] shadow-xl';
-            iconColor = 'text-[#D64545]';
           } else if (toast.type === 'info') {
             bg = 'bg-[#EFF6FF] border-[#BFDBFE] text-[#1E40AF] shadow-xl';
-            iconColor = 'text-[#2878C8]';
           }
 
           return (

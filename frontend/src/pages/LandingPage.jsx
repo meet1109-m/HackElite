@@ -168,19 +168,25 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
             <strong>SmartBinX</strong> transforms waste collection from fixed schedules into predictive, data-driven operations using AI forecasting, computer vision, intelligent routing and recycling analytics for Ahmedabad.
           </p>
 
-          <div className="pt-2 flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
+          <div className="pt-2 flex flex-col sm:flex-row items-center gap-3 justify-center lg:justify-start flex-wrap">
             <button
               onClick={handleLaunch}
-              className="w-full sm:w-auto px-8 py-4 bg-[#16845B] hover:bg-[#0B5D3B] text-white font-extrabold text-sm rounded-xl shadow-lg shadow-[#16845B]/25 flex items-center justify-center gap-2.5 transition-all transform hover:scale-[1.02] active:scale-[0.98]"
+              className="w-full sm:w-auto px-7 py-3.5 bg-[#16845B] hover:bg-[#0B5D3B] text-white font-extrabold text-sm rounded-xl shadow-lg shadow-[#16845B]/25 flex items-center justify-center gap-2 transition-all transform hover:scale-[1.02] active:scale-[0.98]"
             >
               <span>Explore Command Center</span>
               <ArrowRight className="w-4 h-4" />
             </button>
+            <button
+              onClick={() => onNavigate?.('login')}
+              className="w-full sm:w-auto px-6 py-3.5 bg-[#DCFCE7] hover:bg-[#BBF7D0] border border-[#BBF7D0] text-[#065F46] text-sm font-extrabold rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm"
+            >
+              <span>Operator Portal Login</span>
+            </button>
             <a
               href="#workflow"
-              className="w-full sm:w-auto px-6 py-4 bg-white hover:bg-[#F1F6F3] border border-[#E3EAE6] text-[#17201B] text-sm font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm"
+              className="w-full sm:w-auto px-5 py-3.5 bg-white hover:bg-[#F1F6F3] border border-[#E3EAE6] text-[#17201B] text-sm font-bold rounded-xl flex items-center justify-center gap-1.5 transition-all shadow-sm"
             >
-              <span>See How It Works</span>
+              <span>How It Works</span>
               <ChevronRight className="w-4 h-4 text-[#66736C]" />
             </a>
           </div>

@@ -48,7 +48,7 @@ export const CommandCenterPage = ({ onNavigate, onNavigateTab }) => {
   ];
 
   return (
-    <div className="p-4 sm:p-8 space-y-6 max-w-7xl mx-auto">
+    <div className="p-4 sm:p-8 space-y-6 max-w-7xl mx-auto bg-pattern-command min-h-full">
       {/* Top Banner */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white border border-[#E3EAE6] p-5 rounded-3xl shadow-sm">
         <div>

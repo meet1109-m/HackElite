@@ -81,7 +81,7 @@ export default function AIWasteManagerPage() {
   };
 
   return (
-    <div className="p-4 sm:p-8 space-y-5 max-w-5xl mx-auto h-[calc(100vh-5rem)] flex flex-col">
+    <div className="p-4 sm:p-8 space-y-5 max-w-5xl mx-auto h-[calc(100vh-5rem)] flex flex-col bg-pattern-ai">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 shrink-0">
         <div>

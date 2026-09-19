@@ -77,16 +77,24 @@ export const Sidebar = ({ currentPage, activeTab, onNavigate, onTabChange }) => 
         })}
       </div>
 
-      {/* System Status Footer */}
-      <div className="p-4 border-t border-[#E3EAE6] bg-[#F7FAF8]">
-        <div className="flex items-center justify-between text-[11px] text-[#66736C] mb-1">
+      {/* System Status Footer & Operator Login Switch */}
+      <div className="p-4 border-t border-[#E3EAE6] bg-[#F7FAF8] space-y-2">
+        <div className="flex items-center justify-between text-[11px] text-[#66736C]">
           <span className="flex items-center gap-1.5 font-semibold text-[#17201B]">
             <span className="w-2 h-2 rounded-full bg-[#16845B]"></span>
             Ahmedabad AMC Node
           </span>
           <span className="font-mono font-bold text-[#16845B]">ONLINE</span>
         </div>
-        <div className="text-[10px] text-[#94A39D] truncate">
+        
+        <button
+          onClick={() => handleNav('login')}
+          className="w-full py-1.5 px-2 bg-white hover:bg-[#F0FDF4] border border-[#E3EAE6] hover:border-[#BBF7D0] rounded-lg text-[11px] font-bold text-[#17201B] hover:text-[#0B5D3B] transition flex items-center justify-center gap-1.5 shadow-sm"
+        >
+          <span>Operator Portal Login</span>
+        </button>
+
+        <div className="text-[10px] text-[#94A39D] text-center truncate">
           SmartBinX v1.0 • Closed-Loop AI
         </div>
       </div>

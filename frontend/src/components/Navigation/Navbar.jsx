@@ -138,6 +138,16 @@ export const Navbar = ({ currentPage, activeTab, onNavigate, onTabChange }) => {
           </button>
         )}
 
+        {/* Operator Login Button */}
+        {currentTab !== 'login' && (
+          <button
+            onClick={() => handleNav('login')}
+            className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-[#F1F6F3] hover:bg-[#E5ECE8] text-[#17201B] hover:text-[#0B5D3B] text-xs font-bold rounded-xl border border-[#E3EAE6] transition-colors shadow-sm"
+          >
+            <span>Operator Login</span>
+          </button>
+        )}
+
         {/* Signature Run AI Demo Button */}
         <button
           onClick={startAIDemo}

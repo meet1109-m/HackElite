@@ -556,8 +556,9 @@ export const apiService = {
     }
   },
 
-  // Routes
+  // Routes - distinct data for each vehicle
   async optimizeRoute(payload = {}) {
+    const vehicleId = payload.vehicle_id || 'V-01';
     try {
       const res = await fetch(`${API_BASE}/routes/optimize`, {
         method: 'POST',
@@ -567,29 +568,93 @@ export const apiService = {
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
       return await res.json();
     } catch {
+      if (vehicleId === 'V-02') {
+        return {
+          vehicle_id: 'V-02',
+          vehicle_name: 'V-02 (Navrangpura Electric Tipper)',
+          color: '#2878C8',
+          distance_km: 19.8,
+          duration_minutes: 64,
+          collected_weight_kg: 1000,
+          vehicle_capacity_kg: 1200,
+          utilization_pct: 83.3,
+          start_depot: 'DEPOT-02 (Navrangpura Central Depot)',
+          end_mrf: 'MRF-01 (Pirana Material Recovery Facility)',
+          polyline_coords: [
+            [23.0360, 72.5600],
+            [23.0060, 72.6020],
+            [23.0140, 72.5640],
+            [23.0240, 72.5320],
+            [23.0010, 72.5830]
+          ],
+          stops: [
+            { stop_number: 0, bin_id: 'DEPOT', bin_code: 'DEPOT-02 (Navrangpura Depot)', is_depot: true, weight_kg: 0, priority: 0, lat: 23.0360, lng: 72.5600 },
+            { stop_number: 1, bin_id: 'AHM-045', bin_code: 'AHM-045 (Kankaria Gate 3)', is_depot: false, weight_kg: 320, priority: 52, is_critical: false, lat: 23.0060, lng: 72.6020 },
+            { stop_number: 2, bin_id: 'AHM-062', bin_code: 'AHM-062 (Paldi Cross Road)', is_depot: false, weight_kg: 280, priority: 36, is_critical: false, lat: 23.0140, lng: 72.5640 },
+            { stop_number: 3, bin_id: 'AHM-088', bin_code: 'AHM-088 (Shivranjani Crossroads)', is_depot: false, weight_kg: 400, priority: 41, is_critical: false, lat: 23.0240, lng: 72.5320 },
+            { stop_number: 4, bin_id: 'MRF', bin_code: 'MRF-01 (Pirana Recovery Facility)', is_mrf: true, weight_kg: 0, priority: 0, lat: 23.0010, lng: 72.5830 }
+          ],
+          ai_recommendation: "Truck V-02: Optimized for zero-emission dry packaging collection across Paldi and Shivranjani commercial junctions."
+        };
+      } else if (vehicleId === 'V-03') {
+        return {
+          vehicle_id: 'V-03',
+          vehicle_name: 'V-03 (Vastrapur Standard Tipper)',
+          color: '#E89A27',
+          distance_km: 22.6,
+          duration_minutes: 78,
+          collected_weight_kg: 700,
+          vehicle_capacity_kg: 1800,
+          utilization_pct: 38.9,
+          start_depot: 'DEPOT-03 (Vastrapur Western Terminal)',
+          end_mrf: 'MRF-02 (Ranip Circular Hub)',
+          polyline_coords: [
+            [23.0380, 72.5250],
+            [23.0350, 72.5290],
+            [23.0420, 72.5110],
+            [23.0240, 72.5320],
+            [23.0650, 72.5700]
+          ],
+          stops: [
+            { stop_number: 0, bin_id: 'DEPOT', bin_code: 'DEPOT-03 (Vastrapur Western Terminal)', is_depot: true, weight_kg: 0, priority: 0, lat: 23.0380, lng: 72.5250 },
+            { stop_number: 1, bin_id: 'AHM-091', bin_code: 'AHM-091 (Vastrapur Food Court)', is_depot: false, weight_kg: 310, priority: 76, is_critical: false, lat: 23.0350, lng: 72.5290 },
+            { stop_number: 2, bin_id: 'AHM-127', bin_code: 'AHM-127 (Bodakdev SBR Plaza)', is_depot: false, weight_kg: 240, priority: 72, is_critical: false, lat: 23.0420, lng: 72.5110 },
+            { stop_number: 3, bin_id: 'AHM-088', bin_code: 'AHM-088 (Shivranjani Crossroads)', is_depot: false, weight_kg: 150, priority: 41, is_critical: false, lat: 23.0240, lng: 72.5320 },
+            { stop_number: 4, bin_id: 'MRF', bin_code: 'MRF-02 (Ranip Circular Hub)', is_mrf: true, weight_kg: 0, priority: 0, lat: 23.0650, lng: 72.5700 }
+          ],
+          ai_recommendation: "Truck V-03: Has 1,100 kg capacity reserve. Ready as standby or secondary dispatch for western zone spikes."
+        };
+      }
+
+      // Default V-01 (Sabarmati Heavy Compactor)
       return {
-        vehicle_id: payload.vehicle_id || 'V-01',
+        vehicle_id: 'V-01',
+        vehicle_name: 'V-01 (Sabarmati Heavy Compactor)',
+        color: '#16845B',
         distance_km: 27.4,
         duration_minutes: 98,
         collected_weight_kg: 1740,
         vehicle_capacity_kg: 2000,
         utilization_pct: 87.0,
+        start_depot: 'DEPOT-01 (Sabarmati Central AMC Hub)',
+        end_mrf: 'MRF-01 (Pirana Material Recovery Facility)',
         polyline_coords: [
           [23.0520, 72.5800],
           [23.0560, 72.5850],
           [23.0370, 72.5620],
           [23.0350, 72.5290],
           [23.0420, 72.5110],
-          [23.0520, 72.5800]
+          [23.0010, 72.5830]
         ],
         stops: [
-          { stop_number: 0, bin_id: 'DEPOT', bin_code: 'DEPOT-01 (Sabarmati Central AMC Hub)', is_depot: true, weight_kg: 0, priority: 0 },
-          { stop_number: 1, bin_id: 'AHM-104', bin_code: 'AHM-104 (Sabarmati Riverfront)', is_depot: false, weight_kg: 340, priority: 94, is_critical: true },
-          { stop_number: 2, bin_id: 'AHM-118', bin_code: 'AHM-118 (Navrangpura CG Road)', is_depot: false, weight_kg: 420, priority: 89, is_critical: true },
-          { stop_number: 3, bin_id: 'AHM-091', bin_code: 'AHM-091 (Vastrapur Food Court)', is_depot: false, weight_kg: 510, priority: 76, is_critical: false },
-          { stop_number: 4, bin_id: 'AHM-127', bin_code: 'AHM-127 (Bodakdev SBR Plaza)', is_depot: false, weight_kg: 470, priority: 72, is_critical: false },
-          { stop_number: 5, bin_id: 'DEPOT', bin_code: 'DEPOT-01 (Sabarmati Central AMC Hub)', is_depot: true, weight_kg: 0, priority: 0 }
-        ]
+          { stop_number: 0, bin_id: 'DEPOT', bin_code: 'DEPOT-01 (Sabarmati AMC Hub)', is_depot: true, weight_kg: 0, priority: 0, lat: 23.0520, lng: 72.5800 },
+          { stop_number: 1, bin_id: 'AHM-104', bin_code: 'AHM-104 (Sabarmati Riverfront)', is_depot: false, weight_kg: 340, priority: 94, is_critical: true, lat: 23.0560, lng: 72.5850 },
+          { stop_number: 2, bin_id: 'AHM-118', bin_code: 'AHM-118 (Navrangpura CG Road)', is_depot: false, weight_kg: 420, priority: 89, is_critical: true, lat: 23.0370, lng: 72.5620 },
+          { stop_number: 3, bin_id: 'AHM-091', bin_code: 'AHM-091 (Vastrapur Food Court)', is_depot: false, weight_kg: 510, priority: 76, is_critical: false, lat: 23.0350, lng: 72.5290 },
+          { stop_number: 4, bin_id: 'AHM-127', bin_code: 'AHM-127 (Bodakdev SBR Plaza)', is_depot: false, weight_kg: 470, priority: 72, is_critical: false, lat: 23.0420, lng: 72.5110 },
+          { stop_number: 5, bin_id: 'MRF', bin_code: 'MRF-01 (Pirana Material Recovery Facility)', is_mrf: true, weight_kg: 0, priority: 0, lat: 23.0010, lng: 72.5830 }
+        ],
+        ai_recommendation: "Truck V-01: High-priority corridor clearance. Covers critical bins AHM-104 and AHM-118 before 4-hour overflow window."
       };
     }
   },
@@ -606,20 +671,40 @@ export const apiService = {
     } catch {
       return {
         vehicle_id: 'V-01',
+        vehicle_name: 'V-01 (Sabarmati Heavy Compactor)',
+        color: '#16845B',
         is_replanned: true,
         previous_distance_km: 31.2,
+        distance_km: 33.4,
         new_distance_km: 33.4,
         delta_distance_km: 2.2,
+        duration_minutes: 112,
+        collected_weight_kg: 1950,
+        vehicle_capacity_kg: 2000,
+        utilization_pct: 97.5,
         inserted_bin: "AHM-156",
         overflow_risk_status: "Averted (Collected in 38m)",
+        start_depot: 'DEPOT-01 (Sabarmati Central AMC Hub)',
+        end_mrf: 'MRF-01 (Pirana Material Recovery Facility)',
+        polyline_coords: [
+          [23.0520, 72.5800],
+          [23.0560, 72.5850],
+          [23.0490, 72.5780],
+          [23.0370, 72.5620],
+          [23.0350, 72.5290],
+          [23.0420, 72.5110],
+          [23.0010, 72.5830]
+        ],
         stops: [
-          { stop_number: 0, bin_id: 'DEPOT', bin_code: 'DEPOT-01 (Sabarmati Central AMC Hub)', is_depot: true, weight_kg: 0, priority: 0 },
-          { stop_number: 1, bin_id: 'AHM-104', bin_code: 'AHM-104 (Sabarmati Riverfront)', is_depot: false, weight_kg: 340, priority: 94, is_critical: true },
-          { stop_number: 2, bin_id: 'AHM-156', bin_code: 'AHM-156 (Sabarmati Flower Park) [DYNAMIC INSERTION]', is_depot: false, weight_kg: 410, priority: 97, is_critical: true, is_dynamically_inserted: true },
-          { stop_number: 3, bin_id: 'AHM-118', bin_code: 'AHM-118 (Navrangpura CG Road)', is_depot: false, weight_kg: 420, priority: 89, is_critical: true },
-          { stop_number: 4, bin_id: 'AHM-091', bin_code: 'AHM-091 (Vastrapur Food Court)', is_depot: false, weight_kg: 510, priority: 76, is_critical: false },
-          { stop_number: 5, bin_id: 'DEPOT', bin_code: 'DEPOT-01 (Sabarmati Central AMC Hub)', is_depot: true, weight_kg: 0, priority: 0 }
-        ]
+          { stop_number: 0, bin_id: 'DEPOT', bin_code: 'DEPOT-01 (Sabarmati AMC Hub)', is_depot: true, weight_kg: 0, priority: 0, lat: 23.0520, lng: 72.5800 },
+          { stop_number: 1, bin_id: 'AHM-104', bin_code: 'AHM-104 (Sabarmati Riverfront)', is_depot: false, weight_kg: 340, priority: 94, is_critical: true, lat: 23.0560, lng: 72.5850 },
+          { stop_number: 2, bin_id: 'AHM-156', bin_code: 'AHM-156 (Sabarmati Flower Park) [DYNAMIC INSERTION]', is_depot: false, weight_kg: 410, priority: 97, is_critical: true, is_dynamically_inserted: true, lat: 23.0490, lng: 72.5780 },
+          { stop_number: 3, bin_id: 'AHM-118', bin_code: 'AHM-118 (Navrangpura CG Road)', is_depot: false, weight_kg: 420, priority: 89, is_critical: true, lat: 23.0370, lng: 72.5620 },
+          { stop_number: 4, bin_id: 'AHM-091', bin_code: 'AHM-091 (Vastrapur Food Court)', is_depot: false, weight_kg: 510, priority: 76, is_critical: false, lat: 23.0350, lng: 72.5290 },
+          { stop_number: 5, bin_id: 'AHM-127', bin_code: 'AHM-127 (Bodakdev SBR Plaza)', is_depot: false, weight_kg: 470, priority: 72, is_critical: false, lat: 23.0420, lng: 72.5110 },
+          { stop_number: 6, bin_id: 'MRF', bin_code: 'MRF-01 (Pirana Material Recovery Facility)', is_mrf: true, weight_kg: 0, priority: 0, lat: 23.0010, lng: 72.5830 }
+        ],
+        ai_recommendation: "Dynamic Waypoint Insertion Complete: AHM-156 scheduled before 45-minute overflow breach. Delta +2.2 km absorbed within shift budget."
       };
     }
   },

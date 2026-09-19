@@ -7,6 +7,7 @@ import AIDemoModal from './components/Demo/AIDemoModal';
 
 // Pages
 import LandingPage from './pages/LandingPage';
+import LoginPage from './pages/LoginPage';
 import CommandCenterPage from './pages/CommandCenterPage';
 import LiveOperationsPage from './pages/LiveOperationsPage';
 import BinIntelligencePage from './pages/BinIntelligencePage';
@@ -28,6 +29,8 @@ function AppContent() {
     switch (currentPage) {
       case 'landing':
         return <LandingPage onLaunchApp={() => setCurrentPage('command-center')} onNavigate={setCurrentPage} />;
+      case 'login':
+        return <LoginPage onLoginSuccess={() => setCurrentPage('command-center')} onNavigate={setCurrentPage} />;
       case 'command-center':
       case 'command':
         return <CommandCenterPage onNavigate={setCurrentPage} onNavigateTab={setCurrentPage} />;
@@ -57,7 +60,7 @@ function AppContent() {
     }
   };
 
-  const isLanding = currentPage === 'landing';
+  const isFullWidth = currentPage === 'landing' || currentPage === 'login';
 
   return (
     <div className="min-h-screen bg-[#F7FAF8] text-[#17201B] flex flex-col font-sans selection:bg-[#16845B] selection:text-white">
@@ -69,8 +72,8 @@ function AppContent() {
       />
 
       <div className="flex-1 flex overflow-hidden">
-        {/* Sidebar (hidden on Landing Page) */}
-        {!isLanding && (
+        {/* Sidebar (hidden on Landing & Login Pages) */}
+        {!isFullWidth && (
           <Sidebar
             currentPage={currentPage}
             onNavigate={setCurrentPage}
@@ -80,7 +83,7 @@ function AppContent() {
         )}
 
         {/* Main Content Area */}
-        <main className={`flex-1 overflow-y-auto ${isLanding ? 'w-full' : ''}`}>
+        <main className={`flex-1 overflow-y-auto ${isFullWidth ? 'w-full' : ''}`}>
           {renderPage()}
         </main>
       </div>
