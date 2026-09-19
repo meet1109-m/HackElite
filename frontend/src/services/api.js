@@ -466,7 +466,8 @@ export const apiService = {
       const res = await fetch(`${API_BASE}/bins${query ? `?${query}` : ''}`);
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
       return await res.json();
-    } catch {
+    } catch (err) {
+      console.warn('[SmartBinX API Fallback] /api/bins:', err.message);
       return INITIAL_MOCK_BINS;
     }
   },
@@ -476,7 +477,8 @@ export const apiService = {
       const res = await fetch(`${API_BASE}/bins/${binId}`);
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
       return await res.json();
-    } catch {
+    } catch (err) {
+      console.warn(`[SmartBinX API Fallback] /api/bins/${binId}:`, err.message);
       return INITIAL_MOCK_BINS.find(b => b.id === binId || b.bin_code.toLowerCase() === binId.toLowerCase()) || INITIAL_MOCK_BINS[0];
     }
   },
@@ -486,7 +488,8 @@ export const apiService = {
       const res = await fetch(`${API_BASE}/bin-readings/${binId}`);
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
       return await res.json();
-    } catch {
+    } catch (err) {
+      console.warn(`[SmartBinX API Fallback] /api/bin-readings/${binId}:`, err.message);
       return [
         { time: '06:00', fill: 42, weight: 15.2 },
         { time: '08:00', fill: 55, weight: 20.1 },
@@ -507,7 +510,8 @@ export const apiService = {
       });
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
       return await res.json();
-    } catch {
+    } catch (err) {
+      console.warn('[SmartBinX API Fallback] /api/waste/classify:', err.message);
       return {
         plastic: 68.4,
         organic: 16.2,
@@ -529,7 +533,8 @@ export const apiService = {
       const res = await fetch(`${API_BASE}/vehicles`);
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
       return await res.json();
-    } catch {
+    } catch (err) {
+      console.warn('[SmartBinX API Fallback] /api/vehicles:', err.message);
       return INITIAL_MOCK_VEHICLES;
     }
   },
@@ -539,7 +544,8 @@ export const apiService = {
       const res = await fetch(`${API_BASE}/vehicles/best-for-bin/${binId}`);
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
       return await res.json();
-    } catch {
+    } catch (err) {
+      console.warn(`[SmartBinX API Fallback] /api/vehicles/best-for-bin/${binId}:`, err.message);
       return {
         bin_id: binId,
         best_vehicle: {
@@ -567,7 +573,8 @@ export const apiService = {
       });
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
       return await res.json();
-    } catch {
+    } catch (err) {
+      console.warn('[SmartBinX API Fallback] /api/routes/optimize:', err.message);
       if (vehicleId === 'V-02') {
         return {
           vehicle_id: 'V-02',
@@ -668,7 +675,8 @@ export const apiService = {
       });
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
       return await res.json();
-    } catch {
+    } catch (err) {
+      console.warn('[SmartBinX API Fallback] /api/routes/replan:', err.message);
       return {
         vehicle_id: 'V-01',
         vehicle_name: 'V-01 (Sabarmati Heavy Compactor)',
@@ -715,7 +723,8 @@ export const apiService = {
       const res = await fetch(`${API_BASE}/analytics`);
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
       return await res.json();
-    } catch {
+    } catch (err) {
+      console.warn('[SmartBinX API Fallback] /api/analytics:', err.message);
       return {
         total_waste_collected_tonnes: 4.24,
         potentially_recoverable_tonnes: 2.71,
@@ -734,7 +743,8 @@ export const apiService = {
       const res = await fetch(`${API_BASE}/zones`);
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
       return await res.json();
-    } catch {
+    } catch (err) {
+      console.warn('[SmartBinX API Fallback] /api/zones:', err.message);
       return INITIAL_MOCK_ZONES;
     }
   },
@@ -749,7 +759,8 @@ export const apiService = {
       });
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
       return await res.json();
-    } catch {
+    } catch (err) {
+      console.warn('[SmartBinX API Fallback] /api/simulation:', err.message);
       const vehicles = payload.vehicles_count || 3;
       const surge = payload.generation_surge_pct || 20;
       const traffic = payload.traffic_factor || 'Heavy';
@@ -775,8 +786,10 @@ export const apiService = {
       });
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
       return await res.json();
-    } catch {
+    } catch (err) {
+      console.warn('[SmartBinX API Fallback] /api/ai/query:', err.message);
       const lower = (prompt || '').toLowerCase();
+
 
       if (lower.includes('immediate') || lower.includes('overflow') || lower.includes('urgent')) {
         return {
