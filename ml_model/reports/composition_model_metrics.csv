@@ -1,7 +1,7 @@
 Model,Task,Component,Train_Records,Features,MAE,RMSE,R2
-HistGradientBoostingRegressor,Composition Estimation (plastic_percentage),plastic_percentage,37678,47,3.84,4.96,0.8135
-HistGradientBoostingRegressor,Composition Estimation (paper_percentage),paper_percentage,37678,47,3.55,4.65,0.8343
-HistGradientBoostingRegressor,Composition Estimation (metal_percentage),metal_percentage,37678,47,2.03,2.86,0.7076
-HistGradientBoostingRegressor,Composition Estimation (glass_percentage),glass_percentage,37678,47,2.24,3.0,0.5273
-HistGradientBoostingRegressor,Composition Estimation (organic_percentage),organic_percentage,37678,47,4.42,5.75,0.9651
-HistGradientBoostingRegressor,Composition Estimation (other_percentage),other_percentage,37678,47,3.4,4.36,0.6408
+HistGradientBoostingRegressor,Composition Estimation (plastic_percentage),plastic_percentage,37678,47,3.85,4.97,0.813
+HistGradientBoostingRegressor,Composition Estimation (paper_percentage),paper_percentage,37678,47,3.55,4.65,0.8342
+HistGradientBoostingRegressor,Composition Estimation (metal_percentage),metal_percentage,37678,47,2.03,2.86,0.7083
+HistGradientBoostingRegressor,Composition Estimation (glass_percentage),glass_percentage,37678,47,2.24,3.0,0.5274
+HistGradientBoostingRegressor,Composition Estimation (organic_percentage),organic_percentage,37678,47,4.43,5.75,0.9651
+HistGradientBoostingRegressor,Composition Estimation (other_percentage),other_percentage,37678,47,3.4,4.35,0.6413

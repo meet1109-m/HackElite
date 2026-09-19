@@ -1,2 +1,2 @@
 Model,Task,Train_Records,Features,Contamination,Detected_Anomalies,Precision,Recall,F1,Confusion_Matrix,Train_Time_s
-IsolationForest,Anomaly Detection,12045,15,0.02,241,0.1245,0.4167,0.1917,"[[11762, 211], [42, 30]]",0.39
+IsolationForest,Anomaly Detection,12045,15,0.02,241,0.1245,0.4167,0.1917,"[[11762, 211], [42, 30]]",0.15
