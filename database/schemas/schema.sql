@@ -1,105 +1,166 @@
 -- ====================================================================
--- AI-Powered Waste Management & Recycling Optimizer (PS-11)
+-- SmartBinX - AI-Powered Waste Management & Recycling Optimizer
 -- Database Schema: SQLite DDL
 -- ====================================================================
 
 PRAGMA foreign_keys = ON;
 
 -- --------------------------------------------------------------------
+-- Table: zones
+-- City zone metadata, baseline generation rates, and coordinates.
+-- --------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS zones (
+    id TEXT PRIMARY KEY,
+    name TEXT UNIQUE,
+    zone_type TEXT,
+    waste_generation REAL,
+    baseline_generation REAL,
+    footfall_estimate INTEGER,
+    center_lat REAL,
+    center_lng REAL
+);
+
+-- --------------------------------------------------------------------
 -- Table: bins
--- Stores smart waste bin metadata, locations, capacities, and states.
+-- Smart waste bin profiles, statuses, priority scores, and locations.
 -- --------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS bins (
-    bin_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    sensor_id TEXT UNIQUE NOT NULL,
-    latitude REAL NOT NULL,
-    longitude REAL NOT NULL,
-    address TEXT NOT NULL,
-    capacity_liters REAL NOT NULL DEFAULT 240.0,
-    bin_type TEXT NOT NULL DEFAULT 'general' CHECK (bin_type IN ('organic', 'recyclable', 'general', 'hazardous')),
-    status TEXT NOT NULL DEFAULT 'active' CHECK (status IN ('active', 'maintenance', 'inactive', 'full')),
-    installation_date TEXT NOT NULL DEFAULT (DATE('now')),
-    created_at TEXT NOT NULL DEFAULT (DATETIME('now'))
+    id TEXT PRIMARY KEY,
+    bin_code TEXT UNIQUE,
+    zone TEXT,
+    latitude REAL,
+    longitude REAL,
+    capacity_kg REAL,
+    fill_percentage REAL,
+    estimated_weight REAL,
+    waste_stream TEXT,
+    status TEXT,
+    priority_score INTEGER,
+    predicted_overflow_time TEXT,
+    overflow_severity TEXT,
+    last_collection TEXT,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP
 );
 
 -- --------------------------------------------------------------------
--- Table: fill_level_logs
--- Periodic sensor readings of bin fill percentage, weight, and battery.
+-- Table: bin_readings
+-- Time-series telemetry readings recorded from IoT bin sensors.
 -- --------------------------------------------------------------------
-CREATE TABLE IF NOT EXISTS fill_level_logs (
-    log_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    bin_id INTEGER NOT NULL,
-    fill_percentage REAL NOT NULL CHECK (fill_percentage >= 0.0 AND fill_percentage <= 100.0),
-    weight_kg REAL NOT NULL DEFAULT 0.0,
-    battery_level REAL NOT NULL DEFAULT 100.0 CHECK (battery_level >= 0.0 AND battery_level <= 100.0),
-    status_flags TEXT DEFAULT 'NORMAL',
-    recorded_at TEXT NOT NULL DEFAULT (DATETIME('now')),
-    FOREIGN KEY (bin_id) REFERENCES bins (bin_id) ON DELETE CASCADE
-);
-
--- --------------------------------------------------------------------
--- Table: waste_categories
--- Master data for waste categories, material types, and guidelines.
--- --------------------------------------------------------------------
-CREATE TABLE IF NOT EXISTS waste_categories (
-    category_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    category_name TEXT UNIQUE NOT NULL,
-    description TEXT,
-    recycling_guidelines TEXT NOT NULL,
-    avg_contamination_rate REAL DEFAULT 0.0,
-    material_type TEXT NOT NULL
+CREATE TABLE IF NOT EXISTS bin_readings (
+    id TEXT PRIMARY KEY,
+    bin_id TEXT,
+    bin_code TEXT,
+    timestamp TIMESTAMP,
+    fill_percentage REAL,
+    weight REAL,
+    FOREIGN KEY (bin_id) REFERENCES bins (id) ON DELETE CASCADE
 );
 
 -- --------------------------------------------------------------------
 -- Table: vehicles
--- Fleet vehicles used for municipal waste collection routes.
+-- Fleet vehicles, operational status, capacity, and route assignments.
 -- --------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS vehicles (
-    vehicle_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    license_plate TEXT UNIQUE NOT NULL,
-    capacity_kg REAL NOT NULL,
-    fuel_type TEXT NOT NULL DEFAULT 'diesel' CHECK (fuel_type IN ('diesel', 'electric', 'cng', 'hybrid')),
-    operational_status TEXT NOT NULL DEFAULT 'available' CHECK (operational_status IN ('available', 'on_route', 'maintenance', 'out_of_service')),
-    assigned_driver TEXT NOT NULL,
-    created_at TEXT NOT NULL DEFAULT (DATETIME('now'))
+    id TEXT PRIMARY KEY,
+    vehicle_code TEXT UNIQUE,
+    capacity_kg REAL,
+    current_load REAL,
+    latitude REAL,
+    longitude REAL,
+    status TEXT,
+    assigned_route_id TEXT,
+    updated_at TIMESTAMP
 );
 
 -- --------------------------------------------------------------------
--- Table: collection_records
--- Historical logs of bin collections, volumes emptied, and vehicles.
+-- Table: routes
+-- Optimized dynamic collection routes, loads, and waypoints JSON.
 -- --------------------------------------------------------------------
-CREATE TABLE IF NOT EXISTS collection_records (
-    collection_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    bin_id INTEGER NOT NULL,
-    vehicle_id INTEGER NOT NULL,
-    route_id TEXT NOT NULL,
-    pickup_timestamp TEXT NOT NULL DEFAULT (DATETIME('now')),
-    volume_emptied_liters REAL NOT NULL,
-    weight_emptied_kg REAL NOT NULL,
-    status TEXT NOT NULL DEFAULT 'completed' CHECK (status IN ('completed', 'skipped', 'in_progress')),
-    FOREIGN KEY (bin_id) REFERENCES bins (bin_id) ON DELETE RESTRICT,
-    FOREIGN KEY (vehicle_id) REFERENCES vehicles (vehicle_id) ON DELETE RESTRICT
+CREATE TABLE IF NOT EXISTS routes (
+    id TEXT PRIMARY KEY,
+    vehicle_id TEXT,
+    vehicle_code TEXT,
+    distance_km REAL,
+    estimated_duration_mins INTEGER,
+    load_kg REAL,
+    utilization_pct REAL,
+    waypoints_json TEXT,
+    status TEXT,
+    created_at TIMESTAMP
+);
+
+-- --------------------------------------------------------------------
+-- Table: collections
+-- Historical logs of completed waste pickups.
+-- --------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS collections (
+    id TEXT PRIMARY KEY,
+    vehicle_id TEXT,
+    bin_id TEXT,
+    bin_code TEXT,
+    weight_collected REAL,
+    waste_type TEXT,
+    timestamp TIMESTAMP
+);
+
+-- --------------------------------------------------------------------
+-- Table: waste_classifications
+-- Computer vision waste classifications with material breakdown.
+-- --------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS waste_classifications (
+    id TEXT PRIMARY KEY,
+    bin_id TEXT,
+    bin_code TEXT,
+    image_url TEXT,
+    plastic_percentage REAL,
+    paper_percentage REAL,
+    metal_percentage REAL,
+    glass_percentage REAL,
+    organic_percentage REAL,
+    other_percentage REAL,
+    confidence REAL,
+    source TEXT,
+    created_at TIMESTAMP
 );
 
 -- --------------------------------------------------------------------
 -- Table: predictions
--- AI/ML predictions of fill levels and overflow risk probabilities.
+-- ML forecasted fill levels (6h, 12h, 24h) and overflow estimates.
 -- --------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS predictions (
-    prediction_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    bin_id INTEGER NOT NULL,
-    predicted_fill_level REAL NOT NULL,
-    overflow_risk_probability REAL NOT NULL CHECK (overflow_risk_probability >= 0.0 AND overflow_risk_probability <= 1.0),
-    predicted_collection_due TEXT NOT NULL,
-    model_version TEXT NOT NULL DEFAULT 'v1.0.0',
-    created_at TEXT NOT NULL DEFAULT (DATETIME('now')),
-    FOREIGN KEY (bin_id) REFERENCES bins (bin_id) ON DELETE CASCADE
+    id TEXT PRIMARY KEY,
+    bin_id TEXT,
+    bin_code TEXT,
+    prediction_time TIMESTAMP,
+    fill_6h REAL,
+    fill_12h REAL,
+    fill_24h REAL,
+    predicted_overflow_hours REAL,
+    confidence REAL
+);
+
+-- --------------------------------------------------------------------
+-- Table: alerts
+-- Real-time notifications and threshold alerts for bins and zones.
+-- --------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS alerts (
+    id TEXT PRIMARY KEY,
+    alert_type TEXT,
+    severity TEXT,
+    bin_id TEXT,
+    bin_code TEXT,
+    zone TEXT,
+    message TEXT,
+    status TEXT,
+    created_at TIMESTAMP
 );
 
 -- --------------------------------------------------------------------
 -- Indexes for query optimization
 -- --------------------------------------------------------------------
-CREATE INDEX IF NOT EXISTS idx_fill_logs_bin_timestamp ON fill_level_logs(bin_id, recorded_at DESC);
+CREATE INDEX IF NOT EXISTS idx_bins_zone ON bins(zone);
 CREATE INDEX IF NOT EXISTS idx_bins_status ON bins(status);
-CREATE INDEX IF NOT EXISTS idx_predictions_bin_risk ON predictions(bin_id, overflow_risk_probability DESC);
-CREATE INDEX IF NOT EXISTS idx_collection_route ON collection_records(route_id, pickup_timestamp);
+CREATE INDEX IF NOT EXISTS idx_bins_bin_code ON bins(bin_code);
+CREATE INDEX IF NOT EXISTS idx_bin_readings_bin_id ON bin_readings(bin_id);
+CREATE INDEX IF NOT EXISTS idx_bin_readings_timestamp ON bin_readings(timestamp);
