@@ -5,19 +5,20 @@
 [![Vite](https://img.shields.io/badge/Build-Vite_5-646CFF?style=flat&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![PyTorch](https://img.shields.io/badge/ML-PyTorch_MobileNetV2-EE4C2C?style=flat&logo=pytorch&logoColor=white)](https://pytorch.org/)
 [![Scikit-Learn](https://img.shields.io/badge/ML-Scikit--Learn-F7931E?style=flat&logo=scikitlearn&logoColor=white)](https://scikit-learn.org/)
+[![SQLite](https://img.shields.io/badge/Database-SQLite_3-003B57?style=flat&logo=sqlite&logoColor=white)](https://sqlite.org/)
 [![Leaflet](https://img.shields.io/badge/GIS-React--Leaflet-199900?style=flat&logo=leaflet&logoColor=white)](https://react-leaflet.js.org/)
 [![TailwindCSS](https://img.shields.io/badge/Styles-Tailwind_CSS-06B6D4?style=flat&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![Target City](https://img.shields.io/badge/City-Ahmedabad_AMC-FF9933?style=flat)](https://ahmedabadcity.gov.in/)
 
-An end-to-end municipal intelligence and decision-support platform engineered specifically for **Ahmedabad's urban waste management ecosystem (PS-11)**. SmartBinX bridges IoT sensor telemetry, machine learning forecasting, computer vision material classification, capacitated vehicle routing (CVRP), dynamic emergency replanning, and explainable AI (XAI) into an interactive municipal command center.
+An end-to-end municipal waste intelligence and decision-support platform engineered specifically for **Ahmedabad's urban waste management ecosystem (PS-11)**. SmartBinX connects IoT sensor telemetry, machine learning forecasting, computer vision material classification, capacitated vehicle routing (CVRP), dynamic emergency replanning, and explainable AI (XAI) into an interactive municipal command center.
 
 ---
 
-## 🌟 Executive Summary & Problem Statement (PS-11)
+## 🌟 Key Capabilities & Problem Statement (PS-11)
 
-Municipal corporations face critical operational bottlenecks: overflowing bins, inefficient fixed collection schedules, high fuel consumption, and severe contamination in recyclable streams. **SmartBinX** solves these challenges through six integrated pillars:
+Municipal corporations face critical operational bottlenecks: overflowing bins, rigid fixed collection schedules, excessive fuel consumption, and severe contamination in recyclable streams. **SmartBinX** solves these challenges through six integrated pillars:
 
-1. **Real-Time IoT & GIS Telemetry:** Monitors 125 smart bins across 10 Ahmedabad zones and 3 collection depots with live fill levels, weights, and battery/sensor status.
+1. **Real-Time IoT & GIS Telemetry:** Monitors 125 smart bins across 10 Ahmedabad zones and 3 collection depots with live fill levels, weights, and sensor status.
 2. **Multi-Horizon Predictive Forecasting:** Forecasts fill levels at 6h, 12h, and 24h horizons using gradient-boosted regression and calculates real-time overflow countdown timers.
 3. **Explainable AI (XAI) Priority Engine:** Computes a transparent 0–100 priority score with point-by-point attribution (fill level, overflow risk, organic decay sensitivity, zone footfall, and collection recency).
 4. **Capacitated Vehicle Routing (CVRP) & Dynamic Replanning:** Optimizes collection loops starting and ending at Ahmedabad depots, with zero-delay dynamic insertion of emergency bins (e.g., +2.2 km detour for bin overflowing in 45m).
@@ -37,7 +38,7 @@ Municipal corporations face critical operational bottlenecks: overflowing bins, 
 │  [Waste Vision]     [Recycling Purity]      [Analytics Hotspots] [What-If Sim]    │
 │  [Event Sizing]     [AI Waste Manager]      [10-Step Demo]       [Settings]       │
 └────────────────────────────────────────┬─────────────────────────────────────────┘
-                                         │ REST API / CORS (*)
+                                         │ Vite Reverse Proxy (/api/*)
                                          ▼
 ┌──────────────────────────────────────────────────────────────────────────────────┐
 │                           FASTAPI BACKEND SERVICE                                │
@@ -50,10 +51,11 @@ Municipal corporations face critical operational bottlenecks: overflowing bins, 
 │  │  • /api/routes       │ │  • waste_intelligence│ │  • 12 Collection Trucks   │ │
 │  │  • /api/waste        │ │  • route_optimizer   │ │  • Pinned Demo Bins       │ │
 │  │  • /api/predictions  │ │  • replan_service    │ │  • Active Routes & Alerts │ │
-│  │  • /api/analytics    │ │  • anomaly_service   │ │  • Startup Auto-Seeding   │ │
+│  │  • /api/analytics    │ │  • anomaly_service   │ │  • DB Startup Hydration   │ │
 │  │  • /api/simulation   │ │  • simulation_service│ └─────────────┬─────────────┘ │
 │  │  • /api/ai           │ │  • ai_manager_service│               │               │
-│  │  • /api/demo         │ │  • demo_runner       │               │               │
+│  │  • /api/zones        │ │  • demo_runner       │               │               │
+│  │  • /api/demo         │ │                      │               │               │
 │  └──────────────────────┘ └──────────────────────┘               │               │
 └────────────────────────────────────────┬─────────────────────────┴───────────────┘
                                          │
@@ -61,10 +63,10 @@ Municipal corporations face critical operational bottlenecks: overflowing bins, 
                  ▼                                               ▼
 ┌──────────────────────────────────┐            ┌──────────────────────────────────┐
 │         DATABASE LAYER           │            │       MACHINE LEARNING LAYER     │
-│   SQLite (Default Local) /       │            │  PyTorch (MobileNetV2 Image CV)  │
-│   PostgreSQL / Supabase          │            │  HistGradientBoosting (Fill 24h) │
-│  • Bins, Zones, Telemetry        │            │  NormalizedMultiHGB (Composition)│
-│  • Vehicles, Routes, Alerts      │            │  IsolationForest (Anomalies)     │
+│       SQLite (smartbinx.db)      │            │  PyTorch (MobileNetV2 Image CV)  │
+│  • Bins, Zones, Depots           │            │  HistGradientBoosting (Fill 24h) │
+│  • Vehicles, Routes, Collections │            │  NormalizedMultiHGB (Composition)│
+│  • Telemetry Readings & Alerts   │            │  IsolationForest (Anomalies)     │
 └──────────────────────────────────┘            └──────────────────────────────────┘
 ```
 
@@ -78,8 +80,8 @@ bit_n_build/
 │   ├── public/                   # Static assets & icons
 │   ├── src/
 │   │   ├── components/           # Reusable UI cards, maps, modals, charts
-│   │   ├── context/              # Global state management
-│   │   ├── pages/                # 12 complete operational pages:
+│   │   ├── context/              # Global state management (WasteDataContext.jsx)
+│   │   ├── pages/                # 12 operational pages:
 │   │   │   ├── CommandCenterPage.jsx       # Executive KPI overview
 │   │   │   ├── LiveOperationsPage.jsx      # Ahmedabad GIS interactive map
 │   │   │   ├── BinIntelligencePage.jsx     # Digital Twin & XAI breakdown
@@ -92,77 +94,70 @@ bit_n_build/
 │   │   │   ├── AIWasteManagerPage.jsx      # Natural language operations copilot
 │   │   │   ├── SettingsPage.jsx            # Threshold configs & demo launcher
 │   │   │   └── LandingPage.jsx             # Public presentation & overview
-│   │   ├── services/             # Axios / fetch API clients
+│   │   ├── services/             # Axios / fetch API client with diagnostic logging
 │   │   ├── App.jsx               # Application routing & navigation
 │   │   ├── main.jsx              # React entry point
 │   │   └── index.css             # Tailwind design system & tokens
 │   ├── package.json
 │   ├── tailwind.config.js
-│   ├── vite.config.js
-│   └── README.md
+│   └── vite.config.js            # Reverse proxy (/api -> :8000)
 │
 ├── backend/                      # FastAPI REST application
 │   ├── app/
 │   │   ├── config.py             # Settings, priority weights & city coordinates
 │   │   ├── database.py           # SQLAlchemy engine & session dependency
-│   │   ├── main.py               # FastAPI entry point, CORS & lifespan seeding
-│   │   ├── models/               # SQLAlchemy ORM models:
-│   │   │   ├── entities.py       # Bin, Zone, Vehicle, Route, Alert, etc.
-│   │   │   └── __init__.py
-│   │   ├── routes/               # 9 RESTful route controllers:
-│   │   │   ├── bins.py           # /api/bins & /api/bins/{bin_code}/twin
+│   │   ├── main.py               # FastAPI entry point, CORS & lifespan DB hydration
+│   │   ├── models/               # SQLAlchemy ORM models (9 normalized tables)
+│   │   ├── routes/               # 10 RESTful route controllers:
+│   │   │   ├── bins.py           # /api/bins, /api/bin-readings, /collect, /telemetry
 │   │   │   ├── vehicles.py       # /api/vehicles & /api/vehicles/best-for-bin
 │   │   │   ├── routes.py         # /api/routes/optimize & /api/routes/replan
-│   │   │   ├── waste.py          # /api/waste/classify & /api/waste/purity
+│   │   │   ├── waste.py          # /api/waste/classify (JSON & multipart) & /purity
 │   │   │   ├── predictions.py    # /api/predictions & overflow countdowns
-│   │   │   ├── analytics.py      # /api/analytics/hotspots, anomalies, impact
-│   │   │   ├── simulation.py     # /api/simulation/what-if & event-mode
+│   │   │   ├── analytics.py      # /api/analytics summary, hotspots, anomalies, impact
+│   │   │   ├── simulation.py     # /api/simulation (What-If & Event Mode)
 │   │   │   ├── ai.py             # /api/ai/query (Operations Copilot)
+│   │   │   ├── zones.py          # /api/zones (10 Ahmedabad zones)
 │   │   │   ├── demo.py           # /api/demo/run & step-by-step runner
 │   │   │   └── __init__.py       # Router registration helper
 │   │   ├── schemas/              # Pydantic v2 request/response schemas
-│   │   ├── services/             # Pure Python intelligence & optimization:
-│   │   │   ├── data_store.py     # In-memory repository & auto-seeding engine
+│   │   ├── services/             # Intelligence & optimization services:
+│   │   │   ├── data_store.py     # Repository with DB hydration & write-through persistence
 │   │   │   ├── priority_engine.py # Multi-factor scoring (0-100) & XAI breakdown
-│   │   │   ├── prediction_engine.py # 6h/12h/24h forecasting & countdowns
-│   │   │   ├── waste_intelligence.py # CV classifier & recycling purity
+│   │   │   ├── prediction_engine.py # ML 6h/12h/24h forecasting & countdowns
+│   │   │   ├── waste_intelligence.py # MobileNetV2 CV classifier & recycling purity
 │   │   │   ├── route_optimizer.py # Capacitated vehicle routing (CVRP)
 │   │   │   ├── replan_service.py # Dynamic emergency route replanning
 │   │   │   ├── anomaly_service.py # Zone surge detection & hypotheses
 │   │   │   ├── simulation_service.py # What-If simulator & Event Mode
 │   │   │   ├── ai_manager_service.py # Grounded decision assistant
-│   │   │   ├── demo_runner.py    # Scripted 10-step hackathon demo coordinator
-│   │   │   └── __init__.py
+│   │   │   └── demo_runner.py    # 10-step hackathon demo coordinator
 │   │   └── utils/
 │   │       ├── constants.py      # Ahmedabad zones, depots, waste streams
-│   │       ├── geo.py            # Haversine distance & city bounding box
-│   │       └── __init__.py
-│   ├── requirements.txt
-│   ├── .env.example
-│   └── README.md
+│   │       └── geo.py            # Haversine distance & city bounding box
+│   ├── test_phase1_smoke.py      # Automated ML & backend smoke tests
+│   ├── test_phase2_db_sync.py    # Automated database persistence tests
+│   ├── test_phase3_contracts.py  # Automated frontend-backend contract suite
+│   └── requirements.txt
 │
 ├── ml_model/                     # Machine Learning & Computer Vision layer
-│   ├── data/                     # Raw, processed, and DSWD waste datasets
+│   ├── data/                     # Raw, processed, and synthetic Ahmedabad datasets
+│   │   └── ahmedabad_bin_fill_history.csv # 25,000 synthetic operational rows
 │   ├── models/                   # Pre-trained tabular model artifacts (.joblib)
-│   │   ├── fill_prediction/      # HistGradientBoosting fill models (6h, 12h, 24h)
-│   │   ├── composition/          # NormalizedMultiHGB composition estimator
+│   │   ├── fill_prediction/      # Fill models (6h, 12h, 24h)
+│   │   ├── composition/          # Composition estimator
 │   │   ├── forecasting/          # Zone waste forecasting model
 │   │   └── anomaly_detection/    # Isolation Forest anomaly model
 │   ├── image_classification/     # PyTorch MobileNetV2 vision pipeline
-│   │   ├── models/               # PyTorch weights (.pt) & class mappings
-│   │   ├── src/                  # Dataset, model architecture, training, inference
-│   │   └── reports/              # Confusion matrices & evaluation reports
-│   ├── src/                      # Tabular feature engineering & predictors
-│   ├── api/                      # Standalone ML FastAPI service
-│   ├── reports/                  # Empirical evaluation reports & charts
-│   ├── requirements.txt
-│   └── README.md
+│   │   ├── models/               # PyTorch weights (image_classifier.pt)
+│   │   └── src/                  # Dataset, model architecture, training, inference
+│   ├── src/                      # Feature engineering & training pipelines
+│   ├── reports/                  # Empirical evaluation reports & plots
+│   └── requirements.txt
 │
 ├── database/                     # Database schemas, migrations & seed data
-│   ├── migrations/               # Database migration scripts
 │   ├── schemas/                  # Relational schema definitions
-│   ├── seed/                     # Seed datasets for bins, vehicles, and zones
-│   └── README.md
+│   └── seed/                     # Seed datasets for bins, vehicles, and zones
 │
 ├── .gitignore                    # Unified Git ignore rules
 └── README.md                     # Master project documentation
@@ -183,7 +178,7 @@ bit_n_build/
 ### 2. Pinned Demo Bins (Hackathon Specification)
 | Bin Code | Zone | Fill % | Stream | Weight | Overflow Countdown | Priority Score | Status | Key Role |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **`AHM-104`** | Bodakdev | 82.0% | Organic | 31.4 kg | 4h 18m | **94 / 100** | Critical | Primary demo triage target |
+| **`AHM-104`** | Bodakdev | 82.0% | Organic | 31.4 kg | 4h 18m | **94 / 100** | Critical | Primary triage target |
 | **`AHM-118`** | Navrangpura | 88.0% | Recyclable | 34.2 kg | 4h 10m | **91 / 100** | High Priority | Recyclables contamination check |
 | **`AHM-156`** | Bodakdev | 96.0% | Mixed | 48.0 kg | 45m | **98 / 100** | Overflow Risk | Dynamic route replan trigger |
 
@@ -196,6 +191,7 @@ $$\text{Priority} = 0.35 \times \text{Fill} + 0.30 \times \text{OverflowRisk} + 
 ### 4. Capacitated Vehicle Routing (CVRP) & Dynamic Replanning
 - **Hard Payload Constraints:** Vehicles never exceed available payload capacity.
 - **Depot-to-Depot Loops:** Starts and finishes at the nearest municipal depot.
+- **Leaflet-Ready Polylines:** Routes return ordered `polyline_coords` (`[[lat, lng], ...]`) and structured `stops` (Depot ➔ Waypoint Bins ➔ Pirana MRF).
 - **Dynamic Emergency Replanning:** Evaluates all candidate insertion points for emergency bins, minimizing detour distance (+2.2 km for `AHM-156`) and avoiding critical overflows.
 
 ### 5. Hybrid Waste Intelligence & Recycling Purity
@@ -207,7 +203,7 @@ $$\text{Priority} = 0.35 \times \text{Fill} + 0.30 \times \text{OverflowRisk} + 
 - If purity $< 70\%$, triggers `⚠️ HIGH CONTAMINATION: Manual sorting recommended`.
 
 ### 6. Zone Anomaly Detection & Contextual Hypotheses
-- Compares 24h totals against baselines (e.g., Bodakdev: +82% above baseline).
+- Compares 24h totals against baselines using an Isolation Forest anomaly detector.
 - Provides contextual hypotheses (commercial dining surge along Sindhu Bhavan Road, quick-commerce fulfillment centers, corporate bulk disposal).
 
 ### 7. What-If Simulator & Ahmedabad Event Mode
@@ -219,11 +215,7 @@ $$\text{Priority} = 0.35 \times \text{Fill} + 0.30 \times \text{OverflowRisk} + 
 
 ### 8. Grounded AI Operations Copilot
 - Natural language query endpoint (`/api/ai/query`) answering operational questions with markdown answers, actionable UI cards, and concrete dispatch recommendations.
-- Local deterministic fallback ensures 100% uptime with zero external LLM API key dependencies.
-
-### 9. Scripted 10-Step Automated Hackathon Demo
-- End-to-end execution of the complete 10-step hackathon narrative:
-  `Fill Surge (AHM-104) → Overflow Countdown → Priority 96/100 → System Alert → Waste Vision (62% Plastic) → Vehicle V-01 Match → CVRP Route Dispatch → Emergency Influx (AHM-156) → Dynamic Replanning (+2.2 km) → Circularity & ESG Impact`.
+- Tolerates both `{ prompt, context }` and `{ query }` request formats.
 
 ---
 
@@ -273,14 +265,20 @@ npm run dev
 
 ---
 
-### Step 3 (Optional): Start the Standalone ML Service
+### Step 3: Run Automated Verification Tests
 ```bash
-# In a separate terminal:
-cd ml_model
-pip install -r requirements.txt
-python -m uvicorn api.main:app --reload --port 8001
+# Run from the backend directory:
+cd backend
+
+# 1. Phase 1 ML Smoke Test (Models & Inference)
+python test_phase1_smoke.py
+
+# 2. Phase 2 Database Sync Test (Hydration & Persistence)
+python test_phase2_db_sync.py
+
+# 3. Phase 3 Comprehensive Contract Suite (All 12 Frontend Calls)
+python test_phase3_contracts.py
 ```
-- **ML API Documentation:** `http://localhost:8001/docs`
 
 ---
 
@@ -294,22 +292,28 @@ python -m uvicorn api.main:app --reload --port 8001
 | **Bins** | `GET` | `/api/bins/{bin_code}` | Single bin live telemetry & metadata |
 | **Bins** | `GET` | `/api/bins/{bin_code}/twin` | Complete Digital Twin profile |
 | **Bins** | `GET` | `/api/bins/{bin_code}/readings` | Historical telemetry readings for charts |
+| **Bins** | `GET` | `/api/bin-readings/{bin_code}` | Telemetry time-series readings (frontend alias) |
+| **Bins** | `POST` | `/api/bins/{bin_code}/collect` | Record collection event in SQLite & reset fill level |
+| **Bins** | `POST` | `/api/bins/{bin_code}/telemetry` | Ingest real-time IoT sensor telemetry reading |
 | **Vehicles** | `GET` | `/api/vehicles` | List all 12 collection trucks with loads and status |
 | **Vehicles** | `GET` | `/api/vehicles/best-for-bin/{bin_code}` | Optimal vehicle match with capacity & distance check |
-| **Routes** | `POST` | `/api/routes/optimize` | Generate capacity-constrained CVRP route |
+| **Routes** | `POST` | `/api/routes/optimize` | Generate CVRP route with `polyline_coords` & `stops` |
 | **Routes** | `POST` | `/api/routes/replan` | Dynamically insert emergency bin into active route |
 | **Routes** | `GET` | `/api/routes/active` | Retrieve all active fleet routes |
-| **Waste** | `POST` | `/api/waste/classify` | Vision classification (`AI Detected from Image`) |
+| **Waste** | `POST` | `/api/waste/classify` | Vision classification (`AI Detected from Image` / JSON preset) |
 | **Waste** | `GET` | `/api/waste/composition/{bin_code}` | Estimated composition (`AI Estimated`) |
 | **Waste** | `GET` | `/api/waste/purity/{bin_code}` | Recycling purity score & contamination check |
 | **Predictions** | `GET` | `/api/predictions/{bin_code}` | 6h, 12h, 24h fill forecasts |
 | **Predictions** | `GET` | `/api/predictions/{bin_code}/countdown` | Overflow countdown timer & severity color |
+| **Analytics** | `GET` | `/api/analytics` | High-level municipal audit summary (tonnes, diversion, purity) |
 | **Analytics** | `GET` | `/api/analytics/hotspots` | Zone generation heatmaps and baseline comparisons |
 | **Analytics** | `GET` | `/api/analytics/anomalies` | Generation surges with explainable hypotheses |
 | **Analytics** | `GET` | `/api/analytics/impact` | ESG circularity metrics (CO2e, fuel, diversion) |
+| **Zones** | `GET` | `/api/zones` | Retrieve all 10 Ahmedabad operational zones with coordinates |
+| **Simulation** | `POST` | `/api/simulation` | What-If scenario simulation (root alias) |
 | **Simulation** | `POST` | `/api/simulation/what-if` | Scenario simulation (fleet size, traffic, waste delta) |
 | **Simulation** | `POST` | `/api/simulation/event-mode` | Ahmedabad Event Mode resource sizing |
-| **AI Copilot** | `POST` | `/api/ai/query` | Natural-language query returning action cards |
+| **AI Copilot** | `POST` | `/api/ai/query` | Natural-language query returning action cards & recommendations |
 | **Demo Runner** | `POST` | `/api/demo/run` | Execute complete 10-step automated hackathon demo |
 | **Demo Runner** | `GET` | `/api/demo/step/{step_number}` | Execute and inspect single demo step (1 to 10) |
 | **Demo Runner** | `POST` | `/api/demo/reset` | Reset demo state and operational data store |
@@ -325,17 +329,3 @@ Based on optimized dynamic collection compared against static legacy rounds:
 - **CO2e Emissions Prevented:** **12.4 kg CO2e**
 - **Landfill Diversion Rate:** **64.0%**
 - **Circularity Score:** **82 / 100**
-
----
-
-## 👥 Team & Collaboration Workflow
-
-1. **Repository:** [`https://github.com/meet1109-m/HackElite`](https://github.com/meet1109-m/HackElite)
-2. **Branching Strategy:**
-   - `main`: Stable, production-ready code
-   - `feature/frontend-...`: UI/UX, components, and pages
-   - `feature/backend-...`: API controllers, services, database models
-   - `feature/ml-...`: Model training, pipelines, and vision models
-3. **Module Separation:**
-   - Keep frontend, backend, ML model, and database code strictly within their respective folders.
-   - Do not commit virtual environments (`venv`), dependencies (`node_modules`), or temporary model cache files.
