@@ -632,6 +632,148 @@ class DataStore:
     # Database Synchronization & Auto-Seeding
     # ==========================================
 
+    def load_from_database(self, db: Session) -> bool:
+        """Hydrate in-memory cache directly from SQLite if tables are populated.
+
+        Preserves existing operational state across server restarts.
+        """
+        from app.models.entities import (
+            Zone as DBZone,
+            Bin as DBBin,
+            Vehicle as DBVehicle,
+            Alert as DBAlert,
+            Route as DBRoute,
+            WasteClassification as DBWasteClassification,
+        )
+        from app.services.priority_engine import calculate_priority
+
+        db_bins = db.query(DBBin).all()
+        if not db_bins:
+            return False  # Empty DB, needs seeding
+
+        # 1. Hydrate Zones
+        db_zones = db.query(DBZone).all()
+        if db_zones:
+            self.zones.clear()
+            for z in db_zones:
+                self.zones[z.name] = {
+                    "zone_type": z.zone_type,
+                    "baseline_generation": z.baseline_generation,
+                    "footfall_estimate": z.footfall_estimate,
+                    "center_lat": z.center_lat,
+                    "center_lng": z.center_lng,
+                }
+
+        # 2. Hydrate Bins
+        self.bins.clear()
+        for b in db_bins:
+            bin_dict = {
+                "id": b.id,
+                "bin_code": b.bin_code,
+                "zone": b.zone,
+                "latitude": b.latitude,
+                "longitude": b.longitude,
+                "capacity_kg": b.capacity_kg,
+                "fill_percentage": b.fill_percentage,
+                "estimated_weight": b.estimated_weight,
+                "waste_stream": b.waste_stream,
+                "status": b.status,
+                "priority_score": b.priority_score,
+                "predicted_overflow_time": b.predicted_overflow_time,
+                "overflow_severity": b.overflow_severity,
+                "last_collection": b.last_collection,
+                "created_at": b.created_at,
+                "updated_at": b.updated_at,
+            }
+            # Add explainable priority breakdown
+            xai = calculate_priority(bin_dict)
+            bin_dict["priority_breakdown"] = xai.get("priority_breakdown", {})
+            self.bins[b.bin_code] = bin_dict
+
+        # 3. Hydrate Vehicles
+        db_vehicles = db.query(DBVehicle).all()
+        if db_vehicles:
+            self.vehicles.clear()
+            for v in db_vehicles:
+                self.vehicles[v.vehicle_code] = {
+                    "id": v.id,
+                    "vehicle_code": v.vehicle_code,
+                    "capacity_kg": v.capacity_kg,
+                    "current_load": v.current_load,
+                    "latitude": v.latitude,
+                    "longitude": v.longitude,
+                    "status": v.status,
+                    "assigned_route_id": v.assigned_route_id,
+                    "updated_at": v.updated_at,
+                }
+
+        # 4. Hydrate Alerts
+        db_alerts = db.query(DBAlert).all()
+        if db_alerts:
+            self.alerts.clear()
+            for a in db_alerts:
+                self.alerts.append({
+                    "id": a.id,
+                    "alert_type": a.alert_type,
+                    "severity": a.severity,
+                    "bin_id": a.bin_id,
+                    "bin_code": a.bin_code,
+                    "zone": a.zone,
+                    "message": a.message,
+                    "status": a.status,
+                    "created_at": a.created_at,
+                })
+
+        # 5. Hydrate Routes
+        db_routes = db.query(DBRoute).all()
+        if db_routes:
+            self.routes.clear()
+            for r in db_routes:
+                self.routes.append({
+                    "id": r.id,
+                    "route_id": r.id,
+                    "vehicle_id": r.vehicle_id,
+                    "vehicle_code": r.vehicle_code,
+                    "distance_km": r.distance_km,
+                    "estimated_duration_mins": r.estimated_duration_mins,
+                    "load_kg": r.load_kg,
+                    "utilization_pct": r.utilization_pct,
+                    "waypoints_json": r.waypoints_json,
+                    "status": r.status,
+                    "created_at": r.created_at,
+                })
+
+        # 6. Hydrate Waste Classifications
+        db_wc = db.query(DBWasteClassification).all()
+        if db_wc:
+            self.waste_classifications.clear()
+            for wc in db_wc:
+                self.waste_classifications[wc.bin_code] = {
+                    "id": wc.id,
+                    "bin_id": wc.bin_id,
+                    "bin_code": wc.bin_code,
+                    "image_url": wc.image_url,
+                    "plastic_percentage": wc.plastic_percentage,
+                    "paper_percentage": wc.paper_percentage,
+                    "metal_percentage": wc.metal_percentage,
+                    "glass_percentage": wc.glass_percentage,
+                    "organic_percentage": wc.organic_percentage,
+                    "other_percentage": wc.other_percentage,
+                    "confidence": wc.confidence,
+                    "source": wc.source,
+                    "created_at": wc.created_at,
+                    "composition": {
+                        "plastic": wc.plastic_percentage,
+                        "paper": wc.paper_percentage,
+                        "metal": wc.metal_percentage,
+                        "glass": wc.glass_percentage,
+                        "organic": wc.organic_percentage,
+                        "other": wc.other_percentage,
+                    },
+                }
+
+        return True
+
     def seed_database_if_empty(self, db: Session) -> bool:
         """Auto-seed SQLite or PostgreSQL tables if the database is currently empty.
 
@@ -772,6 +914,265 @@ class DataStore:
 
         db.commit()
         return True
+
+    def persist_route(self, db: Session, route_data: Dict[str, Any]) -> Dict[str, Any]:
+        """Persist or update a route in both the in-memory cache and SQLite database."""
+        import json
+        from app.models.entities import Route as DBRoute
+
+        route_id = route_data.get("id") or route_data.get("route_id") or f"route-{uuid.uuid4().hex[:8]}"
+        vehicle_code = route_data.get("vehicle_code", "V-01")
+        vehicle_id = route_data.get("vehicle_id") or f"veh-{vehicle_code.lower()}"
+        distance_km = float(route_data.get("distance_km") or route_data.get("total_distance_km", 0.0))
+        duration_mins = int(route_data.get("estimated_duration_mins", 0))
+        load_kg = float(route_data.get("load_kg") or route_data.get("collected_weight_kg", 0.0))
+        utilization_pct = float(route_data.get("utilization_pct", 0.0))
+        waypoints = route_data.get("waypoints", [])
+        waypoints_json = json.dumps(waypoints) if isinstance(waypoints, list) else str(waypoints)
+
+        # 1. Update in-memory
+        formatted_entry = {
+            "id": route_id,
+            "route_id": route_id,
+            "vehicle_id": vehicle_id,
+            "vehicle_code": vehicle_code,
+            "distance_km": distance_km,
+            "estimated_duration_mins": duration_mins,
+            "load_kg": load_kg,
+            "utilization_pct": utilization_pct,
+            "waypoints": waypoints,
+            "waypoints_json": waypoints_json,
+            "status": route_data.get("status", "Active"),
+            "created_at": datetime.utcnow(),
+        }
+
+        # Replace or append in self.routes
+        replaced = False
+        for idx, r in enumerate(self.routes):
+            if r.get("id") == route_id or r.get("route_id") == route_id:
+                self.routes[idx] = formatted_entry
+                replaced = True
+                break
+        if not replaced:
+            self.routes.append(formatted_entry)
+
+        # 2. Persist to SQLite
+        db_route = db.query(DBRoute).filter(DBRoute.id == route_id).first()
+        if db_route:
+            db_route.vehicle_code = vehicle_code
+            db_route.distance_km = distance_km
+            db_route.estimated_duration_mins = duration_mins
+            db_route.load_kg = load_kg
+            db_route.utilization_pct = utilization_pct
+            db_route.waypoints_json = waypoints_json
+            db_route.status = route_data.get("status", "Active")
+        else:
+            db_route = DBRoute(
+                id=route_id,
+                vehicle_id=vehicle_id,
+                vehicle_code=vehicle_code,
+                distance_km=distance_km,
+                estimated_duration_mins=duration_mins,
+                load_kg=load_kg,
+                utilization_pct=utilization_pct,
+                waypoints_json=waypoints_json,
+                status=route_data.get("status", "Active"),
+                created_at=datetime.utcnow(),
+            )
+            db.add(db_route)
+
+        db.commit()
+        return formatted_entry
+
+    def record_collection(
+        self, db: Session, bin_code: str, vehicle_code: str = "V-01"
+    ) -> Dict[str, Any]:
+        """Record a completed bin collection in SQLite and reset the bin state."""
+        from app.models.entities import Bin as DBBin, Collection as DBCollection
+
+        b = self.get_bin(bin_code)
+        if not b:
+            raise ValueError(f"Bin '{bin_code}' not found.")
+
+        weight_collected = float(b.get("estimated_weight", 0.0))
+        waste_type = b.get("waste_stream", "Mixed")
+        bin_id = b.get("id", f"bin-{bin_code.lower()}")
+
+        # 1. Create DB Collection record
+        collection_record = DBCollection(
+            id=str(uuid.uuid4()),
+            vehicle_id=f"veh-{vehicle_code.lower()}",
+            bin_id=bin_id,
+            bin_code=bin_code,
+            weight_collected=weight_collected,
+            waste_type=waste_type,
+            timestamp=datetime.utcnow(),
+        )
+        db.add(collection_record)
+
+        # 2. Reset bin in SQLite
+        db_bin = db.query(DBBin).filter(DBBin.bin_code == bin_code).first()
+        now_str = "Just now"
+        if db_bin:
+            db_bin.fill_percentage = 0.0
+            db_bin.estimated_weight = 0.0
+            db_bin.status = "Healthy"
+            db_bin.priority_score = 15
+            db_bin.predicted_overflow_time = ">24h"
+            db_bin.overflow_severity = "Green"
+            db_bin.last_collection = now_str
+            db_bin.updated_at = datetime.utcnow()
+
+        db.commit()
+
+        # 3. Reset in-memory cache
+        b["fill_percentage"] = 0.0
+        b["estimated_weight"] = 0.0
+        b["status"] = "Healthy"
+        b["priority_score"] = 15
+        b["predicted_overflow_time"] = ">24h"
+        b["overflow_severity"] = "Green"
+        b["last_collection"] = now_str
+        b["updated_at"] = datetime.utcnow()
+
+        return {
+            "collection_id": collection_record.id,
+            "bin_code": bin_code,
+            "weight_collected_kg": weight_collected,
+            "waste_type": waste_type,
+            "vehicle_code": vehicle_code,
+            "timestamp": collection_record.timestamp.isoformat(),
+            "updated_bin": b,
+        }
+
+    def log_prediction(self, db: Session, pred_data: Dict[str, Any]) -> Dict[str, Any]:
+        """Log a fill level prediction to the SQLite predictions table."""
+        from app.models.entities import Prediction as DBPrediction, Bin as DBBin
+
+        bin_code = pred_data.get("bin_code", "")
+        b = self.get_bin(bin_code)
+        bin_id = b.get("id", f"bin-{bin_code.lower()}") if b else f"bin-{bin_code.lower()}"
+
+        db_bin = db.query(DBBin).filter(DBBin.bin_code == bin_code).first()
+        if db_bin:
+            bin_id = db_bin.id
+
+        confidence_val = float(pred_data.get("confidence_pct", 88.0))
+        if confidence_val > 1.0:
+            confidence_val = confidence_val / 100.0
+
+        db_pred = DBPrediction(
+            id=str(uuid.uuid4()),
+            bin_id=bin_id,
+            bin_code=bin_code,
+            prediction_time=datetime.utcnow(),
+            fill_6h=float(pred_data.get("fill_6h", 0.0)),
+            fill_12h=float(pred_data.get("fill_12h", 0.0)),
+            fill_24h=float(pred_data.get("fill_24h", 0.0)),
+            predicted_overflow_hours=float(pred_data.get("predicted_overflow_hours", 24.0)),
+            confidence=confidence_val,
+        )
+        db.add(db_pred)
+        db.commit()
+        return {
+            "prediction_id": db_pred.id,
+            "bin_code": bin_code,
+            "timestamp": db_pred.prediction_time.isoformat(),
+        }
+
+    def log_telemetry(
+        self,
+        db: Session,
+        bin_code: str,
+        fill_percentage: float,
+        weight: Optional[float] = None,
+    ) -> Dict[str, Any]:
+        """Record a new sensor telemetry reading in both SQLite and in-memory cache."""
+        from app.models.entities import BinReading as DBBinReading, Bin as DBBin
+
+        b = self.get_bin(bin_code)
+        if not b:
+            raise ValueError(f"Bin '{bin_code}' not found.")
+
+        bin_id = b.get("id", f"bin-{bin_code.lower()}")
+        db_bin = db.query(DBBin).filter(DBBin.bin_code == bin_code).first()
+        if db_bin:
+            bin_id = db_bin.id
+
+        capacity = float(b.get("capacity_kg", 50.0))
+        if weight is None:
+            weight = round((fill_percentage / 100.0) * capacity * 0.85, 1)
+
+        now = datetime.utcnow()
+
+        # 1. Insert into SQLite bin_readings
+        db_reading = DBBinReading(
+            id=str(uuid.uuid4()),
+            bin_id=bin_id,
+            bin_code=bin_code,
+            timestamp=now,
+            fill_percentage=fill_percentage,
+            weight=weight,
+        )
+        db.add(db_reading)
+
+        # 2. Update bin in SQLite
+        if db_bin:
+            db_bin.fill_percentage = fill_percentage
+            db_bin.estimated_weight = weight
+            if fill_percentage >= 90.0:
+                db_bin.status = "Critical"
+                db_bin.overflow_severity = "Red"
+            elif fill_percentage >= 75.0:
+                db_bin.status = "High Priority"
+                db_bin.overflow_severity = "Orange"
+            elif fill_percentage >= 50.0:
+                db_bin.status = "Filling"
+                db_bin.overflow_severity = "Yellow"
+            else:
+                db_bin.status = "Healthy"
+                db_bin.overflow_severity = "Green"
+            db_bin.updated_at = now
+
+        db.commit()
+
+        # 3. Update in-memory cache
+        b["fill_percentage"] = fill_percentage
+        b["estimated_weight"] = weight
+        if fill_percentage >= 90.0:
+            b["status"] = "Critical"
+            b["overflow_severity"] = "Red"
+        elif fill_percentage >= 75.0:
+            b["status"] = "High Priority"
+            b["overflow_severity"] = "Orange"
+        elif fill_percentage >= 50.0:
+            b["status"] = "Filling"
+            b["overflow_severity"] = "Yellow"
+        else:
+            b["status"] = "Healthy"
+            b["overflow_severity"] = "Green"
+        b["updated_at"] = now
+
+        # Add to telemetry history
+        if bin_code not in self.telemetry_history:
+            self.telemetry_history[bin_code] = []
+        self.telemetry_history[bin_code].append({
+            "id": db_reading.id,
+            "bin_id": bin_id,
+            "bin_code": bin_code,
+            "timestamp": now,
+            "fill_percentage": fill_percentage,
+            "weight": weight,
+        })
+
+        return {
+            "reading_id": db_reading.id,
+            "bin_code": bin_code,
+            "fill_percentage": fill_percentage,
+            "weight_kg": weight,
+            "status": b["status"],
+            "timestamp": now.isoformat(),
+        }
 
 
 # Global singleton instance

@@ -4,9 +4,16 @@ FastAPI REST service for AI-powered municipal waste management & recycling optim
 in Ahmedabad. Includes CORS middleware, startup database auto-seeding, and OpenAPI routing.
 """
 
+import sys
+from pathlib import Path
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
+# Ensure project root is in sys.path so ml_model is importable
+ROOT_DIR = Path(__file__).resolve().parents[2]
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
 
 from app.config import settings
 from app.database import engine, Base, SessionLocal
@@ -20,11 +27,12 @@ Base.metadata.create_all(bind=engine)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Application lifespan handler: auto-seeds database on startup if empty."""
+    """Application lifespan handler: hydrates cache from DB or auto-seeds if empty."""
     db = SessionLocal()
     try:
-        # Preloads 120+ Ahmedabad bins, 10 zones, 12 vehicles, alerts, and routes
-        data_store.seed_database_if_empty(db)
+        # If DB already populated, hydrate in-memory cache directly from SQLite; otherwise seed
+        if not data_store.load_from_database(db):
+            data_store.seed_database_if_empty(db)
     finally:
         db.close()
     yield

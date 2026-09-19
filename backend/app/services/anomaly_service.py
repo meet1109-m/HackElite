@@ -110,6 +110,24 @@ def detect_zone_anomalies(
                 ],
             )
 
+            # Try calling Isolation Forest ML model
+            ml_anomaly_status = "NORMAL"
+            ml_anomaly_score = 0.0
+            try:
+                from ml_model.src.predict import detect_anomaly
+                ml_res = detect_anomaly({
+                    "zone_name": zone_name,
+                    "total_waste_kg": current,
+                    "average_bin_fill_percentage": 75.0,
+                    "overflow_count": 5 if increase_pct >= 30.0 else 1,
+                    "collection_count": 8,
+                    "avg_daily_generation_kg_14d": baseline,
+                })
+                ml_anomaly_status = ml_res.get("anomaly_status", "NORMAL")
+                ml_anomaly_score = ml_res.get("anomaly_score", 0.0)
+            except Exception:
+                pass
+
             anomalies.append(
                 {
                     "zone_name": zone_name,
@@ -119,6 +137,8 @@ def detect_zone_anomalies(
                     "severity": severity,
                     "message": msg,
                     "hypotheses": hypotheses,
+                    "ml_anomaly_status": ml_anomaly_status,
+                    "ml_anomaly_score": ml_anomaly_score,
                     "environment": "SmartBinX Anomaly & XAI Service",
                 }
             )

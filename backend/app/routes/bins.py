@@ -4,8 +4,10 @@ Endpoints for bin telemetry, metadata, digital twins, and sensor time-series his
 """
 
 from typing import List, Optional
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException, Query
+from sqlalchemy.orm import Session
 
+from app.database import get_db
 from app.schemas.bin import BinResponse, BinDigitalTwin, BinReadingResponse
 from app.services.data_store import data_store
 from app.services.priority_engine import calculate_priority
@@ -89,6 +91,10 @@ def get_bin_digital_twin(bin_code: str):
     }
 
 
+readings_router = APIRouter(prefix="/api/bin-readings", tags=["Bins"])
+
+
+@readings_router.get("/{bin_code}", response_model=List[BinReadingResponse])
 @router.get("/{bin_code}/readings", response_model=List[BinReadingResponse])
 def get_bin_readings(bin_code: str):
     """Retrieve historical sensor readings for telemetry charting."""
@@ -98,3 +104,35 @@ def get_bin_readings(bin_code: str):
 
     readings = data_store.get_telemetry_readings(bin_code)
     return readings
+
+
+
+@router.post("/{bin_code}/collect")
+def collect_bin_endpoint(
+    bin_code: str,
+    vehicle_code: Optional[str] = Query("V-01", description="Vehicle code performing collection"),
+    db: Session = Depends(get_db),
+):
+    """Record collection event in SQLite, reset bin fill level, and update last collection."""
+    try:
+        result = data_store.record_collection(db, bin_code=bin_code, vehicle_code=vehicle_code)
+        return result
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
+
+@router.post("/{bin_code}/telemetry")
+def record_telemetry_endpoint(
+    bin_code: str,
+    fill_percentage: float = Query(..., ge=0.0, le=100.0, description="Current sensor fill percentage"),
+    weight: Optional[float] = Query(None, description="Optional weight measurement in kg"),
+    db: Session = Depends(get_db),
+):
+    """Record a real-time IoT sensor telemetry reading in SQLite and update bin status."""
+    try:
+        result = data_store.log_telemetry(db, bin_code=bin_code, fill_percentage=fill_percentage, weight=weight)
+        return result
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
+

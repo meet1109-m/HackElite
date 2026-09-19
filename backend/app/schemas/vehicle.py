@@ -20,6 +20,16 @@ class VehicleResponse(VehicleBase):
     model_config = ConfigDict(from_attributes=True)
 
 
+class BestVehicleInfo(BaseModel):
+    vehicle_code: str
+    driver_name: Optional[str] = "Ramesh Patel"
+    driver_phone: Optional[str] = "+91 98250 14210"
+    distance_km: float
+    available_capacity_kg: float
+    current_load_kg: Optional[float] = 0.0
+    capacity_kg: Optional[float] = 2000.0
+
+
 class VehicleSuitability(BaseModel):
     vehicle_code: str
     vehicle_id: str
@@ -29,3 +39,7 @@ class VehicleSuitability(BaseModel):
     has_sufficient_capacity: bool
     is_recommended: bool
     rationale: str
+    bin_id: Optional[str] = None
+    best_vehicle: Optional[BestVehicleInfo] = None
+    recommendation_summary: Optional[str] = None
+

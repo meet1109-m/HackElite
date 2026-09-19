@@ -5,7 +5,7 @@ and recycling purity/contamination analysis.
 """
 
 from typing import Optional
-from fastapi import APIRouter, File, HTTPException, Query, UploadFile
+from fastapi import APIRouter, File, HTTPException, Query, Request, UploadFile
 
 from app.schemas.waste import WasteClassificationResponse, RecyclingPurityResponse
 from app.services.data_store import data_store
@@ -20,25 +20,80 @@ router = APIRouter(prefix="/api/waste", tags=["Waste Intelligence"])
 
 @router.post("/classify", response_model=WasteClassificationResponse)
 async def classify_waste_endpoint(
-    file: Optional[UploadFile] = File(None),
+    request: Request,
     demo_image_id: Optional[str] = Query(None, description="Demo preset image identifier (e.g. 'AHM-104', 'AHM-118')"),
     bin_code: Optional[str] = Query(None, description="Optional associated bin code"),
 ):
     """Computer Vision waste classification endpoint.
 
-    Accepts an uploaded image file or a demo image preset.
+    Accepts:
+    1. JSON payload: { "stream": "Plastic", "sampleId": "sample-01", "demo_image_id": "AHM-104", "bin_code": "AHM-104" }
+    2. Multipart form data with file upload: `file`
+    3. Query parameters: `demo_image_id`, `bin_code`
+
     Returns material composition breakdown tagged with "source": "AI Detected from Image".
     """
+    content_type = request.headers.get("content-type", "").lower()
     image_bytes = None
-    if file:
-        image_bytes = await file.read()
+    stream_name = "Recyclable"
+    target_code = bin_code or demo_image_id
 
-    target_code = bin_code or demo_image_id or "DEMO-STREAM"
+    if "application/json" in content_type:
+        try:
+            body = await request.json()
+            if isinstance(body, dict):
+                target_code = (
+                    body.get("sampleId")
+                    or body.get("demo_image_id")
+                    or body.get("bin_code")
+                    or target_code
+                )
+                stream_name = body.get("stream") or body.get("waste_stream") or stream_name
+        except Exception:
+            pass
+    elif "multipart/form-data" in content_type:
+        try:
+            form = await request.form()
+            file_obj = form.get("file")
+            if file_obj and hasattr(file_obj, "read"):
+                image_bytes = await file_obj.read()
+            target_code = form.get("bin_code") or form.get("demo_image_id") or target_code
+            stream_name = form.get("stream") or form.get("waste_stream") or stream_name
+        except Exception:
+            pass
+
+    target_code = target_code or "DEMO-STREAM"
     result = classify_waste_image(
         image_bytes=image_bytes,
         bin_code=target_code,
+        stream_name=stream_name,
     )
-    return result
+
+    comp = result.get("composition", {})
+    purity_score = int(result.get("recycling_purity_score", 75))
+    is_contaminated = bool(result.get("is_contaminated", False))
+    conf_pct = float(result.get("confidence_pct", 89.0))
+
+    return {
+        "bin_code": result.get("bin_code"),
+        "composition": comp,
+        "dominant_material": result.get("dominant_material", "Plastic"),
+        "confidence_pct": conf_pct,
+        "source": result.get("source", "AI Detected from Image"),
+        "recycling_purity_score": purity_score,
+        "is_contaminated": is_contaminated,
+        "contamination_warning": result.get("contamination_warning"),
+        "plastic": comp.get("plastic", 0.0),
+        "organic": comp.get("organic", 0.0),
+        "paper": comp.get("paper", 0.0),
+        "metal": comp.get("metal", 0.0),
+        "glass": comp.get("glass", 0.0),
+        "other": comp.get("other", 0.0),
+        "confidence": round(conf_pct / 100.0, 2),
+        "purity_score": float(purity_score),
+        "contamination_level": "Critical Contamination" if purity_score < 50 else ("Moderate Contamination" if is_contaminated else "Low Contamination"),
+    }
+
 
 
 @router.get("/composition/{bin_code}", response_model=WasteClassificationResponse)

@@ -17,5 +17,19 @@ def query_ai_endpoint(payload: AIQueryRequest):
 
     Returns a markdown-formatted answer, actionable UI cards, and concrete recommendations.
     """
-    response = process_ai_query(payload.query)
+    response = process_ai_query(payload.effective_query)
+    
+    # Ensure suggested_actions is populated
+    if "suggested_actions" not in response:
+        response["suggested_actions"] = list(response.get("recommended_actions", []))
+    
+    # Ensure each card has a structured data list for frontend card grid
+    for card in response.get("cards", []):
+        if not card.get("data") and card.get("details"):
+            card["data"] = [
+                {"label": k.replace("_", " ").title(), "value": str(v)}
+                for k, v in card["details"].items()
+            ]
+
     return response
+

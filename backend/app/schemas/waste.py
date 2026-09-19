@@ -26,6 +26,17 @@ class WasteClassificationResponse(BaseModel):
     )
     is_contaminated: bool = False
     contamination_warning: Optional[str] = None
+    # Frontend flat compatibility fields
+    plastic: Optional[float] = None
+    organic: Optional[float] = None
+    paper: Optional[float] = None
+    metal: Optional[float] = None
+    glass: Optional[float] = None
+    other: Optional[float] = None
+    confidence: Optional[float] = None
+    purity_score: Optional[float] = None
+    contamination_level: Optional[str] = None
+
 
 
 class RecyclingPurityResponse(BaseModel):

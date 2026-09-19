@@ -44,4 +44,21 @@ def get_best_vehicle_for_bin_endpoint(bin_code: str):
     if not match:
         raise HTTPException(status_code=500, detail="Evaluation mapping error.")
 
-    return match
+    match_copy = dict(match)
+    match_copy["bin_id"] = b.get("id", bin_code)
+    match_copy["best_vehicle"] = {
+        "vehicle_code": recommended.get("vehicle_code"),
+        "driver_name": recommended.get("driver_name", "Ramesh Patel"),
+        "driver_phone": recommended.get("driver_phone", "+91 98250 14210"),
+        "distance_km": match.get("distance_km", 0.0),
+        "available_capacity_kg": match.get("available_capacity_kg", 0.0),
+        "current_load_kg": recommended.get("current_load", 0.0),
+        "capacity_kg": recommended.get("capacity_kg", 2000.0),
+    }
+    match_copy["recommendation_summary"] = match.get(
+        "rationale",
+        f"Truck {recommended.get('vehicle_code')} selected: Closest proximity ({match.get('distance_km')} km)."
+    )
+
+    return match_copy
+

@@ -3,8 +3,10 @@
 Endpoints for 6h, 12h, 24h fill level forecasting and visual overflow countdown timers.
 """
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.orm import Session
 
+from app.database import get_db
 from app.schemas.prediction import PredictionResponse, OverflowCountdownResponse
 from app.services.data_store import data_store
 from app.services.prediction_engine import predict_bin_overflow, calculate_overflow_countdown
@@ -13,13 +15,18 @@ router = APIRouter(prefix="/api/predictions", tags=["Predictions"])
 
 
 @router.get("/{bin_code}", response_model=PredictionResponse)
-def get_prediction_endpoint(bin_code: str):
+def get_prediction_endpoint(bin_code: str, db: Session = Depends(get_db)):
     """Retrieve 6-hour, 12-hour, and 24-hour fill-level forecasts for a bin."""
     b = data_store.get_bin(bin_code)
     if not b:
         raise HTTPException(status_code=404, detail=f"Bin '{bin_code}' not found.")
 
     prediction = predict_bin_overflow(b)
+    # Log prediction to SQLite predictions table
+    try:
+        data_store.log_prediction(db, prediction)
+    except Exception:
+        pass  # Non-blocking log
     return prediction
 
 

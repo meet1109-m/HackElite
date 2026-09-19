@@ -141,14 +141,23 @@ def predict_bin_overflow(bin_data: Dict[str, Any]) -> Dict[str, Any]:
     confidence = 0.88
 
     try:
-        from ml_model.src.predict import predict_fill_level  # type: ignore
+        from ml_model.src.predict import predict_bin_fill
 
-        # If implemented without raising NotImplementedError
-        ml_prediction = predict_fill_level(bin_data)
-        fill_6h = ml_prediction.get("fill_6h")
-        fill_12h = ml_prediction.get("fill_12h")
-        fill_24h = ml_prediction.get("fill_24h")
+        features = {
+            "bin_id": code or "AMD-BIN-0001",
+            "zone_name": bin_data.get("zone", "Navrangpura"),
+            "waste_stream": bin_data.get("waste_stream", "Mixed"),
+            "fill_percentage": fill_pct,
+            "estimated_weight_kg": float(bin_data.get("estimated_weight", 20.0)),
+            "capacity_kg": capacity,
+            "hours_since_collection": 6.0,
+        }
+        ml_prediction = predict_bin_fill(features)
+        fill_6h = float(ml_prediction.get("fill_percentage_6h", fill_pct))
+        fill_12h = float(ml_prediction.get("fill_percentage_12h", fill_pct))
+        fill_24h = float(ml_prediction.get("fill_percentage_24h", fill_pct))
         ml_used = True
+        confidence = 0.93
     except Exception:
         # Fallback to smart physics-based trajectory
         fill_6h = min(100.0, round(fill_pct + (6.0 * pct_per_hour), 1))

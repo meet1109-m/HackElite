@@ -76,14 +76,21 @@ def run_what_if_simulation(params: Dict[str, Any]) -> Dict[str, Any]:
 
     sim_vehicles = int(params.get("vehicles_count") or baseline_vehicles)
     sim_capacity = float(params.get("vehicle_capacity_kg") or 2400.0)
-    traffic = str(params.get("traffic_condition") or "Normal").capitalize()
-    gen_delta_pct = float(params.get("waste_generation_delta_pct") or 0.0)
+    raw_traffic = params.get("traffic_factor") or params.get("traffic_condition") or "Normal"
+    traffic = str(raw_traffic).capitalize()
+    gen_delta_pct = float(
+        params.get("generation_surge_pct")
+        if params.get("generation_surge_pct") is not None
+        else (params.get("waste_generation_delta_pct") or 0.0)
+    )
 
     # Traffic multiplier
     if traffic == "Heavy":
         traffic_mult = 1.25
     elif traffic == "Moderate":
         traffic_mult = 1.12
+    elif traffic == "Light":
+        traffic_mult = 0.92
     else:
         traffic_mult = 1.0
 
@@ -108,6 +115,10 @@ def run_what_if_simulation(params: Dict[str, Any]) -> Dict[str, Any]:
     sim_utilization_pct = min(100.0, max(15.0, round(utilization, 1)))
     utilization_change_pct = round(sim_utilization_pct - baseline_utilization_pct, 1)
 
+    # Estimated uncollected bins and fuel consumption
+    uncollected = max(0, int(round(2 + max(0, (baseline_vehicles - sim_vehicles)) * 1.5 + gen_delta_pct * 0.05)))
+    fuel_liters = round(sim_distance_km * 0.22, 1)
+
     # Summary string
     v_diff = sim_vehicles - baseline_vehicles
     v_desc = f"{sim_vehicles} vehicles ({'+' if v_diff > 0 else ''}{v_diff})"
@@ -120,13 +131,19 @@ def run_what_if_simulation(params: Dict[str, Any]) -> Dict[str, Any]:
     return {
         "scenario_summary": summary,
         "total_distance_km": sim_distance_km,
+        "distance_km": sim_distance_km,
         "distance_change_km": dist_change_km,
         "avg_overflow_risk_pct": sim_overflow_pct,
+        "overflow_risk_pct": sim_overflow_pct,
         "overflow_risk_change_pct": overflow_change_pct,
         "vehicle_utilization_pct": sim_utilization_pct,
+        "fleet_utilization_pct": sim_utilization_pct,
         "utilization_change_pct": utilization_change_pct,
+        "uncollected_bins": uncollected,
+        "fuel_liters": fuel_liters,
         "label": "SmartBinX What-If Simulator",
     }
+
 
 
 def simulate_event_mode(

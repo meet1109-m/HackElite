@@ -6,7 +6,9 @@ class WhatIfRequest(BaseModel):
     vehicles_count: Optional[int] = Field(None, description="Simulated active vehicle count")
     vehicle_capacity_kg: Optional[float] = Field(None, description="Average truck capacity")
     traffic_condition: Optional[str] = Field("Normal", description="Normal, Moderate, Heavy")
+    traffic_factor: Optional[str] = Field(None, description="Frontend alias for traffic condition")
     waste_generation_delta_pct: Optional[float] = Field(0.0, description="Percentage change in waste generation")
+    generation_surge_pct: Optional[float] = Field(None, description="Frontend alias for waste generation surge")
 
 
 class WhatIfResponse(BaseModel):
@@ -17,7 +19,13 @@ class WhatIfResponse(BaseModel):
     overflow_risk_change_pct: float
     vehicle_utilization_pct: float
     utilization_change_pct: float
+    distance_km: Optional[float] = None
+    overflow_risk_pct: Optional[float] = None
+    fleet_utilization_pct: Optional[float] = None
+    uncollected_bins: Optional[int] = None
+    fuel_liters: Optional[float] = None
     label: str = "Simulation / Scenario Estimate"
+
 
 
 class EventModeRequest(BaseModel):

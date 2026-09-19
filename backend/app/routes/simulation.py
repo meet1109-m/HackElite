@@ -16,11 +16,13 @@ from app.services.simulation_service import run_what_if_simulation, simulate_eve
 router = APIRouter(prefix="/api/simulation", tags=["Simulation"])
 
 
+@router.post("", response_model=WhatIfResponse)
 @router.post("/what-if", response_model=WhatIfResponse)
 def what_if_simulation_endpoint(payload: WhatIfRequest):
     """Execute What-If scenario simulation on the municipal collection fleet."""
     result = run_what_if_simulation(payload.model_dump())
     return result
+
 
 
 @router.post("/event-mode", response_model=EventModeResponse)

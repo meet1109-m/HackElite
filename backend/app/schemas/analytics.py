@@ -23,6 +23,8 @@ class AnomalyResponse(BaseModel):
         ...,
         description="Plausible contributing factors presented as hypotheses, not verified facts"
     )
+    ml_anomaly_status: str = "NORMAL"
+    ml_anomaly_score: float = 0.0
     environment: str = "Prototype / Simulated Insight"
 
 
@@ -35,3 +37,15 @@ class EnvironmentalImpactResponse(BaseModel):
     landfill_diversion_pct: float
     circularity_score: int
     environment: str = "Prototype / Simulated Estimates"
+
+
+class AnalyticsSummaryResponse(BaseModel):
+    total_waste_collected_tonnes: float
+    potentially_recoverable_tonnes: float
+    landfill_diversion_percentage: float
+    stream_breakdown: dict
+    purity_scores: dict
+    co2e_emissions_avoided_kg: float
+    fuel_saved_liters: float
+    distance_optimized_km: float
+
