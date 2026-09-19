@@ -1,0 +1,16 @@
+Model,Task,Training_Records,Features,Training_Time_s,MAE,RMSE,R2,Model_Size_KB,CPU_Assessment
+DummyRegressor,Fill Prediction (6h),588722,60,0.05,19.76801300048828,25.03118904096822,-0.0043755769729614,1.0,Extremely Fast & Memory Efficient (<50MB RAM)
+HistGradientBoostingRegressor,Fill Prediction (6h),588722,60,25.88,8.024755813327163,13.166222270612344,0.7221211104300764,730.83,Extremely Fast & Memory Efficient (<50MB RAM)
+DummyRegressor,Fill Prediction (12h),588722,60,0.05,19.765378952026367,25.02635329757414,-0.0044358968734741,1.0,Extremely Fast & Memory Efficient (<50MB RAM)
+HistGradientBoostingRegressor,Fill Prediction (12h),588722,60,21.49,10.795852987852996,15.944828707017168,0.5922755026423201,730.83,Extremely Fast & Memory Efficient (<50MB RAM)
+DummyRegressor,Fill Prediction (24h),588722,60,0.05,19.740816116333008,24.998078539441035,-0.0045456886291503,1.0,Extremely Fast & Memory Efficient (<50MB RAM)
+HistGradientBoostingRegressor,Fill Prediction (24h),588722,60,22.22,10.751901509850768,16.0994785001955,0.5833417276459048,730.83,Extremely Fast & Memory Efficient (<50MB RAM)
+HistGradientBoostingRegressor,Composition Estimation (plastic_percentage),37678,47,0.5,3.84,4.96,0.8135,1962.73,Lightweight Multi-Output Estimator
+HistGradientBoostingRegressor,Composition Estimation (paper_percentage),37678,47,0.5,3.55,4.65,0.8343,1962.73,Lightweight Multi-Output Estimator
+HistGradientBoostingRegressor,Composition Estimation (metal_percentage),37678,47,0.5,2.03,2.86,0.7076,1962.73,Lightweight Multi-Output Estimator
+HistGradientBoostingRegressor,Composition Estimation (glass_percentage),37678,47,0.5,2.24,3.0,0.5273,1962.73,Lightweight Multi-Output Estimator
+HistGradientBoostingRegressor,Composition Estimation (organic_percentage),37678,47,0.5,4.42,5.75,0.9651,1962.73,Lightweight Multi-Output Estimator
+HistGradientBoostingRegressor,Composition Estimation (other_percentage),37678,47,0.5,3.4,4.36,0.6408,1962.73,Lightweight Multi-Output Estimator
+DummyRegressor,Zone Waste Forecasting,8085,54,0.01,3304.02,3996.91,-0.0058,1.0,"Sub-second inference, tree-based"
+HistGradientBoostingRegressor,Zone Waste Forecasting,8085,54,3.28,245.37,424.14,0.9887,733.79,"Sub-second inference, tree-based"
+IsolationForest,Anomaly Detection,12045,15,0.39,N/A (Unsupervised),N/A (Unsupervised),Precision: 0.1245 | Recall: 0.4167 | F1: 0.1917,1110.99,Unsupervised Tree Ensembles (n_jobs=2)

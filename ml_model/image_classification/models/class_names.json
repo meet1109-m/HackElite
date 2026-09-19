@@ -1,0 +1,23 @@
+{
+  "classes": [
+    "Plastic",
+    "Other",
+    "Metal",
+    "Paper",
+    "Glass"
+  ],
+  "class_to_idx": {
+    "Plastic": 0,
+    "Other": 1,
+    "Metal": 2,
+    "Paper": 3,
+    "Glass": 4
+  },
+  "idx_to_class": {
+    "0": "Plastic",
+    "1": "Other",
+    "2": "Metal",
+    "3": "Paper",
+    "4": "Glass"
+  }
+}

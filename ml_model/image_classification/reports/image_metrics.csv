@@ -1,0 +1,2 @@
+Model,Train_Images,Val_Images,Test_Images,Classes,Accuracy,Macro_Precision,Macro_Recall,Macro_F1,Weighted_F1,Training_Time_s,Device
+MobileNetV2 Transfer Learning,548,118,118,5,0.6186,0.3556,0.3642,0.3579,0.6118,391.4,CPU

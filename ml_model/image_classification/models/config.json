@@ -1,0 +1,18 @@
+{
+  "architecture": "MobileNetV2",
+  "pretrained": "ImageNet",
+  "image_size": [
+    224,
+    224
+  ],
+  "num_classes": 5,
+  "classes": [
+    "Plastic",
+    "Other",
+    "Metal",
+    "Paper",
+    "Glass"
+  ],
+  "training_stages": 2,
+  "total_epochs": 10
+}

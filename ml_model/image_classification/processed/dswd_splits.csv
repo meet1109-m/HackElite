@@ -1,0 +1,785 @@
+image_id,filename,relative_path,orig_split,width,height,mode,dominant_class_id,class_name,waste_stream,split
+0,img_0.png,data\DSWD\DSWD\Train\Image\img_0.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,test
+1,img_1.png,data\DSWD\DSWD\Train\Image\img_1.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+1011,img_1011.png,data\DSWD\DSWD\Train\Image\img_1011.png,Train,448,448,RGB,0,Other,Other,test
+1023,img_1023.png,data\DSWD\DSWD\Train\Image\img_1023.png,Train,448,448,RGB,11,Paper cup,Paper,train
+1036,img_1036.png,data\DSWD\DSWD\Train\Image\img_1036.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+1050,img_1050.png,data\DSWD\DSWD\Train\Image\img_1050.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+1051,img_1051.png,data\DSWD\DSWD\Train\Image\img_1051.png,Train,448,448,RGB,0,Other,Other,test
+1053,img_1053.png,data\DSWD\DSWD\Train\Image\img_1053.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+1056,img_1056.png,data\DSWD\DSWD\Train\Image\img_1056.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+1060,img_1060.png,data\DSWD\DSWD\Train\Image\img_1060.png,Train,448,448,RGB,0,Other,Other,train
+1065,img_1065.png,data\DSWD\DSWD\Train\Image\img_1065.png,Train,448,448,RGB,0,Other,Other,train
+108,img_108.png,data\DSWD\DSWD\Train\Image\img_108.png,Train,448,448,RGB,12,Aluminium foil,Metal,train
+1086,img_1086.png,data\DSWD\DSWD\Train\Image\img_1086.png,Train,448,448,RGB,0,Other,Other,validation
+1095,img_1095.png,data\DSWD\DSWD\Train\Image\img_1095.png,Train,448,448,RGB,0,Other,Other,train
+1105,img_1105.png,data\DSWD\DSWD\Train\Image\img_1105.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+111,img_111.png,data\DSWD\DSWD\Train\Image\img_111.png,Train,448,448,RGB,12,Aluminium foil,Metal,train
+1116,img_1116.png,data\DSWD\DSWD\Train\Image\img_1116.png,Train,448,448,RGB,0,Other,Other,train
+1128,img_1128.png,data\DSWD\DSWD\Train\Image\img_1128.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+1141,img_1141.png,data\DSWD\DSWD\Train\Image\img_1141.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+115,img_115.png,data\DSWD\DSWD\Train\Image\img_115.png,Train,448,448,RGB,0,Other,Other,train
+1155,img_1155.png,data\DSWD\DSWD\Train\Image\img_1155.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,test
+1156,img_1156.png,data\DSWD\DSWD\Train\Image\img_1156.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+1158,img_1158.png,data\DSWD\DSWD\Train\Image\img_1158.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+1170,img_1170.png,data\DSWD\DSWD\Train\Image\img_1170.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+1176,img_1176.png,data\DSWD\DSWD\Train\Image\img_1176.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+1183,img_1183.png,data\DSWD\DSWD\Train\Image\img_1183.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+1191,img_1191.png,data\DSWD\DSWD\Train\Image\img_1191.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,validation
+120,img_120.png,data\DSWD\DSWD\Train\Image\img_120.png,Train,448,448,RGB,0,Other,Other,test
+1200,img_1200.png,data\DSWD\DSWD\Train\Image\img_1200.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+1210,img_1210.png,data\DSWD\DSWD\Train\Image\img_1210.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+1221,img_1221.png,data\DSWD\DSWD\Train\Image\img_1221.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+1233,img_1233.png,data\DSWD\DSWD\Train\Image\img_1233.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,test
+1246,img_1246.png,data\DSWD\DSWD\Train\Image\img_1246.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+126,img_126.png,data\DSWD\DSWD\Train\Image\img_126.png,Train,448,448,RGB,0,Other,Other,train
+1263,img_1263.png,data\DSWD\DSWD\Train\Image\img_1263.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+1266,img_1266.png,data\DSWD\DSWD\Train\Image\img_1266.png,Train,448,448,RGB,0,Other,Other,train
+1270,img_1270.png,data\DSWD\DSWD\Train\Image\img_1270.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+1275,img_1275.png,data\DSWD\DSWD\Train\Image\img_1275.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+1281,img_1281.png,data\DSWD\DSWD\Train\Image\img_1281.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+1288,img_1288.png,data\DSWD\DSWD\Train\Image\img_1288.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+1296,img_1296.png,data\DSWD\DSWD\Train\Image\img_1296.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+1305,img_1305.png,data\DSWD\DSWD\Train\Image\img_1305.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+1315,img_1315.png,data\DSWD\DSWD\Train\Image\img_1315.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+133,img_133.png,data\DSWD\DSWD\Train\Image\img_133.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+1351,img_1351.png,data\DSWD\DSWD\Train\Image\img_1351.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+1365,img_1365.png,data\DSWD\DSWD\Train\Image\img_1365.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+1366,img_1366.png,data\DSWD\DSWD\Train\Image\img_1366.png,Train,448,448,RGB,0,Other,Other,test
+1368,img_1368.png,data\DSWD\DSWD\Train\Image\img_1368.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+1371,img_1371.png,data\DSWD\DSWD\Train\Image\img_1371.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+1375,img_1375.png,data\DSWD\DSWD\Train\Image\img_1375.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+1380,img_1380.png,data\DSWD\DSWD\Train\Image\img_1380.png,Train,448,448,RGB,0,Other,Other,train
+1386,img_1386.png,data\DSWD\DSWD\Train\Image\img_1386.png,Train,448,448,RGB,0,Other,Other,test
+1393,img_1393.png,data\DSWD\DSWD\Train\Image\img_1393.png,Train,448,448,RGB,0,Other,Other,test
+141,img_141.png,data\DSWD\DSWD\Train\Image\img_141.png,Train,448,448,RGB,0,Other,Other,train
+1420,img_1420.png,data\DSWD\DSWD\Train\Image\img_1420.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+1431,img_1431.png,data\DSWD\DSWD\Train\Image\img_1431.png,Train,448,448,RGB,0,Other,Other,train
+1443,img_1443.png,data\DSWD\DSWD\Train\Image\img_1443.png,Train,448,448,RGB,0,Other,Other,train
+1456,img_1456.png,data\DSWD\DSWD\Train\Image\img_1456.png,Train,448,448,RGB,0,Other,Other,train
+1470,img_1470.png,data\DSWD\DSWD\Train\Image\img_1470.png,Train,448,448,RGB,0,Other,Other,train
+1471,img_1471.png,data\DSWD\DSWD\Train\Image\img_1471.png,Train,448,448,RGB,0,Other,Other,validation
+1473,img_1473.png,data\DSWD\DSWD\Train\Image\img_1473.png,Train,448,448,RGB,0,Other,Other,train
+1476,img_1476.png,data\DSWD\DSWD\Train\Image\img_1476.png,Train,448,448,RGB,0,Other,Other,train
+1480,img_1480.png,data\DSWD\DSWD\Train\Image\img_1480.png,Train,448,448,RGB,0,Other,Other,train
+1498,img_1498.png,data\DSWD\DSWD\Train\Image\img_1498.png,Train,448,448,RGB,0,Other,Other,train
+150,img_150.png,data\DSWD\DSWD\Train\Image\img_150.png,Train,448,448,RGB,0,Other,Other,train
+1506,img_1506.png,data\DSWD\DSWD\Train\Image\img_1506.png,Train,448,448,RGB,0,Other,Other,test
+1515,img_1515.png,data\DSWD\DSWD\Train\Image\img_1515.png,Train,448,448,RGB,0,Other,Other,test
+1525,img_1525.png,data\DSWD\DSWD\Train\Image\img_1525.png,Train,448,448,RGB,0,Other,Other,train
+1536,img_1536.png,data\DSWD\DSWD\Train\Image\img_1536.png,Train,448,448,RGB,0,Other,Other,train
+1548,img_1548.png,data\DSWD\DSWD\Train\Image\img_1548.png,Train,448,448,RGB,0,Other,Other,train
+1561,img_1561.png,data\DSWD\DSWD\Train\Image\img_1561.png,Train,448,448,RGB,0,Other,Other,train
+1575,img_1575.png,data\DSWD\DSWD\Train\Image\img_1575.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+1576,img_1576.png,data\DSWD\DSWD\Train\Image\img_1576.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+1585,img_1585.png,data\DSWD\DSWD\Train\Image\img_1585.png,Train,448,448,RGB,0,Other,Other,test
+1590,img_1590.png,data\DSWD\DSWD\Train\Image\img_1590.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+1596,img_1596.png,data\DSWD\DSWD\Train\Image\img_1596.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+160,img_160.png,data\DSWD\DSWD\Train\Image\img_160.png,Train,448,448,RGB,0,Other,Other,train
+1603,img_1603.png,data\DSWD\DSWD\Train\Image\img_1603.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+1611,img_1611.png,data\DSWD\DSWD\Train\Image\img_1611.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+1620,img_1620.png,data\DSWD\DSWD\Train\Image\img_1620.png,Train,448,448,RGB,0,Other,Other,test
+1630,img_1630.png,data\DSWD\DSWD\Train\Image\img_1630.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+1641,img_1641.png,data\DSWD\DSWD\Train\Image\img_1641.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+1653,img_1653.png,data\DSWD\DSWD\Train\Image\img_1653.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+1681,img_1681.png,data\DSWD\DSWD\Train\Image\img_1681.png,Train,448,448,RGB,0,Other,Other,train
+1683,img_1683.png,data\DSWD\DSWD\Train\Image\img_1683.png,Train,448,448,RGB,0,Other,Other,test
+1686,img_1686.png,data\DSWD\DSWD\Train\Image\img_1686.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+1690,img_1690.png,data\DSWD\DSWD\Train\Image\img_1690.png,Train,448,448,RGB,0,Other,Other,train
+1695,img_1695.png,data\DSWD\DSWD\Train\Image\img_1695.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+1701,img_1701.png,data\DSWD\DSWD\Train\Image\img_1701.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+1708,img_1708.png,data\DSWD\DSWD\Train\Image\img_1708.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+1716,img_1716.png,data\DSWD\DSWD\Train\Image\img_1716.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+1725,img_1725.png,data\DSWD\DSWD\Train\Image\img_1725.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+1758,img_1758.png,data\DSWD\DSWD\Train\Image\img_1758.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+1771,img_1771.png,data\DSWD\DSWD\Train\Image\img_1771.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+1785,img_1785.png,data\DSWD\DSWD\Train\Image\img_1785.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+1786,img_1786.png,data\DSWD\DSWD\Train\Image\img_1786.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+1788,img_1788.png,data\DSWD\DSWD\Train\Image\img_1788.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+1791,img_1791.png,data\DSWD\DSWD\Train\Image\img_1791.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+1795,img_1795.png,data\DSWD\DSWD\Train\Image\img_1795.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,validation
+1800,img_1800.png,data\DSWD\DSWD\Train\Image\img_1800.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+1806,img_1806.png,data\DSWD\DSWD\Train\Image\img_1806.png,Train,448,448,RGB,0,Other,Other,train
+1830,img_1830.png,data\DSWD\DSWD\Train\Image\img_1830.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+1840,img_1840.png,data\DSWD\DSWD\Train\Image\img_1840.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+1851,img_1851.png,data\DSWD\DSWD\Train\Image\img_1851.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+1863,img_1863.png,data\DSWD\DSWD\Train\Image\img_1863.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+1876,img_1876.png,data\DSWD\DSWD\Train\Image\img_1876.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+1890,img_1890.png,data\DSWD\DSWD\Train\Image\img_1890.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+1891,img_1891.png,data\DSWD\DSWD\Train\Image\img_1891.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+1893,img_1893.png,data\DSWD\DSWD\Train\Image\img_1893.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+1896,img_1896.png,data\DSWD\DSWD\Train\Image\img_1896.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+1911,img_1911.png,data\DSWD\DSWD\Train\Image\img_1911.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+1918,img_1918.png,data\DSWD\DSWD\Train\Image\img_1918.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+1926,img_1926.png,data\DSWD\DSWD\Train\Image\img_1926.png,Train,448,448,RGB,10,Plastic cup,Plastic,train
+1935,img_1935.png,data\DSWD\DSWD\Train\Image\img_1935.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+1945,img_1945.png,data\DSWD\DSWD\Train\Image\img_1945.png,Train,448,448,RGB,10,Plastic cup,Plastic,train
+1956,img_1956.png,data\DSWD\DSWD\Train\Image\img_1956.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+196,img_196.png,data\DSWD\DSWD\Train\Image\img_196.png,Train,448,448,RGB,12,Aluminium foil,Metal,train
+1968,img_1968.png,data\DSWD\DSWD\Train\Image\img_1968.png,Train,448,448,RGB,12,Aluminium foil,Metal,train
+1981,img_1981.png,data\DSWD\DSWD\Train\Image\img_1981.png,Train,448,448,RGB,12,Aluminium foil,Metal,train
+1995,img_1995.png,data\DSWD\DSWD\Train\Image\img_1995.png,Train,448,448,RGB,0,Other,Other,train
+2001,img_2001.png,data\DSWD\DSWD\Train\Image\img_2001.png,Train,448,448,RGB,0,Other,Other,test
+2005,img_2005.png,data\DSWD\DSWD\Train\Image\img_2005.png,Train,448,448,RGB,0,Other,Other,train
+2010,img_2010.png,data\DSWD\DSWD\Train\Image\img_2010.png,Train,448,448,RGB,0,Other,Other,train
+2016,img_2016.png,data\DSWD\DSWD\Train\Image\img_2016.png,Train,448,448,RGB,0,Other,Other,validation
+2023,img_2023.png,data\DSWD\DSWD\Train\Image\img_2023.png,Train,448,448,RGB,0,Other,Other,train
+2031,img_2031.png,data\DSWD\DSWD\Train\Image\img_2031.png,Train,448,448,RGB,0,Other,Other,train
+2040,img_2040.png,data\DSWD\DSWD\Train\Image\img_2040.png,Train,448,448,RGB,0,Other,Other,train
+2050,img_2050.png,data\DSWD\DSWD\Train\Image\img_2050.png,Train,448,448,RGB,0,Other,Other,validation
+2061,img_2061.png,data\DSWD\DSWD\Train\Image\img_2061.png,Train,448,448,RGB,0,Other,Other,train
+210,img_210.png,data\DSWD\DSWD\Train\Image\img_210.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+2100,img_2100.png,data\DSWD\DSWD\Train\Image\img_2100.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+2101,img_2101.png,data\DSWD\DSWD\Train\Image\img_2101.png,Train,448,448,RGB,0,Other,Other,validation
+2103,img_2103.png,data\DSWD\DSWD\Train\Image\img_2103.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+2106,img_2106.png,data\DSWD\DSWD\Train\Image\img_2106.png,Train,448,448,RGB,0,Other,Other,validation
+211,img_211.png,data\DSWD\DSWD\Train\Image\img_211.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+2110,img_2110.png,data\DSWD\DSWD\Train\Image\img_2110.png,Train,448,448,RGB,0,Other,Other,train
+2115,img_2115.png,data\DSWD\DSWD\Train\Image\img_2115.png,Train,448,448,RGB,0,Other,Other,test
+2121,img_2121.png,data\DSWD\DSWD\Train\Image\img_2121.png,Train,448,448,RGB,0,Other,Other,validation
+2128,img_2128.png,data\DSWD\DSWD\Train\Image\img_2128.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+213,img_213.png,data\DSWD\DSWD\Train\Image\img_213.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+2136,img_2136.png,data\DSWD\DSWD\Train\Image\img_2136.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+216,img_216.png,data\DSWD\DSWD\Train\Image\img_216.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+2166,img_2166.png,data\DSWD\DSWD\Train\Image\img_2166.png,Train,448,448,RGB,0,Other,Other,test
+2178,img_2178.png,data\DSWD\DSWD\Train\Image\img_2178.png,Train,448,448,RGB,0,Other,Other,train
+2191,img_2191.png,data\DSWD\DSWD\Train\Image\img_2191.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+220,img_220.png,data\DSWD\DSWD\Train\Image\img_220.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+2205,img_2205.png,data\DSWD\DSWD\Train\Image\img_2205.png,Train,448,448,RGB,0,Other,Other,train
+2206,img_2206.png,data\DSWD\DSWD\Train\Image\img_2206.png,Train,448,448,RGB,0,Other,Other,train
+2208,img_2208.png,data\DSWD\DSWD\Train\Image\img_2208.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+2211,img_2211.png,data\DSWD\DSWD\Train\Image\img_2211.png,Train,448,448,RGB,0,Other,Other,train
+2215,img_2215.png,data\DSWD\DSWD\Train\Image\img_2215.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,validation
+2220,img_2220.png,data\DSWD\DSWD\Train\Image\img_2220.png,Train,448,448,RGB,12,Aluminium foil,Metal,train
+2241,img_2241.png,data\DSWD\DSWD\Train\Image\img_2241.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+225,img_225.png,data\DSWD\DSWD\Train\Image\img_225.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+2250,img_2250.png,data\DSWD\DSWD\Train\Image\img_2250.png,Train,448,448,RGB,12,Aluminium foil,Metal,test
+2260,img_2260.png,data\DSWD\DSWD\Train\Image\img_2260.png,Train,448,448,RGB,0,Other,Other,train
+2271,img_2271.png,data\DSWD\DSWD\Train\Image\img_2271.png,Train,448,448,RGB,0,Other,Other,train
+2283,img_2283.png,data\DSWD\DSWD\Train\Image\img_2283.png,Train,448,448,RGB,0,Other,Other,test
+2296,img_2296.png,data\DSWD\DSWD\Train\Image\img_2296.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,test
+231,img_231.png,data\DSWD\DSWD\Train\Image\img_231.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+2310,img_2310.png,data\DSWD\DSWD\Train\Image\img_2310.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+2311,img_2311.png,data\DSWD\DSWD\Train\Image\img_2311.png,Train,448,448,RGB,0,Other,Other,validation
+2313,img_2313.png,data\DSWD\DSWD\Train\Image\img_2313.png,Train,448,448,RGB,0,Other,Other,train
+2325,img_2325.png,data\DSWD\DSWD\Train\Image\img_2325.png,Train,448,448,RGB,0,Other,Other,test
+2331,img_2331.png,data\DSWD\DSWD\Train\Image\img_2331.png,Train,448,448,RGB,0,Other,Other,train
+2338,img_2338.png,data\DSWD\DSWD\Train\Image\img_2338.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,test
+2346,img_2346.png,data\DSWD\DSWD\Train\Image\img_2346.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+2355,img_2355.png,data\DSWD\DSWD\Train\Image\img_2355.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,validation
+2365,img_2365.png,data\DSWD\DSWD\Train\Image\img_2365.png,Train,448,448,RGB,0,Other,Other,train
+2376,img_2376.png,data\DSWD\DSWD\Train\Image\img_2376.png,Train,448,448,RGB,0,Other,Other,train
+238,img_238.png,data\DSWD\DSWD\Train\Image\img_238.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+2388,img_2388.png,data\DSWD\DSWD\Train\Image\img_2388.png,Train,448,448,RGB,0,Other,Other,train
+2401,img_2401.png,data\DSWD\DSWD\Train\Image\img_2401.png,Train,448,448,RGB,0,Other,Other,train
+2418,img_2418.png,data\DSWD\DSWD\Train\Image\img_2418.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+2421,img_2421.png,data\DSWD\DSWD\Train\Image\img_2421.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+2425,img_2425.png,data\DSWD\DSWD\Train\Image\img_2425.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+2430,img_2430.png,data\DSWD\DSWD\Train\Image\img_2430.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+2436,img_2436.png,data\DSWD\DSWD\Train\Image\img_2436.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+2443,img_2443.png,data\DSWD\DSWD\Train\Image\img_2443.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+2451,img_2451.png,data\DSWD\DSWD\Train\Image\img_2451.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+2460,img_2460.png,data\DSWD\DSWD\Train\Image\img_2460.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+2470,img_2470.png,data\DSWD\DSWD\Train\Image\img_2470.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+2506,img_2506.png,data\DSWD\DSWD\Train\Image\img_2506.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+2520,img_2520.png,data\DSWD\DSWD\Train\Image\img_2520.png,Train,448,448,RGB,0,Other,Other,train
+2521,img_2521.png,data\DSWD\DSWD\Train\Image\img_2521.png,Train,448,448,RGB,0,Other,Other,validation
+2523,img_2523.png,data\DSWD\DSWD\Train\Image\img_2523.png,Train,448,448,RGB,0,Other,Other,train
+2526,img_2526.png,data\DSWD\DSWD\Train\Image\img_2526.png,Train,448,448,RGB,0,Other,Other,train
+2530,img_2530.png,data\DSWD\DSWD\Train\Image\img_2530.png,Train,448,448,RGB,0,Other,Other,train
+2535,img_2535.png,data\DSWD\DSWD\Train\Image\img_2535.png,Train,448,448,RGB,0,Other,Other,train
+2541,img_2541.png,data\DSWD\DSWD\Train\Image\img_2541.png,Train,448,448,RGB,0,Other,Other,train
+2548,img_2548.png,data\DSWD\DSWD\Train\Image\img_2548.png,Train,448,448,RGB,0,Other,Other,train
+2575,img_2575.png,data\DSWD\DSWD\Train\Image\img_2575.png,Train,448,448,RGB,0,Other,Other,train
+2586,img_2586.png,data\DSWD\DSWD\Train\Image\img_2586.png,Train,448,448,RGB,0,Other,Other,train
+2598,img_2598.png,data\DSWD\DSWD\Train\Image\img_2598.png,Train,448,448,RGB,0,Other,Other,validation
+2611,img_2611.png,data\DSWD\DSWD\Train\Image\img_2611.png,Train,448,448,RGB,0,Other,Other,train
+2625,img_2625.png,data\DSWD\DSWD\Train\Image\img_2625.png,Train,448,448,RGB,6,Glass,Glass,validation
+2626,img_2626.png,data\DSWD\DSWD\Train\Image\img_2626.png,Train,448,448,RGB,12,Aluminium foil,Metal,test
+2628,img_2628.png,data\DSWD\DSWD\Train\Image\img_2628.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+2631,img_2631.png,data\DSWD\DSWD\Train\Image\img_2631.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+2635,img_2635.png,data\DSWD\DSWD\Train\Image\img_2635.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+265,img_265.png,data\DSWD\DSWD\Train\Image\img_265.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+2653,img_2653.png,data\DSWD\DSWD\Train\Image\img_2653.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+2661,img_2661.png,data\DSWD\DSWD\Train\Image\img_2661.png,Train,448,448,RGB,6,Glass,Glass,train
+2670,img_2670.png,data\DSWD\DSWD\Train\Image\img_2670.png,Train,448,448,RGB,12,Aluminium foil,Metal,train
+2680,img_2680.png,data\DSWD\DSWD\Train\Image\img_2680.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+2691,img_2691.png,data\DSWD\DSWD\Train\Image\img_2691.png,Train,448,448,RGB,12,Aluminium foil,Metal,train
+2703,img_2703.png,data\DSWD\DSWD\Train\Image\img_2703.png,Train,448,448,RGB,0,Other,Other,train
+2716,img_2716.png,data\DSWD\DSWD\Train\Image\img_2716.png,Train,448,448,RGB,12,Aluminium foil,Metal,test
+2730,img_2730.png,data\DSWD\DSWD\Train\Image\img_2730.png,Train,448,448,RGB,0,Other,Other,train
+2731,img_2731.png,data\DSWD\DSWD\Train\Image\img_2731.png,Train,448,448,RGB,0,Other,Other,train
+2740,img_2740.png,data\DSWD\DSWD\Train\Image\img_2740.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+2745,img_2745.png,data\DSWD\DSWD\Train\Image\img_2745.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+2751,img_2751.png,data\DSWD\DSWD\Train\Image\img_2751.png,Train,448,448,RGB,0,Other,Other,train
+2758,img_2758.png,data\DSWD\DSWD\Train\Image\img_2758.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+276,img_276.png,data\DSWD\DSWD\Train\Image\img_276.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+2766,img_2766.png,data\DSWD\DSWD\Train\Image\img_2766.png,Train,448,448,RGB,0,Other,Other,train
+2775,img_2775.png,data\DSWD\DSWD\Train\Image\img_2775.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+2785,img_2785.png,data\DSWD\DSWD\Train\Image\img_2785.png,Train,448,448,RGB,0,Other,Other,train
+2796,img_2796.png,data\DSWD\DSWD\Train\Image\img_2796.png,Train,448,448,RGB,0,Other,Other,test
+28,img_28.png,data\DSWD\DSWD\Train\Image\img_28.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+2808,img_2808.png,data\DSWD\DSWD\Train\Image\img_2808.png,Train,448,448,RGB,0,Other,Other,train
+2836,img_2836.png,data\DSWD\DSWD\Train\Image\img_2836.png,Train,448,448,RGB,0,Other,Other,train
+2838,img_2838.png,data\DSWD\DSWD\Train\Image\img_2838.png,Train,448,448,RGB,0,Other,Other,test
+2841,img_2841.png,data\DSWD\DSWD\Train\Image\img_2841.png,Train,448,448,RGB,0,Other,Other,train
+2845,img_2845.png,data\DSWD\DSWD\Train\Image\img_2845.png,Train,448,448,RGB,0,Other,Other,train
+2850,img_2850.png,data\DSWD\DSWD\Train\Image\img_2850.png,Train,448,448,RGB,0,Other,Other,train
+2856,img_2856.png,data\DSWD\DSWD\Train\Image\img_2856.png,Train,448,448,RGB,0,Other,Other,train
+2863,img_2863.png,data\DSWD\DSWD\Train\Image\img_2863.png,Train,448,448,RGB,0,Other,Other,train
+2871,img_2871.png,data\DSWD\DSWD\Train\Image\img_2871.png,Train,448,448,RGB,0,Other,Other,train
+288,img_288.png,data\DSWD\DSWD\Train\Image\img_288.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,test
+2880,img_2880.png,data\DSWD\DSWD\Train\Image\img_2880.png,Train,448,448,RGB,0,Other,Other,test
+2913,img_2913.png,data\DSWD\DSWD\Train\Image\img_2913.png,Train,448,448,RGB,0,Other,Other,train
+2926,img_2926.png,data\DSWD\DSWD\Train\Image\img_2926.png,Train,448,448,RGB,0,Other,Other,test
+2940,img_2940.png,data\DSWD\DSWD\Train\Image\img_2940.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+2941,img_2941.png,data\DSWD\DSWD\Train\Image\img_2941.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+2943,img_2943.png,data\DSWD\DSWD\Train\Image\img_2943.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+2946,img_2946.png,data\DSWD\DSWD\Train\Image\img_2946.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+2950,img_2950.png,data\DSWD\DSWD\Train\Image\img_2950.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+2955,img_2955.png,data\DSWD\DSWD\Train\Image\img_2955.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+2961,img_2961.png,data\DSWD\DSWD\Train\Image\img_2961.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+2985,img_2985.png,data\DSWD\DSWD\Train\Image\img_2985.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+2995,img_2995.png,data\DSWD\DSWD\Train\Image\img_2995.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+3,img_3.png,data\DSWD\DSWD\Train\Image\img_3.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+3006,img_3006.png,data\DSWD\DSWD\Train\Image\img_3006.png,Train,448,448,RGB,0,Other,Other,train
+301,img_301.png,data\DSWD\DSWD\Train\Image\img_301.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,test
+3018,img_3018.png,data\DSWD\DSWD\Train\Image\img_3018.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+3031,img_3031.png,data\DSWD\DSWD\Train\Image\img_3031.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+3045,img_3045.png,data\DSWD\DSWD\Train\Image\img_3045.png,Train,448,448,RGB,10,Plastic cup,Plastic,train
+3046,img_3046.png,data\DSWD\DSWD\Train\Image\img_3046.png,Train,448,448,RGB,0,Other,Other,validation
+3048,img_3048.png,data\DSWD\DSWD\Train\Image\img_3048.png,Train,448,448,RGB,0,Other,Other,validation
+3051,img_3051.png,data\DSWD\DSWD\Train\Image\img_3051.png,Train,448,448,RGB,10,Plastic cup,Plastic,train
+3066,img_3066.png,data\DSWD\DSWD\Train\Image\img_3066.png,Train,448,448,RGB,0,Other,Other,train
+3073,img_3073.png,data\DSWD\DSWD\Train\Image\img_3073.png,Train,448,448,RGB,0,Other,Other,test
+3081,img_3081.png,data\DSWD\DSWD\Train\Image\img_3081.png,Train,448,448,RGB,0,Other,Other,train
+3090,img_3090.png,data\DSWD\DSWD\Train\Image\img_3090.png,Train,448,448,RGB,10,Plastic cup,Plastic,train
+3100,img_3100.png,data\DSWD\DSWD\Train\Image\img_3100.png,Train,448,448,RGB,10,Plastic cup,Plastic,train
+3111,img_3111.png,data\DSWD\DSWD\Train\Image\img_3111.png,Train,448,448,RGB,0,Other,Other,train
+3123,img_3123.png,data\DSWD\DSWD\Train\Image\img_3123.png,Train,448,448,RGB,10,Plastic cup,Plastic,train
+3136,img_3136.png,data\DSWD\DSWD\Train\Image\img_3136.png,Train,448,448,RGB,0,Other,Other,train
+315,img_315.png,data\DSWD\DSWD\Train\Image\img_315.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+3150,img_3150.png,data\DSWD\DSWD\Train\Image\img_3150.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+3156,img_3156.png,data\DSWD\DSWD\Train\Image\img_3156.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+316,img_316.png,data\DSWD\DSWD\Train\Image\img_316.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+3160,img_3160.png,data\DSWD\DSWD\Train\Image\img_3160.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+3165,img_3165.png,data\DSWD\DSWD\Train\Image\img_3165.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+3171,img_3171.png,data\DSWD\DSWD\Train\Image\img_3171.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+3178,img_3178.png,data\DSWD\DSWD\Train\Image\img_3178.png,Train,448,448,RGB,0,Other,Other,train
+318,img_318.png,data\DSWD\DSWD\Train\Image\img_318.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+3186,img_3186.png,data\DSWD\DSWD\Train\Image\img_3186.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+3195,img_3195.png,data\DSWD\DSWD\Train\Image\img_3195.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+3205,img_3205.png,data\DSWD\DSWD\Train\Image\img_3205.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+321,img_321.png,data\DSWD\DSWD\Train\Image\img_321.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+3216,img_3216.png,data\DSWD\DSWD\Train\Image\img_3216.png,Train,448,448,RGB,0,Other,Other,train
+325,img_325.png,data\DSWD\DSWD\Train\Image\img_325.png,Train,448,448,RGB,0,Other,Other,train
+3255,img_3255.png,data\DSWD\DSWD\Train\Image\img_3255.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+3256,img_3256.png,data\DSWD\DSWD\Train\Image\img_3256.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+3258,img_3258.png,data\DSWD\DSWD\Train\Image\img_3258.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+3261,img_3261.png,data\DSWD\DSWD\Train\Image\img_3261.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+3265,img_3265.png,data\DSWD\DSWD\Train\Image\img_3265.png,Train,448,448,RGB,8,Plastic,Plastic,test
+3270,img_3270.png,data\DSWD\DSWD\Train\Image\img_3270.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+3276,img_3276.png,data\DSWD\DSWD\Train\Image\img_3276.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+3283,img_3283.png,data\DSWD\DSWD\Train\Image\img_3283.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+3291,img_3291.png,data\DSWD\DSWD\Train\Image\img_3291.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+3321,img_3321.png,data\DSWD\DSWD\Train\Image\img_3321.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+3333,img_3333.png,data\DSWD\DSWD\Train\Image\img_3333.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+3346,img_3346.png,data\DSWD\DSWD\Train\Image\img_3346.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+3360,img_3360.png,data\DSWD\DSWD\Train\Image\img_3360.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+3361,img_3361.png,data\DSWD\DSWD\Train\Image\img_3361.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+3363,img_3363.png,data\DSWD\DSWD\Train\Image\img_3363.png,Train,448,448,RGB,12,Aluminium foil,Metal,train
+3366,img_3366.png,data\DSWD\DSWD\Train\Image\img_3366.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+3370,img_3370.png,data\DSWD\DSWD\Train\Image\img_3370.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+3375,img_3375.png,data\DSWD\DSWD\Train\Image\img_3375.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+3396,img_3396.png,data\DSWD\DSWD\Train\Image\img_3396.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+3405,img_3405.png,data\DSWD\DSWD\Train\Image\img_3405.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+3415,img_3415.png,data\DSWD\DSWD\Train\Image\img_3415.png,Train,448,448,RGB,6,Glass,Glass,train
+3426,img_3426.png,data\DSWD\DSWD\Train\Image\img_3426.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+343,img_343.png,data\DSWD\DSWD\Train\Image\img_343.png,Train,448,448,RGB,0,Other,Other,train
+3438,img_3438.png,data\DSWD\DSWD\Train\Image\img_3438.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+3451,img_3451.png,data\DSWD\DSWD\Train\Image\img_3451.png,Train,448,448,RGB,12,Aluminium foil,Metal,train
+3465,img_3465.png,data\DSWD\DSWD\Train\Image\img_3465.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,validation
+3466,img_3466.png,data\DSWD\DSWD\Train\Image\img_3466.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+3468,img_3468.png,data\DSWD\DSWD\Train\Image\img_3468.png,Train,448,448,RGB,0,Other,Other,train
+3480,img_3480.png,data\DSWD\DSWD\Train\Image\img_3480.png,Train,448,448,RGB,0,Other,Other,train
+3486,img_3486.png,data\DSWD\DSWD\Train\Image\img_3486.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+3493,img_3493.png,data\DSWD\DSWD\Train\Image\img_3493.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,validation
+3501,img_3501.png,data\DSWD\DSWD\Train\Image\img_3501.png,Train,448,448,RGB,0,Other,Other,train
+351,img_351.png,data\DSWD\DSWD\Train\Image\img_351.png,Train,448,448,RGB,0,Other,Other,train
+3510,img_3510.png,data\DSWD\DSWD\Train\Image\img_3510.png,Train,448,448,RGB,0,Other,Other,train
+3520,img_3520.png,data\DSWD\DSWD\Train\Image\img_3520.png,Train,448,448,RGB,0,Other,Other,train
+3531,img_3531.png,data\DSWD\DSWD\Train\Image\img_3531.png,Train,448,448,RGB,0,Other,Other,train
+3543,img_3543.png,data\DSWD\DSWD\Train\Image\img_3543.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+3556,img_3556.png,data\DSWD\DSWD\Train\Image\img_3556.png,Train,448,448,RGB,0,Other,Other,train
+3573,img_3573.png,data\DSWD\DSWD\Train\Image\img_3573.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+3576,img_3576.png,data\DSWD\DSWD\Train\Image\img_3576.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+3580,img_3580.png,data\DSWD\DSWD\Train\Image\img_3580.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+3585,img_3585.png,data\DSWD\DSWD\Train\Image\img_3585.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+3591,img_3591.png,data\DSWD\DSWD\Train\Image\img_3591.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+3598,img_3598.png,data\DSWD\DSWD\Train\Image\img_3598.png,Train,448,448,RGB,4,Metal bottle,Metal,train
+36,img_36.png,data\DSWD\DSWD\Train\Image\img_36.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,test
+360,img_360.png,data\DSWD\DSWD\Train\Image\img_360.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+3606,img_3606.png,data\DSWD\DSWD\Train\Image\img_3606.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+3615,img_3615.png,data\DSWD\DSWD\Train\Image\img_3615.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+3625,img_3625.png,data\DSWD\DSWD\Train\Image\img_3625.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+3661,img_3661.png,data\DSWD\DSWD\Train\Image\img_3661.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+3675,img_3675.png,data\DSWD\DSWD\Train\Image\img_3675.png,Train,448,448,RGB,0,Other,Other,train
+3676,img_3676.png,data\DSWD\DSWD\Train\Image\img_3676.png,Train,448,448,RGB,9,Paper,Paper,train
+3678,img_3678.png,data\DSWD\DSWD\Train\Image\img_3678.png,Train,448,448,RGB,0,Other,Other,validation
+3681,img_3681.png,data\DSWD\DSWD\Train\Image\img_3681.png,Train,448,448,RGB,9,Paper,Paper,train
+3685,img_3685.png,data\DSWD\DSWD\Train\Image\img_3685.png,Train,448,448,RGB,0,Other,Other,train
+3690,img_3690.png,data\DSWD\DSWD\Train\Image\img_3690.png,Train,448,448,RGB,9,Paper,Paper,train
+3696,img_3696.png,data\DSWD\DSWD\Train\Image\img_3696.png,Train,448,448,RGB,0,Other,Other,train
+370,img_370.png,data\DSWD\DSWD\Train\Image\img_370.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+3703,img_3703.png,data\DSWD\DSWD\Train\Image\img_3703.png,Train,448,448,RGB,0,Other,Other,train
+3730,img_3730.png,data\DSWD\DSWD\Train\Image\img_3730.png,Train,448,448,RGB,0,Other,Other,train
+3741,img_3741.png,data\DSWD\DSWD\Train\Image\img_3741.png,Train,448,448,RGB,9,Paper,Paper,train
+3753,img_3753.png,data\DSWD\DSWD\Train\Image\img_3753.png,Train,448,448,RGB,0,Other,Other,train
+3766,img_3766.png,data\DSWD\DSWD\Train\Image\img_3766.png,Train,448,448,RGB,9,Paper,Paper,train
+3780,img_3780.png,data\DSWD\DSWD\Train\Image\img_3780.png,Train,448,448,RGB,0,Other,Other,validation
+3781,img_3781.png,data\DSWD\DSWD\Train\Image\img_3781.png,Train,448,448,RGB,0,Other,Other,train
+3783,img_3783.png,data\DSWD\DSWD\Train\Image\img_3783.png,Train,448,448,RGB,0,Other,Other,test
+3786,img_3786.png,data\DSWD\DSWD\Train\Image\img_3786.png,Train,448,448,RGB,0,Other,Other,train
+3790,img_3790.png,data\DSWD\DSWD\Train\Image\img_3790.png,Train,448,448,RGB,0,Other,Other,train
+3808,img_3808.png,data\DSWD\DSWD\Train\Image\img_3808.png,Train,448,448,RGB,0,Other,Other,train
+381,img_381.png,data\DSWD\DSWD\Train\Image\img_381.png,Train,448,448,RGB,0,Other,Other,validation
+3816,img_3816.png,data\DSWD\DSWD\Train\Image\img_3816.png,Train,448,448,RGB,0,Other,Other,test
+3825,img_3825.png,data\DSWD\DSWD\Train\Image\img_3825.png,Train,448,448,RGB,0,Other,Other,train
+3835,img_3835.png,data\DSWD\DSWD\Train\Image\img_3835.png,Train,448,448,RGB,0,Other,Other,train
+3846,img_3846.png,data\DSWD\DSWD\Train\Image\img_3846.png,Train,448,448,RGB,0,Other,Other,validation
+3858,img_3858.png,data\DSWD\DSWD\Train\Image\img_3858.png,Train,448,448,RGB,0,Other,Other,train
+3871,img_3871.png,data\DSWD\DSWD\Train\Image\img_3871.png,Train,448,448,RGB,0,Other,Other,train
+3885,img_3885.png,data\DSWD\DSWD\Train\Image\img_3885.png,Train,448,448,RGB,0,Other,Other,test
+3886,img_3886.png,data\DSWD\DSWD\Train\Image\img_3886.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+3895,img_3895.png,data\DSWD\DSWD\Train\Image\img_3895.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+3900,img_3900.png,data\DSWD\DSWD\Train\Image\img_3900.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+3906,img_3906.png,data\DSWD\DSWD\Train\Image\img_3906.png,Train,448,448,RGB,0,Other,Other,train
+3913,img_3913.png,data\DSWD\DSWD\Train\Image\img_3913.png,Train,448,448,RGB,0,Other,Other,train
+3921,img_3921.png,data\DSWD\DSWD\Train\Image\img_3921.png,Train,448,448,RGB,0,Other,Other,train
+393,img_393.png,data\DSWD\DSWD\Train\Image\img_393.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,validation
+3930,img_3930.png,data\DSWD\DSWD\Train\Image\img_3930.png,Train,448,448,RGB,0,Other,Other,train
+3940,img_3940.png,data\DSWD\DSWD\Train\Image\img_3940.png,Train,448,448,RGB,8,Plastic,Plastic,train
+3951,img_3951.png,data\DSWD\DSWD\Train\Image\img_3951.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+3963,img_3963.png,data\DSWD\DSWD\Train\Image\img_3963.png,Train,448,448,RGB,0,Other,Other,train
+3991,img_3991.png,data\DSWD\DSWD\Train\Image\img_3991.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+3993,img_3993.png,data\DSWD\DSWD\Train\Image\img_3993.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+3996,img_3996.png,data\DSWD\DSWD\Train\Image\img_3996.png,Train,448,448,RGB,0,Other,Other,train
+4000,img_4000.png,data\DSWD\DSWD\Train\Image\img_4000.png,Train,448,448,RGB,0,Other,Other,train
+4005,img_4005.png,data\DSWD\DSWD\Train\Image\img_4005.png,Train,448,448,RGB,0,Other,Other,train
+4011,img_4011.png,data\DSWD\DSWD\Train\Image\img_4011.png,Train,448,448,RGB,0,Other,Other,validation
+4018,img_4018.png,data\DSWD\DSWD\Train\Image\img_4018.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+4026,img_4026.png,data\DSWD\DSWD\Train\Image\img_4026.png,Train,448,448,RGB,0,Other,Other,train
+4035,img_4035.png,data\DSWD\DSWD\Train\Image\img_4035.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+406,img_406.png,data\DSWD\DSWD\Train\Image\img_406.png,Train,448,448,RGB,0,Other,Other,train
+4068,img_4068.png,data\DSWD\DSWD\Train\Image\img_4068.png,Train,448,448,RGB,0,Other,Other,train
+4081,img_4081.png,data\DSWD\DSWD\Train\Image\img_4081.png,Train,448,448,RGB,0,Other,Other,train
+4095,img_4095.png,data\DSWD\DSWD\Train\Image\img_4095.png,Train,448,448,RGB,12,Aluminium foil,Metal,train
+4096,img_4096.png,data\DSWD\DSWD\Train\Image\img_4096.png,Train,448,448,RGB,12,Aluminium foil,Metal,train
+4098,img_4098.png,data\DSWD\DSWD\Train\Image\img_4098.png,Train,448,448,RGB,12,Aluminium foil,Metal,train
+4101,img_4101.png,data\DSWD\DSWD\Train\Image\img_4101.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+4105,img_4105.png,data\DSWD\DSWD\Train\Image\img_4105.png,Train,448,448,RGB,12,Aluminium foil,Metal,train
+4110,img_4110.png,data\DSWD\DSWD\Train\Image\img_4110.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+4116,img_4116.png,data\DSWD\DSWD\Train\Image\img_4116.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+4140,img_4140.png,data\DSWD\DSWD\Train\Image\img_4140.png,Train,448,448,RGB,12,Aluminium foil,Metal,test
+4150,img_4150.png,data\DSWD\DSWD\Train\Image\img_4150.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+4161,img_4161.png,data\DSWD\DSWD\Train\Image\img_4161.png,Train,448,448,RGB,12,Aluminium foil,Metal,train
+4173,img_4173.png,data\DSWD\DSWD\Train\Image\img_4173.png,Train,448,448,RGB,12,Aluminium foil,Metal,validation
+4186,img_4186.png,data\DSWD\DSWD\Train\Image\img_4186.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+420,img_420.png,data\DSWD\DSWD\Train\Image\img_420.png,Train,448,448,RGB,0,Other,Other,train
+4200,img_4200.png,data\DSWD\DSWD\Train\Image\img_4200.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+4201,img_4201.png,data\DSWD\DSWD\Train\Image\img_4201.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+4203,img_4203.png,data\DSWD\DSWD\Train\Image\img_4203.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,test
+4206,img_4206.png,data\DSWD\DSWD\Train\Image\img_4206.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+421,img_421.png,data\DSWD\DSWD\Train\Image\img_421.png,Train,448,448,RGB,0,Other,Other,test
+4221,img_4221.png,data\DSWD\DSWD\Train\Image\img_4221.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+4228,img_4228.png,data\DSWD\DSWD\Train\Image\img_4228.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+4236,img_4236.png,data\DSWD\DSWD\Train\Image\img_4236.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+4245,img_4245.png,data\DSWD\DSWD\Train\Image\img_4245.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+4255,img_4255.png,data\DSWD\DSWD\Train\Image\img_4255.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+4266,img_4266.png,data\DSWD\DSWD\Train\Image\img_4266.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+4278,img_4278.png,data\DSWD\DSWD\Train\Image\img_4278.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+4291,img_4291.png,data\DSWD\DSWD\Train\Image\img_4291.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+430,img_430.png,data\DSWD\DSWD\Train\Image\img_430.png,Train,448,448,RGB,0,Other,Other,train
+4305,img_4305.png,data\DSWD\DSWD\Train\Image\img_4305.png,Train,448,448,RGB,0,Other,Other,train
+4311,img_4311.png,data\DSWD\DSWD\Train\Image\img_4311.png,Train,448,448,RGB,0,Other,Other,train
+4315,img_4315.png,data\DSWD\DSWD\Train\Image\img_4315.png,Train,448,448,RGB,0,Other,Other,train
+4320,img_4320.png,data\DSWD\DSWD\Train\Image\img_4320.png,Train,448,448,RGB,0,Other,Other,test
+4326,img_4326.png,data\DSWD\DSWD\Train\Image\img_4326.png,Train,448,448,RGB,0,Other,Other,validation
+4333,img_4333.png,data\DSWD\DSWD\Train\Image\img_4333.png,Train,448,448,RGB,0,Other,Other,train
+4341,img_4341.png,data\DSWD\DSWD\Train\Image\img_4341.png,Train,448,448,RGB,0,Other,Other,train
+435,img_435.png,data\DSWD\DSWD\Train\Image\img_435.png,Train,448,448,RGB,0,Other,Other,train
+4350,img_4350.png,data\DSWD\DSWD\Train\Image\img_4350.png,Train,448,448,RGB,0,Other,Other,test
+4360,img_4360.png,data\DSWD\DSWD\Train\Image\img_4360.png,Train,448,448,RGB,0,Other,Other,train
+4371,img_4371.png,data\DSWD\DSWD\Train\Image\img_4371.png,Train,448,448,RGB,0,Other,Other,train
+441,img_441.png,data\DSWD\DSWD\Train\Image\img_441.png,Train,448,448,RGB,0,Other,Other,test
+4410,img_4410.png,data\DSWD\DSWD\Train\Image\img_4410.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+4411,img_4411.png,data\DSWD\DSWD\Train\Image\img_4411.png,Train,448,448,RGB,0,Other,Other,train
+4413,img_4413.png,data\DSWD\DSWD\Train\Image\img_4413.png,Train,448,448,RGB,0,Other,Other,validation
+4416,img_4416.png,data\DSWD\DSWD\Train\Image\img_4416.png,Train,448,448,RGB,0,Other,Other,train
+4420,img_4420.png,data\DSWD\DSWD\Train\Image\img_4420.png,Train,448,448,RGB,8,Plastic,Plastic,validation
+4425,img_4425.png,data\DSWD\DSWD\Train\Image\img_4425.png,Train,448,448,RGB,0,Other,Other,train
+4431,img_4431.png,data\DSWD\DSWD\Train\Image\img_4431.png,Train,448,448,RGB,0,Other,Other,test
+4438,img_4438.png,data\DSWD\DSWD\Train\Image\img_4438.png,Train,448,448,RGB,0,Other,Other,train
+4446,img_4446.png,data\DSWD\DSWD\Train\Image\img_4446.png,Train,448,448,RGB,8,Plastic,Plastic,train
+4476,img_4476.png,data\DSWD\DSWD\Train\Image\img_4476.png,Train,448,448,RGB,0,Other,Other,train
+448,img_448.png,data\DSWD\DSWD\Train\Image\img_448.png,Train,448,448,RGB,0,Other,Other,train
+4488,img_4488.png,data\DSWD\DSWD\Train\Image\img_4488.png,Train,448,448,RGB,0,Other,Other,train
+45,img_45.png,data\DSWD\DSWD\Train\Image\img_45.png,Train,448,448,RGB,0,Other,Other,train
+4501,img_4501.png,data\DSWD\DSWD\Train\Image\img_4501.png,Train,448,448,RGB,8,Plastic,Plastic,train
+4515,img_4515.png,data\DSWD\DSWD\Train\Image\img_4515.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,test
+4516,img_4516.png,data\DSWD\DSWD\Train\Image\img_4516.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+4518,img_4518.png,data\DSWD\DSWD\Train\Image\img_4518.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+4521,img_4521.png,data\DSWD\DSWD\Train\Image\img_4521.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+4525,img_4525.png,data\DSWD\DSWD\Train\Image\img_4525.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+4530,img_4530.png,data\DSWD\DSWD\Train\Image\img_4530.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+4551,img_4551.png,data\DSWD\DSWD\Train\Image\img_4551.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+456,img_456.png,data\DSWD\DSWD\Train\Image\img_456.png,Train,448,448,RGB,0,Other,Other,train
+4560,img_4560.png,data\DSWD\DSWD\Train\Image\img_4560.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+4570,img_4570.png,data\DSWD\DSWD\Train\Image\img_4570.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+4581,img_4581.png,data\DSWD\DSWD\Train\Image\img_4581.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+4593,img_4593.png,data\DSWD\DSWD\Train\Image\img_4593.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+4606,img_4606.png,data\DSWD\DSWD\Train\Image\img_4606.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+4620,img_4620.png,data\DSWD\DSWD\Train\Image\img_4620.png,Train,448,448,RGB,12,Aluminium foil,Metal,train
+4621,img_4621.png,data\DSWD\DSWD\Train\Image\img_4621.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+4623,img_4623.png,data\DSWD\DSWD\Train\Image\img_4623.png,Train,448,448,RGB,12,Aluminium foil,Metal,validation
+4635,img_4635.png,data\DSWD\DSWD\Train\Image\img_4635.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+4641,img_4641.png,data\DSWD\DSWD\Train\Image\img_4641.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+4648,img_4648.png,data\DSWD\DSWD\Train\Image\img_4648.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+465,img_465.png,data\DSWD\DSWD\Train\Image\img_465.png,Train,448,448,RGB,0,Other,Other,train
+4656,img_4656.png,data\DSWD\DSWD\Train\Image\img_4656.png,Train,448,448,RGB,0,Other,Other,train
+4665,img_4665.png,data\DSWD\DSWD\Train\Image\img_4665.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+4675,img_4675.png,data\DSWD\DSWD\Train\Image\img_4675.png,Train,448,448,RGB,12,Aluminium foil,Metal,test
+4686,img_4686.png,data\DSWD\DSWD\Train\Image\img_4686.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+4698,img_4698.png,data\DSWD\DSWD\Train\Image\img_4698.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+4711,img_4711.png,data\DSWD\DSWD\Train\Image\img_4711.png,Train,448,448,RGB,12,Aluminium foil,Metal,train
+4728,img_4728.png,data\DSWD\DSWD\Train\Image\img_4728.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+4731,img_4731.png,data\DSWD\DSWD\Train\Image\img_4731.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+4735,img_4735.png,data\DSWD\DSWD\Train\Image\img_4735.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+4740,img_4740.png,data\DSWD\DSWD\Train\Image\img_4740.png,Train,448,448,RGB,0,Other,Other,train
+4746,img_4746.png,data\DSWD\DSWD\Train\Image\img_4746.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+475,img_475.png,data\DSWD\DSWD\Train\Image\img_475.png,Train,448,448,RGB,0,Other,Other,train
+4753,img_4753.png,data\DSWD\DSWD\Train\Image\img_4753.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+4761,img_4761.png,data\DSWD\DSWD\Train\Image\img_4761.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+4770,img_4770.png,data\DSWD\DSWD\Train\Image\img_4770.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+4780,img_4780.png,data\DSWD\DSWD\Train\Image\img_4780.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+4816,img_4816.png,data\DSWD\DSWD\Train\Image\img_4816.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+4830,img_4830.png,data\DSWD\DSWD\Train\Image\img_4830.png,Train,448,448,RGB,0,Other,Other,train
+4831,img_4831.png,data\DSWD\DSWD\Train\Image\img_4831.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,validation
+4833,img_4833.png,data\DSWD\DSWD\Train\Image\img_4833.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+4836,img_4836.png,data\DSWD\DSWD\Train\Image\img_4836.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+4840,img_4840.png,data\DSWD\DSWD\Train\Image\img_4840.png,Train,448,448,RGB,10,Plastic cup,Plastic,train
+4845,img_4845.png,data\DSWD\DSWD\Train\Image\img_4845.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,test
+4851,img_4851.png,data\DSWD\DSWD\Train\Image\img_4851.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+4858,img_4858.png,data\DSWD\DSWD\Train\Image\img_4858.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+486,img_486.png,data\DSWD\DSWD\Train\Image\img_486.png,Train,448,448,RGB,0,Other,Other,train
+4885,img_4885.png,data\DSWD\DSWD\Train\Image\img_4885.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+4896,img_4896.png,data\DSWD\DSWD\Train\Image\img_4896.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,validation
+4908,img_4908.png,data\DSWD\DSWD\Train\Image\img_4908.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+4921,img_4921.png,data\DSWD\DSWD\Train\Image\img_4921.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+4935,img_4935.png,data\DSWD\DSWD\Train\Image\img_4935.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+4936,img_4936.png,data\DSWD\DSWD\Train\Image\img_4936.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+4938,img_4938.png,data\DSWD\DSWD\Train\Image\img_4938.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+4941,img_4941.png,data\DSWD\DSWD\Train\Image\img_4941.png,Train,448,448,RGB,9,Paper,Paper,validation
+4945,img_4945.png,data\DSWD\DSWD\Train\Image\img_4945.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+4963,img_4963.png,data\DSWD\DSWD\Train\Image\img_4963.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+4971,img_4971.png,data\DSWD\DSWD\Train\Image\img_4971.png,Train,448,448,RGB,0,Other,Other,validation
+498,img_498.png,data\DSWD\DSWD\Train\Image\img_498.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+4980,img_4980.png,data\DSWD\DSWD\Train\Image\img_4980.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+4990,img_4990.png,data\DSWD\DSWD\Train\Image\img_4990.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+5001,img_5001.png,data\DSWD\DSWD\Train\Image\img_5001.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+5013,img_5013.png,data\DSWD\DSWD\Train\Image\img_5013.png,Train,448,448,RGB,6,Glass,Glass,test
+5026,img_5026.png,data\DSWD\DSWD\Train\Image\img_5026.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+5040,img_5040.png,data\DSWD\DSWD\Train\Image\img_5040.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+5041,img_5041.png,data\DSWD\DSWD\Train\Image\img_5041.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,test
+5050,img_5050.png,data\DSWD\DSWD\Train\Image\img_5050.png,Train,448,448,RGB,0,Other,Other,train
+5055,img_5055.png,data\DSWD\DSWD\Train\Image\img_5055.png,Train,448,448,RGB,0,Other,Other,validation
+5061,img_5061.png,data\DSWD\DSWD\Train\Image\img_5061.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,validation
+5068,img_5068.png,data\DSWD\DSWD\Train\Image\img_5068.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+5076,img_5076.png,data\DSWD\DSWD\Train\Image\img_5076.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,test
+5085,img_5085.png,data\DSWD\DSWD\Train\Image\img_5085.png,Train,448,448,RGB,0,Other,Other,validation
+5095,img_5095.png,data\DSWD\DSWD\Train\Image\img_5095.png,Train,448,448,RGB,0,Other,Other,train
+5106,img_5106.png,data\DSWD\DSWD\Train\Image\img_5106.png,Train,448,448,RGB,0,Other,Other,validation
+5118,img_5118.png,data\DSWD\DSWD\Train\Image\img_5118.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,test
+5146,img_5146.png,data\DSWD\DSWD\Train\Image\img_5146.png,Train,448,448,RGB,0,Other,Other,train
+5148,img_5148.png,data\DSWD\DSWD\Train\Image\img_5148.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+5151,img_5151.png,data\DSWD\DSWD\Train\Image\img_5151.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+5155,img_5155.png,data\DSWD\DSWD\Train\Image\img_5155.png,Train,448,448,RGB,0,Other,Other,train
+5160,img_5160.png,data\DSWD\DSWD\Train\Image\img_5160.png,Train,448,448,RGB,0,Other,Other,train
+5166,img_5166.png,data\DSWD\DSWD\Train\Image\img_5166.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+5173,img_5173.png,data\DSWD\DSWD\Train\Image\img_5173.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+5181,img_5181.png,data\DSWD\DSWD\Train\Image\img_5181.png,Train,448,448,RGB,0,Other,Other,train
+5190,img_5190.png,data\DSWD\DSWD\Train\Image\img_5190.png,Train,448,448,RGB,0,Other,Other,train
+5223,img_5223.png,data\DSWD\DSWD\Train\Image\img_5223.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+5236,img_5236.png,data\DSWD\DSWD\Train\Image\img_5236.png,Train,448,448,RGB,0,Other,Other,train
+5250,img_5250.png,data\DSWD\DSWD\Train\Image\img_5250.png,Train,448,448,RGB,0,Other,Other,train
+5251,img_5251.png,data\DSWD\DSWD\Train\Image\img_5251.png,Train,448,448,RGB,0,Other,Other,validation
+5253,img_5253.png,data\DSWD\DSWD\Train\Image\img_5253.png,Train,448,448,RGB,0,Other,Other,test
+5256,img_5256.png,data\DSWD\DSWD\Train\Image\img_5256.png,Train,448,448,RGB,0,Other,Other,train
+526,img_526.png,data\DSWD\DSWD\Train\Image\img_526.png,Train,448,448,RGB,0,Other,Other,train
+5260,img_5260.png,data\DSWD\DSWD\Train\Image\img_5260.png,Train,448,448,RGB,0,Other,Other,train
+5265,img_5265.png,data\DSWD\DSWD\Train\Image\img_5265.png,Train,448,448,RGB,0,Other,Other,validation
+5271,img_5271.png,data\DSWD\DSWD\Train\Image\img_5271.png,Train,448,448,RGB,0,Other,Other,train
+528,img_528.png,data\DSWD\DSWD\Train\Image\img_528.png,Train,448,448,RGB,0,Other,Other,test
+5295,img_5295.png,data\DSWD\DSWD\Train\Image\img_5295.png,Train,448,448,RGB,0,Other,Other,train
+5305,img_5305.png,data\DSWD\DSWD\Train\Image\img_5305.png,Train,448,448,RGB,0,Other,Other,train
+531,img_531.png,data\DSWD\DSWD\Train\Image\img_531.png,Train,448,448,RGB,0,Other,Other,train
+5316,img_5316.png,data\DSWD\DSWD\Train\Image\img_5316.png,Train,448,448,RGB,0,Other,Other,train
+5328,img_5328.png,data\DSWD\DSWD\Train\Image\img_5328.png,Train,448,448,RGB,0,Other,Other,test
+5341,img_5341.png,data\DSWD\DSWD\Train\Image\img_5341.png,Train,448,448,RGB,0,Other,Other,validation
+535,img_535.png,data\DSWD\DSWD\Train\Image\img_535.png,Train,448,448,RGB,0,Other,Other,validation
+5355,img_5355.png,data\DSWD\DSWD\Train\Image\img_5355.png,Train,448,448,RGB,4,Metal bottle,Metal,validation
+5356,img_5356.png,data\DSWD\DSWD\Train\Image\img_5356.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,validation
+5358,img_5358.png,data\DSWD\DSWD\Train\Image\img_5358.png,Train,448,448,RGB,4,Metal bottle,Metal,train
+5361,img_5361.png,data\DSWD\DSWD\Train\Image\img_5361.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+5376,img_5376.png,data\DSWD\DSWD\Train\Image\img_5376.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,validation
+5383,img_5383.png,data\DSWD\DSWD\Train\Image\img_5383.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+5391,img_5391.png,data\DSWD\DSWD\Train\Image\img_5391.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+540,img_540.png,data\DSWD\DSWD\Train\Image\img_540.png,Train,448,448,RGB,0,Other,Other,validation
+5400,img_5400.png,data\DSWD\DSWD\Train\Image\img_5400.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+5410,img_5410.png,data\DSWD\DSWD\Train\Image\img_5410.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+5421,img_5421.png,data\DSWD\DSWD\Train\Image\img_5421.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,test
+5433,img_5433.png,data\DSWD\DSWD\Train\Image\img_5433.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+5446,img_5446.png,data\DSWD\DSWD\Train\Image\img_5446.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+546,img_546.png,data\DSWD\DSWD\Train\Image\img_546.png,Train,448,448,RGB,0,Other,Other,validation
+5460,img_5460.png,data\DSWD\DSWD\Train\Image\img_5460.png,Train,448,448,RGB,0,Other,Other,validation
+5466,img_5466.png,data\DSWD\DSWD\Train\Image\img_5466.png,Train,448,448,RGB,0,Other,Other,validation
+5470,img_5470.png,data\DSWD\DSWD\Train\Image\img_5470.png,Train,448,448,RGB,0,Other,Other,train
+5475,img_5475.png,data\DSWD\DSWD\Train\Image\img_5475.png,Train,448,448,RGB,0,Other,Other,train
+5481,img_5481.png,data\DSWD\DSWD\Train\Image\img_5481.png,Train,448,448,RGB,0,Other,Other,train
+5488,img_5488.png,data\DSWD\DSWD\Train\Image\img_5488.png,Train,448,448,RGB,0,Other,Other,train
+5496,img_5496.png,data\DSWD\DSWD\Train\Image\img_5496.png,Train,448,448,RGB,0,Other,Other,train
+55,img_55.png,data\DSWD\DSWD\Train\Image\img_55.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+5505,img_5505.png,data\DSWD\DSWD\Train\Image\img_5505.png,Train,448,448,RGB,0,Other,Other,train
+5515,img_5515.png,data\DSWD\DSWD\Train\Image\img_5515.png,Train,448,448,RGB,0,Other,Other,train
+5526,img_5526.png,data\DSWD\DSWD\Train\Image\img_5526.png,Train,448,448,RGB,0,Other,Other,test
+553,img_553.png,data\DSWD\DSWD\Train\Image\img_553.png,Train,448,448,RGB,6,Glass,Glass,train
+5565,img_5565.png,data\DSWD\DSWD\Train\Image\img_5565.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+5566,img_5566.png,data\DSWD\DSWD\Train\Image\img_5566.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+5568,img_5568.png,data\DSWD\DSWD\Train\Image\img_5568.png,Train,448,448,RGB,0,Other,Other,train
+5571,img_5571.png,data\DSWD\DSWD\Train\Image\img_5571.png,Train,448,448,RGB,0,Other,Other,train
+5575,img_5575.png,data\DSWD\DSWD\Train\Image\img_5575.png,Train,448,448,RGB,0,Other,Other,train
+5580,img_5580.png,data\DSWD\DSWD\Train\Image\img_5580.png,Train,448,448,RGB,0,Other,Other,validation
+5586,img_5586.png,data\DSWD\DSWD\Train\Image\img_5586.png,Train,448,448,RGB,0,Other,Other,train
+5593,img_5593.png,data\DSWD\DSWD\Train\Image\img_5593.png,Train,448,448,RGB,0,Other,Other,train
+5601,img_5601.png,data\DSWD\DSWD\Train\Image\img_5601.png,Train,448,448,RGB,0,Other,Other,validation
+561,img_561.png,data\DSWD\DSWD\Train\Image\img_561.png,Train,448,448,RGB,0,Other,Other,train
+5631,img_5631.png,data\DSWD\DSWD\Train\Image\img_5631.png,Train,448,448,RGB,0,Other,Other,train
+5643,img_5643.png,data\DSWD\DSWD\Train\Image\img_5643.png,Train,448,448,RGB,0,Other,Other,validation
+5656,img_5656.png,data\DSWD\DSWD\Train\Image\img_5656.png,Train,448,448,RGB,0,Other,Other,train
+5670,img_5670.png,data\DSWD\DSWD\Train\Image\img_5670.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+5671,img_5671.png,data\DSWD\DSWD\Train\Image\img_5671.png,Train,448,448,RGB,0,Other,Other,train
+5673,img_5673.png,data\DSWD\DSWD\Train\Image\img_5673.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+5676,img_5676.png,data\DSWD\DSWD\Train\Image\img_5676.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+5680,img_5680.png,data\DSWD\DSWD\Train\Image\img_5680.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+5685,img_5685.png,data\DSWD\DSWD\Train\Image\img_5685.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+570,img_570.png,data\DSWD\DSWD\Train\Image\img_570.png,Train,448,448,RGB,8,Plastic,Plastic,train
+5706,img_5706.png,data\DSWD\DSWD\Train\Image\img_5706.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+5715,img_5715.png,data\DSWD\DSWD\Train\Image\img_5715.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+5725,img_5725.png,data\DSWD\DSWD\Train\Image\img_5725.png,Train,448,448,RGB,0,Other,Other,train
+5736,img_5736.png,data\DSWD\DSWD\Train\Image\img_5736.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+5748,img_5748.png,data\DSWD\DSWD\Train\Image\img_5748.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+5761,img_5761.png,data\DSWD\DSWD\Train\Image\img_5761.png,Train,448,448,RGB,0,Other,Other,train
+5775,img_5775.png,data\DSWD\DSWD\Train\Image\img_5775.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+5776,img_5776.png,data\DSWD\DSWD\Train\Image\img_5776.png,Train,448,448,RGB,0,Other,Other,validation
+5778,img_5778.png,data\DSWD\DSWD\Train\Image\img_5778.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+5790,img_5790.png,data\DSWD\DSWD\Train\Image\img_5790.png,Train,448,448,RGB,0,Other,Other,train
+5796,img_5796.png,data\DSWD\DSWD\Train\Image\img_5796.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+5803,img_5803.png,data\DSWD\DSWD\Train\Image\img_5803.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+5811,img_5811.png,data\DSWD\DSWD\Train\Image\img_5811.png,Train,448,448,RGB,0,Other,Other,test
+5820,img_5820.png,data\DSWD\DSWD\Train\Image\img_5820.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+5830,img_5830.png,data\DSWD\DSWD\Train\Image\img_5830.png,Train,448,448,RGB,0,Other,Other,train
+5841,img_5841.png,data\DSWD\DSWD\Train\Image\img_5841.png,Train,448,448,RGB,0,Other,Other,train
+5853,img_5853.png,data\DSWD\DSWD\Train\Image\img_5853.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+5866,img_5866.png,data\DSWD\DSWD\Train\Image\img_5866.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+603,img_603.png,data\DSWD\DSWD\Train\Image\img_603.png,Train,448,448,RGB,8,Plastic,Plastic,test
+616,img_616.png,data\DSWD\DSWD\Train\Image\img_616.png,Train,448,448,RGB,0,Other,Other,train
+630,img_630.png,data\DSWD\DSWD\Train\Image\img_630.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+631,img_631.png,data\DSWD\DSWD\Train\Image\img_631.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+633,img_633.png,data\DSWD\DSWD\Train\Image\img_633.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+636,img_636.png,data\DSWD\DSWD\Train\Image\img_636.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+640,img_640.png,data\DSWD\DSWD\Train\Image\img_640.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+645,img_645.png,data\DSWD\DSWD\Train\Image\img_645.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+651,img_651.png,data\DSWD\DSWD\Train\Image\img_651.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+66,img_66.png,data\DSWD\DSWD\Train\Image\img_66.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+675,img_675.png,data\DSWD\DSWD\Train\Image\img_675.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+685,img_685.png,data\DSWD\DSWD\Train\Image\img_685.png,Train,448,448,RGB,3,Thermocol,Plastic,validation
+696,img_696.png,data\DSWD\DSWD\Train\Image\img_696.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+708,img_708.png,data\DSWD\DSWD\Train\Image\img_708.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+721,img_721.png,data\DSWD\DSWD\Train\Image\img_721.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+735,img_735.png,data\DSWD\DSWD\Train\Image\img_735.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+736,img_736.png,data\DSWD\DSWD\Train\Image\img_736.png,Train,448,448,RGB,11,Paper cup,Paper,train
+738,img_738.png,data\DSWD\DSWD\Train\Image\img_738.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+741,img_741.png,data\DSWD\DSWD\Train\Image\img_741.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,validation
+756,img_756.png,data\DSWD\DSWD\Train\Image\img_756.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+763,img_763.png,data\DSWD\DSWD\Train\Image\img_763.png,Train,448,448,RGB,3,Thermocol,Plastic,test
+771,img_771.png,data\DSWD\DSWD\Train\Image\img_771.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+78,img_78.png,data\DSWD\DSWD\Train\Image\img_78.png,Train,448,448,RGB,3,Thermocol,Plastic,train
+780,img_780.png,data\DSWD\DSWD\Train\Image\img_780.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+790,img_790.png,data\DSWD\DSWD\Train\Image\img_790.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+801,img_801.png,data\DSWD\DSWD\Train\Image\img_801.png,Train,448,448,RGB,11,Paper cup,Paper,train
+813,img_813.png,data\DSWD\DSWD\Train\Image\img_813.png,Train,448,448,RGB,11,Paper cup,Paper,test
+826,img_826.png,data\DSWD\DSWD\Train\Image\img_826.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+840,img_840.png,data\DSWD\DSWD\Train\Image\img_840.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+846,img_846.png,data\DSWD\DSWD\Train\Image\img_846.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+850,img_850.png,data\DSWD\DSWD\Train\Image\img_850.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+855,img_855.png,data\DSWD\DSWD\Train\Image\img_855.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+861,img_861.png,data\DSWD\DSWD\Train\Image\img_861.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+868,img_868.png,data\DSWD\DSWD\Train\Image\img_868.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+876,img_876.png,data\DSWD\DSWD\Train\Image\img_876.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+885,img_885.png,data\DSWD\DSWD\Train\Image\img_885.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,validation
+895,img_895.png,data\DSWD\DSWD\Train\Image\img_895.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+906,img_906.png,data\DSWD\DSWD\Train\Image\img_906.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,test
+91,img_91.png,data\DSWD\DSWD\Train\Image\img_91.png,Train,448,448,RGB,0,Other,Other,train
+945,img_945.png,data\DSWD\DSWD\Train\Image\img_945.png,Train,448,448,RGB,11,Paper cup,Paper,train
+946,img_946.png,data\DSWD\DSWD\Train\Image\img_946.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,test
+948,img_948.png,data\DSWD\DSWD\Train\Image\img_948.png,Train,448,448,RGB,0,Other,Other,train
+951,img_951.png,data\DSWD\DSWD\Train\Image\img_951.png,Train,448,448,RGB,0,Other,Other,test
+955,img_955.png,data\DSWD\DSWD\Train\Image\img_955.png,Train,448,448,RGB,11,Paper cup,Paper,train
+960,img_960.png,data\DSWD\DSWD\Train\Image\img_960.png,Train,448,448,RGB,0,Other,Other,train
+966,img_966.png,data\DSWD\DSWD\Train\Image\img_966.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+973,img_973.png,data\DSWD\DSWD\Train\Image\img_973.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+981,img_981.png,data\DSWD\DSWD\Train\Image\img_981.png,Train,448,448,RGB,5,Plastic cardboard,Plastic,train
+10,img_10.png,data\DSWD\DSWD\Test\Image\img_10.png,Test,448,448,RGB,5,Plastic cardboard,Plastic,validation
+1000,img_1000.png,data\DSWD\DSWD\Test\Image\img_1000.png,Test,448,448,RGB,11,Paper cup,Paper,test
+105,img_105.png,data\DSWD\DSWD\Test\Image\img_105.png,Test,448,448,RGB,0,Other,Other,test
+106,img_106.png,data\DSWD\DSWD\Test\Image\img_106.png,Test,448,448,RGB,0,Other,Other,validation
+1071,img_1071.png,data\DSWD\DSWD\Test\Image\img_1071.png,Test,448,448,RGB,0,Other,Other,train
+1078,img_1078.png,data\DSWD\DSWD\Test\Image\img_1078.png,Test,448,448,RGB,0,Other,Other,validation
+1161,img_1161.png,data\DSWD\DSWD\Test\Image\img_1161.png,Test,448,448,RGB,5,Plastic cardboard,Plastic,train
+1165,img_1165.png,data\DSWD\DSWD\Test\Image\img_1165.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+1260,img_1260.png,data\DSWD\DSWD\Test\Image\img_1260.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+1261,img_1261.png,data\DSWD\DSWD\Test\Image\img_1261.png,Test,448,448,RGB,3,Thermocol,Plastic,validation
+1326,img_1326.png,data\DSWD\DSWD\Test\Image\img_1326.png,Test,448,448,RGB,3,Thermocol,Plastic,test
+1338,img_1338.png,data\DSWD\DSWD\Test\Image\img_1338.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+1401,img_1401.png,data\DSWD\DSWD\Test\Image\img_1401.png,Test,448,448,RGB,0,Other,Other,train
+1410,img_1410.png,data\DSWD\DSWD\Test\Image\img_1410.png,Test,448,448,RGB,0,Other,Other,test
+1485,img_1485.png,data\DSWD\DSWD\Test\Image\img_1485.png,Test,448,448,RGB,0,Other,Other,train
+1491,img_1491.png,data\DSWD\DSWD\Test\Image\img_1491.png,Test,448,448,RGB,0,Other,Other,train
+15,img_15.png,data\DSWD\DSWD\Test\Image\img_15.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+1578,img_1578.png,data\DSWD\DSWD\Test\Image\img_1578.png,Test,448,448,RGB,3,Thermocol,Plastic,validation
+1581,img_1581.png,data\DSWD\DSWD\Test\Image\img_1581.png,Test,448,448,RGB,0,Other,Other,validation
+1666,img_1666.png,data\DSWD\DSWD\Test\Image\img_1666.png,Test,448,448,RGB,0,Other,Other,train
+1680,img_1680.png,data\DSWD\DSWD\Test\Image\img_1680.png,Test,448,448,RGB,0,Other,Other,train
+171,img_171.png,data\DSWD\DSWD\Test\Image\img_171.png,Test,448,448,RGB,12,Aluminium foil,Metal,train
+1735,img_1735.png,data\DSWD\DSWD\Test\Image\img_1735.png,Test,448,448,RGB,3,Thermocol,Plastic,validation
+1746,img_1746.png,data\DSWD\DSWD\Test\Image\img_1746.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+1813,img_1813.png,data\DSWD\DSWD\Test\Image\img_1813.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+1821,img_1821.png,data\DSWD\DSWD\Test\Image\img_1821.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+183,img_183.png,data\DSWD\DSWD\Test\Image\img_183.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+1900,img_1900.png,data\DSWD\DSWD\Test\Image\img_1900.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+1905,img_1905.png,data\DSWD\DSWD\Test\Image\img_1905.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+1996,img_1996.png,data\DSWD\DSWD\Test\Image\img_1996.png,Test,448,448,RGB,0,Other,Other,train
+1998,img_1998.png,data\DSWD\DSWD\Test\Image\img_1998.png,Test,448,448,RGB,0,Other,Other,test
+2073,img_2073.png,data\DSWD\DSWD\Test\Image\img_2073.png,Test,448,448,RGB,0,Other,Other,validation
+2086,img_2086.png,data\DSWD\DSWD\Test\Image\img_2086.png,Test,448,448,RGB,0,Other,Other,train
+21,img_21.png,data\DSWD\DSWD\Test\Image\img_21.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+2145,img_2145.png,data\DSWD\DSWD\Test\Image\img_2145.png,Test,448,448,RGB,3,Thermocol,Plastic,validation
+2155,img_2155.png,data\DSWD\DSWD\Test\Image\img_2155.png,Test,448,448,RGB,0,Other,Other,validation
+2226,img_2226.png,data\DSWD\DSWD\Test\Image\img_2226.png,Test,448,448,RGB,0,Other,Other,train
+2233,img_2233.png,data\DSWD\DSWD\Test\Image\img_2233.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+2316,img_2316.png,data\DSWD\DSWD\Test\Image\img_2316.png,Test,448,448,RGB,0,Other,Other,train
+2320,img_2320.png,data\DSWD\DSWD\Test\Image\img_2320.png,Test,448,448,RGB,0,Other,Other,validation
+2415,img_2415.png,data\DSWD\DSWD\Test\Image\img_2415.png,Test,448,448,RGB,3,Thermocol,Plastic,test
+2416,img_2416.png,data\DSWD\DSWD\Test\Image\img_2416.png,Test,448,448,RGB,3,Thermocol,Plastic,test
+246,img_246.png,data\DSWD\DSWD\Test\Image\img_246.png,Test,448,448,RGB,5,Plastic cardboard,Plastic,train
+2481,img_2481.png,data\DSWD\DSWD\Test\Image\img_2481.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+2493,img_2493.png,data\DSWD\DSWD\Test\Image\img_2493.png,Test,448,448,RGB,3,Thermocol,Plastic,validation
+255,img_255.png,data\DSWD\DSWD\Test\Image\img_255.png,Test,448,448,RGB,11,Paper cup,Paper,validation
+2556,img_2556.png,data\DSWD\DSWD\Test\Image\img_2556.png,Test,448,448,RGB,0,Other,Other,test
+2565,img_2565.png,data\DSWD\DSWD\Test\Image\img_2565.png,Test,448,448,RGB,0,Other,Other,train
+2640,img_2640.png,data\DSWD\DSWD\Test\Image\img_2640.png,Test,448,448,RGB,12,Aluminium foil,Metal,validation
+2646,img_2646.png,data\DSWD\DSWD\Test\Image\img_2646.png,Test,448,448,RGB,0,Other,Other,train
+2733,img_2733.png,data\DSWD\DSWD\Test\Image\img_2733.png,Test,448,448,RGB,3,Thermocol,Plastic,test
+2736,img_2736.png,data\DSWD\DSWD\Test\Image\img_2736.png,Test,448,448,RGB,0,Other,Other,test
+2821,img_2821.png,data\DSWD\DSWD\Test\Image\img_2821.png,Test,448,448,RGB,0,Other,Other,train
+2835,img_2835.png,data\DSWD\DSWD\Test\Image\img_2835.png,Test,448,448,RGB,0,Other,Other,test
+2890,img_2890.png,data\DSWD\DSWD\Test\Image\img_2890.png,Test,448,448,RGB,0,Other,Other,train
+2901,img_2901.png,data\DSWD\DSWD\Test\Image\img_2901.png,Test,448,448,RGB,0,Other,Other,train
+2968,img_2968.png,data\DSWD\DSWD\Test\Image\img_2968.png,Test,448,448,RGB,0,Other,Other,train
+2976,img_2976.png,data\DSWD\DSWD\Test\Image\img_2976.png,Test,448,448,RGB,3,Thermocol,Plastic,validation
+3055,img_3055.png,data\DSWD\DSWD\Test\Image\img_3055.png,Test,448,448,RGB,0,Other,Other,train
+3060,img_3060.png,data\DSWD\DSWD\Test\Image\img_3060.png,Test,448,448,RGB,0,Other,Other,validation
+3151,img_3151.png,data\DSWD\DSWD\Test\Image\img_3151.png,Test,448,448,RGB,3,Thermocol,Plastic,validation
+3153,img_3153.png,data\DSWD\DSWD\Test\Image\img_3153.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+3228,img_3228.png,data\DSWD\DSWD\Test\Image\img_3228.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+3241,img_3241.png,data\DSWD\DSWD\Test\Image\img_3241.png,Test,448,448,RGB,0,Other,Other,train
+330,img_330.png,data\DSWD\DSWD\Test\Image\img_330.png,Test,448,448,RGB,3,Thermocol,Plastic,validation
+3300,img_3300.png,data\DSWD\DSWD\Test\Image\img_3300.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+3310,img_3310.png,data\DSWD\DSWD\Test\Image\img_3310.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+336,img_336.png,data\DSWD\DSWD\Test\Image\img_336.png,Test,448,448,RGB,0,Other,Other,validation
+3381,img_3381.png,data\DSWD\DSWD\Test\Image\img_3381.png,Test,448,448,RGB,5,Plastic cardboard,Plastic,train
+3388,img_3388.png,data\DSWD\DSWD\Test\Image\img_3388.png,Test,448,448,RGB,3,Thermocol,Plastic,validation
+3471,img_3471.png,data\DSWD\DSWD\Test\Image\img_3471.png,Test,448,448,RGB,3,Thermocol,Plastic,test
+3475,img_3475.png,data\DSWD\DSWD\Test\Image\img_3475.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+3570,img_3570.png,data\DSWD\DSWD\Test\Image\img_3570.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+3571,img_3571.png,data\DSWD\DSWD\Test\Image\img_3571.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+3636,img_3636.png,data\DSWD\DSWD\Test\Image\img_3636.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+3648,img_3648.png,data\DSWD\DSWD\Test\Image\img_3648.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+3711,img_3711.png,data\DSWD\DSWD\Test\Image\img_3711.png,Test,448,448,RGB,0,Other,Other,train
+3720,img_3720.png,data\DSWD\DSWD\Test\Image\img_3720.png,Test,448,448,RGB,0,Other,Other,train
+3795,img_3795.png,data\DSWD\DSWD\Test\Image\img_3795.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+3801,img_3801.png,data\DSWD\DSWD\Test\Image\img_3801.png,Test,448,448,RGB,0,Other,Other,train
+3888,img_3888.png,data\DSWD\DSWD\Test\Image\img_3888.png,Test,448,448,RGB,0,Other,Other,train
+3891,img_3891.png,data\DSWD\DSWD\Test\Image\img_3891.png,Test,448,448,RGB,0,Other,Other,train
+3976,img_3976.png,data\DSWD\DSWD\Test\Image\img_3976.png,Test,448,448,RGB,8,Plastic,Plastic,train
+3990,img_3990.png,data\DSWD\DSWD\Test\Image\img_3990.png,Test,448,448,RGB,0,Other,Other,train
+4045,img_4045.png,data\DSWD\DSWD\Test\Image\img_4045.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+4056,img_4056.png,data\DSWD\DSWD\Test\Image\img_4056.png,Test,448,448,RGB,0,Other,Other,test
+4123,img_4123.png,data\DSWD\DSWD\Test\Image\img_4123.png,Test,448,448,RGB,12,Aluminium foil,Metal,train
+4131,img_4131.png,data\DSWD\DSWD\Test\Image\img_4131.png,Test,448,448,RGB,12,Aluminium foil,Metal,train
+4210,img_4210.png,data\DSWD\DSWD\Test\Image\img_4210.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+4215,img_4215.png,data\DSWD\DSWD\Test\Image\img_4215.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+423,img_423.png,data\DSWD\DSWD\Test\Image\img_423.png,Test,448,448,RGB,0,Other,Other,validation
+426,img_426.png,data\DSWD\DSWD\Test\Image\img_426.png,Test,448,448,RGB,0,Other,Other,validation
+4306,img_4306.png,data\DSWD\DSWD\Test\Image\img_4306.png,Test,448,448,RGB,0,Other,Other,train
+4308,img_4308.png,data\DSWD\DSWD\Test\Image\img_4308.png,Test,448,448,RGB,0,Other,Other,train
+4383,img_4383.png,data\DSWD\DSWD\Test\Image\img_4383.png,Test,448,448,RGB,0,Other,Other,test
+4396,img_4396.png,data\DSWD\DSWD\Test\Image\img_4396.png,Test,448,448,RGB,0,Other,Other,train
+4455,img_4455.png,data\DSWD\DSWD\Test\Image\img_4455.png,Test,448,448,RGB,0,Other,Other,train
+4465,img_4465.png,data\DSWD\DSWD\Test\Image\img_4465.png,Test,448,448,RGB,8,Plastic,Plastic,validation
+4536,img_4536.png,data\DSWD\DSWD\Test\Image\img_4536.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+4543,img_4543.png,data\DSWD\DSWD\Test\Image\img_4543.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+4626,img_4626.png,data\DSWD\DSWD\Test\Image\img_4626.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+4630,img_4630.png,data\DSWD\DSWD\Test\Image\img_4630.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+4725,img_4725.png,data\DSWD\DSWD\Test\Image\img_4725.png,Test,448,448,RGB,0,Other,Other,train
+4726,img_4726.png,data\DSWD\DSWD\Test\Image\img_4726.png,Test,448,448,RGB,0,Other,Other,train
+4791,img_4791.png,data\DSWD\DSWD\Test\Image\img_4791.png,Test,448,448,RGB,3,Thermocol,Plastic,test
+4803,img_4803.png,data\DSWD\DSWD\Test\Image\img_4803.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+4866,img_4866.png,data\DSWD\DSWD\Test\Image\img_4866.png,Test,448,448,RGB,5,Plastic cardboard,Plastic,train
+4875,img_4875.png,data\DSWD\DSWD\Test\Image\img_4875.png,Test,448,448,RGB,3,Thermocol,Plastic,test
+4950,img_4950.png,data\DSWD\DSWD\Test\Image\img_4950.png,Test,448,448,RGB,3,Thermocol,Plastic,test
+4956,img_4956.png,data\DSWD\DSWD\Test\Image\img_4956.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+5043,img_5043.png,data\DSWD\DSWD\Test\Image\img_5043.png,Test,448,448,RGB,5,Plastic cardboard,Plastic,train
+5046,img_5046.png,data\DSWD\DSWD\Test\Image\img_5046.png,Test,448,448,RGB,5,Plastic cardboard,Plastic,train
+511,img_511.png,data\DSWD\DSWD\Test\Image\img_511.png,Test,448,448,RGB,0,Other,Other,train
+5131,img_5131.png,data\DSWD\DSWD\Test\Image\img_5131.png,Test,448,448,RGB,0,Other,Other,train
+5145,img_5145.png,data\DSWD\DSWD\Test\Image\img_5145.png,Test,448,448,RGB,5,Plastic cardboard,Plastic,train
+5200,img_5200.png,data\DSWD\DSWD\Test\Image\img_5200.png,Test,448,448,RGB,0,Other,Other,train
+5211,img_5211.png,data\DSWD\DSWD\Test\Image\img_5211.png,Test,448,448,RGB,5,Plastic cardboard,Plastic,train
+525,img_525.png,data\DSWD\DSWD\Test\Image\img_525.png,Test,448,448,RGB,0,Other,Other,test
+5278,img_5278.png,data\DSWD\DSWD\Test\Image\img_5278.png,Test,448,448,RGB,0,Other,Other,validation
+5286,img_5286.png,data\DSWD\DSWD\Test\Image\img_5286.png,Test,448,448,RGB,0,Other,Other,train
+5365,img_5365.png,data\DSWD\DSWD\Test\Image\img_5365.png,Test,448,448,RGB,5,Plastic cardboard,Plastic,train
+5370,img_5370.png,data\DSWD\DSWD\Test\Image\img_5370.png,Test,448,448,RGB,5,Plastic cardboard,Plastic,train
+5461,img_5461.png,data\DSWD\DSWD\Test\Image\img_5461.png,Test,448,448,RGB,0,Other,Other,train
+5463,img_5463.png,data\DSWD\DSWD\Test\Image\img_5463.png,Test,448,448,RGB,0,Other,Other,train
+5538,img_5538.png,data\DSWD\DSWD\Test\Image\img_5538.png,Test,448,448,RGB,0,Other,Other,validation
+5551,img_5551.png,data\DSWD\DSWD\Test\Image\img_5551.png,Test,448,448,RGB,0,Other,Other,test
+5610,img_5610.png,data\DSWD\DSWD\Test\Image\img_5610.png,Test,448,448,RGB,3,Thermocol,Plastic,validation
+5620,img_5620.png,data\DSWD\DSWD\Test\Image\img_5620.png,Test,448,448,RGB,0,Other,Other,test
+5691,img_5691.png,data\DSWD\DSWD\Test\Image\img_5691.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+5698,img_5698.png,data\DSWD\DSWD\Test\Image\img_5698.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+5781,img_5781.png,data\DSWD\DSWD\Test\Image\img_5781.png,Test,448,448,RGB,0,Other,Other,test
+5785,img_5785.png,data\DSWD\DSWD\Test\Image\img_5785.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+580,img_580.png,data\DSWD\DSWD\Test\Image\img_580.png,Test,448,448,RGB,7,Thermocol plate,Plastic,train
+591,img_591.png,data\DSWD\DSWD\Test\Image\img_591.png,Test,448,448,RGB,0,Other,Other,train
+6,img_6.png,data\DSWD\DSWD\Test\Image\img_6.png,Test,448,448,RGB,3,Thermocol,Plastic,validation
+658,img_658.png,data\DSWD\DSWD\Test\Image\img_658.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+666,img_666.png,data\DSWD\DSWD\Test\Image\img_666.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+745,img_745.png,data\DSWD\DSWD\Test\Image\img_745.png,Test,448,448,RGB,3,Thermocol,Plastic,train
+750,img_750.png,data\DSWD\DSWD\Test\Image\img_750.png,Test,448,448,RGB,5,Plastic cardboard,Plastic,train
+841,img_841.png,data\DSWD\DSWD\Test\Image\img_841.png,Test,448,448,RGB,5,Plastic cardboard,Plastic,validation
+843,img_843.png,data\DSWD\DSWD\Test\Image\img_843.png,Test,448,448,RGB,5,Plastic cardboard,Plastic,train
+918,img_918.png,data\DSWD\DSWD\Test\Image\img_918.png,Test,448,448,RGB,5,Plastic cardboard,Plastic,train
+931,img_931.png,data\DSWD\DSWD\Test\Image\img_931.png,Test,448,448,RGB,5,Plastic cardboard,Plastic,train
+990,img_990.png,data\DSWD\DSWD\Test\Image\img_990.png,Test,448,448,RGB,5,Plastic cardboard,Plastic,train

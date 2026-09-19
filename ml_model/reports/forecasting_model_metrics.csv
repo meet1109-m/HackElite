@@ -1,0 +1,3 @@
+Model,Task,Train_Records,Features,MAE,RMSE,R2,Train_Time_s
+DummyRegressor,Zone Waste Forecasting,8085,54,3304.02,3996.91,-0.0058,0.01
+HistGradientBoostingRegressor,Zone Waste Forecasting,8085,54,245.37,424.14,0.9887,3.28
