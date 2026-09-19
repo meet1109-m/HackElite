@@ -18,7 +18,7 @@ export default function AIWasteManagerPage() {
     {
       id: 'welcome',
       sender: 'assistant',
-      text: 'Namaste! I am your Ahmedabad WasteWise AI Decision Intelligence Assistant. I have live access to 120 smart bins, 16 collection vehicles, and predictive fill forecasting across Ahmedabad. How can I assist municipal operations today?',
+      text: 'Namaste! I am your Ahmedabad SmartBinX AI Decision Intelligence Assistant. I have live access to 120 smart bins, 16 collection vehicles, and predictive fill forecasting across Ahmedabad. How can I assist municipal operations today?',
       cards: [
         {
           title: 'Current Operational Snapshot',

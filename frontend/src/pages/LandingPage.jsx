@@ -138,9 +138,26 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
   };
 
   return (
-    <div className="min-h-screen bg-[#F7FAF8] text-[#17201B] overflow-x-hidden selection:bg-[#16845B] selection:text-white">
+    <div className="min-h-screen text-[#17201B] overflow-x-hidden selection:bg-[#16845B] selection:text-white relative">
+      {/* Fixed Background Image — same as login page */}
+      <div 
+        className="fixed inset-0 bg-cover bg-center z-0 pointer-events-none"
+        style={{
+          backgroundImage: `url('/city-riverfront-bg.jpg')`,
+          backgroundPosition: 'center bottom',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed',
+          opacity: 0.7,
+          filter: 'saturate(0.9) brightness(1.05)'
+        }}
+      />
+      {/* Very subtle overlay — just enough to soften without washing out */}
+      <div className="fixed inset-0 z-0 pointer-events-none" style={{ background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.15) 40%, rgba(255, 255, 255, 0.22) 100%)' }} />
+
+      {/* All content above the background */}
+      <div className="relative z-10">
       {/* Top Banner */}
-      <div className="bg-[#E6F4EA] border-b border-[#C2E7CB] px-4 py-2 text-center text-xs font-semibold text-[#0B5D3B] flex items-center justify-center gap-2">
+      <div className="bg-[#E6F4EA]/90 backdrop-blur-sm border-b border-[#C2E7CB] px-4 py-2 text-center text-xs font-semibold text-[#0B5D3B] flex items-center justify-center gap-2">
         <span className="w-2 h-2 rounded-full bg-[#16845B] animate-ping"></span>
         <span>Ahmedabad Municipal AI Waste Operations Prototype • Live Simulated Telemetry</span>
       </div>
@@ -153,18 +170,18 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
             <span>AI DECISION SUPPORT SYSTEM • AHMEDABAD</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-[#17201B] leading-[1.15]">
+          <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-[#05120a] leading-[1.15]" style={{ textShadow: '0 1px 8px rgba(255,255,255,0.7), 0 0 2px rgba(255,255,255,0.9)' }}>
             Ahmedabad's Waste. <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#16845B] via-[#0D9488] to-[#2878C8]">
+            <span className="text-[#0a4f2e]" style={{ textShadow: '0 1px 8px rgba(255,255,255,0.8), 0 0 3px rgba(255,255,255,0.95)' }}>
               Managed Intelligently.
             </span>
           </h1>
 
-          <p className="text-base sm:text-lg font-semibold text-[#0B5D3B]">
+          <p className="text-base sm:text-lg font-black text-[#042e1a]" style={{ textShadow: '0 1px 6px rgba(255,255,255,0.7)' }}>
             Predict waste. Prevent overflow. Optimize collection. Maximize recovery.
           </p>
 
-          <p className="text-sm sm:text-base text-[#66736C] max-w-2xl leading-relaxed">
+          <p className="text-sm sm:text-base text-[#0a1a10] font-bold max-w-2xl leading-relaxed" style={{ textShadow: '0 1px 4px rgba(255,255,255,0.6)' }}>
             <strong>SmartBinX</strong> transforms waste collection from fixed schedules into predictive, data-driven operations using AI forecasting, computer vision, intelligent routing and recycling analytics for Ahmedabad.
           </p>
 
@@ -191,20 +208,20 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
             </a>
           </div>
 
-          <div className="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-[#66736C] border-t border-[#E3EAE6]">
-            <div className="flex items-center gap-1.5 font-semibold">
+          <div className="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs text-[#0a1a10]">
+            <div className="flex items-center gap-1.5 font-bold px-3 py-1.5 rounded-full bg-white/80 backdrop-blur-md shadow-sm border border-white/60">
               <CheckCircle2 className="w-4 h-4 text-[#16845B]" />
               <span>120 Smart Nodes</span>
             </div>
-            <div className="flex items-center gap-1.5 font-semibold">
+            <div className="flex items-center gap-1.5 font-bold px-3 py-1.5 rounded-full bg-white/80 backdrop-blur-md shadow-sm border border-white/60">
               <CheckCircle2 className="w-4 h-4 text-[#16845B]" />
               <span>16 EV & Tipper Trucks</span>
             </div>
-            <div className="flex items-center gap-1.5 font-semibold">
+            <div className="flex items-center gap-1.5 font-bold px-3 py-1.5 rounded-full bg-white/80 backdrop-blur-md shadow-sm border border-white/60">
               <CheckCircle2 className="w-4 h-4 text-[#16845B]" />
               <span>12 AMC Zones</span>
             </div>
-            <div className="flex items-center gap-1.5 font-semibold">
+            <div className="flex items-center gap-1.5 font-bold px-3 py-1.5 rounded-full bg-white/80 backdrop-blur-md shadow-sm border border-white/60">
               <CheckCircle2 className="w-4 h-4 text-[#16845B]" />
               <span>63.9% Recovery Rate</span>
             </div>
@@ -297,14 +314,14 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
       </section>
 
       {/* THE PROBLEM VS SMARTBINX (Section 17) */}
-      <section className="py-20 bg-white border-y border-[#E3EAE6] px-6 sm:px-12">
+      <section className="py-20 px-6 sm:px-12">
         <div className="max-w-6xl mx-auto space-y-12">
           <div className="text-center max-w-2xl mx-auto">
-            <span className="text-xs font-bold text-[#16845B] uppercase tracking-widest">Paradigm Shift</span>
-            <h2 className="text-3xl font-extrabold text-[#17201B] mt-2">
+            <span className="text-xs font-black text-[#042e1a] uppercase tracking-widest" style={{ textShadow: '0 1px 6px rgba(255,255,255,0.8)' }}>Paradigm Shift</span>
+            <h2 className="text-3xl font-black text-[#05120a] mt-2" style={{ textShadow: '0 1px 8px rgba(255,255,255,0.7), 0 0 2px rgba(255,255,255,0.9)' }}>
               Transforming Traditional Waste Collection
             </h2>
-            <p className="text-sm text-[#66736C] mt-2">
+            <p className="text-sm text-[#0a1a10] font-bold mt-2" style={{ textShadow: '0 1px 4px rgba(255,255,255,0.6)' }}>
               Moving from blind, reactive schedule runs to transparent, predictive closed-loop decision intelligence.
             </p>
           </div>
@@ -357,7 +374,7 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
             <div className="p-8 bg-[#F0FDF4]/80 border border-[#BBF7D0] rounded-3xl space-y-6 flex flex-col justify-between shadow-md">
               <div className="space-y-4">
                 <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#DCFCE7] text-[#0B5D3B] text-xs font-bold rounded-full border border-[#BBF7D0]">
-                  <ShieldCheck className="w-3.5 h-3.5 text-[#16845B]" /> WasteWise AI Paradigm
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#16845B]" /> SmartBinX AI Paradigm
                 </div>
                 <h3 className="text-xl font-bold text-[#17201B]">
                   Closed-Loop Predictive Decision Intelligence
@@ -402,7 +419,7 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
       <section id="workflow" className="py-20 px-6 sm:px-12 max-w-7xl mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-2">
           <span className="text-xs font-bold text-[#16845B] uppercase tracking-widest">Automated Decision Pipeline</span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#17201B]">How WasteWise AI Thinks</h2>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#17201B]">How SmartBinX AI Thinks</h2>
           <p className="text-sm text-[#66736C]">
             An intelligent 6-phase autonomous cycle running continuously on real-time municipal telemetry.
           </p>
@@ -452,11 +469,11 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
       </section>
 
       {/* FROM ONE BIN TO THE WHOLE CITY — SCALE ZOOM CONCEPT (Section 19) */}
-      <section className="py-20 bg-white border-y border-[#E3EAE6] px-6 sm:px-12">
+      <section className="py-20 px-6 sm:px-12">
         <div className="max-w-6xl mx-auto space-y-12">
           <div className="text-center max-w-2xl mx-auto space-y-2">
-            <span className="text-xs font-bold text-[#16845B] uppercase tracking-widest">Scalability Architecture</span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#17201B]">
+            <span className="text-xs font-black text-[#042e1a] uppercase tracking-widest" style={{ textShadow: '0 1px 6px rgba(255,255,255,0.8)' }}>Scalability Architecture</span>
+            <h2 className="text-3xl sm:text-4xl font-black text-[#05120a]" style={{ textShadow: '0 1px 8px rgba(255,255,255,0.7), 0 0 2px rgba(255,255,255,0.9)' }}>
               From One Bin to the Whole City
             </h2>
             <p className="text-sm text-[#66736C]">
@@ -589,12 +606,12 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
       </section>
 
       {/* IMPACT SECTION (Section 21) */}
-      <section className="py-20 bg-white border-y border-[#E3EAE6] px-6 sm:px-12">
+      <section className="py-20 px-6 sm:px-12">
         <div className="max-w-6xl mx-auto space-y-12">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <span className="text-xs font-bold text-[#16845B] uppercase tracking-widest">Measurable Sustainability</span>
-              <h2 className="text-3xl font-extrabold text-[#17201B] mt-1">Projected Operational Impact</h2>
+              <span className="text-xs font-black text-[#042e1a] uppercase tracking-widest" style={{ textShadow: '0 1px 6px rgba(255,255,255,0.8)' }}>Measurable Sustainability</span>
+              <h2 className="text-3xl font-black text-[#05120a] mt-1" style={{ textShadow: '0 1px 8px rgba(255,255,255,0.7), 0 0 2px rgba(255,255,255,0.9)' }}>Projected Operational Impact</h2>
             </div>
             <div className="px-3.5 py-1.5 bg-[#FFFBEB] border border-[#FDE68A] text-[#92400E] text-xs font-bold rounded-xl flex items-center gap-2">
               <AlertTriangle className="w-4 h-4 text-[#E89A27]" />
@@ -690,7 +707,7 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
       </section>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-[#E3EAE6] py-8 px-6 sm:px-12 text-xs text-[#66736C]">
+      <footer className="bg-white/80 backdrop-blur-md border-t border-white/60 py-8 px-6 sm:px-12 text-xs text-[#66736C]">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <img src="/smartbinx-logo.png" alt="SmartBinX" className="h-8 w-auto" />
@@ -703,6 +720,7 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
           </div>
         </div>
       </footer>
+      </div>{/* close z-10 content wrapper */}
     </div>
   );
 };

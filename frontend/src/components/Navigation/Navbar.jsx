@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Play, AlertCircle, Search, Activity, ShieldAlert, ChevronRight, CheckCircle2 } from 'lucide-react';
 import { useWasteData } from '../../context/WasteDataContext';
 
-export const Navbar = ({ currentPage, activeTab, onNavigate, onTabChange }) => {
-  const currentTab = currentPage || activeTab || 'landing';
+export const Navbar = ({ currentPage, activeTab, onNavigate, onTabChange, isAuthenticated, onLogout }) => {
+  const currentTab = currentPage || activeTab || 'login';
   const handleNav = onNavigate || onTabChange;
   const { bins, startAIDemo, openDigitalTwin } = useWasteData();
   const [time, setTime] = useState('');
@@ -38,14 +38,15 @@ export const Navbar = ({ currentPage, activeTab, onNavigate, onTabChange }) => {
   }, [searchQuery, bins]);
 
   const criticalCount = bins.filter(b => b.status === 'Critical' || b.status === 'Overflow Risk').length;
+  const isAuthPage = currentTab === 'login';
 
   return (
-    <header className="h-16 bg-white/95 backdrop-blur-md border-b border-[#E3EAE6] px-4 sm:px-6 flex items-center justify-between sticky top-0 z-30 shadow-sm">
+    <header className="h-16 bg-white/80 backdrop-blur-xl border-b border-white/60 px-4 sm:px-6 flex items-center justify-between sticky top-0 z-30 shadow-sm">
       {/* Brand & City Indicator */}
       <div className="flex items-center gap-4">
         <div 
           className="flex items-center gap-2 cursor-pointer group" 
-          onClick={() => handleNav('landing')}
+          onClick={() => handleNav(isAuthenticated ? 'command-center' : 'login')}
         >
           <img 
             src="/smartbinx-logo.png" 
@@ -65,14 +66,16 @@ export const Navbar = ({ currentPage, activeTab, onNavigate, onTabChange }) => {
           </div>
         </div>
 
-        <div className="hidden lg:flex items-center gap-2 ml-2 pl-4 border-l border-[#E3EAE6] text-xs text-[#66736C]">
-          <span className="w-2 h-2 rounded-full bg-[#16845B] animate-pulse"></span>
-          <span>AMC IoT Grid: <strong className="text-[#17201B]">120 Smart Nodes</strong></span>
-        </div>
+        {!isAuthPage && (
+          <div className="hidden lg:flex items-center gap-2 ml-2 pl-4 border-l border-[#E3EAE6] text-xs text-[#66736C]">
+            <span className="w-2 h-2 rounded-full bg-[#16845B] animate-pulse"></span>
+            <span>AMC IoT Grid: <strong className="text-[#17201B]">120 Smart Nodes</strong></span>
+          </div>
+        )}
       </div>
 
       {/* Center Search Bar with autocomplete (visible on dashboard views) */}
-      {currentTab !== 'landing' && (
+      {!isAuthPage && currentTab !== 'landing' && (
         <div className="hidden md:block relative w-64 lg:w-80">
           <div className="relative">
             <Search className="w-3.5 h-3.5 text-[#66736C] absolute left-3 top-1/2 -translate-y-1/2" />
@@ -127,8 +130,8 @@ export const Navbar = ({ currentPage, activeTab, onNavigate, onTabChange }) => {
           <span>{time} IST</span>
         </div>
 
-        {/* Critical Alerts Badge */}
-        {criticalCount > 0 && (
+        {/* Critical Alerts Badge (when on dashboard) */}
+        {!isAuthPage && criticalCount > 0 && (
           <button
             onClick={() => handleNav('bins')}
             className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#FEE2E2] border border-[#FECACA] text-[#991B1B] text-xs font-bold hover:bg-[#FCA5A5]/40 transition-colors animate-pulse-slow shadow-sm"
@@ -138,13 +141,43 @@ export const Navbar = ({ currentPage, activeTab, onNavigate, onTabChange }) => {
           </button>
         )}
 
-        {/* Operator Login Button */}
-        {currentTab !== 'login' && (
+        {/* Operator Login Button on Landing Page */}
+        {currentTab === 'landing' && !isAuthenticated && (
           <button
             onClick={() => handleNav('login')}
-            className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-[#F1F6F3] hover:bg-[#E5ECE8] text-[#17201B] hover:text-[#0B5D3B] text-xs font-bold rounded-xl border border-[#E3EAE6] transition-colors shadow-sm"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 bg-[#DCFCE7] hover:bg-[#BBF7D0] border border-[#BBF7D0] text-[#065F46] text-xs font-bold rounded-xl transition shadow-sm"
           >
             <span>Operator Login</span>
+          </button>
+        )}
+
+        {/* Public Portal Switch when on Login Page */}
+        {isAuthPage && (
+          <button
+            onClick={() => handleNav('landing')}
+            className="flex items-center gap-1.5 px-3.5 py-1.5 bg-white/90 hover:bg-white text-[#17201B] hover:text-[#0B5D3B] text-xs font-bold rounded-xl border border-[#E3EAE6] transition shadow-sm"
+          >
+            <span>← Public Portal</span>
+          </button>
+        )}
+
+        {/* Public Portal Switch when on Dashboard */}
+        {isAuthenticated && !isAuthPage && currentTab !== 'landing' && (
+          <button
+            onClick={() => handleNav('landing')}
+            className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-white/80 hover:bg-white text-[#17201B] hover:text-[#0B5D3B] text-xs font-bold rounded-xl border border-[#E3EAE6] transition shadow-sm"
+          >
+            <span>Public Portal</span>
+          </button>
+        )}
+
+        {/* Logout / Switch Operator Button */}
+        {isAuthenticated && !isAuthPage && (
+          <button
+            onClick={onLogout || (() => handleNav('login'))}
+            className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-[#F1F6F3] hover:bg-[#FEE2E2] hover:text-[#991B1B] text-[#17201B] text-xs font-bold rounded-xl border border-[#E3EAE6] transition shadow-sm"
+          >
+            <span>Lock / Switch Operator</span>
           </button>
         )}
 

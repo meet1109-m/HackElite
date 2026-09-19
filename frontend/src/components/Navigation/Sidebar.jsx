@@ -44,7 +44,7 @@ export const Sidebar = ({ currentPage, activeTab, onNavigate, onTabChange }) => 
   ];
 
   return (
-    <aside className="w-64 bg-white border-r border-[#E3EAE6] flex flex-col justify-between shrink-0 h-[calc(100vh-4rem)] sticky top-16 select-none shadow-sm">
+    <aside className="w-64 bg-white/80 backdrop-blur-xl border-r border-white/60 flex flex-col justify-between shrink-0 h-[calc(100vh-4rem)] sticky top-16 select-none shadow-sm">
       <div className="p-3 space-y-1 overflow-y-auto flex-1">
         <div className="px-3 py-2 text-[10px] uppercase tracking-widest font-extrabold text-[#66736C]">
           Command Modules
@@ -58,7 +58,7 @@ export const Sidebar = ({ currentPage, activeTab, onNavigate, onTabChange }) => 
               className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all group ${
                 isActive
                   ? 'bg-[#16845B] text-white shadow-md shadow-[#16845B]/20 font-bold'
-                  : 'text-[#66736C] hover:text-[#17201B] hover:bg-[#F0FDF4]'
+                  : 'text-[#66736C] hover:text-[#17201B] hover:bg-white/60'
               }`}
             >
               <div className="flex items-center gap-3">
@@ -78,7 +78,7 @@ export const Sidebar = ({ currentPage, activeTab, onNavigate, onTabChange }) => 
       </div>
 
       {/* System Status Footer & Operator Login Switch */}
-      <div className="p-4 border-t border-[#E3EAE6] bg-[#F7FAF8] space-y-2">
+      <div className="p-4 border-t border-white/60 bg-white/40 backdrop-blur-md space-y-2">
         <div className="flex items-center justify-between text-[11px] text-[#66736C]">
           <span className="flex items-center gap-1.5 font-semibold text-[#17201B]">
             <span className="w-2 h-2 rounded-full bg-[#16845B]"></span>
@@ -89,7 +89,7 @@ export const Sidebar = ({ currentPage, activeTab, onNavigate, onTabChange }) => 
         
         <button
           onClick={() => handleNav('login')}
-          className="w-full py-1.5 px-2 bg-white hover:bg-[#F0FDF4] border border-[#E3EAE6] hover:border-[#BBF7D0] rounded-lg text-[11px] font-bold text-[#17201B] hover:text-[#0B5D3B] transition flex items-center justify-center gap-1.5 shadow-sm"
+          className="w-full py-1.5 px-2 bg-white/80 hover:bg-white border border-[#E3EAE6] hover:border-[#BBF7D0] rounded-lg text-[11px] font-bold text-[#17201B] hover:text-[#0B5D3B] transition flex items-center justify-center gap-1.5 shadow-sm"
         >
           <span>Operator Portal Login</span>
         </button>
