@@ -1,0 +1,139 @@
+{
+  "checks": [
+    {
+      "check": "1. All bin & vehicle coordinates inside the Ahmedabad urban envelope",
+      "passed": true,
+      "detail": "lat 22.9534-23.1142, lon 72.4656-72.6752"
+    },
+    {
+      "check": "1b. Bins are geographically clustered within their own zone",
+      "passed": true,
+      "detail": "max bin-to-zone-centroid distance 1.24 km"
+    },
+    {
+      "check": "2. No negative waste quantities anywhere",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "5. Composition percentages sum to 100 (+/-0.5)",
+      "passed": true,
+      "detail": "min 100.00, max 100.00; all six shares non-negative: True"
+    },
+    {
+      "check": "5b. Zone-level fractions reconstruct zone total_waste_kg",
+      "passed": true,
+      "detail": "max relative deviation 0.0021%"
+    },
+    {
+      "check": "6. Every bin references a valid zone",
+      "passed": true,
+      "detail": "33 zones referenced"
+    },
+    {
+      "check": "7. Every collection references a valid bin",
+      "passed": true,
+      "detail": "600 distinct bins"
+    },
+    {
+      "check": "8. Every collection references a valid vehicle",
+      "passed": true,
+      "detail": "51 distinct vehicles"
+    },
+    {
+      "check": "8b. Every composition row references a valid bin and collection",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "8c. Zone-level rows reference valid zones",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "10. Completed/partial collections reduce bin fill",
+      "passed": true,
+      "detail": "100.00% of served stops reduce fill; MISSED stops leave fill unchanged"
+    },
+    {
+      "check": "10b. collected_weight_kg == pre - post (within measurement noise)",
+      "passed": true,
+      "detail": "99.9th pct relative error 2.56%"
+    },
+    {
+      "check": "10c. Vehicle load accounting is consistent and never exceeds capacity",
+      "passed": true,
+      "detail": "max load discrepancy 0.05 kg (rounding only); 0 stops exceed truck capacity"
+    },
+    {
+      "check": "3. fill_percentage stays within the simulation range [0, 135]",
+      "passed": true,
+      "detail": "observed 0.00 - 135.00"
+    },
+    {
+      "check": "4. estimated_weight_kg is consistent with capacity x fill",
+      "passed": true,
+      "detail": "mean |error| vs capacity*fill/100 = 3.82 kg; 0 rows exceed the physical bound"
+    },
+    {
+      "check": "9. Timestamps chronologically valid within each bin",
+      "passed": true,
+      "detail": "no out-of-order readings, no negative hours_since_collection, no previous_collection in the future"
+    },
+    {
+      "check": "11. Fill generally increases between collections",
+      "passed": true,
+      "detail": "99.97% of consecutive intra-cycle readings are non-decreasing (within sensor noise)"
+    },
+    {
+      "check": "12. Festival periods show elevated generation",
+      "passed": true,
+      "detail": "festival mean 341.8 kg/bin/day vs normal 288.0 kg/bin/day (+18.7%)"
+    },
+    {
+      "check": "13. Anomalies present but not excessive (target 2-5%)",
+      "passed": true,
+      "detail": "5,631 anomalous bin-days (2.57% of bin-days), 72 zone-surge days, 8 distinct anomaly mechanisms"
+    },
+    {
+      "check": "14. No future-information columns among the input features",
+      "passed": true,
+      "detail": "all forward-looking quantities are isolated in the 4 documented target columns"
+    },
+    {
+      "check": "15. Train/validation/test periods are chronological & non-overlapping",
+      "passed": true,
+      "detail": "train 2025-09-01..2026-05-03 | val 2026-05-04..2026-07-02 | test 2026-07-03..2026-08-31"
+    },
+    {
+      "check": "16. Sufficient variation for ML (spread in generation, composition, streams)",
+      "passed": true,
+      "detail": "zone daily waste CV 0.78, organic% sd 30.4, 5 waste streams, 6 bin types"
+    },
+    {
+      "check": "18. Realistic imperfections present but dataset remains usable",
+      "passed": true,
+      "detail": "0.831% of observable sensor cells missing, 3.76% of rows carry at least one gap"
+    }
+  ],
+  "summary": {
+    "Number of bins": "600",
+    "Number of zones": "33",
+    "Number of vehicles": "70",
+    "Number of fill-history records": "877,053",
+    "Number of collection records": "262,242",
+    "Number of composition records": "55,823",
+    "Number of zone-level records": "12,045",
+    "Date range": "2025-09-01 -> 2026-08-31 (365 days)",
+    "Missing-value pct (sensor cells)": "0.831%",
+    "Missing-value pct (rows w/ >=1 gap)": "3.76%",
+    "Duplicate telemetry rows": "1,053",
+    "Overflow observations (fill >= 100%)": "33,939 (3.87%)",
+    "Synthetic anomaly episodes (bin-days)": "5,631",
+    "Synthetic anomaly episodes (zone-days)": "72",
+    "Rows with 24h target available": "874,649",
+    "Train period": "2025-09-01 .. 2026-05-03",
+    "Validation period": "2026-05-04 .. 2026-07-02",
+    "Test period": "2026-07-03 .. 2026-08-31"
+  }
+}

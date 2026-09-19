@@ -1,0 +1,601 @@
+bin_id,zone_id,zone_name,latitude,longitude,ward,bin_type,capacity_kg,capacity_liters,waste_stream,installation_date,collection_frequency,nearby_landmark,population_density,commercial_density,residential_density,market_area,sensitive_location,data_type
+AMD-BIN-0001,AMD-Z-01,Navrangpura,23.04066,72.557265,Navrangpura Ward,Community Bin,150,680,Recyclable,2025-04-14,daily,Mithakhali Six Roads,29243,88,53,0,0,synthetic
+AMD-BIN-0002,AMD-Z-01,Navrangpura,23.039876,72.556984,Navrangpura Ward,Compactor Bin,1000,2500,Mixed,2021-12-31,daily,Sardar Patel Stadium Road,26672,78,49,0,1,synthetic
+AMD-BIN-0003,AMD-Z-01,Navrangpura,23.040237,72.561256,Navrangpura Ward,Community Bin,150,380,Mixed,2024-07-15,daily,Mithakhali Six Roads,28831,87,44,0,0,synthetic
+AMD-BIN-0004,AMD-Z-01,Navrangpura,23.041595,72.56157,Navrangpura Ward,Skip Container,1000,4550,Recyclable,2021-06-16,daily,Law Garden Corner,30677,80,49,1,0,synthetic
+AMD-BIN-0005,AMD-Z-01,Navrangpura,23.040839,72.558493,Navrangpura Ward,Community Bin,150,380,Mixed,2021-01-29,daily,Navrangpura Bus Stand,31930,89,59,1,0,synthetic
+AMD-BIN-0006,AMD-Z-01,Navrangpura,23.043398,72.55769,Navrangpura Ward,Litter Bin,150,270,Organic,2025-04-09,twice_daily,Navrangpura Bus Stand,29515,88,44,0,0,synthetic
+AMD-BIN-0007,AMD-Z-01,Navrangpura,23.037802,72.555329,Navrangpura Ward,Community Bin,500,910,Organic,2022-03-21,daily,Navrangpura Bus Stand,30550,84,60,0,0,synthetic
+AMD-BIN-0008,AMD-Z-01,Navrangpura,23.041883,72.559541,Navrangpura Ward,Skip Container,1000,2860,Commercial,2019-09-16,alternate_day,Mithakhali Six Roads,29073,84,54,0,0,synthetic
+AMD-BIN-0009,AMD-Z-01,Navrangpura,23.036323,72.555866,Navrangpura Ward,Skip Container,500,1430,Commercial,2022-07-18,alternate_day,Sardar Patel Stadium Road,25598,94,53,0,0,synthetic
+AMD-BIN-0010,AMD-Z-01,Navrangpura,23.037392,72.558174,Navrangpura Ward,Skip Container,500,1250,Mixed,2020-03-12,alternate_day,Gujarat University Gate,29521,86,51,0,1,synthetic
+AMD-BIN-0011,AMD-Z-01,Navrangpura,23.039079,72.560033,Navrangpura Ward,Community Bin,500,1250,Mixed,2024-07-07,twice_daily,Navrangpura Bus Stand,29279,92,51,0,0,synthetic
+AMD-BIN-0012,AMD-Z-01,Navrangpura,23.037512,72.560043,Navrangpura Ward,Community Bin,500,2270,Recyclable,2019-05-11,daily,Gujarat University Gate,28974,87,51,0,0,synthetic
+AMD-BIN-0013,AMD-Z-01,Navrangpura,23.034984,72.559825,Navrangpura Ward,Underground Bin,500,910,Organic,2020-01-11,daily,Mithakhali Six Roads,28328,76,57,0,1,synthetic
+AMD-BIN-0014,AMD-Z-01,Navrangpura,23.039167,72.556549,Navrangpura Ward,Litter Bin,150,600,Dry,2022-09-26,alternate_day,Mithakhali Six Roads,29332,87,42,0,0,synthetic
+AMD-BIN-0015,AMD-Z-01,Navrangpura,23.038176,72.559961,Navrangpura Ward,Skip Container,660,2640,Dry,2025-01-27,daily,Mithakhali Six Roads,22468,92,48,0,0,synthetic
+AMD-BIN-0016,AMD-Z-01,Navrangpura,23.038344,72.555056,Navrangpura Ward,Community Bin,150,270,Organic,2024-05-05,daily,Sardar Patel Stadium Road,25657,83,43,0,0,synthetic
+AMD-BIN-0017,AMD-Z-01,Navrangpura,23.042576,72.559546,Navrangpura Ward,Skip Container,660,1650,Mixed,2023-04-09,twice_daily,Law Garden Corner,29544,90,55,0,0,synthetic
+AMD-BIN-0018,AMD-Z-01,Navrangpura,23.040012,72.562569,Navrangpura Ward,Community Bin,150,600,Dry,2022-12-13,twice_daily,Sardar Patel Stadium Road,29181,99,48,0,0,synthetic
+AMD-BIN-0019,AMD-Z-01,Navrangpura,23.038872,72.554547,Navrangpura Ward,Community Bin,240,960,Dry,2024-12-31,daily,Navrangpura Bus Stand,32942,100,48,0,0,synthetic
+AMD-BIN-0020,AMD-Z-01,Navrangpura,23.034956,72.566432,Navrangpura Ward,Community Bin,500,1430,Commercial,2022-01-26,daily,Sardar Patel Stadium Road,30324,88,56,0,0,synthetic
+AMD-BIN-0021,AMD-Z-01,Navrangpura,23.042623,72.5632,Navrangpura Ward,Community Bin,150,430,Commercial,2019-02-05,twice_daily,Sardar Patel Stadium Road,27989,93,56,0,1,synthetic
+AMD-BIN-0022,AMD-Z-01,Navrangpura,23.045537,72.560199,Navrangpura Ward,Community Bin,500,910,Organic,2019-05-28,twice_daily,Navrangpura Bus Stand,32964,91,54,0,1,synthetic
+AMD-BIN-0023,AMD-Z-01,Navrangpura,23.037954,72.56085,Navrangpura Ward,Skip Container,240,960,Dry,2021-08-09,twice_daily,Mithakhali Six Roads,26438,89,45,0,1,synthetic
+AMD-BIN-0024,AMD-Z-02,Vastrapur,23.038156,72.528753,Vastrapur Ward,Community Bin,500,2000,Dry,2021-01-30,daily,Vastrapur Garden,23382,65,60,1,0,synthetic
+AMD-BIN-0025,AMD-Z-02,Vastrapur,23.036987,72.52377,Vastrapur Ward,Compactor Bin,660,1890,Commercial,2024-08-05,alternate_day,Mansi Circle,24298,64,66,0,0,synthetic
+AMD-BIN-0026,AMD-Z-02,Vastrapur,23.039214,72.529226,Vastrapur Ward,Twin Bin Set,150,270,Organic,2022-11-28,daily,Vastrapur Garden,25352,75,77,0,0,synthetic
+AMD-BIN-0027,AMD-Z-02,Vastrapur,23.031593,72.534913,Vastrapur Ward,Twin Bin Set,500,1250,Mixed,2023-09-27,daily,Vastrapur Lake Gate 2,19815,74,67,0,0,synthetic
+AMD-BIN-0028,AMD-Z-02,Vastrapur,23.035332,72.529628,Vastrapur Ward,Community Bin,240,600,Mixed,2019-06-26,twice_daily,IIM Ahmedabad Road,20324,77,58,0,0,synthetic
+AMD-BIN-0029,AMD-Z-02,Vastrapur,23.043101,72.527224,Vastrapur Ward,Skip Container,500,1250,Mixed,2024-09-16,daily,Mansi Circle,22537,79,66,0,1,synthetic
+AMD-BIN-0030,AMD-Z-02,Vastrapur,23.031688,72.525753,Vastrapur Ward,Community Bin,660,3000,Recyclable,2021-08-06,daily,Alpha One Mall Service Road,21107,70,71,0,0,synthetic
+AMD-BIN-0031,AMD-Z-02,Vastrapur,23.030835,72.526218,Vastrapur Ward,Community Bin,240,690,Commercial,2021-09-25,daily,IIM Ahmedabad Road,22578,71,66,0,0,synthetic
+AMD-BIN-0032,AMD-Z-02,Vastrapur,23.036235,72.532364,Vastrapur Ward,Community Bin,240,960,Dry,2021-05-30,daily,Vastrapur Garden,22492,77,70,0,0,synthetic
+AMD-BIN-0033,AMD-Z-02,Vastrapur,23.036898,72.534892,Vastrapur Ward,Community Bin,240,600,Mixed,2019-03-11,alternate_day,Alpha One Mall Service Road,26041,74,66,0,0,synthetic
+AMD-BIN-0034,AMD-Z-02,Vastrapur,23.034486,72.529394,Vastrapur Ward,Litter Bin,150,680,Recyclable,2022-04-23,daily,IIM Ahmedabad Road,23279,75,84,0,0,synthetic
+AMD-BIN-0035,AMD-Z-02,Vastrapur,23.036581,72.529481,Vastrapur Ward,Skip Container,240,600,Mixed,2019-04-19,alternate_day,IIM Ahmedabad Road,21916,78,64,0,0,synthetic
+AMD-BIN-0036,AMD-Z-02,Vastrapur,23.03469,72.529781,Vastrapur Ward,Community Bin,240,600,Mixed,2025-04-14,daily,Mansi Circle,23204,63,74,0,0,synthetic
+AMD-BIN-0037,AMD-Z-02,Vastrapur,23.03538,72.528647,Vastrapur Ward,Skip Container,240,600,Mixed,2021-12-27,daily,IIM Ahmedabad Road,24982,78,72,0,0,synthetic
+AMD-BIN-0038,AMD-Z-02,Vastrapur,23.034375,72.529888,Vastrapur Ward,Twin Bin Set,500,2000,Dry,2023-03-17,daily,Vastrapur Garden,23969,70,61,0,0,synthetic
+AMD-BIN-0039,AMD-Z-02,Vastrapur,23.038835,72.533145,Vastrapur Ward,Twin Bin Set,150,380,Mixed,2019-03-10,alternate_day,Vastrapur Lake Gate 2,24655,74,61,0,0,synthetic
+AMD-BIN-0040,AMD-Z-02,Vastrapur,23.042605,72.529964,Vastrapur Ward,Community Bin,240,600,Mixed,2022-08-03,daily,IIM Ahmedabad Road,23993,52,70,0,0,synthetic
+AMD-BIN-0041,AMD-Z-02,Vastrapur,23.031845,72.531484,Vastrapur Ward,Compactor Bin,1000,2860,Commercial,2024-01-24,daily,Alpha One Mall Service Road,24618,77,65,0,0,synthetic
+AMD-BIN-0042,AMD-Z-02,Vastrapur,23.035778,72.531906,Vastrapur Ward,Community Bin,500,2270,Recyclable,2021-07-12,alternate_day,Alpha One Mall Service Road,20451,71,65,1,0,synthetic
+AMD-BIN-0043,AMD-Z-02,Vastrapur,23.039616,72.528929,Vastrapur Ward,Skip Container,1000,2860,Commercial,2019-07-19,daily,Vastrapur Lake Gate 2,26388,80,70,0,0,synthetic
+AMD-BIN-0044,AMD-Z-02,Vastrapur,23.038218,72.523322,Vastrapur Ward,Litter Bin,150,270,Organic,2021-01-22,daily,Alpha One Mall Service Road,21055,69,73,0,1,synthetic
+AMD-BIN-0045,AMD-Z-03,Satellite,23.02519,72.514641,Satellite Ward,Underground Bin,240,1090,Recyclable,2020-06-19,twice_daily,Shyamal Cross Road,27134,80,67,0,0,synthetic
+AMD-BIN-0046,AMD-Z-03,Satellite,23.023895,72.513461,Satellite Ward,Community Bin,150,680,Recyclable,2025-02-04,twice_daily,Shivranjani Cross Road,26812,76,64,0,1,synthetic
+AMD-BIN-0047,AMD-Z-03,Satellite,23.029405,72.509974,Satellite Ward,Community Bin,500,1430,Commercial,2019-06-13,daily,Shivranjani Cross Road,24107,82,56,0,0,synthetic
+AMD-BIN-0048,AMD-Z-03,Satellite,23.033649,72.51714,Satellite Ward,Underground Bin,240,600,Mixed,2024-07-27,twice_daily,Shivranjani Cross Road,24338,79,67,0,0,synthetic
+AMD-BIN-0049,AMD-Z-03,Satellite,23.031519,72.506975,Satellite Ward,Skip Container,1000,2860,Commercial,2023-01-29,daily,Shyamal Cross Road,26073,80,74,1,0,synthetic
+AMD-BIN-0050,AMD-Z-03,Satellite,23.037288,72.512111,Satellite Ward,Twin Bin Set,500,2000,Dry,2024-12-11,daily,Shyamal Cross Road,28232,75,65,0,0,synthetic
+AMD-BIN-0051,AMD-Z-03,Satellite,23.035549,72.51272,Satellite Ward,Skip Container,1000,4000,Dry,2023-03-26,daily,Satellite Police Station,33406,79,57,0,0,synthetic
+AMD-BIN-0052,AMD-Z-03,Satellite,23.032773,72.505646,Satellite Ward,Skip Container,660,3000,Recyclable,2021-11-29,daily,Shivranjani Cross Road,22144,72,63,0,0,synthetic
+AMD-BIN-0053,AMD-Z-03,Satellite,23.026872,72.50129,Satellite Ward,Litter Bin,150,270,Organic,2022-10-24,twice_daily,Shyamal Cross Road,28096,72,39,0,0,synthetic
+AMD-BIN-0054,AMD-Z-03,Satellite,23.028282,72.507815,Satellite Ward,Twin Bin Set,500,2000,Dry,2024-02-20,daily,Satellite Police Station,28769,83,66,0,0,synthetic
+AMD-BIN-0055,AMD-Z-03,Satellite,23.02422,72.509766,Satellite Ward,Twin Bin Set,500,2000,Dry,2024-11-28,daily,Ramdev Nagar Circle,25556,82,62,0,0,synthetic
+AMD-BIN-0056,AMD-Z-03,Satellite,23.032223,72.510791,Satellite Ward,Twin Bin Set,150,600,Dry,2023-08-27,twice_daily,Satellite Police Station,28559,72,61,0,0,synthetic
+AMD-BIN-0057,AMD-Z-03,Satellite,23.03344,72.509059,Satellite Ward,Community Bin,500,910,Organic,2023-03-27,twice_daily,Satellite Police Station,28699,80,71,0,0,synthetic
+AMD-BIN-0058,AMD-Z-03,Satellite,23.03276,72.515579,Satellite Ward,Skip Container,660,3000,Recyclable,2022-07-11,daily,Jodhpur Char Rasta,26013,82,65,0,0,synthetic
+AMD-BIN-0059,AMD-Z-03,Satellite,23.024601,72.514793,Satellite Ward,Community Bin,500,1430,Commercial,2021-06-20,daily,Ramdev Nagar Circle,29027,83,64,0,0,synthetic
+AMD-BIN-0060,AMD-Z-03,Satellite,23.032084,72.508074,Satellite Ward,Community Bin,500,2000,Dry,2022-02-15,alternate_day,Jodhpur Char Rasta,28549,81,61,0,0,synthetic
+AMD-BIN-0061,AMD-Z-03,Satellite,23.027058,72.504581,Satellite Ward,Community Bin,500,1250,Mixed,2022-10-15,alternate_day,Shyamal Cross Road,26808,81,64,0,0,synthetic
+AMD-BIN-0062,AMD-Z-03,Satellite,23.034603,72.508607,Satellite Ward,Community Bin,500,2000,Dry,2020-03-19,daily,Satellite Police Station,27844,80,64,0,0,synthetic
+AMD-BIN-0063,AMD-Z-03,Satellite,23.030706,72.508799,Satellite Ward,Community Bin,500,2270,Recyclable,2022-03-31,twice_daily,Jodhpur Char Rasta,26731,83,71,0,0,synthetic
+AMD-BIN-0064,AMD-Z-03,Satellite,23.031223,72.509595,Satellite Ward,Twin Bin Set,500,2000,Dry,2019-02-07,daily,Shyamal Cross Road,26892,78,65,0,0,synthetic
+AMD-BIN-0065,AMD-Z-03,Satellite,23.031432,72.512755,Satellite Ward,Community Bin,240,600,Mixed,2021-04-27,twice_daily,Shyamal Cross Road,26163,83,63,0,1,synthetic
+AMD-BIN-0066,AMD-Z-03,Satellite,23.028541,72.510287,Satellite Ward,Litter Bin,150,430,Commercial,2021-11-03,daily,Shyamal Cross Road,21478,85,62,0,0,synthetic
+AMD-BIN-0067,AMD-Z-03,Satellite,23.029576,72.507227,Satellite Ward,Skip Container,500,2000,Dry,2019-12-03,twice_daily,Jodhpur Char Rasta,28947,84,62,1,0,synthetic
+AMD-BIN-0068,AMD-Z-04,Bodakdev,23.041939,72.508089,Bodakdev Ward,Skip Container,240,600,Mixed,2020-12-06,daily,Bodakdev Garden,23076,77,64,0,0,synthetic
+AMD-BIN-0069,AMD-Z-04,Bodakdev,23.040156,72.51003,Bodakdev Ward,Skip Container,240,960,Dry,2022-03-18,daily,Rajpath Club Road,23374,82,54,0,0,synthetic
+AMD-BIN-0070,AMD-Z-04,Bodakdev,23.039372,72.507488,Bodakdev Ward,Community Bin,240,960,Dry,2025-07-01,twice_daily,Bodakdev Garden,22581,87,53,0,0,synthetic
+AMD-BIN-0071,AMD-Z-04,Bodakdev,23.039386,72.507995,Bodakdev Ward,Litter Bin,150,430,Commercial,2021-12-27,twice_daily,Sindhu Bhavan Road,20185,73,57,0,0,synthetic
+AMD-BIN-0072,AMD-Z-04,Bodakdev,23.039417,72.509096,Bodakdev Ward,Twin Bin Set,150,380,Mixed,2020-03-14,daily,Sindhu Bhavan Road,25260,76,55,0,0,synthetic
+AMD-BIN-0073,AMD-Z-04,Bodakdev,23.041801,72.506989,Bodakdev Ward,Community Bin,240,600,Mixed,2025-04-18,twice_daily,Sindhu Bhavan Road,22260,75,61,0,0,synthetic
+AMD-BIN-0074,AMD-Z-04,Bodakdev,23.034141,72.513672,Bodakdev Ward,Community Bin,150,270,Organic,2021-06-18,twice_daily,Rajpath Club Road,21783,80,65,0,0,synthetic
+AMD-BIN-0075,AMD-Z-04,Bodakdev,23.039362,72.507224,Bodakdev Ward,Skip Container,660,1890,Commercial,2021-11-19,daily,Sindhu Bhavan Road,18802,63,57,0,1,synthetic
+AMD-BIN-0076,AMD-Z-04,Bodakdev,23.038735,72.51539,Bodakdev Ward,Twin Bin Set,240,1090,Recyclable,2019-09-12,daily,Sindhu Bhavan Road,25336,80,59,0,1,synthetic
+AMD-BIN-0077,AMD-Z-04,Bodakdev,23.036113,72.507385,Bodakdev Ward,Twin Bin Set,500,1250,Mixed,2019-05-24,twice_daily,Pakwan Cross Road,21758,84,62,0,0,synthetic
+AMD-BIN-0078,AMD-Z-04,Bodakdev,23.044372,72.506898,Bodakdev Ward,Community Bin,240,960,Dry,2023-08-05,daily,Rajpath Club Road,18433,86,67,0,0,synthetic
+AMD-BIN-0079,AMD-Z-04,Bodakdev,23.039913,72.51346,Bodakdev Ward,Community Bin,500,1430,Commercial,2022-05-08,twice_daily,Sindhu Bhavan Road,23804,73,67,0,0,synthetic
+AMD-BIN-0080,AMD-Z-04,Bodakdev,23.048224,72.504172,Bodakdev Ward,Skip Container,1000,4000,Dry,2021-07-05,twice_daily,Rajpath Club Road,18812,67,63,0,0,synthetic
+AMD-BIN-0081,AMD-Z-04,Bodakdev,23.037506,72.512462,Bodakdev Ward,Compactor Bin,660,3000,Recyclable,2020-11-10,alternate_day,Sindhu Bhavan Road,21164,80,55,1,0,synthetic
+AMD-BIN-0082,AMD-Z-04,Bodakdev,23.041789,72.51142,Bodakdev Ward,Skip Container,1000,1820,Organic,2022-04-23,daily,Thaltej Cross Road,20663,74,74,0,0,synthetic
+AMD-BIN-0083,AMD-Z-04,Bodakdev,23.03774,72.508543,Bodakdev Ward,Twin Bin Set,500,1250,Mixed,2020-01-17,twice_daily,Rajpath Club Road,22605,74,63,0,0,synthetic
+AMD-BIN-0084,AMD-Z-04,Bodakdev,23.039368,72.511331,Bodakdev Ward,Community Bin,240,600,Mixed,2021-03-26,twice_daily,Pakwan Cross Road,23378,73,68,0,0,synthetic
+AMD-BIN-0085,AMD-Z-04,Bodakdev,23.036712,72.508388,Bodakdev Ward,Skip Container,660,1890,Commercial,2021-09-07,daily,Bodakdev Garden,23835,76,63,0,0,synthetic
+AMD-BIN-0086,AMD-Z-04,Bodakdev,23.043382,72.508301,Bodakdev Ward,Twin Bin Set,150,430,Commercial,2025-06-24,alternate_day,Bodakdev Garden,18322,72,50,1,0,synthetic
+AMD-BIN-0087,AMD-Z-05,Prahlad Nagar,23.015621,72.507954,Prahlad Nagar Ward,Community Bin,240,960,Dry,2022-02-21,alternate_day,Venus Atlantis Road,20082,90,63,0,0,synthetic
+AMD-BIN-0088,AMD-Z-05,Prahlad Nagar,23.008963,72.50618,Prahlad Nagar Ward,Community Bin,500,1250,Mixed,2023-06-18,daily,Auda Garden Gate,26696,76,51,0,0,synthetic
+AMD-BIN-0089,AMD-Z-05,Prahlad Nagar,23.00292,72.510904,Prahlad Nagar Ward,Community Bin,150,680,Recyclable,2019-04-21,daily,Anandnagar Cross Road,20981,86,68,0,0,synthetic
+AMD-BIN-0090,AMD-Z-05,Prahlad Nagar,23.006766,72.507315,Prahlad Nagar Ward,Skip Container,240,690,Commercial,2023-02-21,twice_daily,Auda Garden Gate,21344,87,56,0,0,synthetic
+AMD-BIN-0091,AMD-Z-05,Prahlad Nagar,23.008179,72.501712,Prahlad Nagar Ward,Community Bin,150,430,Commercial,2023-08-31,twice_daily,Auda Garden Gate,24268,85,55,0,0,synthetic
+AMD-BIN-0092,AMD-Z-05,Prahlad Nagar,23.006649,72.508906,Prahlad Nagar Ward,Community Bin,150,380,Mixed,2023-01-27,daily,Anandnagar Cross Road,23337,100,52,0,0,synthetic
+AMD-BIN-0093,AMD-Z-05,Prahlad Nagar,23.007511,72.502832,Prahlad Nagar Ward,Community Bin,150,380,Mixed,2020-06-09,twice_daily,Auda Garden Gate,24143,96,75,1,0,synthetic
+AMD-BIN-0094,AMD-Z-05,Prahlad Nagar,23.009685,72.500886,Prahlad Nagar Ward,Twin Bin Set,500,1430,Commercial,2020-01-06,daily,Venus Atlantis Road,24203,88,47,0,0,synthetic
+AMD-BIN-0095,AMD-Z-05,Prahlad Nagar,23.005759,72.505753,Prahlad Nagar Ward,Skip Container,1000,2860,Commercial,2024-06-02,alternate_day,Satyamev Complex,26918,71,66,0,0,synthetic
+AMD-BIN-0096,AMD-Z-05,Prahlad Nagar,23.010149,72.515898,Prahlad Nagar Ward,Community Bin,660,1650,Mixed,2024-10-16,daily,Anandnagar Cross Road,27140,86,54,1,0,synthetic
+AMD-BIN-0097,AMD-Z-05,Prahlad Nagar,23.011535,72.502198,Prahlad Nagar Ward,Skip Container,500,1430,Commercial,2025-02-27,daily,Anandnagar Cross Road,26835,81,56,0,0,synthetic
+AMD-BIN-0098,AMD-Z-05,Prahlad Nagar,23.009745,72.507757,Prahlad Nagar Ward,Community Bin,500,1430,Commercial,2024-12-22,twice_daily,Auda Garden Gate,22373,89,57,0,0,synthetic
+AMD-BIN-0099,AMD-Z-05,Prahlad Nagar,23.015984,72.508432,Prahlad Nagar Ward,Twin Bin Set,150,600,Dry,2019-03-19,daily,Auda Garden Gate,23285,88,56,0,0,synthetic
+AMD-BIN-0100,AMD-Z-05,Prahlad Nagar,23.013995,72.50009,Prahlad Nagar Ward,Community Bin,500,1250,Mixed,2021-09-26,alternate_day,Venus Atlantis Road,23674,81,54,0,0,synthetic
+AMD-BIN-0101,AMD-Z-05,Prahlad Nagar,23.011373,72.507526,Prahlad Nagar Ward,Twin Bin Set,240,690,Commercial,2019-07-06,daily,Prahlad Nagar Garden,23516,78,63,0,0,synthetic
+AMD-BIN-0102,AMD-Z-05,Prahlad Nagar,23.008247,72.507517,Prahlad Nagar Ward,Community Bin,500,1430,Commercial,2025-05-21,daily,Auda Garden Gate,20708,100,54,0,0,synthetic
+AMD-BIN-0103,AMD-Z-05,Prahlad Nagar,23.006594,72.503296,Prahlad Nagar Ward,Twin Bin Set,500,1430,Commercial,2022-07-01,alternate_day,Prahlad Nagar Garden,22469,75,47,0,0,synthetic
+AMD-BIN-0104,AMD-Z-05,Prahlad Nagar,23.00664,72.511063,Prahlad Nagar Ward,Compactor Bin,660,1650,Mixed,2025-02-17,twice_daily,Auda Garden Gate,22577,85,53,0,0,synthetic
+AMD-BIN-0105,AMD-Z-05,Prahlad Nagar,23.008236,72.513641,Prahlad Nagar Ward,Twin Bin Set,240,960,Dry,2019-07-09,daily,Auda Garden Gate,22486,81,55,1,0,synthetic
+AMD-BIN-0106,AMD-Z-06,Thaltej,23.051421,72.503861,Thaltej Ward,Twin Bin Set,50,90,Organic,2019-10-11,daily,Thaltej Gam Chowk,17449,52,76,0,0,synthetic
+AMD-BIN-0107,AMD-Z-06,Thaltej,23.048786,72.506073,Thaltej Ward,Twin Bin Set,150,270,Organic,2021-11-20,daily,Thaltej Metro Station,22681,52,74,0,0,synthetic
+AMD-BIN-0108,AMD-Z-06,Thaltej,23.050433,72.506748,Thaltej Ward,Litter Bin,50,90,Organic,2022-09-22,daily,Thaltej Gam Chowk,18792,51,81,0,0,synthetic
+AMD-BIN-0109,AMD-Z-06,Thaltej,23.04975,72.505558,Thaltej Ward,Community Bin,150,380,Mixed,2023-02-16,daily,Thaltej Metro Station,18104,52,85,0,0,synthetic
+AMD-BIN-0110,AMD-Z-06,Thaltej,23.052119,72.50267,Thaltej Ward,Twin Bin Set,150,270,Organic,2023-03-23,daily,Zydus Hospital Road,23236,64,80,0,0,synthetic
+AMD-BIN-0111,AMD-Z-06,Thaltej,23.048976,72.509659,Thaltej Ward,Community Bin,240,440,Organic,2019-02-06,alternate_day,Drive In Road Junction,17312,55,77,0,0,synthetic
+AMD-BIN-0112,AMD-Z-06,Thaltej,23.050987,72.505795,Thaltej Ward,Litter Bin,150,270,Organic,2022-05-04,alternate_day,Thaltej Gam Chowk,19316,57,78,0,0,synthetic
+AMD-BIN-0113,AMD-Z-06,Thaltej,23.048787,72.509422,Thaltej Ward,Twin Bin Set,50,120,Mixed,2021-10-20,daily,Kargil Petrol Pump,18224,60,72,0,0,synthetic
+AMD-BIN-0114,AMD-Z-06,Thaltej,23.048877,72.501612,Thaltej Ward,Community Bin,100,180,Organic,2019-11-12,twice_daily,Thaltej Metro Station,22275,53,78,0,0,synthetic
+AMD-BIN-0115,AMD-Z-06,Thaltej,23.047845,72.505831,Thaltej Ward,Litter Bin,150,380,Mixed,2021-03-23,daily,Kargil Petrol Pump,21085,54,79,0,0,synthetic
+AMD-BIN-0116,AMD-Z-06,Thaltej,23.049521,72.504001,Thaltej Ward,Twin Bin Set,150,380,Mixed,2020-12-19,daily,Drive In Road Junction,20384,62,69,0,0,synthetic
+AMD-BIN-0117,AMD-Z-06,Thaltej,23.051302,72.509765,Thaltej Ward,Twin Bin Set,150,270,Organic,2020-08-04,twice_daily,Drive In Road Junction,20297,59,78,0,0,synthetic
+AMD-BIN-0118,AMD-Z-06,Thaltej,23.055474,72.503198,Thaltej Ward,Litter Bin,50,90,Organic,2020-12-16,alternate_day,Zydus Hospital Road,22146,55,76,0,0,synthetic
+AMD-BIN-0119,AMD-Z-06,Thaltej,23.047735,72.512408,Thaltej Ward,Litter Bin,50,90,Organic,2020-02-25,alternate_day,Thaltej Metro Station,18069,63,76,0,0,synthetic
+AMD-BIN-0120,AMD-Z-06,Thaltej,23.049717,72.508149,Thaltej Ward,Litter Bin,50,120,Mixed,2025-06-12,daily,Thaltej Gam Chowk,21511,53,75,0,1,synthetic
+AMD-BIN-0121,AMD-Z-06,Thaltej,23.04557,72.50506,Thaltej Ward,Litter Bin,100,290,Commercial,2019-08-03,daily,Drive In Road Junction,19403,48,86,0,1,synthetic
+AMD-BIN-0122,AMD-Z-06,Thaltej,23.055331,72.507394,Thaltej Ward,Litter Bin,150,600,Dry,2023-08-31,alternate_day,Zydus Hospital Road,16338,55,83,0,0,synthetic
+AMD-BIN-0123,AMD-Z-06,Thaltej,23.047493,72.501419,Thaltej Ward,Skip Container,240,960,Dry,2024-05-17,daily,Zydus Hospital Road,18936,54,74,0,0,synthetic
+AMD-BIN-0124,AMD-Z-07,Bopal,23.026313,72.471907,Bopal Ward,Litter Bin,100,180,Organic,2023-01-15,daily,Bopal Cross Road,14973,40,83,0,0,synthetic
+AMD-BIN-0125,AMD-Z-07,Bopal,23.029968,72.474078,Bopal Ward,Litter Bin,150,380,Mixed,2020-05-31,daily,South Bopal Circle,19084,30,87,0,0,synthetic
+AMD-BIN-0126,AMD-Z-07,Bopal,23.023628,72.474809,Bopal Ward,Community Bin,500,2000,Dry,2019-06-10,daily,Shela Road Junction,21486,38,84,0,0,synthetic
+AMD-BIN-0127,AMD-Z-07,Bopal,23.035233,72.470525,Bopal Ward,Community Bin,240,960,Dry,2025-05-01,daily,South Bopal Circle,17379,45,69,0,1,synthetic
+AMD-BIN-0128,AMD-Z-07,Bopal,23.025665,72.466295,Bopal Ward,Twin Bin Set,50,120,Mixed,2021-05-04,daily,South Bopal Circle,21945,54,83,0,0,synthetic
+AMD-BIN-0129,AMD-Z-07,Bopal,23.031663,72.468537,Bopal Ward,Litter Bin,50,120,Mixed,2023-04-28,daily,Shela Road Junction,17030,44,76,0,0,synthetic
+AMD-BIN-0130,AMD-Z-07,Bopal,23.03245,72.472583,Bopal Ward,Community Bin,150,680,Recyclable,2024-05-06,daily,Bopal Gam Panchayat,17342,45,78,0,0,synthetic
+AMD-BIN-0131,AMD-Z-07,Bopal,23.02698,72.467352,Bopal Ward,Community Bin,500,910,Organic,2019-03-18,daily,Aashray Society Gate,17808,53,75,0,0,synthetic
+AMD-BIN-0132,AMD-Z-07,Bopal,23.029909,72.47654,Bopal Ward,Litter Bin,50,120,Mixed,2020-05-06,twice_daily,South Bopal Circle,16380,41,84,0,0,synthetic
+AMD-BIN-0133,AMD-Z-07,Bopal,23.028835,72.473579,Bopal Ward,Community Bin,240,440,Organic,2021-04-08,daily,South Bopal Circle,17714,49,73,0,0,synthetic
+AMD-BIN-0134,AMD-Z-07,Bopal,23.029887,72.465564,Bopal Ward,Skip Container,500,1250,Mixed,2019-12-18,alternate_day,Bopal Gam Panchayat,22200,43,93,0,0,synthetic
+AMD-BIN-0135,AMD-Z-07,Bopal,23.030986,72.474096,Bopal Ward,Skip Container,500,2000,Dry,2020-05-06,daily,Bopal Gam Panchayat,16903,37,80,0,1,synthetic
+AMD-BIN-0136,AMD-Z-07,Bopal,23.028828,72.470821,Bopal Ward,Twin Bin Set,100,180,Organic,2019-03-26,twice_daily,Aashray Society Gate,18431,41,81,0,0,synthetic
+AMD-BIN-0137,AMD-Z-07,Bopal,23.034288,72.47403,Bopal Ward,Twin Bin Set,240,960,Dry,2024-02-07,daily,Bopal Cross Road,17113,41,86,0,0,synthetic
+AMD-BIN-0138,AMD-Z-07,Bopal,23.028991,72.469481,Bopal Ward,Litter Bin,50,90,Organic,2020-04-23,twice_daily,Bopal Cross Road,16352,40,83,1,0,synthetic
+AMD-BIN-0139,AMD-Z-07,Bopal,23.026584,72.470845,Bopal Ward,Litter Bin,150,600,Dry,2022-08-25,alternate_day,Bopal Gam Panchayat,16686,49,78,0,0,synthetic
+AMD-BIN-0140,AMD-Z-07,Bopal,23.027657,72.466025,Bopal Ward,Twin Bin Set,150,380,Mixed,2025-01-12,daily,South Bopal Circle,18054,43,80,0,1,synthetic
+AMD-BIN-0141,AMD-Z-08,Gota,23.099603,72.54237,Gota Ward,Community Bin,240,600,Mixed,2021-07-31,twice_daily,Gota Flyover,21865,44,92,0,0,synthetic
+AMD-BIN-0142,AMD-Z-08,Gota,23.09872,72.547542,Gota Ward,Skip Container,500,910,Organic,2019-08-19,daily,Gota Bridge,18513,47,86,0,0,synthetic
+AMD-BIN-0143,AMD-Z-08,Gota,23.099487,72.547451,Gota Ward,Twin Bin Set,500,1250,Mixed,2022-02-21,daily,Gota Cross Road,24965,49,85,0,0,synthetic
+AMD-BIN-0144,AMD-Z-08,Gota,23.104708,72.548258,Gota Ward,Skip Container,240,600,Mixed,2023-07-01,daily,Gota Bridge,21745,49,84,0,0,synthetic
+AMD-BIN-0145,AMD-Z-08,Gota,23.105757,72.545601,Gota Ward,Community Bin,500,1250,Mixed,2021-03-14,daily,Vandemataram Circle,20243,42,75,0,0,synthetic
+AMD-BIN-0146,AMD-Z-08,Gota,23.098093,72.549019,Gota Ward,Twin Bin Set,150,270,Organic,2019-05-05,alternate_day,Chandlodia Road Junction,19212,47,82,0,0,synthetic
+AMD-BIN-0147,AMD-Z-08,Gota,23.097372,72.544779,Gota Ward,Skip Container,500,2000,Dry,2022-05-01,twice_daily,Gota Flyover,21511,45,89,0,0,synthetic
+AMD-BIN-0148,AMD-Z-08,Gota,23.100905,72.539471,Gota Ward,Twin Bin Set,240,440,Organic,2024-11-18,daily,Gota Flyover,18841,37,89,0,0,synthetic
+AMD-BIN-0149,AMD-Z-08,Gota,23.10246,72.542095,Gota Ward,Litter Bin,100,400,Dry,2022-10-29,alternate_day,Gota Flyover,22164,51,93,0,1,synthetic
+AMD-BIN-0150,AMD-Z-08,Gota,23.104587,72.540522,Gota Ward,Litter Bin,100,180,Organic,2024-01-23,daily,Gota Cross Road,17328,50,75,0,0,synthetic
+AMD-BIN-0151,AMD-Z-08,Gota,23.103895,72.54374,Gota Ward,Community Bin,50,200,Dry,2023-11-26,alternate_day,Chandlodia Road Junction,18168,51,69,0,0,synthetic
+AMD-BIN-0152,AMD-Z-08,Gota,23.096666,72.545049,Gota Ward,Twin Bin Set,50,120,Mixed,2019-11-13,daily,Gota Flyover,20007,32,90,0,0,synthetic
+AMD-BIN-0153,AMD-Z-08,Gota,23.10112,72.538595,Gota Ward,Twin Bin Set,240,600,Mixed,2020-03-20,twice_daily,Gota Flyover,22194,46,77,0,0,synthetic
+AMD-BIN-0154,AMD-Z-08,Gota,23.102152,72.544153,Gota Ward,Twin Bin Set,150,600,Dry,2019-09-15,alternate_day,Vandemataram Circle,17882,39,79,0,0,synthetic
+AMD-BIN-0155,AMD-Z-08,Gota,23.101395,72.543241,Gota Ward,Litter Bin,100,290,Commercial,2022-02-23,daily,Gota Flyover,21376,50,82,0,0,synthetic
+AMD-BIN-0156,AMD-Z-08,Gota,23.097397,72.538365,Gota Ward,Skip Container,240,440,Organic,2020-10-09,daily,Gota Cross Road,17867,45,90,0,0,synthetic
+AMD-BIN-0157,AMD-Z-08,Gota,23.10004,72.546469,Gota Ward,Litter Bin,150,270,Organic,2021-10-18,alternate_day,Chandlodia Road Junction,18509,53,82,0,0,synthetic
+AMD-BIN-0158,AMD-Z-09,Chandkheda,23.111048,72.588534,Chandkheda Ward,Community Bin,500,1250,Mixed,2025-05-27,daily,Chandkheda Lake,24302,44,91,0,0,synthetic
+AMD-BIN-0159,AMD-Z-09,Chandkheda,23.111843,72.579518,Chandkheda Ward,Community Bin,240,600,Mixed,2025-07-27,daily,Chandkheda Gam Chowk,24151,41,91,0,0,synthetic
+AMD-BIN-0160,AMD-Z-09,Chandkheda,23.108868,72.576489,Chandkheda Ward,Twin Bin Set,150,600,Dry,2020-11-06,alternate_day,Chandkheda Lake,23575,49,81,0,0,synthetic
+AMD-BIN-0161,AMD-Z-09,Chandkheda,23.109202,72.579303,Chandkheda Ward,Litter Bin,150,380,Mixed,2019-08-03,alternate_day,Chandkheda Lake,27263,42,84,1,0,synthetic
+AMD-BIN-0162,AMD-Z-09,Chandkheda,23.113288,72.578837,Chandkheda Ward,Skip Container,500,1250,Mixed,2020-04-22,daily,Vishwakarma Circle,21985,51,91,0,0,synthetic
+AMD-BIN-0163,AMD-Z-09,Chandkheda,23.107697,72.57998,Chandkheda Ward,Community Bin,150,270,Organic,2023-02-23,daily,IOC Road Crossing,20215,50,86,0,1,synthetic
+AMD-BIN-0164,AMD-Z-09,Chandkheda,23.108612,72.579713,Chandkheda Ward,Community Bin,150,380,Mixed,2025-01-28,daily,Vishwakarma Circle,23654,45,97,0,0,synthetic
+AMD-BIN-0165,AMD-Z-09,Chandkheda,23.112127,72.582606,Chandkheda Ward,Litter Bin,50,90,Organic,2025-07-19,alternate_day,Vishwakarma Circle,26016,40,92,0,0,synthetic
+AMD-BIN-0166,AMD-Z-09,Chandkheda,23.113817,72.580154,Chandkheda Ward,Twin Bin Set,150,680,Recyclable,2020-03-24,alternate_day,Chandkheda Lake,21247,37,87,0,0,synthetic
+AMD-BIN-0167,AMD-Z-09,Chandkheda,23.105352,72.579756,Chandkheda Ward,Community Bin,150,600,Dry,2021-08-12,daily,Chandkheda Gam Chowk,17348,41,83,0,0,synthetic
+AMD-BIN-0168,AMD-Z-09,Chandkheda,23.109896,72.576487,Chandkheda Ward,Twin Bin Set,150,270,Organic,2021-11-15,alternate_day,Vishwakarma Circle,27720,38,88,0,0,synthetic
+AMD-BIN-0169,AMD-Z-09,Chandkheda,23.108517,72.580165,Chandkheda Ward,Skip Container,240,960,Dry,2020-10-26,twice_daily,IOC Road Crossing,25211,39,81,0,0,synthetic
+AMD-BIN-0170,AMD-Z-09,Chandkheda,23.111705,72.589599,Chandkheda Ward,Community Bin,500,1250,Mixed,2024-07-31,daily,Chandkheda Gam Chowk,22360,54,93,1,0,synthetic
+AMD-BIN-0171,AMD-Z-09,Chandkheda,23.108904,72.586064,Chandkheda Ward,Litter Bin,100,180,Organic,2024-09-11,daily,IOC Road Crossing,21530,57,83,1,0,synthetic
+AMD-BIN-0172,AMD-Z-09,Chandkheda,23.111616,72.579109,Chandkheda Ward,Twin Bin Set,150,270,Organic,2024-09-16,daily,Vishwakarma Circle,21407,57,100,0,0,synthetic
+AMD-BIN-0173,AMD-Z-09,Chandkheda,23.111661,72.586303,Chandkheda Ward,Twin Bin Set,100,180,Organic,2019-03-14,alternate_day,Vishwakarma Circle,25407,55,91,0,0,synthetic
+AMD-BIN-0174,AMD-Z-09,Chandkheda,23.113047,72.585596,Chandkheda Ward,Community Bin,240,1090,Recyclable,2025-04-06,daily,Vishwakarma Circle,18570,42,91,0,0,synthetic
+AMD-BIN-0175,AMD-Z-09,Chandkheda,23.114212,72.582056,Chandkheda Ward,Twin Bin Set,240,960,Dry,2021-02-03,daily,Chandkheda Gam Chowk,19199,48,80,0,0,synthetic
+AMD-BIN-0176,AMD-Z-10,Motera,23.105787,72.593227,Motera Ward,Underground Bin,240,440,Organic,2025-07-04,alternate_day,Sabarmati Riverfront North,18794,44,85,0,0,synthetic
+AMD-BIN-0177,AMD-Z-10,Motera,23.098299,72.589952,Motera Ward,Community Bin,150,380,Mixed,2023-09-24,alternate_day,Koteshwar Road,19262,56,81,1,1,synthetic
+AMD-BIN-0178,AMD-Z-10,Motera,23.100374,72.584022,Motera Ward,Community Bin,240,440,Organic,2024-12-14,daily,Motera Gam Chowk,19123,50,69,0,0,synthetic
+AMD-BIN-0179,AMD-Z-10,Motera,23.100325,72.585939,Motera Ward,Community Bin,100,250,Mixed,2024-02-28,alternate_day,Koteshwar Road,22971,61,81,0,0,synthetic
+AMD-BIN-0180,AMD-Z-10,Motera,23.099036,72.5912,Motera Ward,Litter Bin,150,270,Organic,2022-07-24,daily,Sabarmati Riverfront North,22577,50,79,0,0,synthetic
+AMD-BIN-0181,AMD-Z-10,Motera,23.102916,72.591866,Motera Ward,Twin Bin Set,50,200,Dry,2025-07-25,daily,Sabarmati Riverfront North,21992,51,70,0,0,synthetic
+AMD-BIN-0182,AMD-Z-10,Motera,23.098647,72.589004,Motera Ward,Skip Container,240,1090,Recyclable,2025-06-25,daily,Motera Gam Chowk,20392,64,82,0,0,synthetic
+AMD-BIN-0183,AMD-Z-10,Motera,23.099201,72.589627,Motera Ward,Community Bin,500,2000,Dry,2025-03-22,alternate_day,Motera Stadium Gate 3,23613,68,74,0,0,synthetic
+AMD-BIN-0184,AMD-Z-10,Motera,23.097292,72.592276,Motera Ward,Underground Bin,500,1250,Mixed,2020-12-18,daily,Koteshwar Road,20376,49,82,0,1,synthetic
+AMD-BIN-0185,AMD-Z-10,Motera,23.104009,72.592332,Motera Ward,Twin Bin Set,500,2000,Dry,2021-11-15,daily,Koteshwar Road,23535,60,80,0,0,synthetic
+AMD-BIN-0186,AMD-Z-10,Motera,23.098798,72.589341,Motera Ward,Twin Bin Set,50,90,Organic,2019-03-04,alternate_day,Motera Stadium Gate 3,15817,56,85,0,0,synthetic
+AMD-BIN-0187,AMD-Z-10,Motera,23.099657,72.592981,Motera Ward,Underground Bin,240,600,Mixed,2020-07-24,alternate_day,Koteshwar Road,23457,50,81,0,1,synthetic
+AMD-BIN-0188,AMD-Z-10,Motera,23.102308,72.587906,Motera Ward,Community Bin,150,270,Organic,2020-08-02,twice_daily,Motera Gam Chowk,20073,49,91,0,0,synthetic
+AMD-BIN-0189,AMD-Z-10,Motera,23.100735,72.585868,Motera Ward,Litter Bin,150,270,Organic,2024-10-12,daily,Visat Circle,27518,48,83,0,0,synthetic
+AMD-BIN-0190,AMD-Z-10,Motera,23.102824,72.590288,Motera Ward,Twin Bin Set,50,90,Organic,2023-06-01,daily,Visat Circle,21320,49,77,0,0,synthetic
+AMD-BIN-0191,AMD-Z-10,Motera,23.102425,72.58527,Motera Ward,Community Bin,500,1250,Mixed,2023-07-20,daily,Sabarmati Riverfront North,19048,56,70,0,0,synthetic
+AMD-BIN-0192,AMD-Z-10,Motera,23.099118,72.592847,Motera Ward,Twin Bin Set,50,120,Mixed,2024-07-20,daily,Koteshwar Road,20969,54,76,0,0,synthetic
+AMD-BIN-0193,AMD-Z-11,Maninagar,22.994648,72.598174,Maninagar Ward,Skip Container,500,1250,Mixed,2020-02-28,twice_daily,Krishnabaug Circle,36057,81,80,1,1,synthetic
+AMD-BIN-0194,AMD-Z-11,Maninagar,22.993059,72.598366,Maninagar Ward,Community Bin,500,910,Organic,2019-11-04,daily,Krishnabaug Circle,36070,75,66,1,0,synthetic
+AMD-BIN-0195,AMD-Z-11,Maninagar,22.997462,72.601164,Maninagar Ward,Skip Container,1000,4000,Dry,2024-05-30,daily,Kankaria Lake West Gate,31950,84,82,1,0,synthetic
+AMD-BIN-0196,AMD-Z-11,Maninagar,22.998685,72.598546,Maninagar Ward,Skip Container,1000,1820,Organic,2022-06-08,daily,Maninagar Railway Station,36828,78,71,1,0,synthetic
+AMD-BIN-0197,AMD-Z-11,Maninagar,22.998355,72.604328,Maninagar Ward,Twin Bin Set,150,430,Commercial,2021-07-16,twice_daily,Krishnabaug Circle,36107,81,83,1,0,synthetic
+AMD-BIN-0198,AMD-Z-11,Maninagar,22.995443,72.601868,Maninagar Ward,Community Bin,500,910,Organic,2022-01-02,twice_daily,Kankaria Lake West Gate,36164,85,64,1,0,synthetic
+AMD-BIN-0199,AMD-Z-11,Maninagar,22.993191,72.602574,Maninagar Ward,Skip Container,1000,1820,Organic,2022-08-03,twice_daily,Krishnabaug Circle,36075,76,66,1,0,synthetic
+AMD-BIN-0200,AMD-Z-11,Maninagar,22.997016,72.608194,Maninagar Ward,Compactor Bin,660,1650,Mixed,2023-10-17,daily,Rambaug Road,36601,76,70,1,0,synthetic
+AMD-BIN-0201,AMD-Z-11,Maninagar,22.992066,72.602319,Maninagar Ward,Twin Bin Set,240,600,Mixed,2023-02-02,daily,Maninagar Railway Station,38068,78,76,1,1,synthetic
+AMD-BIN-0202,AMD-Z-11,Maninagar,22.993006,72.601392,Maninagar Ward,Skip Container,1000,1820,Organic,2025-03-18,daily,Maninagar Railway Station,32798,90,71,1,0,synthetic
+AMD-BIN-0203,AMD-Z-11,Maninagar,22.997467,72.604958,Maninagar Ward,Skip Container,1000,2860,Commercial,2022-02-12,twice_daily,Maninagar Railway Station,35321,87,76,1,0,synthetic
+AMD-BIN-0204,AMD-Z-11,Maninagar,22.989467,72.603818,Maninagar Ward,Compactor Bin,660,1650,Mixed,2019-07-14,daily,Maninagar Railway Station,36487,98,71,1,0,synthetic
+AMD-BIN-0205,AMD-Z-11,Maninagar,23.000509,72.605366,Maninagar Ward,Community Bin,500,910,Organic,2020-09-13,twice_daily,Maninagar Railway Station,36513,72,70,1,0,synthetic
+AMD-BIN-0206,AMD-Z-11,Maninagar,22.997545,72.608843,Maninagar Ward,Skip Container,500,2000,Dry,2022-05-16,twice_daily,Maninagar Railway Station,40723,71,77,1,0,synthetic
+AMD-BIN-0207,AMD-Z-11,Maninagar,22.997605,72.604488,Maninagar Ward,Skip Container,500,910,Organic,2022-01-21,daily,Maninagar Market Gate,32126,89,72,1,1,synthetic
+AMD-BIN-0208,AMD-Z-11,Maninagar,22.998207,72.600754,Maninagar Ward,Underground Bin,500,1250,Mixed,2023-03-31,daily,Kankaria Lake West Gate,33026,79,76,1,0,synthetic
+AMD-BIN-0209,AMD-Z-11,Maninagar,22.997714,72.599706,Maninagar Ward,Underground Bin,500,910,Organic,2019-04-27,daily,Krishnabaug Circle,36158,81,72,1,0,synthetic
+AMD-BIN-0210,AMD-Z-11,Maninagar,22.992954,72.595301,Maninagar Ward,Underground Bin,240,440,Organic,2022-09-28,daily,Kankaria Lake West Gate,37780,78,72,1,1,synthetic
+AMD-BIN-0211,AMD-Z-11,Maninagar,22.995806,72.605016,Maninagar Ward,Litter Bin,150,270,Organic,2024-10-23,twice_daily,Maninagar Market Gate,36127,85,75,1,0,synthetic
+AMD-BIN-0212,AMD-Z-11,Maninagar,22.998323,72.605006,Maninagar Ward,Underground Bin,500,1430,Commercial,2020-02-16,daily,Maninagar Market Gate,35317,85,65,1,0,synthetic
+AMD-BIN-0213,AMD-Z-11,Maninagar,22.991944,72.599001,Maninagar Ward,Skip Container,1000,2500,Mixed,2025-04-25,daily,Maninagar Market Gate,37232,81,62,1,0,synthetic
+AMD-BIN-0214,AMD-Z-11,Maninagar,22.997043,72.604873,Maninagar Ward,Twin Bin Set,150,430,Commercial,2020-09-29,twice_daily,Maninagar Market Gate,31870,80,77,1,0,synthetic
+AMD-BIN-0215,AMD-Z-11,Maninagar,22.995267,72.602918,Maninagar Ward,Skip Container,660,1650,Mixed,2022-12-29,twice_daily,Rambaug Road,33814,80,69,1,0,synthetic
+AMD-BIN-0216,AMD-Z-12,Paldi,23.016175,72.565537,Paldi Ward,Litter Bin,50,120,Mixed,2021-05-19,twice_daily,Bhatta Circle,26181,68,92,0,0,synthetic
+AMD-BIN-0217,AMD-Z-12,Paldi,23.010469,72.565224,Paldi Ward,Twin Bin Set,150,270,Organic,2020-10-02,twice_daily,Paldi Bus Depot,26342,54,77,0,0,synthetic
+AMD-BIN-0218,AMD-Z-12,Paldi,23.017245,72.558306,Paldi Ward,Community Bin,500,2000,Dry,2023-11-24,daily,Sanskar Kendra,26053,55,77,0,0,synthetic
+AMD-BIN-0219,AMD-Z-12,Paldi,23.013429,72.554639,Paldi Ward,Litter Bin,100,250,Mixed,2020-10-22,alternate_day,Paldi Char Rasta,25634,64,85,0,0,synthetic
+AMD-BIN-0220,AMD-Z-12,Paldi,23.010612,72.561466,Paldi Ward,Community Bin,500,2000,Dry,2024-07-05,alternate_day,Paldi Bus Depot,26419,66,82,0,0,synthetic
+AMD-BIN-0221,AMD-Z-12,Paldi,23.012825,72.560778,Paldi Ward,Skip Container,500,1250,Mixed,2022-03-03,daily,Gujarat Vidyapith Road,24762,48,81,0,0,synthetic
+AMD-BIN-0222,AMD-Z-12,Paldi,23.01474,72.563978,Paldi Ward,Twin Bin Set,50,200,Dry,2024-01-27,alternate_day,Paldi Bus Depot,29775,48,88,0,0,synthetic
+AMD-BIN-0223,AMD-Z-12,Paldi,23.003669,72.563493,Paldi Ward,Twin Bin Set,240,440,Organic,2023-05-13,alternate_day,Sanskar Kendra,26608,57,85,0,0,synthetic
+AMD-BIN-0224,AMD-Z-12,Paldi,23.011065,72.561107,Paldi Ward,Twin Bin Set,500,1250,Mixed,2022-08-03,daily,Paldi Char Rasta,26257,54,82,0,0,synthetic
+AMD-BIN-0225,AMD-Z-12,Paldi,23.005852,72.566884,Paldi Ward,Litter Bin,150,270,Organic,2020-04-15,alternate_day,Paldi Bus Depot,24466,66,81,0,0,synthetic
+AMD-BIN-0226,AMD-Z-12,Paldi,23.015856,72.565112,Paldi Ward,Community Bin,240,960,Dry,2020-06-12,daily,Paldi Char Rasta,27792,52,83,0,1,synthetic
+AMD-BIN-0227,AMD-Z-12,Paldi,23.015544,72.563227,Paldi Ward,Community Bin,100,180,Organic,2023-02-21,daily,Gujarat Vidyapith Road,26967,48,88,0,0,synthetic
+AMD-BIN-0228,AMD-Z-12,Paldi,23.014045,72.562108,Paldi Ward,Litter Bin,150,270,Organic,2020-06-23,daily,Paldi Char Rasta,24738,54,83,0,0,synthetic
+AMD-BIN-0229,AMD-Z-12,Paldi,23.012231,72.562233,Paldi Ward,Community Bin,150,380,Mixed,2020-10-22,daily,Paldi Bus Depot,26961,47,81,0,0,synthetic
+AMD-BIN-0230,AMD-Z-12,Paldi,23.009036,72.564542,Paldi Ward,Community Bin,500,910,Organic,2019-03-28,alternate_day,Gujarat Vidyapith Road,30259,55,85,0,0,synthetic
+AMD-BIN-0231,AMD-Z-12,Paldi,23.011197,72.565011,Paldi Ward,Twin Bin Set,150,600,Dry,2022-05-08,alternate_day,Bhatta Circle,22708,62,78,0,0,synthetic
+AMD-BIN-0232,AMD-Z-12,Paldi,23.01423,72.560453,Paldi Ward,Community Bin,150,380,Mixed,2019-01-26,daily,Paldi Bus Depot,28525,45,82,0,0,synthetic
+AMD-BIN-0233,AMD-Z-13,Vasna,22.997082,72.553512,Vasna Ward,Community Bin,50,120,Mixed,2025-05-26,twice_daily,Vasna Bus Stand,25891,49,100,0,0,synthetic
+AMD-BIN-0234,AMD-Z-13,Vasna,23.002499,72.553497,Vasna Ward,Twin Bin Set,50,200,Dry,2022-07-11,alternate_day,Vasna Bus Stand,26578,44,86,0,0,synthetic
+AMD-BIN-0235,AMD-Z-13,Vasna,22.998829,72.549694,Vasna Ward,Community Bin,500,2000,Dry,2022-04-06,daily,Pushpakunj Circle,30828,41,100,0,1,synthetic
+AMD-BIN-0236,AMD-Z-13,Vasna,22.99897,72.554324,Vasna Ward,Community Bin,500,1250,Mixed,2020-01-07,daily,Vasna Bus Stand,27140,56,92,0,0,synthetic
+AMD-BIN-0237,AMD-Z-13,Vasna,22.996327,72.554281,Vasna Ward,Community Bin,100,250,Mixed,2021-09-14,alternate_day,Shreyas Crossing,25455,54,87,0,0,synthetic
+AMD-BIN-0238,AMD-Z-13,Vasna,23.001064,72.550631,Vasna Ward,Twin Bin Set,150,380,Mixed,2023-12-31,daily,Shreyas Crossing,30607,44,82,1,0,synthetic
+AMD-BIN-0239,AMD-Z-13,Vasna,23.000986,72.55621,Vasna Ward,Community Bin,100,250,Mixed,2023-04-19,daily,Shreyas Crossing,32197,56,77,0,0,synthetic
+AMD-BIN-0240,AMD-Z-13,Vasna,23.002243,72.551506,Vasna Ward,Litter Bin,100,180,Organic,2022-02-13,daily,Shreyas Crossing,31341,39,85,0,0,synthetic
+AMD-BIN-0241,AMD-Z-13,Vasna,23.002163,72.544785,Vasna Ward,Skip Container,500,1250,Mixed,2023-03-19,twice_daily,Vasna Barrage Road,27728,45,99,0,0,synthetic
+AMD-BIN-0242,AMD-Z-13,Vasna,22.992,72.553897,Vasna Ward,Twin Bin Set,150,380,Mixed,2020-10-18,daily,Pushpakunj Circle,30561,41,84,0,0,synthetic
+AMD-BIN-0243,AMD-Z-13,Vasna,22.994489,72.543744,Vasna Ward,Litter Bin,150,600,Dry,2020-12-23,daily,Vasna Bus Stand,27050,46,83,0,0,synthetic
+AMD-BIN-0244,AMD-Z-13,Vasna,22.999187,72.544974,Vasna Ward,Litter Bin,150,270,Organic,2020-10-21,alternate_day,Shreyas Crossing,32564,43,86,0,0,synthetic
+AMD-BIN-0245,AMD-Z-13,Vasna,23.000543,72.55149,Vasna Ward,Litter Bin,100,450,Recyclable,2024-11-19,alternate_day,Vasna Bus Stand,30336,55,81,1,0,synthetic
+AMD-BIN-0246,AMD-Z-13,Vasna,22.998927,72.547433,Vasna Ward,Twin Bin Set,150,380,Mixed,2019-03-07,twice_daily,Vasna Gam Chowk,29665,37,89,0,0,synthetic
+AMD-BIN-0247,AMD-Z-13,Vasna,22.998721,72.558032,Vasna Ward,Litter Bin,100,180,Organic,2022-04-23,daily,Vasna Bus Stand,31586,46,97,0,0,synthetic
+AMD-BIN-0248,AMD-Z-13,Vasna,22.994579,72.552329,Vasna Ward,Twin Bin Set,150,380,Mixed,2024-12-12,daily,Vasna Bus Stand,28217,43,93,0,0,synthetic
+AMD-BIN-0249,AMD-Z-13,Vasna,23.002697,72.54955,Vasna Ward,Skip Container,500,2000,Dry,2020-12-10,daily,Pushpakunj Circle,28716,53,95,0,0,synthetic
+AMD-BIN-0250,AMD-Z-14,Shahibaug,23.062867,72.588743,Shahibaug Ward,Underground Bin,240,600,Mixed,2021-05-16,daily,Shahibaug Circle,30643,63,76,0,0,synthetic
+AMD-BIN-0251,AMD-Z-14,Shahibaug,23.056719,72.590879,Shahibaug Ward,Twin Bin Set,500,1430,Commercial,2023-08-12,daily,Airport Road Junction,21792,68,78,0,0,synthetic
+AMD-BIN-0252,AMD-Z-14,Shahibaug,23.053967,72.591789,Shahibaug Ward,Skip Container,500,2270,Recyclable,2021-05-03,daily,Shahibaug Circle,26501,60,87,1,0,synthetic
+AMD-BIN-0253,AMD-Z-14,Shahibaug,23.054959,72.596499,Shahibaug Ward,Twin Bin Set,150,600,Dry,2019-03-17,alternate_day,Camp Hanuman Road,29951,65,68,0,0,synthetic
+AMD-BIN-0254,AMD-Z-14,Shahibaug,23.062156,72.591836,Shahibaug Ward,Compactor Bin,660,3000,Recyclable,2024-12-29,twice_daily,Shahibaug Circle,26065,60,67,1,0,synthetic
+AMD-BIN-0255,AMD-Z-14,Shahibaug,23.055938,72.593559,Shahibaug Ward,Community Bin,500,1250,Mixed,2022-04-07,daily,Airport Road Junction,25401,72,74,0,0,synthetic
+AMD-BIN-0256,AMD-Z-14,Shahibaug,23.054556,72.590745,Shahibaug Ward,Twin Bin Set,150,600,Dry,2021-03-07,twice_daily,Delhi Darwaja,24513,66,78,0,0,synthetic
+AMD-BIN-0257,AMD-Z-14,Shahibaug,23.055391,72.596473,Shahibaug Ward,Twin Bin Set,500,1250,Mixed,2019-04-28,daily,Delhi Darwaja,25763,48,89,0,1,synthetic
+AMD-BIN-0258,AMD-Z-14,Shahibaug,23.05746,72.58702,Shahibaug Ward,Underground Bin,500,2000,Dry,2025-05-05,daily,Shahibaug Circle,25104,66,85,0,1,synthetic
+AMD-BIN-0259,AMD-Z-14,Shahibaug,23.056936,72.596967,Shahibaug Ward,Skip Container,500,1250,Mixed,2020-10-20,daily,Camp Hanuman Road,28878,59,76,0,0,synthetic
+AMD-BIN-0260,AMD-Z-14,Shahibaug,23.052378,72.592484,Shahibaug Ward,Community Bin,500,1250,Mixed,2020-11-30,daily,Airport Road Junction,25225,64,65,0,0,synthetic
+AMD-BIN-0261,AMD-Z-14,Shahibaug,23.054297,72.595351,Shahibaug Ward,Community Bin,500,1430,Commercial,2021-09-20,twice_daily,Camp Hanuman Road,27467,61,67,0,0,synthetic
+AMD-BIN-0262,AMD-Z-14,Shahibaug,23.061627,72.593475,Shahibaug Ward,Skip Container,660,1200,Organic,2022-10-22,daily,Airport Road Junction,27417,58,77,0,0,synthetic
+AMD-BIN-0263,AMD-Z-14,Shahibaug,23.059072,72.59166,Shahibaug Ward,Skip Container,500,2000,Dry,2021-03-02,daily,Shahibaug Circle,26144,63,83,0,0,synthetic
+AMD-BIN-0264,AMD-Z-14,Shahibaug,23.051607,72.591265,Shahibaug Ward,Skip Container,500,2270,Recyclable,2023-04-24,daily,Delhi Darwaja,28538,65,73,0,0,synthetic
+AMD-BIN-0265,AMD-Z-14,Shahibaug,23.055399,72.591325,Shahibaug Ward,Community Bin,1000,1820,Organic,2021-04-02,twice_daily,Delhi Darwaja,26843,69,90,0,0,synthetic
+AMD-BIN-0266,AMD-Z-15,Naranpura,23.051817,72.560424,Naranpura Ward,Community Bin,150,270,Organic,2019-06-10,daily,Naranpura Telephone Exchange,31235,56,82,0,0,synthetic
+AMD-BIN-0267,AMD-Z-15,Naranpura,23.061886,72.559174,Naranpura Ward,Litter Bin,50,120,Mixed,2020-08-04,alternate_day,Vijay Cross Road,31745,58,79,0,0,synthetic
+AMD-BIN-0268,AMD-Z-15,Naranpura,23.053661,72.558524,Naranpura Ward,Twin Bin Set,100,180,Organic,2024-03-06,twice_daily,Naranpura Telephone Exchange,29459,67,83,0,0,synthetic
+AMD-BIN-0269,AMD-Z-15,Naranpura,23.055472,72.56022,Naranpura Ward,Community Bin,50,140,Commercial,2021-07-03,alternate_day,Naranpura Cross Road,28075,53,80,0,1,synthetic
+AMD-BIN-0270,AMD-Z-15,Naranpura,23.052201,72.55907,Naranpura Ward,Community Bin,150,380,Mixed,2023-07-15,daily,Naranpura Cross Road,30749,60,87,0,0,synthetic
+AMD-BIN-0271,AMD-Z-15,Naranpura,23.056297,72.559034,Naranpura Ward,Underground Bin,240,440,Organic,2024-11-15,daily,Naranpura Cross Road,28067,60,88,0,0,synthetic
+AMD-BIN-0272,AMD-Z-15,Naranpura,23.059904,72.55113,Naranpura Ward,Underground Bin,240,440,Organic,2022-01-17,twice_daily,Vijay Cross Road,31019,62,82,0,0,synthetic
+AMD-BIN-0273,AMD-Z-15,Naranpura,23.056141,72.550931,Naranpura Ward,Litter Bin,100,400,Dry,2020-09-29,daily,Naranpura Telephone Exchange,30341,61,94,0,0,synthetic
+AMD-BIN-0274,AMD-Z-15,Naranpura,23.055686,72.557166,Naranpura Ward,Community Bin,100,250,Mixed,2022-12-21,daily,Akhbar Nagar Circle,31650,54,86,0,0,synthetic
+AMD-BIN-0275,AMD-Z-15,Naranpura,23.052278,72.555117,Naranpura Ward,Litter Bin,50,120,Mixed,2019-07-19,daily,Vijay Cross Road,29695,66,90,0,0,synthetic
+AMD-BIN-0276,AMD-Z-15,Naranpura,23.059819,72.556905,Naranpura Ward,Litter Bin,50,120,Mixed,2022-05-16,daily,Naranpura Garden,27388,49,85,0,1,synthetic
+AMD-BIN-0277,AMD-Z-15,Naranpura,23.055148,72.558573,Naranpura Ward,Twin Bin Set,150,380,Mixed,2025-05-25,alternate_day,Naranpura Cross Road,25621,54,91,0,0,synthetic
+AMD-BIN-0278,AMD-Z-15,Naranpura,23.059159,72.552474,Naranpura Ward,Twin Bin Set,50,230,Recyclable,2019-02-17,alternate_day,Naranpura Garden,27595,69,87,0,0,synthetic
+AMD-BIN-0279,AMD-Z-15,Naranpura,23.056616,72.557694,Naranpura Ward,Community Bin,100,250,Mixed,2022-07-19,daily,Naranpura Garden,33613,56,94,0,0,synthetic
+AMD-BIN-0280,AMD-Z-15,Naranpura,23.058074,72.560771,Naranpura Ward,Twin Bin Set,50,120,Mixed,2023-06-14,daily,Naranpura Garden,28558,52,89,0,0,synthetic
+AMD-BIN-0281,AMD-Z-15,Naranpura,23.053752,72.561378,Naranpura Ward,Community Bin,500,1250,Mixed,2023-10-31,daily,Naranpura Cross Road,26398,57,86,0,0,synthetic
+AMD-BIN-0282,AMD-Z-15,Naranpura,23.058719,72.557356,Naranpura Ward,Skip Container,500,2000,Dry,2023-12-20,daily,Akhbar Nagar Circle,29570,65,83,0,1,synthetic
+AMD-BIN-0283,AMD-Z-16,Memnagar,23.05587,72.54689,Memnagar Ward,Twin Bin Set,150,270,Organic,2021-05-29,alternate_day,Memnagar Gam Chowk,22703,58,81,0,0,synthetic
+AMD-BIN-0284,AMD-Z-16,Memnagar,23.055547,72.541188,Memnagar Ward,Community Bin,150,380,Mixed,2022-12-22,alternate_day,Helmet Circle,26729,64,66,0,0,synthetic
+AMD-BIN-0285,AMD-Z-16,Memnagar,23.054967,72.540093,Memnagar Ward,Twin Bin Set,150,380,Mixed,2021-08-05,twice_daily,Nirnay Nagar Road,26654,46,85,0,0,synthetic
+AMD-BIN-0286,AMD-Z-16,Memnagar,23.060854,72.541223,Memnagar Ward,Community Bin,150,270,Organic,2021-09-23,daily,Ankur Cross Road,24727,48,82,0,0,synthetic
+AMD-BIN-0287,AMD-Z-16,Memnagar,23.059898,72.541855,Memnagar Ward,Twin Bin Set,240,440,Organic,2023-04-19,twice_daily,Helmet Circle,26304,57,66,0,0,synthetic
+AMD-BIN-0288,AMD-Z-16,Memnagar,23.056782,72.546118,Memnagar Ward,Twin Bin Set,240,440,Organic,2020-08-17,daily,Ankur Cross Road,27410,49,80,0,0,synthetic
+AMD-BIN-0289,AMD-Z-16,Memnagar,23.061733,72.546713,Memnagar Ward,Twin Bin Set,240,600,Mixed,2021-04-20,daily,Memnagar Fire Station,28323,64,74,0,0,synthetic
+AMD-BIN-0290,AMD-Z-16,Memnagar,23.053843,72.543912,Memnagar Ward,Community Bin,240,690,Commercial,2023-03-29,alternate_day,Helmet Circle,24782,63,90,0,0,synthetic
+AMD-BIN-0291,AMD-Z-16,Memnagar,23.057471,72.541199,Memnagar Ward,Skip Container,240,600,Mixed,2022-06-16,alternate_day,Memnagar Gam Chowk,29633,55,85,0,0,synthetic
+AMD-BIN-0292,AMD-Z-16,Memnagar,23.051965,72.551231,Memnagar Ward,Twin Bin Set,150,270,Organic,2024-11-30,daily,Memnagar Gam Chowk,22560,53,85,0,0,synthetic
+AMD-BIN-0293,AMD-Z-16,Memnagar,23.058769,72.544172,Memnagar Ward,Skip Container,240,960,Dry,2023-07-31,alternate_day,Ankur Cross Road,28292,49,88,0,0,synthetic
+AMD-BIN-0294,AMD-Z-16,Memnagar,23.059256,72.547513,Memnagar Ward,Underground Bin,500,1250,Mixed,2019-06-12,alternate_day,Ankur Cross Road,29031,54,84,0,1,synthetic
+AMD-BIN-0295,AMD-Z-16,Memnagar,23.055428,72.544275,Memnagar Ward,Litter Bin,150,380,Mixed,2024-12-07,twice_daily,Helmet Circle,26524,56,80,0,0,synthetic
+AMD-BIN-0296,AMD-Z-16,Memnagar,23.057488,72.545844,Memnagar Ward,Litter Bin,150,380,Mixed,2024-09-25,daily,Helmet Circle,28531,51,75,0,0,synthetic
+AMD-BIN-0297,AMD-Z-16,Memnagar,23.060339,72.548122,Memnagar Ward,Community Bin,240,960,Dry,2019-09-10,alternate_day,Ankur Cross Road,24027,50,83,0,0,synthetic
+AMD-BIN-0298,AMD-Z-16,Memnagar,23.057432,72.539533,Memnagar Ward,Skip Container,240,600,Mixed,2020-02-03,alternate_day,Memnagar Fire Station,25992,55,94,0,0,synthetic
+AMD-BIN-0299,AMD-Z-17,Isanpur,22.980816,72.604064,Isanpur Ward,Twin Bin Set,100,250,Mixed,2019-02-22,twice_daily,Isanpur Lake,33478,50,95,0,0,synthetic
+AMD-BIN-0300,AMD-Z-17,Isanpur,22.977319,72.607799,Isanpur Ward,Twin Bin Set,150,270,Organic,2025-01-23,daily,Isanpur Bus Stand,30682,44,79,1,0,synthetic
+AMD-BIN-0301,AMD-Z-17,Isanpur,22.97902,72.608441,Isanpur Ward,Twin Bin Set,100,180,Organic,2019-09-15,daily,Ghodasar Circle,32227,50,91,0,0,synthetic
+AMD-BIN-0302,AMD-Z-17,Isanpur,22.977064,72.611128,Isanpur Ward,Twin Bin Set,150,600,Dry,2019-12-03,daily,Ghodasar Circle,32740,39,82,0,0,synthetic
+AMD-BIN-0303,AMD-Z-17,Isanpur,22.974497,72.611313,Isanpur Ward,Litter Bin,150,380,Mixed,2021-04-03,daily,Isanpur Lake,33534,47,85,0,0,synthetic
+AMD-BIN-0304,AMD-Z-17,Isanpur,22.973083,72.605538,Isanpur Ward,Twin Bin Set,150,600,Dry,2021-11-30,daily,Narol Road Junction,35432,40,79,0,0,synthetic
+AMD-BIN-0305,AMD-Z-17,Isanpur,22.979498,72.60908,Isanpur Ward,Twin Bin Set,240,690,Commercial,2020-06-23,alternate_day,Narol Road Junction,27852,36,95,0,1,synthetic
+AMD-BIN-0306,AMD-Z-17,Isanpur,22.973608,72.605319,Isanpur Ward,Litter Bin,150,430,Commercial,2024-11-11,daily,Isanpur Cross Road,34121,46,83,0,0,synthetic
+AMD-BIN-0307,AMD-Z-17,Isanpur,22.977021,72.605662,Isanpur Ward,Skip Container,500,1250,Mixed,2024-03-06,twice_daily,Narol Road Junction,29001,42,78,0,0,synthetic
+AMD-BIN-0308,AMD-Z-17,Isanpur,22.974788,72.611902,Isanpur Ward,Twin Bin Set,50,90,Organic,2024-01-24,alternate_day,Narol Road Junction,34745,41,86,0,0,synthetic
+AMD-BIN-0309,AMD-Z-17,Isanpur,22.978716,72.605506,Isanpur Ward,Skip Container,500,1250,Mixed,2020-01-29,daily,Isanpur Cross Road,29934,36,89,0,0,synthetic
+AMD-BIN-0310,AMD-Z-17,Isanpur,22.980511,72.609434,Isanpur Ward,Community Bin,150,380,Mixed,2021-06-11,alternate_day,Isanpur Bus Stand,26245,50,96,0,0,synthetic
+AMD-BIN-0311,AMD-Z-17,Isanpur,22.977163,72.614595,Isanpur Ward,Skip Container,240,440,Organic,2023-05-20,twice_daily,Narol Road Junction,34023,47,85,0,0,synthetic
+AMD-BIN-0312,AMD-Z-17,Isanpur,22.976317,72.607843,Isanpur Ward,Twin Bin Set,240,600,Mixed,2021-03-17,daily,Isanpur Lake,29291,43,92,0,0,synthetic
+AMD-BIN-0313,AMD-Z-17,Isanpur,22.977899,72.611515,Isanpur Ward,Twin Bin Set,150,270,Organic,2020-12-19,daily,Isanpur Bus Stand,31079,39,92,0,0,synthetic
+AMD-BIN-0314,AMD-Z-17,Isanpur,22.979095,72.609149,Isanpur Ward,Litter Bin,150,600,Dry,2019-01-25,alternate_day,Isanpur Lake,29755,35,87,0,0,synthetic
+AMD-BIN-0315,AMD-Z-18,Nikol,23.045597,72.663872,Nikol Ward,Litter Bin,150,600,Dry,2025-01-09,daily,Bapunagar Link Road,34006,51,90,0,0,synthetic
+AMD-BIN-0316,AMD-Z-18,Nikol,23.047898,72.670804,Nikol Ward,Community Bin,150,270,Organic,2022-04-07,daily,Nikol Lake Garden,36390,52,97,0,1,synthetic
+AMD-BIN-0317,AMD-Z-18,Nikol,23.04648,72.663876,Nikol Ward,Twin Bin Set,500,910,Organic,2020-05-02,daily,Haridarshan Circle,36308,47,89,0,1,synthetic
+AMD-BIN-0318,AMD-Z-18,Nikol,23.047055,72.666529,Nikol Ward,Litter Bin,150,380,Mixed,2020-07-09,twice_daily,Bapunagar Link Road,34046,47,85,0,0,synthetic
+AMD-BIN-0319,AMD-Z-18,Nikol,23.04388,72.663846,Nikol Ward,Twin Bin Set,150,270,Organic,2022-11-24,alternate_day,Nikol Gam Chowk,36432,37,94,0,0,synthetic
+AMD-BIN-0320,AMD-Z-18,Nikol,23.044179,72.663725,Nikol Ward,Twin Bin Set,240,960,Dry,2021-04-18,daily,Bapunagar Link Road,36962,39,92,0,0,synthetic
+AMD-BIN-0321,AMD-Z-18,Nikol,23.045267,72.661968,Nikol Ward,Twin Bin Set,240,960,Dry,2021-01-19,daily,Nikol Gam Chowk,35768,55,96,0,0,synthetic
+AMD-BIN-0322,AMD-Z-18,Nikol,23.049561,72.663129,Nikol Ward,Twin Bin Set,150,680,Recyclable,2025-06-28,twice_daily,Nikol Gam Chowk,33221,50,79,0,0,synthetic
+AMD-BIN-0323,AMD-Z-18,Nikol,23.048356,72.663777,Nikol Ward,Twin Bin Set,240,960,Dry,2024-10-02,alternate_day,Bapunagar Link Road,34804,47,75,0,0,synthetic
+AMD-BIN-0324,AMD-Z-18,Nikol,23.044336,72.666279,Nikol Ward,Community Bin,240,600,Mixed,2024-05-26,daily,Nikol Ring Road Junction,40009,43,85,1,0,synthetic
+AMD-BIN-0325,AMD-Z-18,Nikol,23.045283,72.658441,Nikol Ward,Community Bin,100,400,Dry,2025-04-22,daily,Nikol Lake Garden,30740,51,83,0,0,synthetic
+AMD-BIN-0326,AMD-Z-18,Nikol,23.044772,72.665154,Nikol Ward,Community Bin,240,440,Organic,2021-08-16,alternate_day,Bapunagar Link Road,37925,42,97,0,0,synthetic
+AMD-BIN-0327,AMD-Z-18,Nikol,23.042319,72.658905,Nikol Ward,Litter Bin,150,600,Dry,2019-12-22,alternate_day,Nikol Lake Garden,32631,48,90,0,0,synthetic
+AMD-BIN-0328,AMD-Z-18,Nikol,23.050063,72.667443,Nikol Ward,Community Bin,500,1250,Mixed,2022-07-22,daily,Nikol Lake Garden,33571,51,90,0,0,synthetic
+AMD-BIN-0329,AMD-Z-18,Nikol,23.050504,72.661816,Nikol Ward,Skip Container,500,910,Organic,2023-12-25,twice_daily,Nikol Ring Road Junction,29981,55,96,0,1,synthetic
+AMD-BIN-0330,AMD-Z-18,Nikol,23.050649,72.660673,Nikol Ward,Underground Bin,500,2000,Dry,2022-10-15,daily,Haridarshan Circle,33210,67,94,0,0,synthetic
+AMD-BIN-0331,AMD-Z-18,Nikol,23.04955,72.662986,Nikol Ward,Community Bin,240,440,Organic,2019-10-01,alternate_day,Nikol Lake Garden,35008,48,80,0,0,synthetic
+AMD-BIN-0332,AMD-Z-18,Nikol,23.042679,72.667041,Nikol Ward,Underground Bin,500,1250,Mixed,2019-09-10,alternate_day,Nikol Ring Road Junction,32365,56,91,0,1,synthetic
+AMD-BIN-0333,AMD-Z-19,Vastral,23.004556,72.66232,Vastral Ward,Twin Bin Set,500,1250,Mixed,2021-03-17,daily,Vastral Ring Road,33536,49,70,0,0,synthetic
+AMD-BIN-0334,AMD-Z-19,Vastral,23.011375,72.658669,Vastral Ward,Twin Bin Set,150,380,Mixed,2020-02-01,twice_daily,Vastral Lake,34646,42,97,0,0,synthetic
+AMD-BIN-0335,AMD-Z-19,Vastral,23.004686,72.659502,Vastral Ward,Litter Bin,150,380,Mixed,2020-04-15,daily,Vastral Metro Station,36562,49,86,0,0,synthetic
+AMD-BIN-0336,AMD-Z-19,Vastral,23.01301,72.656326,Vastral Ward,Litter Bin,100,400,Dry,2020-12-22,daily,Odhav Link Road,29255,40,97,0,1,synthetic
+AMD-BIN-0337,AMD-Z-19,Vastral,23.007175,72.66026,Vastral Ward,Litter Bin,150,600,Dry,2019-02-28,daily,Vastral Lake,32354,47,88,0,0,synthetic
+AMD-BIN-0338,AMD-Z-19,Vastral,23.009704,72.660566,Vastral Ward,Twin Bin Set,240,600,Mixed,2025-07-02,daily,Vastral Lake,31149,51,100,0,0,synthetic
+AMD-BIN-0339,AMD-Z-19,Vastral,23.012551,72.655446,Vastral Ward,Community Bin,500,2270,Recyclable,2019-03-06,alternate_day,Vastral Ring Road,30289,49,80,0,1,synthetic
+AMD-BIN-0340,AMD-Z-19,Vastral,23.010371,72.65975,Vastral Ward,Litter Bin,100,250,Mixed,2022-04-21,alternate_day,Vastral Ring Road,33900,36,92,0,0,synthetic
+AMD-BIN-0341,AMD-Z-19,Vastral,23.013822,72.666188,Vastral Ward,Litter Bin,150,380,Mixed,2019-03-27,twice_daily,Vastral Lake,30599,49,93,0,0,synthetic
+AMD-BIN-0342,AMD-Z-19,Vastral,23.011998,72.65896,Vastral Ward,Community Bin,150,380,Mixed,2025-01-10,daily,Vastral Lake,32646,51,92,0,0,synthetic
+AMD-BIN-0343,AMD-Z-19,Vastral,23.002662,72.654794,Vastral Ward,Community Bin,100,180,Organic,2023-11-03,daily,Vastral Lake,31575,48,85,0,0,synthetic
+AMD-BIN-0344,AMD-Z-19,Vastral,23.012044,72.657948,Vastral Ward,Community Bin,500,910,Organic,2023-02-27,daily,Vastral Lake,34350,51,90,0,0,synthetic
+AMD-BIN-0345,AMD-Z-19,Vastral,23.007312,72.667468,Vastral Ward,Litter Bin,150,270,Organic,2021-08-16,daily,Vastral Metro Station,30449,60,96,0,0,synthetic
+AMD-BIN-0346,AMD-Z-19,Vastral,23.005401,72.653738,Vastral Ward,Community Bin,240,600,Mixed,2022-02-07,daily,Vastral Lake,33525,53,90,0,1,synthetic
+AMD-BIN-0347,AMD-Z-19,Vastral,23.014942,72.661891,Vastral Ward,Community Bin,500,910,Organic,2019-09-09,alternate_day,Vastral Lake,33437,42,81,0,1,synthetic
+AMD-BIN-0348,AMD-Z-19,Vastral,23.007328,72.663382,Vastral Ward,Community Bin,50,90,Organic,2020-06-15,daily,Vastral Metro Station,31031,50,83,0,0,synthetic
+AMD-BIN-0349,AMD-Z-19,Vastral,23.013901,72.664481,Vastral Ward,Community Bin,240,600,Mixed,2023-08-25,daily,Vastral Ring Road,31385,49,90,0,0,synthetic
+AMD-BIN-0350,AMD-Z-20,Naroda,23.073286,72.660977,Naroda Ward,Compactor Bin,660,1650,Mixed,2020-01-07,twice_daily,Naroda Market Yard,27249,78,64,1,0,synthetic
+AMD-BIN-0351,AMD-Z-20,Naroda,23.067998,72.665197,Naroda Ward,Twin Bin Set,500,1430,Commercial,2019-08-26,twice_daily,Naroda Patiya Circle,30496,74,62,1,0,synthetic
+AMD-BIN-0352,AMD-Z-20,Naroda,23.075398,72.659221,Naroda Ward,Community Bin,500,2270,Recyclable,2021-04-22,daily,Naroda Market Yard,33803,71,65,1,0,synthetic
+AMD-BIN-0353,AMD-Z-20,Naroda,23.07432,72.667106,Naroda Ward,Litter Bin,150,270,Organic,2023-10-12,twice_daily,Naroda Bus Stand,30174,65,74,0,0,synthetic
+AMD-BIN-0354,AMD-Z-20,Naroda,23.072439,72.656769,Naroda Ward,Twin Bin Set,500,2270,Recyclable,2021-11-28,daily,Naroda Patiya Circle,29096,69,62,1,0,synthetic
+AMD-BIN-0355,AMD-Z-20,Naroda,23.068839,72.654447,Naroda Ward,Skip Container,660,1200,Organic,2024-08-01,daily,Naroda Patiya Circle,33920,67,63,0,0,synthetic
+AMD-BIN-0356,AMD-Z-20,Naroda,23.061381,72.656791,Naroda Ward,Litter Bin,150,380,Mixed,2023-10-03,twice_daily,Naroda GIDC Gate 1,29583,62,63,1,0,synthetic
+AMD-BIN-0357,AMD-Z-20,Naroda,23.070588,72.658677,Naroda Ward,Community Bin,660,3000,Recyclable,2022-07-03,daily,Naroda Market Yard,29225,68,70,1,0,synthetic
+AMD-BIN-0358,AMD-Z-20,Naroda,23.066798,72.662641,Naroda Ward,Compactor Bin,660,3000,Recyclable,2019-04-04,twice_daily,Naroda GIDC Gate 1,30975,52,70,1,0,synthetic
+AMD-BIN-0359,AMD-Z-20,Naroda,23.071848,72.662076,Naroda Ward,Community Bin,500,1250,Mixed,2020-06-13,twice_daily,Nobel Nagar Crossing,32927,72,67,0,0,synthetic
+AMD-BIN-0360,AMD-Z-20,Naroda,23.06876,72.656341,Naroda Ward,Skip Container,1000,4000,Dry,2023-12-26,twice_daily,Naroda Bus Stand,26831,75,56,1,0,synthetic
+AMD-BIN-0361,AMD-Z-20,Naroda,23.070519,72.664068,Naroda Ward,Skip Container,1000,4550,Recyclable,2023-01-10,daily,Naroda GIDC Gate 1,29237,67,64,1,0,synthetic
+AMD-BIN-0362,AMD-Z-20,Naroda,23.067739,72.653214,Naroda Ward,Twin Bin Set,240,1090,Recyclable,2019-11-30,twice_daily,Naroda Market Yard,30579,70,66,1,0,synthetic
+AMD-BIN-0363,AMD-Z-20,Naroda,23.074923,72.659777,Naroda Ward,Community Bin,660,2640,Dry,2023-04-19,twice_daily,Nobel Nagar Crossing,32131,61,57,1,0,synthetic
+AMD-BIN-0364,AMD-Z-20,Naroda,23.0623,72.659109,Naroda Ward,Litter Bin,150,680,Recyclable,2025-03-08,twice_daily,Naroda Patiya Circle,31990,62,65,1,0,synthetic
+AMD-BIN-0365,AMD-Z-20,Naroda,23.07488,72.663579,Naroda Ward,Twin Bin Set,240,600,Mixed,2023-05-21,twice_daily,Naroda GIDC Gate 1,32520,69,68,1,0,synthetic
+AMD-BIN-0366,AMD-Z-20,Naroda,23.071706,72.656778,Naroda Ward,Litter Bin,150,600,Dry,2019-03-17,daily,Nobel Nagar Crossing,30485,72,69,1,0,synthetic
+AMD-BIN-0367,AMD-Z-20,Naroda,23.063785,72.658283,Naroda Ward,Community Bin,660,3000,Recyclable,2019-05-23,daily,Naroda Market Yard,33804,76,63,0,0,synthetic
+AMD-BIN-0368,AMD-Z-20,Naroda,23.067868,72.661109,Naroda Ward,Community Bin,500,910,Organic,2023-03-01,twice_daily,Naroda Patiya Circle,25759,74,56,1,0,synthetic
+AMD-BIN-0369,AMD-Z-20,Naroda,23.07063,72.658533,Naroda Ward,Skip Container,240,600,Mixed,2024-08-05,daily,Naroda Bus Stand,31490,68,60,1,0,synthetic
+AMD-BIN-0370,AMD-Z-21,Odhav,23.021378,72.671856,Odhav Ward,Skip Container,1000,4000,Dry,2020-01-08,daily,Nikol Odhav Link,30865,58,57,0,0,synthetic
+AMD-BIN-0371,AMD-Z-21,Odhav,23.017549,72.665029,Odhav Ward,Skip Container,660,2640,Dry,2020-07-12,daily,Kathwada Road Junction,28058,60,51,0,0,synthetic
+AMD-BIN-0372,AMD-Z-21,Odhav,23.019706,72.673255,Odhav Ward,Skip Container,660,3000,Recyclable,2019-01-10,daily,Odhav Gam Chowk,26991,64,61,0,0,synthetic
+AMD-BIN-0373,AMD-Z-21,Odhav,23.017772,72.669991,Odhav Ward,Twin Bin Set,240,960,Dry,2020-09-22,daily,Odhav GIDC Phase 2,30090,60,56,0,1,synthetic
+AMD-BIN-0374,AMD-Z-21,Odhav,23.023781,72.669958,Odhav Ward,Compactor Bin,1000,4000,Dry,2023-06-26,daily,Kathwada Road Junction,28861,63,72,0,0,synthetic
+AMD-BIN-0375,AMD-Z-21,Odhav,23.018167,72.671502,Odhav Ward,Twin Bin Set,150,680,Recyclable,2025-04-25,daily,Kathwada Road Junction,25225,69,61,0,0,synthetic
+AMD-BIN-0376,AMD-Z-21,Odhav,23.015276,72.674831,Odhav Ward,Litter Bin,150,680,Recyclable,2019-09-29,daily,Nikol Odhav Link,27665,62,55,0,1,synthetic
+AMD-BIN-0377,AMD-Z-21,Odhav,23.025476,72.666668,Odhav Ward,Skip Container,660,3000,Recyclable,2020-06-28,daily,Odhav GIDC Phase 2,24649,71,65,0,0,synthetic
+AMD-BIN-0378,AMD-Z-21,Odhav,23.021208,72.667744,Odhav Ward,Skip Container,660,1650,Mixed,2024-08-20,twice_daily,Kathwada Road Junction,27944,74,59,0,0,synthetic
+AMD-BIN-0379,AMD-Z-21,Odhav,23.020775,72.672539,Odhav Ward,Skip Container,1000,4550,Recyclable,2021-03-24,twice_daily,Nikol Odhav Link,28988,55,64,0,0,synthetic
+AMD-BIN-0380,AMD-Z-21,Odhav,23.02216,72.675199,Odhav Ward,Skip Container,240,440,Organic,2020-06-19,twice_daily,Kathwada Road Junction,27428,69,57,0,0,synthetic
+AMD-BIN-0381,AMD-Z-21,Odhav,23.017885,72.665209,Odhav Ward,Community Bin,1000,1820,Organic,2022-01-19,twice_daily,Odhav Ring Road Circle,30613,61,61,0,0,synthetic
+AMD-BIN-0382,AMD-Z-21,Odhav,23.017197,72.669958,Odhav Ward,Underground Bin,500,1250,Mixed,2022-05-07,daily,Kathwada Road Junction,33418,59,54,0,0,synthetic
+AMD-BIN-0383,AMD-Z-21,Odhav,23.026915,72.669213,Odhav Ward,Compactor Bin,1000,2500,Mixed,2023-06-28,alternate_day,Kathwada Road Junction,28424,67,58,0,0,synthetic
+AMD-BIN-0384,AMD-Z-21,Odhav,23.013568,72.671498,Odhav Ward,Twin Bin Set,500,2000,Dry,2025-02-07,daily,Odhav Gam Chowk,29190,78,45,0,0,synthetic
+AMD-BIN-0385,AMD-Z-21,Odhav,23.019079,72.674715,Odhav Ward,Skip Container,240,1090,Recyclable,2023-12-10,daily,Nikol Odhav Link,28810,69,56,0,0,synthetic
+AMD-BIN-0386,AMD-Z-21,Odhav,23.018792,72.666547,Odhav Ward,Community Bin,150,380,Mixed,2025-02-20,daily,Nikol Odhav Link,27181,62,61,1,0,synthetic
+AMD-BIN-0387,AMD-Z-21,Odhav,23.025831,72.671586,Odhav Ward,Skip Container,660,3000,Recyclable,2021-09-11,daily,Odhav Ring Road Circle,31431,66,60,1,0,synthetic
+AMD-BIN-0388,AMD-Z-22,Vatva,22.960921,72.629187,Vatva Ward,Compactor Bin,660,1200,Organic,2019-10-17,daily,Ramol Road Junction,30787,61,64,0,0,synthetic
+AMD-BIN-0389,AMD-Z-22,Vatva,22.96333,72.628447,Vatva Ward,Twin Bin Set,150,380,Mixed,2024-01-28,daily,Vatva Gam Chowk,28292,58,60,0,0,synthetic
+AMD-BIN-0390,AMD-Z-22,Vatva,22.965118,72.634853,Vatva Ward,Underground Bin,500,1430,Commercial,2024-05-11,twice_daily,Vatva Railway Crossing,30153,63,51,0,0,synthetic
+AMD-BIN-0391,AMD-Z-22,Vatva,22.958733,72.626465,Vatva Ward,Community Bin,240,600,Mixed,2020-06-19,daily,Vatva Railway Crossing,26785,71,62,0,0,synthetic
+AMD-BIN-0392,AMD-Z-22,Vatva,22.961893,72.63129,Vatva Ward,Skip Container,660,2640,Dry,2020-02-17,alternate_day,Narol Vatva Highway,27723,54,71,0,0,synthetic
+AMD-BIN-0393,AMD-Z-22,Vatva,22.961459,72.637937,Vatva Ward,Skip Container,500,1430,Commercial,2023-03-30,daily,Narol Vatva Highway,24285,75,62,0,0,synthetic
+AMD-BIN-0394,AMD-Z-22,Vatva,22.9651,72.626755,Vatva Ward,Skip Container,500,2270,Recyclable,2019-10-27,twice_daily,Ramol Road Junction,29997,56,66,0,0,synthetic
+AMD-BIN-0395,AMD-Z-22,Vatva,22.961002,72.628469,Vatva Ward,Compactor Bin,660,2640,Dry,2023-06-18,twice_daily,Vatva Gam Chowk,30365,57,48,0,0,synthetic
+AMD-BIN-0396,AMD-Z-22,Vatva,22.953425,72.629459,Vatva Ward,Community Bin,240,690,Commercial,2025-05-07,twice_daily,Vatva GIDC Phase 3,31282,65,47,0,0,synthetic
+AMD-BIN-0397,AMD-Z-22,Vatva,22.965827,72.628818,Vatva Ward,Twin Bin Set,240,1090,Recyclable,2020-01-24,daily,Ramol Road Junction,32622,60,52,0,0,synthetic
+AMD-BIN-0398,AMD-Z-22,Vatva,22.96022,72.63124,Vatva Ward,Community Bin,500,1430,Commercial,2019-09-15,twice_daily,Ramol Road Junction,27653,76,73,0,0,synthetic
+AMD-BIN-0399,AMD-Z-22,Vatva,22.957195,72.627896,Vatva Ward,Community Bin,150,680,Recyclable,2023-01-18,daily,Vatva Gam Chowk,27541,67,65,0,0,synthetic
+AMD-BIN-0400,AMD-Z-22,Vatva,22.957187,72.632924,Vatva Ward,Compactor Bin,660,3000,Recyclable,2023-06-30,daily,Vatva GIDC Phase 3,26646,64,60,0,0,synthetic
+AMD-BIN-0401,AMD-Z-22,Vatva,22.958661,72.630807,Vatva Ward,Twin Bin Set,150,600,Dry,2022-06-08,daily,Ramol Road Junction,32067,52,60,0,0,synthetic
+AMD-BIN-0402,AMD-Z-22,Vatva,22.961551,72.627923,Vatva Ward,Compactor Bin,1000,4550,Recyclable,2023-11-06,alternate_day,Ramol Road Junction,29394,66,60,0,1,synthetic
+AMD-BIN-0403,AMD-Z-22,Vatva,22.961028,72.625178,Vatva Ward,Community Bin,660,1200,Organic,2024-12-27,daily,Vatva Gam Chowk,29189,67,61,0,1,synthetic
+AMD-BIN-0404,AMD-Z-22,Vatva,22.962998,72.627266,Vatva Ward,Twin Bin Set,240,440,Organic,2020-06-03,daily,Vatva Railway Crossing,32453,56,58,0,0,synthetic
+AMD-BIN-0405,AMD-Z-22,Vatva,22.959582,72.627934,Vatva Ward,Skip Container,240,1090,Recyclable,2024-07-29,daily,Narol Vatva Highway,28731,67,50,0,0,synthetic
+AMD-BIN-0406,AMD-Z-22,Vatva,22.963316,72.628434,Vatva Ward,Skip Container,1000,2500,Mixed,2021-04-05,twice_daily,Narol Vatva Highway,32246,67,56,0,0,synthetic
+AMD-BIN-0407,AMD-Z-23,Ranip,23.072352,72.564084,Ranip Ward,Twin Bin Set,500,910,Organic,2020-08-24,twice_daily,New Ranip Circle,26945,53,88,0,0,synthetic
+AMD-BIN-0408,AMD-Z-23,Ranip,23.078252,72.562586,Ranip Ward,Community Bin,500,910,Organic,2023-08-16,alternate_day,Akhbarnagar Road,26253,58,86,0,1,synthetic
+AMD-BIN-0409,AMD-Z-23,Ranip,23.072488,72.570633,Ranip Ward,Twin Bin Set,50,200,Dry,2022-03-08,alternate_day,Ranip Bus Stand,28041,55,78,0,1,synthetic
+AMD-BIN-0410,AMD-Z-23,Ranip,23.07446,72.564141,Ranip Ward,Twin Bin Set,500,910,Organic,2022-07-04,alternate_day,Akhbarnagar Road,20685,59,86,0,0,synthetic
+AMD-BIN-0411,AMD-Z-23,Ranip,23.073267,72.563877,Ranip Ward,Community Bin,500,910,Organic,2021-11-12,daily,Ranip Bus Stand,32012,49,88,0,0,synthetic
+AMD-BIN-0412,AMD-Z-23,Ranip,23.078581,72.568553,Ranip Ward,Litter Bin,150,600,Dry,2024-06-29,daily,Ranip Gam Chowk,25536,64,83,0,0,synthetic
+AMD-BIN-0413,AMD-Z-23,Ranip,23.076799,72.565452,Ranip Ward,Twin Bin Set,150,270,Organic,2021-02-19,alternate_day,New Ranip Circle,25420,51,82,0,0,synthetic
+AMD-BIN-0414,AMD-Z-23,Ranip,23.076857,72.569381,Ranip Ward,Twin Bin Set,500,2000,Dry,2022-01-02,alternate_day,Akhbarnagar Road,27077,50,92,0,0,synthetic
+AMD-BIN-0415,AMD-Z-23,Ranip,23.080243,72.565019,Ranip Ward,Twin Bin Set,100,180,Organic,2021-01-31,daily,New Ranip Circle,31337,49,93,0,0,synthetic
+AMD-BIN-0416,AMD-Z-23,Ranip,23.077047,72.560702,Ranip Ward,Community Bin,50,120,Mixed,2023-07-28,alternate_day,Ranip Railway Crossing,28979,57,91,0,0,synthetic
+AMD-BIN-0417,AMD-Z-23,Ranip,23.084957,72.565299,Ranip Ward,Twin Bin Set,50,120,Mixed,2021-05-22,daily,Akhbarnagar Road,22710,48,83,0,0,synthetic
+AMD-BIN-0418,AMD-Z-23,Ranip,23.07371,72.566128,Ranip Ward,Skip Container,240,600,Mixed,2023-02-10,alternate_day,New Ranip Circle,26878,45,84,0,0,synthetic
+AMD-BIN-0419,AMD-Z-23,Ranip,23.078954,72.566748,Ranip Ward,Community Bin,500,910,Organic,2019-05-12,twice_daily,New Ranip Circle,26949,59,88,0,0,synthetic
+AMD-BIN-0420,AMD-Z-23,Ranip,23.075688,72.558486,Ranip Ward,Twin Bin Set,100,180,Organic,2020-11-07,alternate_day,Ranip Gam Chowk,29008,47,77,0,1,synthetic
+AMD-BIN-0421,AMD-Z-23,Ranip,23.076152,72.564201,Ranip Ward,Community Bin,50,90,Organic,2020-06-12,alternate_day,Ranip Railway Crossing,27258,50,87,0,0,synthetic
+AMD-BIN-0422,AMD-Z-23,Ranip,23.079225,72.568526,Ranip Ward,Skip Container,500,2270,Recyclable,2025-06-28,daily,Ranip Gam Chowk,26201,52,73,0,0,synthetic
+AMD-BIN-0423,AMD-Z-24,Sabarmati,23.085475,72.582373,Sabarmati Ward,Litter Bin,150,380,Mixed,2020-09-18,daily,Sabarmati Railway Station,24931,50,79,0,0,synthetic
+AMD-BIN-0424,AMD-Z-24,Sabarmati,23.080932,72.578847,Sabarmati Ward,Skip Container,500,2000,Dry,2022-01-21,alternate_day,Sabarmati Railway Station,25734,54,88,0,1,synthetic
+AMD-BIN-0425,AMD-Z-24,Sabarmati,23.077492,72.578673,Sabarmati Ward,Community Bin,150,380,Mixed,2023-08-14,alternate_day,Sabarmati Railway Station,23487,47,77,1,0,synthetic
+AMD-BIN-0426,AMD-Z-24,Sabarmati,23.08358,72.584315,Sabarmati Ward,Twin Bin Set,150,270,Organic,2021-03-04,alternate_day,Sabarmati Ashram Road,28455,50,92,0,0,synthetic
+AMD-BIN-0427,AMD-Z-24,Sabarmati,23.07883,72.578454,Sabarmati Ward,Twin Bin Set,100,250,Mixed,2022-06-05,daily,Sabarmati Railway Station,25767,62,75,0,0,synthetic
+AMD-BIN-0428,AMD-Z-24,Sabarmati,23.082928,72.582958,Sabarmati Ward,Litter Bin,100,250,Mixed,2021-08-26,daily,Sabarmati Ashram Road,24548,48,91,0,0,synthetic
+AMD-BIN-0429,AMD-Z-24,Sabarmati,23.081365,72.580721,Sabarmati Ward,Twin Bin Set,50,90,Organic,2019-06-21,alternate_day,Sabarmati Power House,26207,56,94,1,0,synthetic
+AMD-BIN-0430,AMD-Z-24,Sabarmati,23.077659,72.582199,Sabarmati Ward,Underground Bin,500,910,Organic,2024-06-22,daily,Dharmnagar Crossing,29423,54,82,0,0,synthetic
+AMD-BIN-0431,AMD-Z-24,Sabarmati,23.078597,72.587666,Sabarmati Ward,Community Bin,150,270,Organic,2025-02-21,daily,Sabarmati Power House,28182,49,79,0,0,synthetic
+AMD-BIN-0432,AMD-Z-24,Sabarmati,23.077459,72.584753,Sabarmati Ward,Litter Bin,150,380,Mixed,2024-03-19,alternate_day,Ramnagar Circle,29464,55,87,1,0,synthetic
+AMD-BIN-0433,AMD-Z-24,Sabarmati,23.086885,72.584381,Sabarmati Ward,Litter Bin,150,380,Mixed,2025-04-13,daily,Sabarmati Power House,24775,47,82,0,0,synthetic
+AMD-BIN-0434,AMD-Z-24,Sabarmati,23.081008,72.584555,Sabarmati Ward,Community Bin,500,910,Organic,2020-03-09,alternate_day,Ramnagar Circle,27232,59,92,1,0,synthetic
+AMD-BIN-0435,AMD-Z-24,Sabarmati,23.080412,72.580188,Sabarmati Ward,Underground Bin,500,910,Organic,2020-08-18,daily,Sabarmati Power House,24711,69,87,0,0,synthetic
+AMD-BIN-0436,AMD-Z-24,Sabarmati,23.082226,72.573332,Sabarmati Ward,Twin Bin Set,50,140,Commercial,2025-07-02,daily,Ramnagar Circle,27047,51,80,0,0,synthetic
+AMD-BIN-0437,AMD-Z-24,Sabarmati,23.076666,72.583046,Sabarmati Ward,Litter Bin,150,600,Dry,2021-05-31,daily,Dharmnagar Crossing,27442,60,83,0,0,synthetic
+AMD-BIN-0438,AMD-Z-24,Sabarmati,23.07935,72.581839,Sabarmati Ward,Litter Bin,100,180,Organic,2021-10-01,twice_daily,Sabarmati Ashram Road,27110,58,76,0,0,synthetic
+AMD-BIN-0439,AMD-Z-25,Ellis Bridge,23.021251,72.576059,Ellis Bridge Ward,Underground Bin,500,2000,Dry,2020-12-08,daily,Nehru Bridge Corner,28660,89,59,0,0,synthetic
+AMD-BIN-0440,AMD-Z-25,Ellis Bridge,23.021462,72.569466,Ellis Bridge Ward,Community Bin,150,380,Mixed,2021-12-22,alternate_day,Ellis Bridge Approach,22704,77,66,0,0,synthetic
+AMD-BIN-0441,AMD-Z-25,Ellis Bridge,23.025148,72.575424,Ellis Bridge Ward,Skip Container,500,2000,Dry,2024-10-02,twice_daily,Riverfront West Gate 3,24851,84,52,0,0,synthetic
+AMD-BIN-0442,AMD-Z-25,Ellis Bridge,23.024247,72.572802,Ellis Bridge Ward,Twin Bin Set,500,2000,Dry,2024-11-14,daily,Riverfront West Gate 3,23743,79,51,0,0,synthetic
+AMD-BIN-0443,AMD-Z-25,Ellis Bridge,23.024827,72.573204,Ellis Bridge Ward,Compactor Bin,1000,2860,Commercial,2019-01-25,twice_daily,Riverfront West Gate 3,22633,90,60,0,0,synthetic
+AMD-BIN-0444,AMD-Z-25,Ellis Bridge,23.023735,72.567569,Ellis Bridge Ward,Twin Bin Set,500,1430,Commercial,2019-07-17,daily,Riverfront West Gate 3,27226,78,57,1,0,synthetic
+AMD-BIN-0445,AMD-Z-25,Ellis Bridge,23.019459,72.573087,Ellis Bridge Ward,Skip Container,500,2270,Recyclable,2022-01-08,twice_daily,Ellis Bridge Approach,23099,86,51,0,0,synthetic
+AMD-BIN-0446,AMD-Z-25,Ellis Bridge,23.02665,72.571772,Ellis Bridge Ward,Twin Bin Set,500,1250,Mixed,2024-01-06,daily,Riverfront West Gate 3,24741,87,59,0,0,synthetic
+AMD-BIN-0447,AMD-Z-25,Ellis Bridge,23.019973,72.570172,Ellis Bridge Ward,Community Bin,1000,1820,Organic,2019-02-07,daily,Nehru Bridge Corner,22744,83,56,0,0,synthetic
+AMD-BIN-0448,AMD-Z-25,Ellis Bridge,23.021915,72.57043,Ellis Bridge Ward,Skip Container,660,1200,Organic,2019-09-27,daily,Town Hall Circle,28670,80,56,0,0,synthetic
+AMD-BIN-0449,AMD-Z-25,Ellis Bridge,23.023606,72.571072,Ellis Bridge Ward,Community Bin,500,1430,Commercial,2020-02-06,daily,Town Hall Circle,24242,84,64,0,0,synthetic
+AMD-BIN-0450,AMD-Z-25,Ellis Bridge,23.024035,72.566599,Ellis Bridge Ward,Underground Bin,500,2000,Dry,2019-07-20,daily,Riverfront West Gate 3,27248,88,66,0,0,synthetic
+AMD-BIN-0451,AMD-Z-25,Ellis Bridge,23.024433,72.571886,Ellis Bridge Ward,Community Bin,500,1250,Mixed,2021-03-10,alternate_day,Nehru Bridge Corner,22171,75,52,0,0,synthetic
+AMD-BIN-0452,AMD-Z-25,Ellis Bridge,23.019907,72.570898,Ellis Bridge Ward,Community Bin,500,2000,Dry,2024-09-15,twice_daily,Municipal Market Road,26968,81,45,0,0,synthetic
+AMD-BIN-0453,AMD-Z-25,Ellis Bridge,23.025745,72.569592,Ellis Bridge Ward,Skip Container,240,440,Organic,2019-12-11,daily,Ellis Bridge Approach,24246,89,53,0,1,synthetic
+AMD-BIN-0454,AMD-Z-25,Ellis Bridge,23.021738,72.571388,Ellis Bridge Ward,Twin Bin Set,500,2270,Recyclable,2019-06-14,alternate_day,Nehru Bridge Corner,23165,82,67,0,0,synthetic
+AMD-BIN-0455,AMD-Z-26,Ashram Road,23.035767,72.572902,Ashram Road Ward,Skip Container,1000,4550,Recyclable,2020-06-04,daily,Ashram Road Bus Stop,24517,92,44,0,0,synthetic
+AMD-BIN-0456,AMD-Z-26,Ashram Road,23.034899,72.561454,Ashram Road Ward,Litter Bin,150,600,Dry,2025-02-18,daily,Usmanpura Crossing,23619,84,53,0,0,synthetic
+AMD-BIN-0457,AMD-Z-26,Ashram Road,23.026345,72.57395,Ashram Road Ward,Twin Bin Set,500,2000,Dry,2023-11-23,twice_daily,Income Tax Circle,20396,94,45,0,0,synthetic
+AMD-BIN-0458,AMD-Z-26,Ashram Road,23.028641,72.575656,Ashram Road Ward,Community Bin,500,2000,Dry,2024-08-15,daily,Ashram Road Bus Stop,25655,88,45,0,0,synthetic
+AMD-BIN-0459,AMD-Z-26,Ashram Road,23.031341,72.571589,Ashram Road Ward,Community Bin,150,380,Mixed,2025-02-24,twice_daily,Usmanpura Crossing,22711,89,48,0,0,synthetic
+AMD-BIN-0460,AMD-Z-26,Ashram Road,23.028986,72.577613,Ashram Road Ward,Community Bin,660,1650,Mixed,2023-02-26,daily,Usmanpura Crossing,27323,86,51,0,1,synthetic
+AMD-BIN-0461,AMD-Z-26,Ashram Road,23.037238,72.574523,Ashram Road Ward,Community Bin,660,1200,Organic,2019-12-30,daily,Gandhi Ashram Gate,27107,88,44,0,0,synthetic
+AMD-BIN-0462,AMD-Z-26,Ashram Road,23.035485,72.572163,Ashram Road Ward,Twin Bin Set,240,960,Dry,2021-05-10,daily,Ashram Road Bus Stop,20625,92,56,0,0,synthetic
+AMD-BIN-0463,AMD-Z-26,Ashram Road,23.036699,72.57148,Ashram Road Ward,Community Bin,1000,4000,Dry,2025-03-17,daily,Ashram Road Bus Stop,25147,97,33,0,0,synthetic
+AMD-BIN-0464,AMD-Z-26,Ashram Road,23.033756,72.575256,Ashram Road Ward,Twin Bin Set,500,2270,Recyclable,2024-08-02,twice_daily,Times of India Circle,23676,93,54,0,0,synthetic
+AMD-BIN-0465,AMD-Z-26,Ashram Road,23.029184,72.570407,Ashram Road Ward,Litter Bin,150,380,Mixed,2024-12-07,daily,Usmanpura Crossing,27483,86,52,0,0,synthetic
+AMD-BIN-0466,AMD-Z-26,Ashram Road,23.032599,72.566863,Ashram Road Ward,Twin Bin Set,500,1250,Mixed,2019-04-08,daily,Income Tax Circle,25288,93,47,0,0,synthetic
+AMD-BIN-0467,AMD-Z-26,Ashram Road,23.02535,72.569577,Ashram Road Ward,Twin Bin Set,240,600,Mixed,2020-11-30,daily,Income Tax Circle,24242,84,48,0,0,synthetic
+AMD-BIN-0468,AMD-Z-26,Ashram Road,23.034666,72.571457,Ashram Road Ward,Community Bin,500,2270,Recyclable,2019-09-12,daily,Gandhi Ashram Gate,23190,80,60,0,0,synthetic
+AMD-BIN-0469,AMD-Z-26,Ashram Road,23.037706,72.577213,Ashram Road Ward,Community Bin,500,2000,Dry,2024-05-03,daily,Income Tax Circle,25227,91,39,0,0,synthetic
+AMD-BIN-0470,AMD-Z-26,Ashram Road,23.034369,72.571263,Ashram Road Ward,Community Bin,240,440,Organic,2019-12-24,twice_daily,Ashram Road Bus Stop,22561,86,45,0,0,synthetic
+AMD-BIN-0471,AMD-Z-26,Ashram Road,23.036173,72.574694,Ashram Road Ward,Twin Bin Set,500,1430,Commercial,2023-07-12,daily,Income Tax Circle,24003,92,49,0,0,synthetic
+AMD-BIN-0472,AMD-Z-26,Ashram Road,23.02991,72.567908,Ashram Road Ward,Compactor Bin,660,1890,Commercial,2019-03-14,daily,Gandhi Ashram Gate,24581,90,51,0,1,synthetic
+AMD-BIN-0473,AMD-Z-27,CG Road,23.026359,72.557409,CG Road Ward,Twin Bin Set,500,1250,Mixed,2025-04-18,daily,Panchvati Circle,20854,86,44,0,0,synthetic
+AMD-BIN-0474,AMD-Z-27,CG Road,23.027664,72.564365,CG Road Ward,Community Bin,240,600,Mixed,2019-05-11,alternate_day,Panchvati Circle,21445,89,56,0,1,synthetic
+AMD-BIN-0475,AMD-Z-27,CG Road,23.028118,72.556219,CG Road Ward,Community Bin,500,1250,Mixed,2020-11-03,daily,Stadium Cross Road,23469,94,47,0,1,synthetic
+AMD-BIN-0476,AMD-Z-27,CG Road,23.033145,72.560384,CG Road Ward,Community Bin,150,600,Dry,2024-03-17,daily,Parimal Garden Corner,20311,99,46,0,0,synthetic
+AMD-BIN-0477,AMD-Z-27,CG Road,23.024429,72.554765,CG Road Ward,Skip Container,1000,4550,Recyclable,2021-12-07,daily,Parimal Garden Corner,22504,90,48,0,0,synthetic
+AMD-BIN-0478,AMD-Z-27,CG Road,23.027548,72.569334,CG Road Ward,Skip Container,500,910,Organic,2024-08-14,twice_daily,Municipal Market CG Road,21844,88,46,0,0,synthetic
+AMD-BIN-0479,AMD-Z-27,CG Road,23.027488,72.567797,CG Road Ward,Community Bin,500,1430,Commercial,2021-05-26,daily,Municipal Market CG Road,25416,97,39,0,0,synthetic
+AMD-BIN-0480,AMD-Z-27,CG Road,23.029384,72.558861,CG Road Ward,Twin Bin Set,240,1090,Recyclable,2024-07-28,daily,Municipal Market CG Road,26977,90,42,0,0,synthetic
+AMD-BIN-0481,AMD-Z-27,CG Road,23.026842,72.55682,CG Road Ward,Community Bin,500,1250,Mixed,2023-06-22,daily,Parimal Garden Corner,21337,93,52,0,0,synthetic
+AMD-BIN-0482,AMD-Z-27,CG Road,23.031127,72.559564,CG Road Ward,Skip Container,500,910,Organic,2021-12-15,twice_daily,Municipal Market CG Road,20999,97,44,0,0,synthetic
+AMD-BIN-0483,AMD-Z-27,CG Road,23.032484,72.558825,CG Road Ward,Twin Bin Set,500,1250,Mixed,2025-07-18,daily,Swastik Cross Road,17972,89,45,0,0,synthetic
+AMD-BIN-0484,AMD-Z-27,CG Road,23.029901,72.560998,CG Road Ward,Underground Bin,240,440,Organic,2021-04-18,daily,Municipal Market CG Road,25871,85,50,0,0,synthetic
+AMD-BIN-0485,AMD-Z-27,CG Road,23.026201,72.556125,CG Road Ward,Twin Bin Set,500,1430,Commercial,2023-07-20,daily,Municipal Market CG Road,22307,93,37,0,0,synthetic
+AMD-BIN-0486,AMD-Z-27,CG Road,23.026255,72.561502,CG Road Ward,Community Bin,660,1200,Organic,2021-02-06,daily,Parimal Garden Corner,23856,97,47,0,0,synthetic
+AMD-BIN-0487,AMD-Z-27,CG Road,23.03235,72.55746,CG Road Ward,Twin Bin Set,500,1250,Mixed,2022-02-12,daily,Swastik Cross Road,22914,91,45,0,0,synthetic
+AMD-BIN-0488,AMD-Z-27,CG Road,23.02969,72.559295,CG Road Ward,Compactor Bin,660,1650,Mixed,2020-06-18,daily,Stadium Cross Road,25910,93,39,1,0,synthetic
+AMD-BIN-0489,AMD-Z-27,CG Road,23.033615,72.562914,CG Road Ward,Skip Container,240,960,Dry,2020-12-11,daily,Stadium Cross Road,25266,96,41,0,0,synthetic
+AMD-BIN-0490,AMD-Z-27,CG Road,23.028463,72.558164,CG Road Ward,Community Bin,1000,2500,Mixed,2019-09-08,twice_daily,Parimal Garden Corner,20227,98,48,0,0,synthetic
+AMD-BIN-0491,AMD-Z-27,CG Road,23.029128,72.559004,CG Road Ward,Community Bin,500,2000,Dry,2020-10-20,twice_daily,Municipal Market CG Road,20912,86,38,0,0,synthetic
+AMD-BIN-0492,AMD-Z-27,CG Road,23.026669,72.556838,CG Road Ward,Skip Container,240,1090,Recyclable,2019-04-21,daily,Panchvati Circle,18784,100,42,0,0,synthetic
+AMD-BIN-0493,AMD-Z-28,Relief Road,23.031018,72.587697,Relief Road Ward,Skip Container,660,1890,Commercial,2024-02-17,daily,Teen Darwaja,36798,88,55,1,1,synthetic
+AMD-BIN-0494,AMD-Z-28,Relief Road,23.024508,72.590496,Relief Road Ward,Twin Bin Set,500,1430,Commercial,2020-11-18,daily,Manek Chowk Entry,38749,91,54,1,0,synthetic
+AMD-BIN-0495,AMD-Z-28,Relief Road,23.030002,72.58614,Relief Road Ward,Community Bin,240,600,Mixed,2024-10-28,daily,Relief Road Market Lane,41192,81,70,1,0,synthetic
+AMD-BIN-0496,AMD-Z-28,Relief Road,23.024949,72.585939,Relief Road Ward,Underground Bin,240,440,Organic,2023-11-27,twice_daily,Manek Chowk Entry,39141,88,67,1,0,synthetic
+AMD-BIN-0497,AMD-Z-28,Relief Road,23.023552,72.588642,Relief Road Ward,Skip Container,660,3000,Recyclable,2023-12-01,daily,Relief Road Market Lane,36061,90,58,1,0,synthetic
+AMD-BIN-0498,AMD-Z-28,Relief Road,23.024566,72.590056,Relief Road Ward,Litter Bin,150,380,Mixed,2024-07-09,twice_daily,Manek Chowk Entry,37026,90,58,1,0,synthetic
+AMD-BIN-0499,AMD-Z-28,Relief Road,23.031414,72.586607,Relief Road Ward,Skip Container,500,2000,Dry,2019-01-12,daily,Relief Road Market Lane,40895,87,54,1,0,synthetic
+AMD-BIN-0500,AMD-Z-28,Relief Road,23.025784,72.588202,Relief Road Ward,Skip Container,660,1650,Mixed,2022-03-13,twice_daily,Relief Road Market Lane,37377,85,54,1,0,synthetic
+AMD-BIN-0501,AMD-Z-28,Relief Road,23.028888,72.585034,Relief Road Ward,Compactor Bin,660,1890,Commercial,2022-05-25,twice_daily,Teen Darwaja,35715,85,58,1,0,synthetic
+AMD-BIN-0502,AMD-Z-28,Relief Road,23.024262,72.587024,Relief Road Ward,Compactor Bin,660,1650,Mixed,2025-01-26,daily,Relief Road Market Lane,36122,85,58,1,0,synthetic
+AMD-BIN-0503,AMD-Z-28,Relief Road,23.02287,72.582539,Relief Road Ward,Underground Bin,240,600,Mixed,2019-08-02,daily,Kalupur Gate,38552,86,57,1,0,synthetic
+AMD-BIN-0504,AMD-Z-28,Relief Road,23.029464,72.595348,Relief Road Ward,Compactor Bin,1000,1820,Organic,2019-03-08,daily,Relief Road Market Lane,34946,92,48,1,0,synthetic
+AMD-BIN-0505,AMD-Z-28,Relief Road,23.015712,72.585216,Relief Road Ward,Community Bin,150,380,Mixed,2019-08-06,daily,Kalupur Gate,40348,96,54,1,0,synthetic
+AMD-BIN-0506,AMD-Z-28,Relief Road,23.02607,72.589672,Relief Road Ward,Community Bin,150,430,Commercial,2021-11-01,twice_daily,Kalupur Gate,43132,86,57,1,0,synthetic
+AMD-BIN-0507,AMD-Z-28,Relief Road,23.034515,72.585462,Relief Road Ward,Community Bin,500,1250,Mixed,2024-07-20,twice_daily,Kalupur Gate,36239,93,65,1,0,synthetic
+AMD-BIN-0508,AMD-Z-28,Relief Road,23.025995,72.58225,Relief Road Ward,Community Bin,1000,1820,Organic,2025-01-29,daily,Relief Cinema Corner,38660,100,52,0,0,synthetic
+AMD-BIN-0509,AMD-Z-28,Relief Road,23.031041,72.587223,Relief Road Ward,Twin Bin Set,500,1250,Mixed,2024-08-15,twice_daily,Manek Chowk Entry,34910,97,59,1,0,synthetic
+AMD-BIN-0510,AMD-Z-28,Relief Road,23.023123,72.587186,Relief Road Ward,Skip Container,1000,1820,Organic,2024-06-17,twice_daily,Relief Cinema Corner,37413,88,59,1,0,synthetic
+AMD-BIN-0511,AMD-Z-28,Relief Road,23.026549,72.586666,Relief Road Ward,Skip Container,1000,2860,Commercial,2020-10-20,twice_daily,Teen Darwaja,39980,93,69,1,0,synthetic
+AMD-BIN-0512,AMD-Z-28,Relief Road,23.031054,72.590422,Relief Road Ward,Underground Bin,500,1250,Mixed,2019-12-24,twice_daily,Manek Chowk Entry,37713,87,64,1,0,synthetic
+AMD-BIN-0513,AMD-Z-28,Relief Road,23.023473,72.58975,Relief Road Ward,Community Bin,240,440,Organic,2021-10-02,twice_daily,Relief Cinema Corner,39566,100,64,1,1,synthetic
+AMD-BIN-0514,AMD-Z-28,Relief Road,23.026467,72.596108,Relief Road Ward,Skip Container,240,440,Organic,2022-11-25,twice_daily,Manek Chowk Entry,34936,88,57,0,0,synthetic
+AMD-BIN-0515,AMD-Z-29,Shahpur,23.038365,72.581993,Shahpur Ward,Skip Container,1000,1820,Organic,2020-05-22,daily,Khanpur Crossing,35729,70,68,1,0,synthetic
+AMD-BIN-0516,AMD-Z-29,Shahpur,23.043737,72.579146,Shahpur Ward,Community Bin,500,1250,Mixed,2023-12-23,twice_daily,Shahpur Darwaja,35823,72,68,1,0,synthetic
+AMD-BIN-0517,AMD-Z-29,Shahpur,23.044398,72.586052,Shahpur Ward,Community Bin,500,910,Organic,2021-10-26,daily,Khanpur Crossing,33618,84,61,1,0,synthetic
+AMD-BIN-0518,AMD-Z-29,Shahpur,23.036119,72.57833,Shahpur Ward,Skip Container,660,1200,Organic,2019-07-26,twice_daily,Shahpur Mill Compound,31431,69,73,1,0,synthetic
+AMD-BIN-0519,AMD-Z-29,Shahpur,23.038414,72.586368,Shahpur Ward,Community Bin,1000,1820,Organic,2020-09-07,daily,Shahpur Darwaja,34508,66,75,1,0,synthetic
+AMD-BIN-0520,AMD-Z-29,Shahpur,23.040553,72.587619,Shahpur Ward,Twin Bin Set,500,1430,Commercial,2020-06-20,twice_daily,Shahpur Bahai Centre Road,34761,75,62,1,0,synthetic
+AMD-BIN-0521,AMD-Z-29,Shahpur,23.041905,72.585389,Shahpur Ward,Twin Bin Set,240,960,Dry,2021-06-08,daily,Shahpur Gate Market,36108,79,73,1,0,synthetic
+AMD-BIN-0522,AMD-Z-29,Shahpur,23.042214,72.585899,Shahpur Ward,Twin Bin Set,150,270,Organic,2025-05-18,daily,Shahpur Darwaja,36678,75,79,1,0,synthetic
+AMD-BIN-0523,AMD-Z-29,Shahpur,23.040675,72.583096,Shahpur Ward,Compactor Bin,1000,2500,Mixed,2025-02-20,twice_daily,Shahpur Gate Market,35208,74,62,1,0,synthetic
+AMD-BIN-0524,AMD-Z-29,Shahpur,23.046383,72.58411,Shahpur Ward,Compactor Bin,1000,1820,Organic,2019-04-08,twice_daily,Shahpur Mill Compound,35326,76,71,1,0,synthetic
+AMD-BIN-0525,AMD-Z-29,Shahpur,23.037983,72.583054,Shahpur Ward,Community Bin,500,1430,Commercial,2023-12-05,twice_daily,Shahpur Mill Compound,35601,70,65,1,0,synthetic
+AMD-BIN-0526,AMD-Z-29,Shahpur,23.034609,72.584724,Shahpur Ward,Skip Container,660,1200,Organic,2024-01-07,twice_daily,Shahpur Gate Market,35454,68,67,1,0,synthetic
+AMD-BIN-0527,AMD-Z-29,Shahpur,23.040549,72.587267,Shahpur Ward,Community Bin,660,1650,Mixed,2020-01-27,daily,Shahpur Mill Compound,29829,73,73,0,0,synthetic
+AMD-BIN-0528,AMD-Z-29,Shahpur,23.04094,72.57852,Shahpur Ward,Underground Bin,500,1430,Commercial,2020-07-04,daily,Shahpur Mill Compound,35189,69,81,1,0,synthetic
+AMD-BIN-0529,AMD-Z-29,Shahpur,23.045184,72.583363,Shahpur Ward,Skip Container,1000,4000,Dry,2024-07-02,daily,Shahpur Mill Compound,33454,64,77,1,0,synthetic
+AMD-BIN-0530,AMD-Z-29,Shahpur,23.038452,72.584584,Shahpur Ward,Twin Bin Set,240,440,Organic,2021-07-19,twice_daily,Shahpur Gate Market,36063,64,83,1,0,synthetic
+AMD-BIN-0531,AMD-Z-29,Shahpur,23.042486,72.588641,Shahpur Ward,Community Bin,500,1250,Mixed,2021-02-17,twice_daily,Khanpur Crossing,34092,80,70,1,1,synthetic
+AMD-BIN-0532,AMD-Z-30,Jamalpur,23.010853,72.579817,Jamalpur Ward,Skip Container,1000,2500,Mixed,2022-03-08,twice_daily,Astodia Crossing,34684,87,71,1,0,synthetic
+AMD-BIN-0533,AMD-Z-30,Jamalpur,23.01241,72.583724,Jamalpur Ward,Skip Container,660,1200,Organic,2019-11-04,twice_daily,Jamalpur Vegetable Market,37218,98,63,1,0,synthetic
+AMD-BIN-0534,AMD-Z-30,Jamalpur,23.012675,72.588051,Jamalpur Ward,Skip Container,500,1250,Mixed,2022-06-03,twice_daily,Jamalpur Bridge,37476,78,68,1,0,synthetic
+AMD-BIN-0535,AMD-Z-30,Jamalpur,23.012674,72.588199,Jamalpur Ward,Skip Container,660,1200,Organic,2020-06-16,daily,Jamalpur Mill Road,35834,78,69,1,0,synthetic
+AMD-BIN-0536,AMD-Z-30,Jamalpur,23.01214,72.579152,Jamalpur Ward,Compactor Bin,660,1200,Organic,2019-04-07,twice_daily,Jamalpur Mill Road,36686,93,65,1,0,synthetic
+AMD-BIN-0537,AMD-Z-30,Jamalpur,23.014718,72.582481,Jamalpur Ward,Litter Bin,150,380,Mixed,2022-10-20,twice_daily,Jamalpur Bridge,37115,86,67,1,0,synthetic
+AMD-BIN-0538,AMD-Z-30,Jamalpur,23.014098,72.587355,Jamalpur Ward,Community Bin,500,910,Organic,2022-11-21,daily,Astodia Crossing,35484,78,68,1,0,synthetic
+AMD-BIN-0539,AMD-Z-30,Jamalpur,23.01493,72.589077,Jamalpur Ward,Skip Container,1000,2500,Mixed,2022-01-28,twice_daily,Astodia Crossing,37130,84,73,1,0,synthetic
+AMD-BIN-0540,AMD-Z-30,Jamalpur,23.021212,72.582491,Jamalpur Ward,Twin Bin Set,500,1250,Mixed,2019-08-29,twice_daily,Jamalpur Mill Road,36439,77,67,1,0,synthetic
+AMD-BIN-0541,AMD-Z-30,Jamalpur,23.013507,72.587739,Jamalpur Ward,Compactor Bin,1000,4000,Dry,2020-03-10,twice_daily,Jamalpur Bridge,37561,79,79,1,0,synthetic
+AMD-BIN-0542,AMD-Z-30,Jamalpur,23.016444,72.587445,Jamalpur Ward,Skip Container,1000,1820,Organic,2024-08-26,twice_daily,Astodia Crossing,36921,78,66,1,0,synthetic
+AMD-BIN-0543,AMD-Z-30,Jamalpur,23.015593,72.585312,Jamalpur Ward,Skip Container,1000,1820,Organic,2023-01-01,twice_daily,Jamalpur Darwaja,34835,80,71,1,0,synthetic
+AMD-BIN-0544,AMD-Z-30,Jamalpur,23.016278,72.589425,Jamalpur Ward,Compactor Bin,1000,4550,Recyclable,2021-04-28,alternate_day,Jamalpur Vegetable Market,33945,91,64,0,0,synthetic
+AMD-BIN-0545,AMD-Z-30,Jamalpur,23.016773,72.585114,Jamalpur Ward,Community Bin,660,1200,Organic,2021-12-21,daily,Astodia Crossing,35300,83,69,1,0,synthetic
+AMD-BIN-0546,AMD-Z-30,Jamalpur,23.013964,72.589324,Jamalpur Ward,Litter Bin,150,380,Mixed,2024-09-27,daily,Jamalpur Mill Road,36172,99,59,1,0,synthetic
+AMD-BIN-0547,AMD-Z-30,Jamalpur,23.015468,72.586544,Jamalpur Ward,Underground Bin,500,910,Organic,2022-01-27,twice_daily,Astodia Crossing,33222,89,67,1,0,synthetic
+AMD-BIN-0548,AMD-Z-30,Jamalpur,23.018074,72.587552,Jamalpur Ward,Skip Container,660,1200,Organic,2021-08-11,twice_daily,Jamalpur Bridge,35237,80,76,1,1,synthetic
+AMD-BIN-0549,AMD-Z-30,Jamalpur,23.009005,72.579923,Jamalpur Ward,Twin Bin Set,150,270,Organic,2020-08-20,daily,Jamalpur Bridge,32053,79,67,1,0,synthetic
+AMD-BIN-0550,AMD-Z-30,Jamalpur,23.018431,72.591652,Jamalpur Ward,Community Bin,500,910,Organic,2021-12-06,daily,Jamalpur Darwaja,39371,80,62,1,0,synthetic
+AMD-BIN-0551,AMD-Z-30,Jamalpur,23.018473,72.586196,Jamalpur Ward,Community Bin,500,1250,Mixed,2022-08-22,twice_daily,Astodia Crossing,33914,80,60,1,0,synthetic
+AMD-BIN-0552,AMD-Z-30,Jamalpur,23.016716,72.588992,Jamalpur Ward,Twin Bin Set,240,960,Dry,2022-11-07,daily,Jamalpur Vegetable Market,35938,86,66,1,0,synthetic
+AMD-BIN-0553,AMD-Z-31,Dariyapur,23.037358,72.60325,Dariyapur Ward,Skip Container,1000,2500,Mixed,2024-09-27,twice_daily,Dariyapur Darwaja,34097,65,77,1,0,synthetic
+AMD-BIN-0554,AMD-Z-31,Dariyapur,23.036861,72.605932,Dariyapur Ward,Community Bin,1000,2500,Mixed,2022-02-13,twice_daily,Kalupur Circle North,35127,68,80,1,0,synthetic
+AMD-BIN-0555,AMD-Z-31,Dariyapur,23.034767,72.594859,Dariyapur Ward,Skip Container,1000,1820,Organic,2023-12-31,twice_daily,Dariyapur Market Lane,35177,57,64,1,0,synthetic
+AMD-BIN-0556,AMD-Z-31,Dariyapur,23.04083,72.594509,Dariyapur Ward,Litter Bin,150,380,Mixed,2024-05-10,twice_daily,Dariyapur Kaji Road,31926,73,73,1,1,synthetic
+AMD-BIN-0557,AMD-Z-31,Dariyapur,23.043272,72.598301,Dariyapur Ward,Skip Container,660,1200,Organic,2025-03-12,twice_daily,Dariyapur Market Lane,37067,62,67,1,0,synthetic
+AMD-BIN-0558,AMD-Z-31,Dariyapur,23.037947,72.598126,Dariyapur Ward,Twin Bin Set,150,380,Mixed,2023-07-28,twice_daily,Dariyapur Darwaja,34003,74,84,1,0,synthetic
+AMD-BIN-0559,AMD-Z-31,Dariyapur,23.035946,72.595511,Dariyapur Ward,Twin Bin Set,500,1430,Commercial,2022-11-26,daily,Dariyapur Market Lane,37940,78,74,1,0,synthetic
+AMD-BIN-0560,AMD-Z-31,Dariyapur,23.039807,72.598121,Dariyapur Ward,Skip Container,1000,2500,Mixed,2020-04-02,twice_daily,Dariyapur Kaji Road,36256,61,70,1,0,synthetic
+AMD-BIN-0561,AMD-Z-31,Dariyapur,23.035392,72.598395,Dariyapur Ward,Skip Container,660,1890,Commercial,2021-10-10,daily,Dariyapur Darwaja,37799,65,74,1,0,synthetic
+AMD-BIN-0562,AMD-Z-31,Dariyapur,23.036088,72.594918,Dariyapur Ward,Community Bin,1000,2860,Commercial,2024-01-13,twice_daily,Dariyapur Darwaja,31616,64,71,1,0,synthetic
+AMD-BIN-0563,AMD-Z-31,Dariyapur,23.043293,72.599294,Dariyapur Ward,Community Bin,500,910,Organic,2019-08-08,alternate_day,Dariyapur Market Lane,37212,74,79,1,0,synthetic
+AMD-BIN-0564,AMD-Z-31,Dariyapur,23.031975,72.595035,Dariyapur Ward,Twin Bin Set,240,440,Organic,2019-02-14,daily,Kalupur Circle North,30556,74,81,1,0,synthetic
+AMD-BIN-0565,AMD-Z-31,Dariyapur,23.042448,72.598753,Dariyapur Ward,Skip Container,1000,1820,Organic,2024-08-25,twice_daily,Shahpur Dariyapur Link,35376,72,79,1,0,synthetic
+AMD-BIN-0566,AMD-Z-31,Dariyapur,23.040015,72.598907,Dariyapur Ward,Community Bin,500,1430,Commercial,2020-07-21,daily,Shahpur Dariyapur Link,39798,80,77,1,0,synthetic
+AMD-BIN-0567,AMD-Z-31,Dariyapur,23.035691,72.598924,Dariyapur Ward,Compactor Bin,660,1200,Organic,2023-05-28,twice_daily,Dariyapur Darwaja,39674,72,76,1,0,synthetic
+AMD-BIN-0568,AMD-Z-31,Dariyapur,23.031591,72.598869,Dariyapur Ward,Underground Bin,500,910,Organic,2020-03-14,twice_daily,Shahpur Dariyapur Link,32609,67,77,1,0,synthetic
+AMD-BIN-0569,AMD-Z-32,Saraspur,23.03049,72.606489,Saraspur Ward,Skip Container,660,3000,Recyclable,2023-04-25,twice_daily,Saraspur Gam Chowk,31147,53,70,0,1,synthetic
+AMD-BIN-0570,AMD-Z-32,Saraspur,23.028782,72.611753,Saraspur Ward,Compactor Bin,660,3000,Recyclable,2023-11-27,daily,Saraspur Gam Chowk,29047,62,76,0,0,synthetic
+AMD-BIN-0571,AMD-Z-32,Saraspur,23.034003,72.613526,Saraspur Ward,Twin Bin Set,240,960,Dry,2023-02-04,twice_daily,Saraspur Railway Colony,33288,57,81,0,1,synthetic
+AMD-BIN-0572,AMD-Z-32,Saraspur,23.034153,72.613757,Saraspur Ward,Twin Bin Set,240,690,Commercial,2019-12-19,daily,Saraspur Railway Colony,32843,56,75,0,0,synthetic
+AMD-BIN-0573,AMD-Z-32,Saraspur,23.030197,72.612244,Saraspur Ward,Skip Container,1000,4000,Dry,2024-02-16,daily,Saraspur Mill Road,35763,61,83,0,0,synthetic
+AMD-BIN-0574,AMD-Z-32,Saraspur,23.032786,72.610996,Saraspur Ward,Skip Container,660,3000,Recyclable,2025-03-19,twice_daily,Saraspur Railway Colony,31039,49,67,0,0,synthetic
+AMD-BIN-0575,AMD-Z-32,Saraspur,23.035733,72.616962,Saraspur Ward,Twin Bin Set,150,680,Recyclable,2021-01-20,alternate_day,Bapunagar Industrial Lane,31115,61,77,0,0,synthetic
+AMD-BIN-0576,AMD-Z-32,Saraspur,23.027924,72.617228,Saraspur Ward,Skip Container,500,1430,Commercial,2024-08-27,daily,Bapunagar Industrial Lane,30655,56,73,0,1,synthetic
+AMD-BIN-0577,AMD-Z-32,Saraspur,23.031587,72.617443,Saraspur Ward,Twin Bin Set,500,910,Organic,2024-05-13,twice_daily,Saraspur Mill Road,30011,60,83,0,0,synthetic
+AMD-BIN-0578,AMD-Z-32,Saraspur,23.024856,72.616548,Saraspur Ward,Community Bin,500,2270,Recyclable,2020-08-06,daily,Saraspur Railway Colony,30655,61,63,0,0,synthetic
+AMD-BIN-0579,AMD-Z-32,Saraspur,23.027696,72.610304,Saraspur Ward,Skip Container,660,3000,Recyclable,2019-07-20,daily,Saraspur Railway Colony,33122,63,62,0,1,synthetic
+AMD-BIN-0580,AMD-Z-32,Saraspur,23.031988,72.609194,Saraspur Ward,Skip Container,660,3000,Recyclable,2024-11-10,daily,Rakhial Crossing,31905,58,57,0,0,synthetic
+AMD-BIN-0581,AMD-Z-32,Saraspur,23.024373,72.611585,Saraspur Ward,Skip Container,660,1890,Commercial,2021-09-25,daily,Rakhial Crossing,29935,60,66,0,0,synthetic
+AMD-BIN-0582,AMD-Z-32,Saraspur,23.033466,72.607768,Saraspur Ward,Community Bin,240,960,Dry,2020-10-18,daily,Rakhial Crossing,35036,69,61,0,0,synthetic
+AMD-BIN-0583,AMD-Z-32,Saraspur,23.024878,72.617743,Saraspur Ward,Twin Bin Set,500,2270,Recyclable,2021-01-25,alternate_day,Saraspur Mill Road,33763,59,71,0,0,synthetic
+AMD-BIN-0584,AMD-Z-32,Saraspur,23.029497,72.618998,Saraspur Ward,Community Bin,500,2270,Recyclable,2024-08-14,daily,Saraspur Gam Chowk,30283,67,65,0,0,synthetic
+AMD-BIN-0585,AMD-Z-33,Wadaj,23.060111,72.566247,Wadaj Ward,Community Bin,500,1250,Mixed,2025-06-14,daily,Wadaj Bus Stand,26287,56,98,0,1,synthetic
+AMD-BIN-0586,AMD-Z-33,Wadaj,23.056822,72.572591,Wadaj Ward,Twin Bin Set,150,270,Organic,2021-08-02,alternate_day,New Wadaj Circle,30232,61,77,0,0,synthetic
+AMD-BIN-0587,AMD-Z-33,Wadaj,23.05988,72.570437,Wadaj Ward,Community Bin,50,120,Mixed,2019-03-06,daily,New Wadaj Circle,22824,55,85,0,0,synthetic
+AMD-BIN-0588,AMD-Z-33,Wadaj,23.057266,72.573664,Wadaj Ward,Twin Bin Set,100,400,Dry,2020-09-26,daily,Wadaj Bus Stand,27277,51,85,0,0,synthetic
+AMD-BIN-0589,AMD-Z-33,Wadaj,23.05653,72.568631,Wadaj Ward,Community Bin,100,450,Recyclable,2023-07-17,alternate_day,Wadaj Gam Chowk,27407,52,80,0,0,synthetic
+AMD-BIN-0590,AMD-Z-33,Wadaj,23.058289,72.565975,Wadaj Ward,Community Bin,500,1250,Mixed,2022-01-16,daily,Subhash Bridge Approach,28606,54,82,0,0,synthetic
+AMD-BIN-0591,AMD-Z-33,Wadaj,23.060827,72.568686,Wadaj Ward,Community Bin,150,380,Mixed,2019-01-15,daily,Wadaj Gam Chowk,24770,55,92,0,0,synthetic
+AMD-BIN-0592,AMD-Z-33,Wadaj,23.05803,72.567582,Wadaj Ward,Community Bin,500,1250,Mixed,2023-10-17,daily,Akhbarnagar Wadaj Link,25515,50,91,0,0,synthetic
+AMD-BIN-0593,AMD-Z-33,Wadaj,23.064774,72.573142,Wadaj Ward,Twin Bin Set,240,600,Mixed,2024-01-21,daily,Subhash Bridge Approach,27841,57,95,0,0,synthetic
+AMD-BIN-0594,AMD-Z-33,Wadaj,23.057414,72.56838,Wadaj Ward,Community Bin,50,120,Mixed,2019-01-23,daily,Wadaj Gam Chowk,28928,57,85,0,0,synthetic
+AMD-BIN-0595,AMD-Z-33,Wadaj,23.061099,72.574659,Wadaj Ward,Litter Bin,100,400,Dry,2020-09-12,twice_daily,Akhbarnagar Wadaj Link,28078,47,93,0,0,synthetic
+AMD-BIN-0596,AMD-Z-33,Wadaj,23.064721,72.571582,Wadaj Ward,Litter Bin,100,180,Organic,2025-03-16,daily,New Wadaj Circle,23099,57,89,0,0,synthetic
+AMD-BIN-0597,AMD-Z-33,Wadaj,23.055645,72.572201,Wadaj Ward,Community Bin,500,910,Organic,2020-03-01,daily,Wadaj Bus Stand,26973,50,81,0,0,synthetic
+AMD-BIN-0598,AMD-Z-33,Wadaj,23.058815,72.573996,Wadaj Ward,Skip Container,500,2270,Recyclable,2019-01-28,daily,Wadaj Bus Stand,25377,44,93,0,0,synthetic
+AMD-BIN-0599,AMD-Z-33,Wadaj,23.062479,72.577143,Wadaj Ward,Litter Bin,150,380,Mixed,2023-09-12,alternate_day,Subhash Bridge Approach,26382,52,88,0,0,synthetic
+AMD-BIN-0600,AMD-Z-33,Wadaj,23.058528,72.56895,Wadaj Ward,Litter Bin,150,680,Recyclable,2022-12-19,daily,Akhbarnagar Wadaj Link,30258,40,88,0,0,synthetic
