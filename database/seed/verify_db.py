@@ -61,12 +61,18 @@ def verify():
     print(f"4. Total row count for 'alerts': {alerts_cnt}")
 
     print("-" * 60)
-    print("Additional Tables Summary:")
+    print("All Tables Row Counts & Audit:")
+    counts = {}
     for tbl in expected_tables:
-        if tbl not in ["zones", "bins", "vehicles", "alerts"]:
-            cur.execute(f"SELECT COUNT(*) FROM {tbl}")
-            cnt = cur.fetchone()[0]
-            print(f"   - {tbl:<22}: {cnt} rows")
+        cur.execute(f"SELECT COUNT(*) FROM {tbl}")
+        cnt = cur.fetchone()[0]
+        counts[tbl] = cnt
+        expected_note = ""
+        if tbl == "zones": expected_note = "(Expected: 10)"
+        elif tbl == "bins": expected_note = "(Expected: 125)"
+        elif tbl == "vehicles": expected_note = "(Expected: 12)"
+        elif tbl == "waste_classifications": expected_note = "(Expected: 125)"
+        print(f"   - {tbl:<22}: {cnt:>5} rows {expected_note}")
 
     # Verify data integrity of samples
     print("-" * 60)
@@ -84,7 +90,15 @@ def verify():
 
     conn.close()
     
-    status = (zones_cnt == 10 and bins_cnt == 125 and vehicles_cnt == 12 and alerts_cnt > 0 and len(fk_errors) == 0)
+    status = (
+        counts.get("zones", 0) == 10
+        and counts.get("bins", 0) == 125
+        and counts.get("vehicles", 0) == 12
+        and counts.get("waste_classifications", 0) == 125
+        and counts.get("alerts", 0) > 0
+        and len(fk_errors) == 0
+        and null_bins == 0
+    )
     print("=" * 60)
     print("[SUCCESS] All tables exist and contain valid data." if status else "[FAILURE] Verification checks did not pass.")
     print("=" * 60)
