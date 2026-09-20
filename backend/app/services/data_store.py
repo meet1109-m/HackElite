@@ -63,6 +63,49 @@ class DataStore:
         self._seed_waste_classifications()
         self._seed_telemetry()
 
+    def reset_data(self, db: Optional[Session] = None):
+        """Reset in-memory data store and synchronize baseline state to SQLite."""
+        self.initialize_store()
+        session, created = self._resolve_session(db)
+        if session:
+            try:
+                from app.models.entities import (
+                    Bin as DBBin,
+                    Vehicle as DBVehicle,
+                    Alert as DBAlert,
+                    Route as DBRoute,
+                )
+                # Reset bins
+                for code, b in self.bins.items():
+                    db_b = session.query(DBBin).filter(DBBin.bin_code == code).first()
+                    if db_b:
+                        db_b.fill_percentage = b["fill_percentage"]
+                        db_b.estimated_weight = b["estimated_weight"]
+                        db_b.status = b["status"]
+                        db_b.priority_score = b["priority_score"]
+                        db_b.predicted_overflow_time = b["predicted_overflow_time"]
+                        db_b.overflow_severity = b["overflow_severity"]
+                        db_b.updated_at = b["updated_at"]
+                # Reset vehicles
+                for code, v in self.vehicles.items():
+                    db_v = session.query(DBVehicle).filter(DBVehicle.vehicle_code == code).first()
+                    if db_v:
+                        db_v.current_load = v["current_load"]
+                        db_v.status = v["status"]
+                        db_v.assigned_route_id = v.get("assigned_route_id")
+                        db_v.driver_name = v.get("driver_name", "Ramesh Patel")
+                        db_v.driver_phone = v.get("driver_phone", "+91 98250 14210")
+                        db_v.updated_at = v["updated_at"]
+                # Clean up demo-specific alerts and routes
+                session.query(DBAlert).filter(DBAlert.id.like("%DEMO%")).delete(synchronize_session=False)
+                session.query(DBRoute).filter(DBRoute.id.like("%DEMO%")).delete(synchronize_session=False)
+                session.commit()
+            except Exception:
+                pass
+            finally:
+                if created:
+                    session.close()
+
     def _seed_bins(self):
         """Generate 125 realistic bins distributed across the 10 Ahmedabad zones
 
@@ -517,20 +560,84 @@ class DataStore:
             self.telemetry_history[code] = history
 
     # ==========================================
-    # CRUD & Lookup Methods
+    # CRUD & Lookup Methods (SQLite Synchronized)
     # ==========================================
+
+    @staticmethod
+    def _resolve_session(db: Optional[Session]):
+        """Helper to use an existing DB session or open a scoped SessionLocal."""
+        if db is not None:
+            return db, False
+        try:
+            from app.database import SessionLocal
+            return SessionLocal(), True
+        except Exception:
+            return None, False
 
     def get_all_bins(
         self,
         zone: Optional[str] = None,
         status: Optional[str] = None,
         min_fill: Optional[float] = None,
+        db: Optional[Session] = None,
     ) -> List[Dict[str, Any]]:
-        """Retrieve bins with optional filtering by zone, status, or minimum fill percentage."""
-        result = list(self.bins.values())
+        """Retrieve bins from SQLite database with read-through cache synchronization."""
+        session, created = self._resolve_session(db)
+        if session:
+            try:
+                from app.models.entities import Bin as DBBin
+                from app.services.priority_engine import calculate_priority
 
+                query = session.query(DBBin)
+                if zone:
+                    query = query.filter(DBBin.zone.ilike(f"%{zone}%"))
+                if status:
+                    query = query.filter(DBBin.status.ilike(status))
+                if min_fill is not None:
+                    query = query.filter(DBBin.fill_percentage >= min_fill)
+
+                db_bins = query.all()
+                if db_bins:
+                    results = []
+                    for b in db_bins:
+                        cached = self.bins.get(b.bin_code, {})
+                        bin_dict = {
+                            "id": b.id,
+                            "bin_code": b.bin_code,
+                            "zone": b.zone,
+                            "latitude": b.latitude,
+                            "longitude": b.longitude,
+                            "capacity_kg": b.capacity_kg,
+                            "fill_percentage": b.fill_percentage,
+                            "estimated_weight": b.estimated_weight,
+                            "waste_stream": b.waste_stream,
+                            "status": b.status,
+                            "priority_score": b.priority_score,
+                            "predicted_overflow_time": b.predicted_overflow_time,
+                            "overflow_severity": b.overflow_severity,
+                            "last_collection": b.last_collection,
+                            "created_at": b.created_at,
+                            "updated_at": b.updated_at,
+                        }
+                        if "priority_breakdown" in cached:
+                            bin_dict["priority_breakdown"] = cached["priority_breakdown"]
+                        else:
+                            xai = calculate_priority(bin_dict)
+                            bin_dict["priority_breakdown"] = xai.get("priority_breakdown", {})
+
+                        self.bins[b.bin_code] = bin_dict
+                        results.append(bin_dict)
+                    return results
+            except Exception:
+                pass
+            finally:
+                if created:
+                    session.close()
+
+        # Fallback to in-memory store
+        result = list(self.bins.values())
         if zone:
-            result = [b for b in result if b["zone"].lower() == zone.lower()]
+            result = [b for b in result if zone.lower() in b["zone"].lower()]
         if status:
             result = [b for b in result if b["status"].lower() == status.lower()]
         if min_fill is not None:
@@ -538,25 +645,69 @@ class DataStore:
 
         return result
 
-    def get_bin(self, bin_code: str) -> Optional[Dict[str, Any]]:
-        """Lookup a specific bin by its bin_code (case-insensitive)."""
-        return self.bins.get(bin_code.upper())
+    def get_bin(self, bin_code: str, db: Optional[Session] = None) -> Optional[Dict[str, Any]]:
+        """Lookup a specific bin by its bin_code with SQLite read-through sync."""
+        code = bin_code.upper()
+        session, created = self._resolve_session(db)
+        if session:
+            try:
+                from app.models.entities import Bin as DBBin
+                from app.services.priority_engine import calculate_priority
+
+                b = session.query(DBBin).filter(DBBin.bin_code == code).first()
+                if b:
+                    cached = self.bins.get(code, {})
+                    bin_dict = {
+                        "id": b.id,
+                        "bin_code": b.bin_code,
+                        "zone": b.zone,
+                        "latitude": b.latitude,
+                        "longitude": b.longitude,
+                        "capacity_kg": b.capacity_kg,
+                        "fill_percentage": b.fill_percentage,
+                        "estimated_weight": b.estimated_weight,
+                        "waste_stream": b.waste_stream,
+                        "status": b.status,
+                        "priority_score": b.priority_score,
+                        "predicted_overflow_time": b.predicted_overflow_time,
+                        "overflow_severity": b.overflow_severity,
+                        "last_collection": b.last_collection,
+                        "created_at": b.created_at,
+                        "updated_at": b.updated_at,
+                    }
+                    if "priority_breakdown" in cached:
+                        bin_dict["priority_breakdown"] = cached["priority_breakdown"]
+                    else:
+                        xai = calculate_priority(bin_dict)
+                        bin_dict["priority_breakdown"] = xai.get("priority_breakdown", {})
+
+                    self.bins[code] = bin_dict
+                    return bin_dict
+            except Exception:
+                pass
+            finally:
+                if created:
+                    session.close()
+
+        return self.bins.get(code)
 
     def update_bin(self, bin_code: str, updates: Dict[str, Any], db: Optional[Session] = None) -> Optional[Dict[str, Any]]:
-        """Update bin attributes in-memory and write-through to SQLite."""
+        """Update bin attributes with immediate SQLite write-through."""
         code = bin_code.upper()
-        if code not in self.bins:
+        if code not in self.bins and not self.get_bin(code, db=db):
             return None
 
-        self.bins[code].update(updates)
-        self.bins[code]["updated_at"] = datetime.utcnow()
+        # 1. Update in-memory
+        if code in self.bins:
+            self.bins[code].update(updates)
+            self.bins[code]["updated_at"] = datetime.utcnow()
 
-        # Write-through to SQLite database
-        try:
-            from app.models.entities import Bin as DBBin
-            from app.database import SessionLocal
+        # 2. Write-through to SQLite database
+        session, created = self._resolve_session(db)
+        if session:
+            try:
+                from app.models.entities import Bin as DBBin
 
-            def _apply_bin_updates(session):
                 db_b = session.query(DBBin).filter(DBBin.bin_code == code).first()
                 if db_b:
                     for k, val in updates.items():
@@ -564,24 +715,63 @@ class DataStore:
                             setattr(db_b, k, val)
                     db_b.updated_at = datetime.utcnow()
                     session.commit()
+            except Exception:
+                pass
+            finally:
+                if created:
+                    session.close()
 
-            if db:
-                _apply_bin_updates(db)
-            else:
-                with SessionLocal() as session:
-                    _apply_bin_updates(session)
-        except Exception:
-            pass
+        return self.get_bin(code, db=db)
 
-        return self.bins[code]
+    def get_all_vehicles(self, status: Optional[str] = None, db: Optional[Session] = None) -> List[Dict[str, Any]]:
+        """Retrieve all vehicles with SQLite read-through sync and dynamic attributes."""
+        session, created = self._resolve_session(db)
+        if session:
+            try:
+                from app.models.entities import Vehicle as DBVehicle
 
-    def get_all_vehicles(self, status: Optional[str] = None) -> List[Dict[str, Any]]:
-        """Retrieve all vehicles with optional status filter."""
+                query = session.query(DBVehicle)
+                if status:
+                    query = query.filter(DBVehicle.status.ilike(status))
+                db_vehicles = query.all()
+                if db_vehicles:
+                    results = []
+                    for v in db_vehicles:
+                        veh_dict = {
+                            "id": v.id,
+                            "vehicle_code": v.vehicle_code,
+                            "capacity_kg": v.capacity_kg,
+                            "current_load": v.current_load,
+                            "latitude": v.latitude,
+                            "longitude": v.longitude,
+                            "status": v.status,
+                            "assigned_route_id": v.assigned_route_id,
+                            "driver_name": v.driver_name or "Ramesh Patel",
+                            "driver_phone": v.driver_phone or "+91 98250 14210",
+                            "updated_at": v.updated_at,
+                        }
+                        veh_dict["available_capacity"] = max(0.0, round(v.capacity_kg - v.current_load, 1))
+                        veh_dict["available_capacity_kg"] = veh_dict["available_capacity"]
+                        veh_dict["utilization_pct"] = min(
+                            100.0, round((v.current_load / max(1.0, v.capacity_kg)) * 100.0, 1)
+                        )
+                        veh_dict["utilization_percentage"] = veh_dict["utilization_pct"]
+                        veh_dict["current_load_kg"] = v.current_load
+
+                        self.vehicles[v.vehicle_code] = veh_dict
+                        results.append(veh_dict)
+                    return results
+            except Exception:
+                pass
+            finally:
+                if created:
+                    session.close()
+
+        # Fallback to in-memory store
         vehicles = list(self.vehicles.values())
         if status:
             vehicles = [v for v in vehicles if v["status"].lower() == status.lower()]
 
-        # Compute dynamic fields and frontend compatibility aliases
         for v in vehicles:
             v["available_capacity"] = max(0.0, round(v["capacity_kg"] - v["current_load"], 1))
             v["available_capacity_kg"] = v["available_capacity"]
@@ -597,9 +787,46 @@ class DataStore:
 
         return vehicles
 
-    def get_vehicle(self, vehicle_code: str) -> Optional[Dict[str, Any]]:
-        """Lookup a vehicle by vehicle_code."""
-        v = self.vehicles.get(vehicle_code.upper())
+    def get_vehicle(self, vehicle_code: str, db: Optional[Session] = None) -> Optional[Dict[str, Any]]:
+        """Lookup a vehicle with SQLite read-through sync."""
+        code = vehicle_code.upper()
+        session, created = self._resolve_session(db)
+        if session:
+            try:
+                from app.models.entities import Vehicle as DBVehicle
+
+                v = session.query(DBVehicle).filter(DBVehicle.vehicle_code == code).first()
+                if v:
+                    veh_dict = {
+                        "id": v.id,
+                        "vehicle_code": v.vehicle_code,
+                        "capacity_kg": v.capacity_kg,
+                        "current_load": v.current_load,
+                        "latitude": v.latitude,
+                        "longitude": v.longitude,
+                        "status": v.status,
+                        "assigned_route_id": v.assigned_route_id,
+                        "driver_name": v.driver_name or "Ramesh Patel",
+                        "driver_phone": v.driver_phone or "+91 98250 14210",
+                        "updated_at": v.updated_at,
+                    }
+                    veh_dict["available_capacity"] = max(0.0, round(v.capacity_kg - v.current_load, 1))
+                    veh_dict["available_capacity_kg"] = veh_dict["available_capacity"]
+                    veh_dict["utilization_pct"] = min(
+                        100.0, round((v.current_load / max(1.0, v.capacity_kg)) * 100.0, 1)
+                    )
+                    veh_dict["utilization_percentage"] = veh_dict["utilization_pct"]
+                    veh_dict["current_load_kg"] = v.current_load
+
+                    self.vehicles[code] = veh_dict
+                    return veh_dict
+            except Exception:
+                pass
+            finally:
+                if created:
+                    session.close()
+
+        v = self.vehicles.get(code)
         if v:
             v["available_capacity"] = max(0.0, round(v["capacity_kg"] - v["current_load"], 1))
             v["available_capacity_kg"] = v["available_capacity"]
@@ -615,20 +842,22 @@ class DataStore:
         return v
 
     def update_vehicle(self, vehicle_code: str, updates: Dict[str, Any], db: Optional[Session] = None) -> Optional[Dict[str, Any]]:
-        """Update vehicle attributes in-memory and write-through to SQLite."""
+        """Update vehicle attributes with immediate SQLite write-through."""
         code = vehicle_code.upper()
-        if code not in self.vehicles:
+        if code not in self.vehicles and not self.get_vehicle(code, db=db):
             return None
 
-        self.vehicles[code].update(updates)
-        self.vehicles[code]["updated_at"] = datetime.utcnow()
+        # 1. Update in-memory
+        if code in self.vehicles:
+            self.vehicles[code].update(updates)
+            self.vehicles[code]["updated_at"] = datetime.utcnow()
 
-        # Write-through to SQLite database
-        try:
-            from app.models.entities import Vehicle as DBVehicle
-            from app.database import SessionLocal
+        # 2. Write-through to SQLite database
+        session, created = self._resolve_session(db)
+        if session:
+            try:
+                from app.models.entities import Vehicle as DBVehicle
 
-            def _apply_vehicle_updates(session):
                 db_v = session.query(DBVehicle).filter(DBVehicle.vehicle_code == code).first()
                 if db_v:
                     for k, val in updates.items():
@@ -636,22 +865,20 @@ class DataStore:
                             setattr(db_v, k, val)
                     db_v.updated_at = datetime.utcnow()
                     session.commit()
+            except Exception:
+                pass
+            finally:
+                if created:
+                    session.close()
 
-            if db:
-                _apply_vehicle_updates(db)
-            else:
-                with SessionLocal() as session:
-                    _apply_vehicle_updates(session)
-        except Exception:
-            pass
+        return self.get_vehicle(code, db=db)
 
-        return self.get_vehicle(code)
-
-    def get_zones(self) -> List[Dict[str, Any]]:
-        """Retrieve all 10 zones with aggregated metrics."""
+    def get_zones(self, db: Optional[Session] = None) -> List[Dict[str, Any]]:
+        """Retrieve all 10 zones with live aggregated metrics from SQLite."""
         zone_list = []
+        live_bins = self.get_all_bins(db=db)
         for name, zinfo in self.zones.items():
-            zone_bins = [b for b in self.bins.values() if b["zone"] == name]
+            zone_bins = [b for b in live_bins if b["zone"] == name]
             total_bins = len(zone_bins)
             avg_fill = (
                 round(sum(b["fill_percentage"] for b in zone_bins) / total_bins, 1)
@@ -668,27 +895,176 @@ class DataStore:
 
         return zone_list
 
-    def get_alerts(self, status: Optional[str] = None) -> List[Dict[str, Any]]:
-        """Retrieve system alerts."""
+    def get_alerts(self, status: Optional[str] = None, db: Optional[Session] = None) -> List[Dict[str, Any]]:
+        """Retrieve system alerts with SQLite synchronization."""
+        session, created = self._resolve_session(db)
+        if session:
+            try:
+                from app.models.entities import Alert as DBAlert
+
+                query = session.query(DBAlert)
+                if status:
+                    query = query.filter(DBAlert.status.ilike(status))
+                db_alerts = query.order_by(DBAlert.created_at.desc()).all()
+                if db_alerts:
+                    alerts = []
+                    for a in db_alerts:
+                        alerts.append({
+                            "id": a.id,
+                            "alert_type": a.alert_type,
+                            "severity": a.severity,
+                            "bin_id": a.bin_id,
+                            "bin_code": a.bin_code,
+                            "zone": a.zone,
+                            "message": a.message,
+                            "status": a.status,
+                            "created_at": a.created_at,
+                        })
+                    self.alerts = alerts
+                    return alerts
+            except Exception:
+                pass
+            finally:
+                if created:
+                    session.close()
+
         if status:
             return [a for a in self.alerts if a["status"].lower() == status.lower()]
         return self.alerts
 
-    def get_active_routes(self) -> List[Dict[str, Any]]:
-        """Retrieve current active collection routes."""
+    def get_active_routes(self, db: Optional[Session] = None) -> List[Dict[str, Any]]:
+        """Retrieve current active collection routes with SQLite synchronization."""
+        session, created = self._resolve_session(db)
+        if session:
+            try:
+                import json
+                from app.models.entities import Route as DBRoute
+
+                db_routes = session.query(DBRoute).all()
+                if db_routes:
+                    routes = []
+                    for r in db_routes:
+                        waypoints = []
+                        if r.waypoints_json:
+                            try:
+                                waypoints = json.loads(r.waypoints_json)
+                            except Exception:
+                                waypoints = []
+                        routes.append({
+                            "id": r.id,
+                            "route_id": r.id,
+                            "vehicle_id": r.vehicle_id,
+                            "vehicle_code": r.vehicle_code,
+                            "distance_km": r.distance_km,
+                            "estimated_duration_mins": r.estimated_duration_mins,
+                            "load_kg": r.load_kg,
+                            "utilization_pct": r.utilization_pct,
+                            "waypoints": waypoints,
+                            "waypoints_json": r.waypoints_json,
+                            "status": r.status,
+                            "created_at": r.created_at,
+                        })
+                    self.routes = routes
+                    return routes
+            except Exception:
+                pass
+            finally:
+                if created:
+                    session.close()
+
         return self.routes
 
-    def get_waste_composition(self, bin_code: str) -> Optional[Dict[str, Any]]:
-        """Retrieve waste composition breakdown for a bin."""
-        return self.waste_classifications.get(bin_code.upper())
+    def get_waste_composition(self, bin_code: str, db: Optional[Session] = None) -> Optional[Dict[str, Any]]:
+        """Retrieve waste composition breakdown with SQLite synchronization."""
+        code = bin_code.upper()
+        session, created = self._resolve_session(db)
+        if session:
+            try:
+                from app.models.entities import WasteClassification as DBWasteClassification
 
-    def get_telemetry_readings(self, bin_code: str) -> List[Dict[str, Any]]:
-        """Retrieve historical telemetry readings for a bin."""
-        return self.telemetry_history.get(bin_code.upper(), [])
+                wc = session.query(DBWasteClassification).filter(DBWasteClassification.bin_code == code).first()
+                if wc:
+                    return {
+                        "id": wc.id,
+                        "bin_id": wc.bin_id,
+                        "bin_code": wc.bin_code,
+                        "image_url": wc.image_url,
+                        "plastic_percentage": wc.plastic_percentage,
+                        "paper_percentage": wc.paper_percentage,
+                        "metal_percentage": wc.metal_percentage,
+                        "glass_percentage": wc.glass_percentage,
+                        "organic_percentage": wc.organic_percentage,
+                        "other_percentage": wc.other_percentage,
+                        "confidence": wc.confidence,
+                        "source": wc.source,
+                        "created_at": wc.created_at,
+                        "composition": {
+                            "plastic": wc.plastic_percentage,
+                            "paper": wc.paper_percentage,
+                            "metal": wc.metal_percentage,
+                            "glass": wc.glass_percentage,
+                            "organic": wc.organic_percentage,
+                            "other": wc.other_percentage,
+                        },
+                    }
+            except Exception:
+                pass
+            finally:
+                if created:
+                    session.close()
 
-    def reset_data(self):
-        """Reset in-memory data to fresh synthetic baseline."""
+        return self.waste_classifications.get(code)
+
+    def get_telemetry_readings(self, bin_code: str, db: Optional[Session] = None) -> List[Dict[str, Any]]:
+        """Retrieve historical telemetry readings directly from SQLite."""
+        code = bin_code.upper()
+        session, created = self._resolve_session(db)
+        if session:
+            try:
+                from app.models.entities import BinReading as DBBinReading
+
+                db_readings = (
+                    session.query(DBBinReading)
+                    .filter(DBBinReading.bin_code == code)
+                    .order_by(DBBinReading.timestamp.desc())
+                    .limit(20)
+                    .all()
+                )
+                if db_readings:
+                    readings = []
+                    for r in db_readings:
+                        readings.append({
+                            "id": r.id,
+                            "bin_id": r.bin_id,
+                            "bin_code": r.bin_code,
+                            "timestamp": r.timestamp,
+                            "fill_percentage": r.fill_percentage,
+                            "weight": r.weight,
+                        })
+                    return readings
+            except Exception:
+                pass
+            finally:
+                if created:
+                    session.close()
+
+        return self.telemetry_history.get(code, [])
+
+    def reset_data(self, db: Optional[Session] = None):
+        """Reset both in-memory data and SQLite database to fresh synthetic baseline."""
         self.initialize_store()
+        session, created = self._resolve_session(db)
+        if session:
+            try:
+                from app.database import Base
+                Base.metadata.drop_all(bind=session.get_bind())
+                Base.metadata.create_all(bind=session.get_bind())
+                self.seed_database_if_empty(session)
+            except Exception:
+                pass
+            finally:
+                if created:
+                    session.close()
 
     # ==========================================
     # Database Synchronization & Auto-Seeding
@@ -1238,6 +1614,88 @@ class DataStore:
             "weight_kg": weight,
             "status": b["status"],
             "timestamp": now.isoformat(),
+        }
+
+    def update_bin_status(
+        self,
+        db: Session,
+        bin_code: str,
+        status: str,
+        message: Optional[str] = None,
+    ) -> Dict[str, Any]:
+        """Update bin operational status in SQLite and memory cache, and record/resolve alert records."""
+        from app.models.entities import Bin as DBBin, Alert as DBAlert
+
+        b = self.get_bin(bin_code)
+        if not b:
+            raise ValueError(f"Bin '{bin_code}' not found.")
+
+        bin_id = b.get("id", f"bin-{bin_code.lower()}")
+        zone = b.get("zone", "Ahmedabad Central")
+        now = datetime.utcnow()
+
+        # 1. Update in SQLite
+        db_bin = db.query(DBBin).filter(DBBin.bin_code == bin_code).first()
+        if db_bin:
+            db_bin.status = status
+            db_bin.updated_at = now
+            bin_id = db_bin.id
+            zone = db_bin.zone
+
+        # 2. Update in-memory cache
+        b["status"] = status
+        b["updated_at"] = now
+
+        # 3. Handle Alert synchronization
+        alert_record = None
+        if "offline" in status.lower():
+            alert_msg = message or f"IoT sensor heartbeat lost for node {bin_code} in {zone}."
+            alert_id = str(uuid.uuid4())
+            db_alert = DBAlert(
+                id=alert_id,
+                alert_type="Sensor Offline",
+                severity="High",
+                bin_id=bin_id,
+                bin_code=bin_code,
+                zone=zone,
+                message=alert_msg,
+                status="Active",
+                created_at=now,
+            )
+            db.add(db_alert)
+            alert_dict = {
+                "id": alert_id,
+                "alert_type": "Sensor Offline",
+                "severity": "High",
+                "bin_id": bin_id,
+                "bin_code": bin_code,
+                "zone": zone,
+                "message": alert_msg,
+                "status": "Active",
+                "created_at": now,
+            }
+            self.alerts.insert(0, alert_dict)
+            alert_record = alert_dict
+        elif "healthy" in status.lower():
+            # Resolve any active sensor offline alerts for this bin
+            db_alerts = db.query(DBAlert).filter(
+                DBAlert.bin_code == bin_code,
+                DBAlert.alert_type == "Sensor Offline",
+                DBAlert.status == "Active",
+            ).all()
+            for al in db_alerts:
+                al.status = "Resolved"
+            for al in self.alerts:
+                if al.get("bin_code") == bin_code and al.get("alert_type") == "Sensor Offline":
+                    al["status"] = "Resolved"
+
+        db.commit()
+
+        return {
+            "bin_code": bin_code,
+            "status": status,
+            "updated_at": now.isoformat(),
+            "alert": alert_record,
         }
 
 

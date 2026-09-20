@@ -15,13 +15,29 @@ ROOT_DIR = Path(__file__).resolve().parents[2]
 if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
+from sqlalchemy import text
 from app.config import settings
 from app.database import engine, Base, SessionLocal
 import app.models  # Ensure models are registered on Base.metadata
 from app.services.data_store import data_store
 from app.routes import register_routes
 
-# Initialize tables (creates tables if not exist)
+def ensure_db_migrations(db_engine):
+    """Automatically apply any missing column migrations to SQLite tables."""
+    try:
+        with db_engine.connect() as conn:
+            res = conn.execute(text("PRAGMA table_info(vehicles)")).fetchall()
+            cols = [r[1] for r in res]
+            if "driver_name" not in cols:
+                conn.execute(text("ALTER TABLE vehicles ADD COLUMN driver_name VARCHAR(100) DEFAULT 'Ramesh Patel'"))
+            if "driver_phone" not in cols:
+                conn.execute(text("ALTER TABLE vehicles ADD COLUMN driver_phone VARCHAR(50) DEFAULT '+91 98250 14210'"))
+            conn.commit()
+    except Exception:
+        pass
+
+# Ensure schema migrations and initialize tables
+ensure_db_migrations(engine)
 Base.metadata.create_all(bind=engine)
 
 

@@ -136,3 +136,18 @@ def record_telemetry_endpoint(
         raise HTTPException(status_code=404, detail=str(e))
 
 
+@router.post("/{bin_code}/status")
+def update_bin_status_endpoint(
+    bin_code: str,
+    status: str = Query(..., description="Target status, e.g. 'Sensor Offline', 'Healthy', 'Critical'"),
+    message: Optional[str] = Query(None, description="Optional alert description or event reason"),
+    db: Session = Depends(get_db),
+):
+    """Update bin status in SQLite and memory cache, and record/resolve alert records."""
+    try:
+        result = data_store.update_bin_status(db, bin_code=bin_code, status=status, message=message)
+        return result
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
+

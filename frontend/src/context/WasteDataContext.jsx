@@ -425,15 +425,18 @@ export const WasteDataProvider = ({ children }) => {
     }
   }, [showToast]);
 
-  const simulateSensorOffline = useCallback(() => {
+  const simulateSensorOffline = useCallback(async () => {
     setIotStatus(prev => ({
       ...prev,
       activeNodes: 112,
       offlineNodes: 8,
       fillSensorHealthPct: 93.3
     }));
+
+    const targetCodes = ['AHM-105', 'AHM-106'];
+
     setBins(prevBins => prevBins.map((bin, i) => {
-      if (i === 4 || i === 5) {
+      if (i === 4 || i === 5 || targetCodes.includes(bin.bin_code)) {
         return {
           ...bin,
           status: 'Sensor Offline',
@@ -442,10 +445,32 @@ export const WasteDataProvider = ({ children }) => {
       }
       return bin;
     }));
-    showToast('⚠️ [Simulated Telemetry] 4 IoT nodes entered offline heartbeat warning state.', 'warning');
+
+    // Send sensor offline status to backend to persist state and create SQLite alert
+    try {
+      await Promise.allSettled(
+        targetCodes.map(code =>
+          apiService.updateBinStatus(code, 'Sensor Offline', `IoT sensor heartbeat lost for node ${code}.`)
+        )
+      );
+    } catch (e) {
+      console.warn('[WasteData] Backend sensor offline sync:', e);
+    }
+
+    showToast('⚠️ [Simulated Telemetry] IoT nodes (AHM-105, AHM-106) entered offline heartbeat warning state and synchronized with backend.', 'warning');
   }, [showToast]);
 
   const refreshTelemetry = useCallback(async () => {
+    try {
+      // Restore offline bins in backend back to operational status
+      await Promise.allSettled([
+        apiService.updateBinStatus('AHM-105', 'Healthy'),
+        apiService.updateBinStatus('AHM-106', 'Healthy')
+      ]);
+    } catch (e) {
+      console.warn('[WasteData] Backend telemetry reset:', e);
+    }
+
     await fetchData();
     setIotStatus({
       totalNodes: 120,

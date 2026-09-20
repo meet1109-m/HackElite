@@ -166,8 +166,19 @@ class DemoRunner:
             "status": "Active",
             "created_at": datetime.utcnow(),
         }
-        # Insert alert at front
+        # Insert alert in memory and SQLite
         data_store.alerts.insert(0, alert_obj)
+        try:
+            from app.database import SessionLocal
+            from app.models.entities import Alert as DBAlert
+            with SessionLocal() as db:
+                existing = db.query(DBAlert).filter(DBAlert.id == alert_obj["id"]).first()
+                if not existing:
+                    db.add(DBAlert(**alert_obj))
+                    db.commit()
+        except Exception:
+            pass
+
         return {
             "step_number": 4,
             "title": "System Alert Dispatch: Bodakdev Overflow Trigger",
@@ -194,6 +205,21 @@ class DemoRunner:
             "created_at": datetime.utcnow(),
         }
         data_store.waste_classifications["AHM-104"] = wc_data
+        try:
+            from app.database import SessionLocal
+            from app.models.entities import WasteClassification as DBWasteClassification
+            with SessionLocal() as db:
+                existing = db.query(DBWasteClassification).filter(DBWasteClassification.bin_code == "AHM-104").first()
+                if existing:
+                    for k, v in wc_data.items():
+                        if hasattr(existing, k):
+                            setattr(existing, k, v)
+                else:
+                    db.add(DBWasteClassification(**wc_data))
+                db.commit()
+        except Exception:
+            pass
+
         purity = calculate_recycling_purity("AHM-104", wc_data, stream_name="Recyclable")
 
         return {
@@ -296,7 +322,13 @@ class DemoRunner:
             "status": "Active",
             "environment": "SmartBinX CVRP Optimization Engine",
         }
-        data_store.routes.insert(0, initial_route)
+        try:
+            from app.database import SessionLocal
+            with SessionLocal() as db:
+                data_store.persist_route(db, initial_route)
+        except Exception:
+            data_store.routes.insert(0, initial_route)
+
         data_store.update_vehicle("V-01", {"status": "On Route", "assigned_route_id": "ROUTE-DEMO-01"})
 
         return {
@@ -343,7 +375,12 @@ class DemoRunner:
         emergency_bin = data_store.get_bin("AHM-156")
 
         replan_result = dynamic_replan_route(active_route, emergency_bin)
-        data_store.routes[0] = replan_result["replanned_route"]
+        try:
+            from app.database import SessionLocal
+            with SessionLocal() as db:
+                data_store.persist_route(db, replan_result["replanned_route"])
+        except Exception:
+            data_store.routes[0] = replan_result["replanned_route"]
 
         return {
             "step_number": 9,

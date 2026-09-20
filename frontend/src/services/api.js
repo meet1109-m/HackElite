@@ -698,6 +698,16 @@ export const apiService = {
     });
   },
 
+  async updateBinStatus(binCode, status, message = null) {
+    const params = new URLSearchParams({ status });
+    if (message) {
+      params.append('message', message);
+    }
+    return await request(`/bins/${encodeURIComponent(binCode)}/status?${params.toString()}`, {
+      method: 'POST'
+    });
+  },
+
   // Waste Vision
   async classifyWaste(payload = {}) {
     const isFormData = payload instanceof FormData;
