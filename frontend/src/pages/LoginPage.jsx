@@ -22,6 +22,7 @@ import {
   Check
 } from 'lucide-react';
 import { useWasteData } from '../context/WasteDataContext';
+import { apiService } from '../services/api';
 
 // Registered Authorized AMC Accounts & Roles
 const AUTHORIZED_ACCOUNTS = {
@@ -79,7 +80,7 @@ export default function LoginPage({ onLoginSuccess, onNavigate }) {
     }
   };
 
-  const executeAuthentication = (emailInput, passwordInput) => {
+  const executeAuthentication = async (emailInput, passwordInput) => {
     const trimmedEmail = (emailInput ?? operatorId).trim();
     const trimmedPin = (passwordInput ?? pin).trim();
 
@@ -108,29 +109,29 @@ export default function LoginPage({ onLoginSuccess, onNavigate }) {
 
     setIsAuthenticating(true);
 
-    // D. Authentic Credential Verification
-    setTimeout(() => {
-      const matchedAccount = AUTHORIZED_ACCOUNTS[trimmedEmail.toLowerCase()];
+    try {
+      // Authenticate against FastAPI backend with bcrypt verification and signed JWT token
+      const res = await apiService.login({
+        email_or_username: trimmedEmail,
+        password: trimmedPin,
+        role: selectedRole
+      });
 
-      if (!matchedAccount || matchedAccount.pin !== trimmedPin) {
-        setIsAuthenticating(false);
-        setValidationError('Invalid email or password. Please check your credentials or click "Forgot Password?" to view demo accounts.');
-        return;
-      }
-
-      // Authentication succeeded
       setIsAuthenticating(false);
       setAuthSuccess(true);
-      showToast(`✓ Authentication Verified (${matchedAccount.role}). Welcome to SmartBinX Ahmedabad.`, 'success');
+      showToast(`✓ Authentication Verified (${res.user?.role || selectedRole}). Welcome to SmartBinX Ahmedabad.`, 'success');
 
       setTimeout(() => {
         if (onLoginSuccess) {
-          onLoginSuccess();
+          onLoginSuccess(res.user);
         } else if (onNavigate) {
           onNavigate('command-center');
         }
       }, 650);
-    }, 700);
+    } catch (err) {
+      setIsAuthenticating(false);
+      setValidationError(err.message || 'Invalid email or password. Please check your credentials or click "Forgot Password?" to view demo accounts.');
+    }
   };
 
   const handleFormSubmit = (e) => {
@@ -148,24 +149,32 @@ export default function LoginPage({ onLoginSuccess, onNavigate }) {
     executeAuthentication('amc-admin@ahmedabadcity.gov.in', '8821');
   };
 
-  const handleBiometricAuth = () => {
+  const handleBiometricAuth = async () => {
     if (isBiometricScanning || isAuthenticating || authSuccess) return;
     setIsBiometricScanning(true);
     setValidationError('');
 
-    setTimeout(() => {
+    try {
+      const res = await apiService.login({
+        email_or_username: 'amc-admin@ahmedabadcity.gov.in',
+        password: '8821',
+        role: 'AMC Operations'
+      });
       setIsBiometricScanning(false);
       setAuthSuccess(true);
       showToast('✓ Biometric RFID Token Verified. AMC Operator authorized.', 'success');
 
       setTimeout(() => {
         if (onLoginSuccess) {
-          onLoginSuccess();
+          onLoginSuccess(res.user);
         } else if (onNavigate) {
           onNavigate('command-center');
         }
       }, 650);
-    }, 900);
+    } catch (err) {
+      setIsBiometricScanning(false);
+      setValidationError('Biometric authorization failed. Please use PIN or password.');
+    }
   };
 
   return (

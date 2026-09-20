@@ -265,59 +265,77 @@ export const WasteDataProvider = ({ children }) => {
     }
   }, [showToast]);
 
-  // Priority Weights Updater with comprehensive 10-zone & multi-stream calculation
-  const updatePriorityWeights = useCallback((newWeights) => {
+  // Priority Weights Updater with authoritative backend Explainable AI recalculation
+  const updatePriorityWeights = useCallback(async (newWeights) => {
     setPriorityWeights(newWeights);
-    
-    // Zone sensitivity factor mapping based on AMC baseline generation & surge data
-    const zoneWeights = {
-      'Bodakdev': 1.0,     // Top hotspot surge (+82%)
-      'SG Highway': 0.95,   // High generation corridor (+32%)
-      'Ashram Road': 0.90,  // Major arterial transit corridor
-      'Navrangpura': 0.85,  // Commercial & institutional hub
-      'Prahlad Nagar': 0.85,// High-density corporate hub
-      'Maninagar': 0.80,    // High footfall residential/railway hub
-      'Satellite': 0.75,    // Mixed commercial/residential
-      'Vastrapur': 0.75,    // Lake food court & retail zone
-      'Paldi': 0.70,        // Traditional residential corridor
-      'Sabarmati': 0.70     // Riverfront corridor
-    };
 
-    // Stream sensitivity factor mapping
-    const streamWeights = {
-      'Organic': 1.0,       // Highest biological decay & methane urgency
-      'Hazardous': 0.95,    // Immediate environmental safety risk
-      'Recyclable': 0.75,   // Material recovery value
-      'Mixed': 0.60         // Standard baseline
-    };
+    try {
+      const updatedBins = await apiService.recalculatePriorities(newWeights);
+      if (updatedBins && updatedBins.length > 0) {
+        setBins(updatedBins);
+        showToast('✓ Priority scoring weights updated and scores recalculated via backend Explainable AI engine.', 'success');
+        return;
+      }
+    } catch (err) {
+      console.warn('[WasteData] Backend priority recalculation failed, using client fallback:', err);
+    }
 
-    // Recalculate priority scores across all bins
+    // Client-side fallback adhering to the exact backend 5-factor formula across all 10 zones
     setBins(prevBins => prevBins.map(bin => {
-      const fillPart = (bin.fill_percentage / 100) * (newWeights.fill_weight || 30);
-      const overflowPart = Math.max(0, (24 - (bin.predicted_overflow_hours || 12)) / 24) * (newWeights.overflow_weight || 25);
-      const genPart = Math.min(20, ((bin.avg_daily_generation_kg || 45) / 50) * (newWeights.gen_weight || 15));
-      
-      const streamFactor = Object.entries(streamWeights).find(([key]) => bin.waste_stream?.includes(key))?.[1] || 0.60;
-      const streamPart = streamFactor * (newWeights.stream_weight || 10);
+      // 1. Fill Factor
+      const maxFill = newWeights.fill_weight ?? 35;
+      const fillPts = Math.min(maxFill, ((bin.fill_percentage || 0) / 100) * maxFill);
 
-      const zoneFactor = Object.entries(zoneWeights).find(([key]) => bin.zone?.includes(key))?.[1] || 0.70;
-      const zonePart = zoneFactor * (newWeights.zone_weight || 10);
+      // 2. Overflow Factor
+      const maxOverflow = newWeights.overflow_weight ?? 30;
+      const hoursLeft = bin.predicted_overflow_hours ?? 12;
+      let overflowPts = maxOverflow * 0.10;
+      if (hoursLeft <= 1) overflowPts = maxOverflow;
+      else if (hoursLeft <= 4) overflowPts = maxOverflow * 0.90;
+      else if (hoursLeft <= 6) overflowPts = maxOverflow * 0.80;
+      else if (hoursLeft <= 12) overflowPts = maxOverflow * 0.55;
+      else if (hoursLeft <= 24) overflowPts = maxOverflow * 0.30;
 
-      const freqPart = (newWeights.freq_weight || 5) * 0.7;
-      const delayPart = (newWeights.delay_weight || 5) * 0.8;
+      // 3. Waste Stream Factor
+      const maxStream = newWeights.stream_weight ?? 15;
+      const stream = bin.waste_stream || 'Mixed';
+      let streamFactor = 0.50;
+      if (stream.includes('Organic')) streamFactor = 1.0;
+      else if (stream.includes('Hazardous')) streamFactor = 0.90;
+      else if (stream.includes('Recyclable') || stream.includes('Plastic')) streamFactor = 0.55;
+      const streamPts = maxStream * streamFactor;
 
-      const totalRaw = fillPart + overflowPart + genPart + streamPart + zonePart + freqPart + delayPart;
-      const newScore = Math.min(99, Math.max(15, Math.round(totalRaw)));
-      
-      const newStatus = newScore >= 85 ? 'Critical' : (newScore >= 70 ? 'High Priority' : (bin.fill_percentage >= 50 ? 'Filling' : 'Healthy'));
-      
+      // 4. Zone Factor (All 10 Ahmedabad Zones)
+      const maxZone = newWeights.zone_weight ?? 10;
+      const zoneMultipliers = {
+        'Bodakdev': 1.0,
+        'SG Highway': 0.95,
+        'Ashram Road': 0.90,
+        'Navrangpura': 0.85,
+        'Prahlad Nagar': 0.85,
+        'Maninagar': 0.80,
+        'Satellite': 0.75,
+        'Vastrapur': 0.75,
+        'Paldi': 0.70,
+        'Sabarmati': 0.70
+      };
+      const zoneFactor = Object.entries(zoneMultipliers).find(([z]) => bin.zone?.includes(z))?.[1] || 0.75;
+      const zonePts = maxZone * zoneFactor;
+
+      // 5. Time Since Collection Factor
+      const maxTime = newWeights.delay_weight ?? newWeights.freq_weight ?? 10;
+      const timePts = maxTime * 0.6;
+
+      const totalRaw = Math.min(100, Math.max(15, Math.round(fillPts + overflowPts + streamPts + zonePts + timePts)));
+      const newStatus = totalRaw >= 85 ? 'Critical' : (totalRaw >= 70 ? 'High Priority' : (bin.fill_percentage >= 50 ? 'Filling' : 'Healthy'));
+
       return {
         ...bin,
-        priority_score: newScore,
+        priority_score: totalRaw,
         status: newStatus
       };
     }));
-    showToast('✓ Priority scoring weights updated and scores recalculated across 120 digital twins.', 'success');
+    showToast('✓ Priority scoring weights updated and scores recalculated across 125 digital twins.', 'success');
   }, [showToast]);
 
   // Telemetry Simulation Functions (Connected to Backend)

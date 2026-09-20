@@ -3,16 +3,20 @@
 Endpoints for running the automated 10-step hackathon demo sequence and step-by-step inspections.
 """
 
-from fastapi import APIRouter, HTTPException, Path
+from fastapi import APIRouter, HTTPException, Path, Depends
 
 from app.schemas.demo import DemoStep, DemoRunResponse
 from app.services.demo_runner import demo_runner
+from app.models.entities import User
+from app.services.security import get_current_active_user
 
 router = APIRouter(prefix="/api/demo", tags=["Demo Runner"])
 
 
 @router.post("/run", response_model=DemoRunResponse)
-def run_full_demo_endpoint():
+def run_full_demo_endpoint(
+    current_user: User = Depends(get_current_active_user),
+):
     """Execute the full 10-step scripted hackathon demo sequence automatically."""
     result = demo_runner.run_full_demo()
     return result
@@ -33,7 +37,9 @@ def run_demo_step_endpoint(
 
 
 @router.post("/reset")
-def reset_demo_endpoint():
+def reset_demo_endpoint(
+    current_user: User = Depends(get_current_active_user),
+):
     """Reset the demo runner and in-memory data store to baseline."""
     result = demo_runner.reset_demo()
     return result

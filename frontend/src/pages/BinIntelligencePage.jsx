@@ -1,12 +1,14 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useWasteData } from '../context/WasteDataContext';
 import OverflowCountdownBadge from '../components/Common/OverflowCountdownBadge';
 import ProvenanceBadge from '../components/Common/ProvenanceBadge';
 import { Search, Filter, ArrowUpDown, Trash2, Cpu, AlertTriangle, CheckCircle2, ChevronRight, Eye, RefreshCw, BarChart2 } from 'lucide-react';
 
 export default function BinIntelligencePage() {
+  const { binId } = useParams();
   const { bins, openDigitalTwin, refreshData, loading, showToast } = useWasteData();
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState(() => binId ? binId.toUpperCase() : '');
   const [selectedZone, setSelectedZone] = useState('All');
   const [selectedStatus, setSelectedStatus] = useState('All');
   const [selectedStream, setSelectedStream] = useState('All');
@@ -63,6 +65,19 @@ export default function BinIntelligencePage() {
         return 'bg-[#DCFCE7] text-[#0B5D3B] border-[#BBF7D0]';
     }
   };
+
+  // Auto-open digital twin when route parameter /bins/:binId is present
+  useEffect(() => {
+    if (binId && bins.length > 0) {
+      const match = bins.find(
+        b => b.bin_code?.toLowerCase() === binId.toLowerCase() ||
+             b.id?.toLowerCase() === binId.toLowerCase()
+      );
+      if (match) {
+        openDigitalTwin(match);
+      }
+    }
+  }, [binId, bins, openDigitalTwin]);
 
   const handleRefresh = async () => {
     await refreshData();

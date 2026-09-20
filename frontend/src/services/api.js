@@ -621,8 +621,14 @@ async function request(endpoint, options = {}) {
   const url = `${API_BASE}${endpoint}`;
   const isFormData = options.body instanceof FormData;
 
+  let token = null;
+  try {
+    token = typeof sessionStorage !== 'undefined' ? sessionStorage.getItem('smartbinx_token') : null;
+  } catch (e) {}
+
   const headers = {
     ...(!isFormData && { 'Content-Type': 'application/json' }),
+    ...(token && { 'Authorization': `Bearer ${token}` }),
     ...(options.headers || {})
   };
 
@@ -708,6 +714,13 @@ export const apiService = {
     });
   },
 
+  async recalculatePriorities(weights = {}) {
+    return await request('/bins/priority/recalculate', {
+      method: 'POST',
+      body: JSON.stringify(weights)
+    });
+  },
+
   // Waste Vision
   async classifyWaste(payload = {}) {
     const isFormData = payload instanceof FormData;
@@ -715,6 +728,17 @@ export const apiService = {
       method: 'POST',
       body: isFormData ? payload : JSON.stringify(payload)
     });
+  },
+
+  async classifyWasteImage(fileOrPayload, stream, sampleId) {
+    if (fileOrPayload instanceof Blob || (typeof File !== 'undefined' && fileOrPayload instanceof File)) {
+      const formData = new FormData();
+      formData.append('file', fileOrPayload);
+      if (stream) formData.append('stream', stream);
+      if (sampleId) formData.append('sampleId', sampleId);
+      return await this.classifyWaste(formData);
+    }
+    return await this.classifyWaste(fileOrPayload || { stream, sampleId });
   },
 
   // Vehicles
@@ -784,5 +808,37 @@ export const apiService = {
       method: 'POST',
       body: JSON.stringify({ prompt, context })
     });
+  },
+
+  // Authentication & Security
+  async login(credentials) {
+    const res = await request('/auth/login', {
+      method: 'POST',
+      body: JSON.stringify({
+        email_or_username: credentials.email_or_username || credentials.operatorId || credentials.email,
+        password: credentials.password || credentials.pin,
+        role: credentials.role
+      })
+    });
+    if (res && res.access_token) {
+      try {
+        sessionStorage.setItem('smartbinx_token', res.access_token);
+        sessionStorage.setItem('smartbinx_auth', 'true');
+        sessionStorage.setItem('smartbinx_user', JSON.stringify(res.user));
+      } catch (e) {}
+    }
+    return res;
+  },
+
+  async getCurrentUser() {
+    return await request('/auth/me');
+  },
+
+  logout() {
+    try {
+      sessionStorage.removeItem('smartbinx_token');
+      sessionStorage.removeItem('smartbinx_auth');
+      sessionStorage.removeItem('smartbinx_user');
+    } catch (e) {}
   }
 };

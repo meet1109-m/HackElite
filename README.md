@@ -228,6 +228,10 @@ $$\text{Priority} = 0.35 \times \text{Fill} + 0.30 \times \text{OverflowRisk} + 
 ---
 
 ### Step 1: Start the Backend Service
+
+#### Option A: Production Mode (Recommended for Deployment / Staging)
+SmartBinX provides production process management with worker pool supervision, automatic CPU core auto-tuning, and zero file-polling overhead:
+
 ```bash
 # Navigate to backend directory
 cd backend
@@ -237,16 +241,32 @@ python -m venv venv
 .\venv\Scripts\activate       # On Windows (PowerShell)
 # source venv/bin/activate    # On macOS/Linux
 
-# Install dependencies
+# Install dependencies (includes Gunicorn & Uvicorn)
 pip install -r requirements.txt
 
-# Start the FastAPI server
+# Launch via Universal Production Process Manager:
+python run_production.py --port 8000
+
+# Or run directly on Linux/Production servers with Gunicorn:
+# gunicorn -c gunicorn_conf.py app.main:app
+```
+
+#### Option B: Local Development Mode (Code Editing Only)
+> [!NOTE]
+> `uvicorn --reload` attaches file system watchers to trigger hot reloads during active development. Never use `--reload` in production environments as it bottlenecks concurrency, drains CPU cycles, and lacks process supervision.
+
+```bash
 uvicorn app.main:app --reload --port 8000
 ```
 - **Backend API:** `http://localhost:8000`
 - **Interactive Swagger UI:** 👉 [`http://localhost:8000/docs`](http://localhost:8000/docs)
 - **ReDoc:** `http://localhost:8000/redoc`
-- **Health Check:** `http://localhost:8000/health`
+- **Health Check Probe:** `http://localhost:8000/health`
+
+#### Option C: Full Multi-Tier Containerized Stack (Frontend + Backend + Redis + PostgreSQL)
+```bash
+docker compose up --build -d
+```
 
 ---
 

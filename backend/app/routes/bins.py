@@ -8,11 +8,13 @@ from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 
 from app.database import get_db
-from app.schemas.bin import BinResponse, BinDigitalTwin, BinReadingResponse
+from app.schemas.bin import BinResponse, BinDigitalTwin, BinReadingResponse, PriorityWeightsRequest
 from app.services.data_store import data_store
 from app.services.priority_engine import calculate_priority
 from app.services.prediction_engine import predict_bin_overflow, calculate_overflow_countdown
 from app.services.waste_intelligence import estimate_waste_composition
+from app.models.entities import User
+from app.services.security import get_current_active_user
 
 router = APIRouter(prefix="/api/bins", tags=["Bins"])
 
@@ -111,6 +113,7 @@ def get_bin_readings(bin_code: str):
 def collect_bin_endpoint(
     bin_code: str,
     vehicle_code: Optional[str] = Query("V-01", description="Vehicle code performing collection"),
+    current_user: User = Depends(get_current_active_user),
     db: Session = Depends(get_db),
 ):
     """Record collection event in SQLite, reset bin fill level, and update last collection."""
@@ -126,6 +129,7 @@ def record_telemetry_endpoint(
     bin_code: str,
     fill_percentage: float = Query(..., ge=0.0, le=100.0, description="Current sensor fill percentage"),
     weight: Optional[float] = Query(None, description="Optional weight measurement in kg"),
+    current_user: User = Depends(get_current_active_user),
     db: Session = Depends(get_db),
 ):
     """Record a real-time IoT sensor telemetry reading in SQLite and update bin status."""
@@ -141,6 +145,7 @@ def update_bin_status_endpoint(
     bin_code: str,
     status: str = Query(..., description="Target status, e.g. 'Sensor Offline', 'Healthy', 'Critical'"),
     message: Optional[str] = Query(None, description="Optional alert description or event reason"),
+    current_user: User = Depends(get_current_active_user),
     db: Session = Depends(get_db),
 ):
     """Update bin status in SQLite and memory cache, and record/resolve alert records."""
@@ -149,5 +154,17 @@ def update_bin_status_endpoint(
         return result
     except ValueError as e:
         raise HTTPException(status_code=404, detail=str(e))
+
+
+@router.post("/priority/recalculate", response_model=List[BinResponse])
+def recalculate_priorities_endpoint(
+    payload: Optional[PriorityWeightsRequest] = None,
+    current_user: User = Depends(get_current_active_user),
+    db: Session = Depends(get_db),
+):
+    """Recalculate multi-factor priority scores and XAI breakdowns across all smart bins using custom weights."""
+    weights_dict = payload.model_dump() if payload else None
+    updated_bins = data_store.recalculate_all_priorities(db, weights=weights_dict)
+    return updated_bins
 
 

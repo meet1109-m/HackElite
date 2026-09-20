@@ -70,3 +70,13 @@ class BinReadingResponse(BaseModel):
     weight: float
 
     model_config = ConfigDict(from_attributes=True)
+
+
+class PriorityWeightsRequest(BaseModel):
+    fill_weight: Optional[float] = Field(35.0, description="Weight percentage for current fill level")
+    overflow_weight: Optional[float] = Field(30.0, description="Weight percentage for overflow urgency")
+    stream_weight: Optional[float] = Field(15.0, description="Weight percentage for waste stream sensitivity")
+    zone_weight: Optional[float] = Field(10.0, description="Weight percentage for location/zone generation")
+    gen_weight: Optional[float] = Field(10.0, description="Weight percentage for zone generation rate")
+    freq_weight: Optional[float] = Field(5.0, description="Weight percentage for collection frequency")
+    delay_weight: Optional[float] = Field(5.0, description="Weight percentage for collection delay")

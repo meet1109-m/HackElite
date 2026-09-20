@@ -1,5 +1,5 @@
 import uuid
-from datetime import datetime
+from datetime import datetime, timezone
 from sqlalchemy import (
     Column,
     String,
@@ -14,6 +14,11 @@ from app.database import Base
 
 def generate_uuid():
     return str(uuid.uuid4())
+
+
+def utc_now():
+    """Return current UTC datetime (Python 3.12+ compliant)."""
+    return datetime.now(timezone.utc)
 
 
 class Zone(Base):
@@ -46,8 +51,8 @@ class Bin(Base):
     predicted_overflow_time = Column(String(50), default=">24h")
     overflow_severity = Column(String(20), default="Green")  # Green, Yellow, Orange, Red
     last_collection = Column(String(100), nullable=True)
-    created_at = Column(DateTime, default=datetime.utcnow)
-    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    created_at = Column(DateTime, default=utc_now)
+    updated_at = Column(DateTime, default=utc_now, onupdate=utc_now)
 
 
 class BinReading(Base):
@@ -56,7 +61,7 @@ class BinReading(Base):
     id = Column(String(36), primary_key=True, default=generate_uuid)
     bin_id = Column(String(36), ForeignKey("bins.id"), nullable=False, index=True)
     bin_code = Column(String(50), nullable=False)
-    timestamp = Column(DateTime, default=datetime.utcnow, index=True)
+    timestamp = Column(DateTime, default=utc_now, index=True)
     fill_percentage = Column(Float, nullable=False)
     weight = Column(Float, nullable=False)
 
@@ -74,7 +79,7 @@ class Vehicle(Base):
     assigned_route_id = Column(String(36), nullable=True)
     driver_name = Column(String(100), nullable=True, default="Ramesh Patel")
     driver_phone = Column(String(50), nullable=True, default="+91 98250 14210")
-    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    updated_at = Column(DateTime, default=utc_now, onupdate=utc_now)
 
 
 class Route(Base):
@@ -89,7 +94,7 @@ class Route(Base):
     utilization_pct = Column(Float, default=0.0)
     waypoints_json = Column(Text, nullable=True)  # JSON string of ordered stops
     status = Column(String(50), default="Active") # Active, Completed, Cancelled
-    created_at = Column(DateTime, default=datetime.utcnow)
+    created_at = Column(DateTime, default=utc_now)
 
 
 class Collection(Base):
@@ -101,7 +106,7 @@ class Collection(Base):
     bin_code = Column(String(50), nullable=False)
     weight_collected = Column(Float, nullable=False)
     waste_type = Column(String(50), nullable=False)
-    timestamp = Column(DateTime, default=datetime.utcnow)
+    timestamp = Column(DateTime, default=utc_now)
 
 
 class WasteClassification(Base):
@@ -119,7 +124,7 @@ class WasteClassification(Base):
     other_percentage = Column(Float, default=0.0)
     confidence = Column(Float, default=0.0)
     source = Column(String(50), default="AI Estimated")  # "AI Detected from Image" or "AI Estimated"
-    created_at = Column(DateTime, default=datetime.utcnow)
+    created_at = Column(DateTime, default=utc_now)
 
 
 class Prediction(Base):
@@ -128,7 +133,7 @@ class Prediction(Base):
     id = Column(String(36), primary_key=True, default=generate_uuid)
     bin_id = Column(String(36), ForeignKey("bins.id"), nullable=False, index=True)
     bin_code = Column(String(50), nullable=False)
-    prediction_time = Column(DateTime, default=datetime.utcnow)
+    prediction_time = Column(DateTime, default=utc_now)
     fill_6h = Column(Float, default=0.0)
     fill_12h = Column(Float, default=0.0)
     fill_24h = Column(Float, default=0.0)
@@ -147,4 +152,18 @@ class Alert(Base):
     zone = Column(String(100), nullable=False)
     message = Column(Text, nullable=False)
     status = Column(String(20), default="Active")    # Active, Acknowledged, Resolved
-    created_at = Column(DateTime, default=datetime.utcnow)
+    created_at = Column(DateTime, default=utc_now)
+
+
+class User(Base):
+    __tablename__ = "users"
+
+    id = Column(String(36), primary_key=True, default=generate_uuid)
+    email = Column(String(150), unique=True, nullable=False, index=True)
+    username = Column(String(100), unique=True, nullable=False, index=True)
+    hashed_password = Column(String(255), nullable=False)
+    full_name = Column(String(150), nullable=False)
+    role = Column(String(50), default="AMC Operations")  # AMC Operations, Fleet Dispatch, Sustainability, Admin
+    is_active = Column(Integer, default=1)
+    created_at = Column(DateTime, default=utc_now)
+

@@ -148,18 +148,28 @@ function RouteBoundsFitter({ polylineCoords, stops }) {
   return null;
 }
 
+import { useParams } from 'react-router-dom';
+
 export default function RouteOptimizerPage({ onNavigate }) {
+  const { vehicleId } = useParams();
   const { 
     vehicles, 
     routes, 
     optimizeRoute, 
     triggerDynamicReplan, 
     replanState, 
-    openDigitalTwin,
+    openDigitalTwin, 
     bins 
   } = useWasteData();
 
-  const [selectedVehicleId, setSelectedVehicleId] = useState('V-01');
+  const [selectedVehicleId, setSelectedVehicleId] = useState(() => vehicleId ? vehicleId.toUpperCase() : 'V-01');
+
+  // Sync route param when URL changes
+  useEffect(() => {
+    if (vehicleId) {
+      setSelectedVehicleId(vehicleId.toUpperCase());
+    }
+  }, [vehicleId]);
   const [optimizing, setOptimizing] = useState(false);
   const [replanning, setReplanning] = useState(false);
   const [selectedPriorityFilter, setSelectedPriorityFilter] = useState('All');

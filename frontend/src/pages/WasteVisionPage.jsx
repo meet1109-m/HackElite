@@ -90,69 +90,108 @@ export default function WasteVisionPage() {
   const [analysisResult, setAnalysisResult] = useState(PRESET_SAMPLES[0].mockResult);
   const [activeTab, setActiveTab] = useState('presets'); // 'presets' | 'upload' | 'camera'
   const [uploadedImagePreview, setUploadedImagePreview] = useState(null);
+  const [uploadedFile, setUploadedFile] = useState(null);
 
-  const handleSelectSample = (sample) => {
-    setSelectedSample(sample);
-    setUploadedImagePreview(null);
-    setAnalysisResult(sample.mockResult);
+  const applyClassificationResult = (res) => {
+    if (!res) return;
+    const comp = res.composition || {};
+    const plastic = res.plastic ?? comp.plastic ?? 0;
+    const organic = res.organic ?? comp.organic ?? 0;
+    const paper = res.paper ?? comp.paper ?? 0;
+    const metal = res.metal ?? comp.metal ?? 0;
+    const glass = res.glass ?? comp.glass ?? 0;
+    const other = res.other ?? comp.other ?? 0;
+    const rawConf = res.confidence ?? ((res.confidence_pct || 88) / 100);
+    const confidence = rawConf > 1 ? rawConf / 100 : rawConf;
+    const purity = res.purity_score ?? res.recycling_purity_score ?? 72;
+    const contam = res.contamination_level || (purity >= 75 ? 'Low Contamination' : (purity >= 50 ? 'Moderate Contamination' : 'Critical Contamination'));
+
+    setAnalysisResult({
+      plastic,
+      organic,
+      paper,
+      metal,
+      glass,
+      other,
+      confidence,
+      purity_score: purity,
+      contamination_level: contam,
+      dominant_material: res.dominant_material || 'Plastic',
+      source: res.source || 'AI Detected from Image',
+      contamination_warning: res.contamination_warning || null
+    });
   };
 
-  const handleRunAnalysis = async () => {
+  const handleSelectSample = async (sample) => {
+    setSelectedSample(sample);
+    setUploadedImagePreview(null);
+    setUploadedFile(null);
     setAnalyzing(true);
-    setTimeout(async () => {
-      try {
-        const res = await classifyWasteImage(null, selectedSample?.targetStream || 'Plastic', selectedSample?.id);
-        if (res && res.plastic !== undefined) {
-          setAnalysisResult({
-            plastic: res.plastic,
-            paper: res.paper,
-            organic: res.organic,
-            metal: res.metal,
-            glass: res.glass,
-            other: res.other,
-            confidence: res.confidence || 0.91,
-            purity_score: res.purity_score || 78.4,
-            contamination_level: res.purity_score >= 75 ? 'Low Contamination' : (res.purity_score >= 50 ? 'Moderate Contamination' : 'Critical Contamination')
-          });
-        } else {
-          setAnalysisResult(selectedSample.mockResult);
-        }
-      } catch {
-        setAnalysisResult(selectedSample.mockResult);
+    try {
+      const res = await classifyWasteImage(null, sample.targetStream, sample.id);
+      if (res) {
+        applyClassificationResult(res);
+      } else {
+        setAnalysisResult(sample.mockResult);
       }
+    } catch {
+      setAnalysisResult(sample.mockResult);
+    } finally {
       setAnalyzing(false);
-    }, 800);
+    }
+  };
+
+  const handleFileSelected = (file) => {
+    if (!file) return;
+    setUploadedFile(file);
+    const reader = new FileReader();
+    reader.onload = async () => {
+      setUploadedImagePreview(reader.result);
+      setAnalyzing(true);
+      try {
+        // Run real PyTorch MobileNetV2 inference via backend /api/waste/classify multipart endpoint
+        const res = await classifyWasteImage(file);
+        if (res) {
+          applyClassificationResult(res);
+        }
+      } catch (err) {
+        console.error('[WasteVision] PyTorch image classification failed:', err);
+      } finally {
+        setAnalyzing(false);
+      }
+    };
+    reader.readAsDataURL(file);
   };
 
   const handleFileUpload = (e) => {
     const file = e.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onload = async () => {
-        setUploadedImagePreview(reader.result);
-        setAnalyzing(true);
-        try {
-          const res = await classifyWasteImage(file);
-          if (res) {
-            setAnalysisResult({
-              plastic: res.plastic ?? 0,
-              organic: res.organic ?? 0,
-              paper: res.paper ?? 0,
-              metal: res.metal ?? 0,
-              glass: res.glass ?? 0,
-              other: res.other ?? 0,
-              confidence: res.confidence || ((res.confidence_pct || 88) / 100),
-              purity_score: res.purity_score || res.recycling_purity_score || 72,
-              contamination_level: res.contamination_level || (res.purity_score >= 75 ? 'Low Contamination' : (res.purity_score >= 50 ? 'Moderate Contamination' : 'Critical Contamination'))
-            });
-          }
-        } catch (err) {
-          console.error('[WasteVision] Image classification failed:', err);
-        } finally {
-          setAnalyzing(false);
-        }
-      };
-      reader.readAsDataURL(file);
+      handleFileSelected(file);
+    }
+  };
+
+  const handleRunAnalysis = async () => {
+    setAnalyzing(true);
+    try {
+      let res;
+      if (activeTab === 'upload' && uploadedFile) {
+        // Run PyTorch MobileNetV2 inference on the user's uploaded file
+        res = await classifyWasteImage(uploadedFile);
+      } else if (activeTab === 'camera') {
+        // Run inference on simulated IoT optical sensor feed (Node AHM-104)
+        res = await classifyWasteImage(null, 'Organic', 'AHM-104');
+      } else {
+        // Run inference on chosen preset sample
+        res = await classifyWasteImage(null, selectedSample?.targetStream || 'Plastic', selectedSample?.id);
+      }
+
+      if (res) {
+        applyClassificationResult(res);
+      }
+    } catch (err) {
+      console.error('[WasteVision] Classification failed:', err);
+    } finally {
+      setAnalyzing(false);
     }
   };
 
@@ -245,14 +284,26 @@ export default function WasteVisionPage() {
                   <div className="relative aspect-video bg-[#F7FAF8] rounded-2xl overflow-hidden border border-[#E3EAE6] flex items-center justify-center">
                     <img src={uploadedImagePreview} alt="Uploaded Waste Preview" className="w-full h-full object-cover" />
                     <button
-                      onClick={() => setUploadedImagePreview(null)}
+                      onClick={() => {
+                        setUploadedImagePreview(null);
+                        setUploadedFile(null);
+                      }}
                       className="absolute top-3 right-3 px-3 py-1 bg-white/90 text-[#D64545] font-bold text-xs rounded-lg shadow-md border border-[#E3EAE6]"
                     >
                       Remove
                     </button>
                   </div>
                 ) : (
-                  <div className="border-2 border-dashed border-[#CBD8D2] hover:border-[#16845B] rounded-2xl p-8 text-center transition bg-[#F7FAF8]">
+                  <div
+                    onDragOver={(e) => e.preventDefault()}
+                    onDragEnter={(e) => e.preventDefault()}
+                    onDrop={(e) => {
+                      e.preventDefault();
+                      const file = e.dataTransfer.files?.[0];
+                      if (file) handleFileSelected(file);
+                    }}
+                    className="border-2 border-dashed border-[#CBD8D2] hover:border-[#16845B] rounded-2xl p-8 text-center transition bg-[#F7FAF8]"
+                  >
                     <Upload className="w-10 h-10 text-[#66736C] mx-auto mb-3" />
                     <p className="text-sm font-bold text-[#17201B] mb-1">Drag and drop waste inspection photo</p>
                     <p className="text-xs text-[#66736C] mb-4">Supports JPEG, PNG, WEBP (Max 10MB)</p>

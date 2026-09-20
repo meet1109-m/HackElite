@@ -1,4 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { 
+  BrowserRouter, 
+  Routes, 
+  Route, 
+  Navigate, 
+  useNavigate, 
+  useLocation, 
+  Outlet 
+} from 'react-router-dom';
 import { WasteDataProvider, useWasteData } from './context/WasteDataContext';
 import Navbar from './components/Navigation/Navbar';
 import Sidebar from './components/Navigation/Sidebar';
@@ -22,155 +31,61 @@ import SettingsPage from './pages/SettingsPage';
 
 function getInitialAuthState() {
   try {
-    return sessionStorage.getItem('smartbinx_auth') === 'true';
+    return sessionStorage.getItem('smartbinx_auth') === 'true' && Boolean(sessionStorage.getItem('smartbinx_token'));
   } catch (e) {
     return false;
   }
 }
 
-function getInitialRoute(isAuth) {
-  try {
-    const hash = window.location.hash.replace('#', '').trim();
-    if (hash === 'login') return 'login';
-    if (hash === 'landing' || !hash) return 'landing';
-    
-    // Protected routes
-    const protectedRoutes = [
-      'command-center', 'command', 'operations', 'bins', 'vision', 
-      'routes', 'analytics', 'recycling', 'simulator', 'events', 
-      'ai-assistant', 'ai-manager', 'settings'
-    ];
-    
-    if (protectedRoutes.includes(hash)) {
-      if (isAuth) return hash;
-      return 'login';
-    }
-    return 'landing';
-  } catch (e) {
-    return 'landing';
+// Protected Route Guard
+function ProtectedRoute({ isAuthenticated, children }) {
+  const location = useLocation();
+  if (!isAuthenticated) {
+    return <Navigate to="/login" state={{ from: location }} replace />;
   }
+  return children;
 }
 
-function AppContent() {
-  const [isAuthenticated, setIsAuthenticated] = useState(() => getInitialAuthState());
-  const [currentPage, setCurrentPage] = useState(() => getInitialRoute(getInitialAuthState()));
+// App Layout with Navbar, Sidebar, and Modals
+function AppLayout({ isAuthenticated, onLogout }) {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
   const { isAIDemoOpen, closeAIDemo } = useWasteData();
 
-  // Listen to browser hash changes (back/forward & manual navigation)
-  React.useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.replace('#', '').trim();
-      if (!hash || hash === 'landing') {
-        setCurrentPage('landing');
-      } else if (hash === 'login') {
-        setCurrentPage('login');
-      } else {
-        if (!isAuthenticated) {
-          setCurrentPage('login');
-          window.location.hash = 'login';
-        } else {
-          setCurrentPage(hash);
-        }
-      }
-    };
-
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, [isAuthenticated]);
-
-  const handleLoginSuccess = () => {
-    try {
-      sessionStorage.setItem('smartbinx_auth', 'true');
-    } catch (e) {}
-    setIsAuthenticated(true);
-    setCurrentPage('command-center');
-    window.location.hash = 'command-center';
-  };
-
-  const handleLogout = () => {
-    try {
-      sessionStorage.removeItem('smartbinx_auth');
-    } catch (e) {}
-    setIsAuthenticated(false);
-    setCurrentPage('login');
-    window.location.hash = 'login';
-  };
+  // Extract current tab name from pathname (e.g. /bins/AHM-104 -> 'bins')
+  const currentTab = location.pathname.split('/')[1] || 'command-center';
 
   const handleNavigate = (page) => {
-    // Protected routes guard: require authentication
-    if (!isAuthenticated && page !== 'login' && page !== 'landing') {
-      setCurrentPage('login');
-      window.location.hash = 'login';
-      return;
-    }
-    setCurrentPage(page);
-    window.location.hash = page;
+    if (!page) return;
+    const target = page.startsWith('/') ? page : `/${page}`;
+    navigate(target);
   };
-
-  const renderPage = () => {
-    switch (currentPage) {
-      case 'landing':
-        return <LandingPage onLaunchApp={() => handleNavigate('command-center')} onNavigate={handleNavigate} />;
-      case 'login':
-        return <LoginPage onLoginSuccess={handleLoginSuccess} onNavigate={handleNavigate} />;
-      case 'command-center':
-      case 'command':
-        return <CommandCenterPage onNavigate={handleNavigate} onNavigateTab={handleNavigate} />;
-      case 'operations':
-        return <LiveOperationsPage onNavigate={handleNavigate} onNavigateTab={handleNavigate} />;
-      case 'bins':
-        return <BinIntelligencePage onNavigate={handleNavigate} />;
-      case 'vision':
-        return <WasteVisionPage onNavigate={handleNavigate} />;
-      case 'routes':
-        return <RouteOptimizerPage onNavigate={handleNavigate} />;
-      case 'analytics':
-        return <AnalyticsHotspotsPage onNavigate={handleNavigate} />;
-      case 'recycling':
-        return <RecyclingIntelligencePage onNavigate={handleNavigate} />;
-      case 'simulator':
-        return <WhatIfSimulatorPage onNavigate={handleNavigate} />;
-      case 'events':
-        return <EventPlacementPage onNavigate={handleNavigate} />;
-      case 'ai-assistant':
-      case 'ai-manager':
-        return <AIWasteManagerPage onNavigate={handleNavigate} />;
-      case 'settings':
-        return <SettingsPage onNavigate={handleNavigate} />;
-      default:
-        return <LandingPage onLaunchApp={() => handleNavigate('command-center')} onNavigate={handleNavigate} />;
-    }
-  };
-
-  const isFullWidth = currentPage === 'landing' || currentPage === 'login';
 
   return (
     <div className="min-h-screen text-[#17201B] flex flex-col font-sans selection:bg-[#0D5C3A] selection:text-white relative">
       {/* Top Navbar */}
       <Navbar
-        currentPage={currentPage}
+        currentPage={currentTab}
         onNavigate={handleNavigate}
         isAuthenticated={isAuthenticated}
-        onLogout={handleLogout}
+        onLogout={onLogout}
         onToggleSidebar={() => setSidebarCollapsed(prev => !prev)}
       />
 
       <div className="flex-1 flex overflow-hidden relative z-10">
-        {/* Sidebar (hidden on Landing & Login Pages) */}
-        {!isFullWidth && (
-          <Sidebar
-            currentPage={currentPage}
-            onNavigate={handleNavigate}
-            collapsed={sidebarCollapsed}
-            onToggle={() => setSidebarCollapsed(prev => !prev)}
-            onLogout={handleLogout}
-          />
-        )}
+        {/* Sidebar */}
+        <Sidebar
+          currentPage={currentTab}
+          onNavigate={handleNavigate}
+          collapsed={sidebarCollapsed}
+          onToggle={() => setSidebarCollapsed(prev => !prev)}
+          onLogout={onLogout}
+        />
 
-        {/* Main Content Area with Page-Specific Dimming Overlay */}
-        <main className={`page-container flex-1 overflow-y-auto ${isFullWidth ? 'w-full' : ''} ${currentPage === 'login' ? 'login-page' : ''}`}>
-          {renderPage()}
+        {/* Main Content Area */}
+        <main className="page-container flex-1 overflow-y-auto">
+          <Outlet context={{ onNavigate: handleNavigate }} />
         </main>
       </div>
 
@@ -183,10 +98,131 @@ function AppContent() {
   );
 }
 
+function AppRoutes() {
+  const [isAuthenticated, setIsAuthenticated] = useState(() => getInitialAuthState());
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Handle legacy hash navigation migration (e.g. /#command-center -> /command-center)
+  useEffect(() => {
+    if (window.location.hash) {
+      const hash = window.location.hash.replace('#', '').trim();
+      if (hash) {
+        window.history.replaceState(null, '', window.location.pathname);
+        navigate(`/${hash}`, { replace: true });
+      }
+    }
+  }, [navigate]);
+
+  const handleLoginSuccess = () => {
+    try {
+      sessionStorage.setItem('smartbinx_auth', 'true');
+    } catch (e) {}
+    setIsAuthenticated(true);
+    const destination = location.state?.from?.pathname || '/command-center';
+    navigate(destination, { replace: true });
+  };
+
+  const handleLogout = () => {
+    try {
+      sessionStorage.removeItem('smartbinx_auth');
+      sessionStorage.removeItem('smartbinx_token');
+      sessionStorage.removeItem('smartbinx_user');
+    } catch (e) {}
+    setIsAuthenticated(false);
+    navigate('/login', { replace: true });
+  };
+
+  const handleNavigate = (page) => {
+    const target = page.startsWith('/') ? page : `/${page}`;
+    navigate(target);
+  };
+
+  return (
+    <Routes>
+      {/* Public Pages */}
+      <Route 
+        path="/" 
+        element={
+          <div className="min-h-screen text-[#17201B] flex flex-col font-sans selection:bg-[#0D5C3A] selection:text-white relative">
+            <Navbar
+              currentPage="landing"
+              onNavigate={handleNavigate}
+              isAuthenticated={isAuthenticated}
+              onLogout={handleLogout}
+              onToggleSidebar={() => {}}
+            />
+            <main className="page-container flex-1 overflow-y-auto w-full">
+              <LandingPage onLaunchApp={() => handleNavigate('command-center')} onNavigate={handleNavigate} />
+            </main>
+          </div>
+        } 
+      />
+      <Route 
+        path="/landing" 
+        element={<Navigate to="/" replace />} 
+      />
+      <Route 
+        path="/login" 
+        element={
+          <div className="min-h-screen text-[#17201B] flex flex-col font-sans selection:bg-[#0D5C3A] selection:text-white relative">
+            <Navbar
+              currentPage="login"
+              onNavigate={handleNavigate}
+              isAuthenticated={isAuthenticated}
+              onLogout={handleLogout}
+              onToggleSidebar={() => {}}
+            />
+            <main className="page-container flex-1 overflow-y-auto w-full login-page">
+              <LoginPage onLoginSuccess={handleLoginSuccess} onNavigate={handleNavigate} />
+            </main>
+          </div>
+        } 
+      />
+
+      {/* Protected Command & Operations Modules */}
+      <Route 
+        element={
+          <ProtectedRoute isAuthenticated={isAuthenticated}>
+            <AppLayout isAuthenticated={isAuthenticated} onLogout={handleLogout} />
+          </ProtectedRoute>
+        }
+      >
+        <Route path="/command-center" element={<CommandCenterPage onNavigate={handleNavigate} onNavigateTab={handleNavigate} />} />
+        <Route path="/command" element={<Navigate to="/command-center" replace />} />
+        <Route path="/operations" element={<LiveOperationsPage onNavigate={handleNavigate} onNavigateTab={handleNavigate} />} />
+        
+        {/* Route parameters for /bins and /bins/:binId */}
+        <Route path="/bins" element={<BinIntelligencePage onNavigate={handleNavigate} />} />
+        <Route path="/bins/:binId" element={<BinIntelligencePage onNavigate={handleNavigate} />} />
+        
+        <Route path="/vision" element={<WasteVisionPage onNavigate={handleNavigate} />} />
+        
+        {/* Route parameters for /routes and /routes/:vehicleId */}
+        <Route path="/routes" element={<RouteOptimizerPage onNavigate={handleNavigate} />} />
+        <Route path="/routes/:vehicleId" element={<RouteOptimizerPage onNavigate={handleNavigate} />} />
+        
+        <Route path="/analytics" element={<AnalyticsHotspotsPage onNavigate={handleNavigate} />} />
+        <Route path="/recycling" element={<RecyclingIntelligencePage onNavigate={handleNavigate} />} />
+        <Route path="/simulator" element={<WhatIfSimulatorPage onNavigate={handleNavigate} />} />
+        <Route path="/events" element={<EventPlacementPage onNavigate={handleNavigate} />} />
+        <Route path="/ai-assistant" element={<AIWasteManagerPage onNavigate={handleNavigate} />} />
+        <Route path="/ai-manager" element={<Navigate to="/ai-assistant" replace />} />
+        <Route path="/settings" element={<SettingsPage onNavigate={handleNavigate} />} />
+      </Route>
+
+      {/* Catch-all 404 Fallback */}
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
+  );
+}
+
 export default function App() {
   return (
-    <WasteDataProvider>
-      <AppContent />
-    </WasteDataProvider>
+    <BrowserRouter>
+      <WasteDataProvider>
+        <AppRoutes />
+      </WasteDataProvider>
+    </BrowserRouter>
   );
 }

@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import List, Dict, Optional, Any
 from pydantic import BaseModel, Field
 
@@ -35,5 +35,5 @@ class AIQueryResponse(BaseModel):
     cards: List[ActionCard] = Field(default_factory=list)
     recommended_actions: List[str] = Field(default_factory=list)
     suggested_actions: List[str] = Field(default_factory=list)
-    timestamp: datetime = Field(default_factory=datetime.utcnow)
+    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 

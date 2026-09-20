@@ -8,7 +8,7 @@ import copy
 import math
 import random
 import uuid
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, List, Optional
 
 from sqlalchemy.orm import Session
@@ -143,8 +143,8 @@ class DataStore:
                 "predicted_overflow_time": "4h 18m",
                 "overflow_severity": "Red",
                 "last_collection": "5 hours ago",
-                "created_at": datetime.utcnow() - timedelta(days=30),
-                "updated_at": datetime.utcnow(),
+                "created_at": datetime.now(timezone.utc) - timedelta(days=30),
+                "updated_at": datetime.now(timezone.utc),
             },
             "AHM-118": {
                 "id": "bin-ahm-118",
@@ -170,8 +170,8 @@ class DataStore:
                 "predicted_overflow_time": "4h 10m",
                 "overflow_severity": "Orange",
                 "last_collection": "6 hours ago",
-                "created_at": datetime.utcnow() - timedelta(days=30),
-                "updated_at": datetime.utcnow(),
+                "created_at": datetime.now(timezone.utc) - timedelta(days=30),
+                "updated_at": datetime.now(timezone.utc),
             },
             "AHM-156": {
                 "id": "bin-ahm-156",
@@ -197,8 +197,8 @@ class DataStore:
                 "predicted_overflow_time": "45m",
                 "overflow_severity": "Red",
                 "last_collection": "14 hours ago",
-                "created_at": datetime.utcnow() - timedelta(days=30),
-                "updated_at": datetime.utcnow(),
+                "created_at": datetime.now(timezone.utc) - timedelta(days=30),
+                "updated_at": datetime.now(timezone.utc),
             },
         }
 
@@ -299,8 +299,8 @@ class DataStore:
                 "predicted_overflow_time": pred_time_str,
                 "overflow_severity": severity,
                 "last_collection": last_collection_str,
-                "created_at": datetime.utcnow() - timedelta(days=rng.randint(5, 60)),
-                "updated_at": datetime.utcnow() - timedelta(minutes=rng.randint(2, 45)),
+                "created_at": datetime.now(timezone.utc) - timedelta(days=rng.randint(5, 60)),
+                "updated_at": datetime.now(timezone.utc) - timedelta(minutes=rng.randint(2, 45)),
             }
 
     def _seed_vehicles(self):
@@ -336,7 +336,7 @@ class DataStore:
                 "assigned_route_id": vc.get("route_id"),
                 "driver_name": vc.get("driver_name", "Ramesh Patel"),
                 "driver_phone": vc.get("driver_phone", "+91 98250 14210"),
-                "updated_at": datetime.utcnow() - timedelta(minutes=5),
+                "updated_at": datetime.now(timezone.utc) - timedelta(minutes=5),
             }
 
     def _seed_alerts(self):
@@ -351,7 +351,7 @@ class DataStore:
                 "zone": "Bodakdev",
                 "message": "Bin AHM-156 has reached 96% fill level. Overflow imminent within 45 minutes. Immediate collection dispatch advised.",
                 "status": "Active",
-                "created_at": datetime.utcnow() - timedelta(minutes=18),
+                "created_at": datetime.now(timezone.utc) - timedelta(minutes=18),
             },
             {
                 "id": "alert-002",
@@ -362,7 +362,7 @@ class DataStore:
                 "zone": "Bodakdev",
                 "message": "Bin AHM-104 (Organic) at 82% capacity. Priority Score 94. High decay and odor risk.",
                 "status": "Active",
-                "created_at": datetime.utcnow() - timedelta(minutes=35),
+                "created_at": datetime.now(timezone.utc) - timedelta(minutes=35),
             },
             {
                 "id": "alert-003",
@@ -373,7 +373,7 @@ class DataStore:
                 "zone": "Navrangpura",
                 "message": "AI Vision detected mixed contamination in Recyclable bin AHM-118. Segregation check required.",
                 "status": "Active",
-                "created_at": datetime.utcnow() - timedelta(hours=1, minutes=10),
+                "created_at": datetime.now(timezone.utc) - timedelta(hours=1, minutes=10),
             },
             {
                 "id": "alert-004",
@@ -384,7 +384,7 @@ class DataStore:
                 "zone": "Satellite",
                 "message": "Sudden 40% weight spike detected within 15 minutes at bin AHM-112.",
                 "status": "Active",
-                "created_at": datetime.utcnow() - timedelta(hours=2),
+                "created_at": datetime.now(timezone.utc) - timedelta(hours=2),
             },
         ]
 
@@ -401,7 +401,7 @@ class DataStore:
                 "utilization_pct": 74.0,
                 "waypoints_json": "[\"AHM-101\", \"AHM-103\", \"AHM-104\", \"AHM-107\", \"DEPOT-02\"]",
                 "status": "Active",
-                "created_at": datetime.utcnow() - timedelta(minutes=25),
+                "created_at": datetime.now(timezone.utc) - timedelta(minutes=25),
             },
             {
                 "id": "ROUTE-02",
@@ -413,7 +413,7 @@ class DataStore:
                 "utilization_pct": 40.0,
                 "waypoints_json": "[\"AHM-115\", \"AHM-118\", \"AHM-122\", \"DEPOT-01\"]",
                 "status": "Active",
-                "created_at": datetime.utcnow() - timedelta(minutes=40),
+                "created_at": datetime.now(timezone.utc) - timedelta(minutes=40),
             },
         ]
 
@@ -433,7 +433,7 @@ class DataStore:
             "other_percentage": 1.5,
             "confidence": 0.94,
             "source": "AI Detected from Image",
-            "created_at": datetime.utcnow() - timedelta(hours=2),
+            "created_at": datetime.now(timezone.utc) - timedelta(hours=2),
         }
 
         self.waste_classifications["AHM-118"] = {
@@ -449,7 +449,7 @@ class DataStore:
             "other_percentage": 1.0,
             "confidence": 0.91,
             "source": "AI Detected from Image",
-            "created_at": datetime.utcnow() - timedelta(hours=3),
+            "created_at": datetime.now(timezone.utc) - timedelta(hours=3),
         }
 
         self.waste_classifications["AHM-156"] = {
@@ -465,7 +465,7 @@ class DataStore:
             "other_percentage": 5.0,
             "confidence": 0.88,
             "source": "AI Detected from Image",
-            "created_at": datetime.utcnow() - timedelta(minutes=45),
+            "created_at": datetime.now(timezone.utc) - timedelta(minutes=45),
         }
 
         # For remaining bins, populate realistic AI Estimated breakdowns
@@ -517,7 +517,7 @@ class DataStore:
                 "other_percentage": round(ot, 1),
                 "confidence": round(rng.uniform(0.75, 0.90), 2),
                 "source": "AI Estimated",
-                "created_at": datetime.utcnow() - timedelta(hours=rng.randint(1, 12)),
+                "created_at": datetime.now(timezone.utc) - timedelta(hours=rng.randint(1, 12)),
             }
 
     def _seed_telemetry(self):
@@ -529,7 +529,7 @@ class DataStore:
 
             # 6 past readings at 2-hour intervals
             for step in range(6, 0, -1):
-                past_time = datetime.utcnow() - timedelta(hours=step * 2)
+                past_time = datetime.now(timezone.utc) - timedelta(hours=step * 2)
                 # Fill was lower in the past
                 sim_fill = max(5.0, round(current_fill - (step * random.uniform(3.0, 7.0)), 1))
                 sim_wt = max(2.0, round(current_wt * (sim_fill / max(1.0, current_fill)), 1))
@@ -551,7 +551,7 @@ class DataStore:
                     "id": f"read-{code.lower()}-0",
                     "bin_id": b["id"],
                     "bin_code": code,
-                    "timestamp": datetime.utcnow(),
+                    "timestamp": datetime.now(timezone.utc),
                     "fill_percentage": current_fill,
                     "weight": current_wt,
                 }
@@ -700,7 +700,7 @@ class DataStore:
         # 1. Update in-memory
         if code in self.bins:
             self.bins[code].update(updates)
-            self.bins[code]["updated_at"] = datetime.utcnow()
+            self.bins[code]["updated_at"] = datetime.now(timezone.utc)
 
         # 2. Write-through to SQLite database
         session, created = self._resolve_session(db)
@@ -713,7 +713,7 @@ class DataStore:
                     for k, val in updates.items():
                         if hasattr(db_b, k):
                             setattr(db_b, k, val)
-                    db_b.updated_at = datetime.utcnow()
+                    db_b.updated_at = datetime.now(timezone.utc)
                     session.commit()
             except Exception:
                 pass
@@ -850,7 +850,7 @@ class DataStore:
         # 1. Update in-memory
         if code in self.vehicles:
             self.vehicles[code].update(updates)
-            self.vehicles[code]["updated_at"] = datetime.utcnow()
+            self.vehicles[code]["updated_at"] = datetime.now(timezone.utc)
 
         # 2. Write-through to SQLite database
         session, created = self._resolve_session(db)
@@ -863,7 +863,7 @@ class DataStore:
                     for k, val in updates.items():
                         if hasattr(db_v, k):
                             setattr(db_v, k, val)
-                    db_v.updated_at = datetime.utcnow()
+                    db_v.updated_at = datetime.now(timezone.utc)
                     session.commit()
             except Exception:
                 pass
@@ -1049,22 +1049,6 @@ class DataStore:
                     session.close()
 
         return self.telemetry_history.get(code, [])
-
-    def reset_data(self, db: Optional[Session] = None):
-        """Reset both in-memory data and SQLite database to fresh synthetic baseline."""
-        self.initialize_store()
-        session, created = self._resolve_session(db)
-        if session:
-            try:
-                from app.database import Base
-                Base.metadata.drop_all(bind=session.get_bind())
-                Base.metadata.create_all(bind=session.get_bind())
-                self.seed_database_if_empty(session)
-            except Exception:
-                pass
-            finally:
-                if created:
-                    session.close()
 
     # ==========================================
     # Database Synchronization & Auto-Seeding
@@ -1385,7 +1369,7 @@ class DataStore:
             "waypoints": waypoints,
             "waypoints_json": waypoints_json,
             "status": route_data.get("status", "Active"),
-            "created_at": datetime.utcnow(),
+            "created_at": datetime.now(timezone.utc),
         }
 
         # Replace or append in self.routes
@@ -1419,7 +1403,7 @@ class DataStore:
                 utilization_pct=utilization_pct,
                 waypoints_json=waypoints_json,
                 status=route_data.get("status", "Active"),
-                created_at=datetime.utcnow(),
+                created_at=datetime.now(timezone.utc),
             )
             db.add(db_route)
 
@@ -1448,7 +1432,7 @@ class DataStore:
             bin_code=bin_code,
             weight_collected=weight_collected,
             waste_type=waste_type,
-            timestamp=datetime.utcnow(),
+            timestamp=datetime.now(timezone.utc),
         )
         db.add(collection_record)
 
@@ -1463,7 +1447,7 @@ class DataStore:
             db_bin.predicted_overflow_time = ">24h"
             db_bin.overflow_severity = "Green"
             db_bin.last_collection = now_str
-            db_bin.updated_at = datetime.utcnow()
+            db_bin.updated_at = datetime.now(timezone.utc)
 
         db.commit()
 
@@ -1475,7 +1459,7 @@ class DataStore:
         b["predicted_overflow_time"] = ">24h"
         b["overflow_severity"] = "Green"
         b["last_collection"] = now_str
-        b["updated_at"] = datetime.utcnow()
+        b["updated_at"] = datetime.now(timezone.utc)
 
         return {
             "collection_id": collection_record.id,
@@ -1507,7 +1491,7 @@ class DataStore:
             id=str(uuid.uuid4()),
             bin_id=bin_id,
             bin_code=bin_code,
-            prediction_time=datetime.utcnow(),
+            prediction_time=datetime.now(timezone.utc),
             fill_6h=float(pred_data.get("fill_6h", 0.0)),
             fill_12h=float(pred_data.get("fill_12h", 0.0)),
             fill_24h=float(pred_data.get("fill_24h", 0.0)),
@@ -1545,7 +1529,7 @@ class DataStore:
         if weight is None:
             weight = round((fill_percentage / 100.0) * capacity * 0.85, 1)
 
-        now = datetime.utcnow()
+        now = datetime.now(timezone.utc)
 
         # 1. Insert into SQLite bin_readings
         db_reading = DBBinReading(
@@ -1632,7 +1616,7 @@ class DataStore:
 
         bin_id = b.get("id", f"bin-{bin_code.lower()}")
         zone = b.get("zone", "Ahmedabad Central")
-        now = datetime.utcnow()
+        now = datetime.now(timezone.utc)
 
         # 1. Update in SQLite
         db_bin = db.query(DBBin).filter(DBBin.bin_code == bin_code).first()
@@ -1697,6 +1681,47 @@ class DataStore:
             "updated_at": now.isoformat(),
             "alert": alert_record,
         }
+
+    def recalculate_all_priorities(
+        self,
+        db: Session,
+        weights: Optional[Dict[str, float]] = None,
+    ) -> List[Dict[str, Any]]:
+        """Recalculate priority scores across all smart bins using the authoritative priority engine and sync to SQLite."""
+        from app.services.priority_engine import calculate_priority
+        from app.models.entities import Bin as DBBin
+
+        all_bins = self.get_all_bins(db=db)
+        results = []
+        for b in all_bins:
+            code = b["bin_code"]
+            calc = calculate_priority(b, weights=weights)
+            score = calc["priority_score"]
+            breakdown = calc["priority_breakdown"]
+
+            new_status = "Critical" if score >= 85 else ("High Priority" if score >= 70 else ("Filling" if float(b.get("fill_percentage", 0.0)) >= 50.0 else "Healthy"))
+            if b.get("status") in ["Offline", "Sensor Offline"]:
+                new_status = b["status"]
+
+            # Update in-memory
+            b["priority_score"] = score
+            b["priority_breakdown"] = breakdown
+            b["status"] = new_status
+            if code in self.bins:
+                self.bins[code]["priority_score"] = score
+                self.bins[code]["priority_breakdown"] = breakdown
+                self.bins[code]["status"] = new_status
+
+            # Update in SQLite
+            db_bin = db.query(DBBin).filter(DBBin.bin_code == code).first()
+            if db_bin:
+                db_bin.priority_score = score
+                db_bin.status = new_status
+
+            results.append(b)
+
+        db.commit()
+        return results
 
 
 # Global singleton instance

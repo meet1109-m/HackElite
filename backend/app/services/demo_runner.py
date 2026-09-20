@@ -14,7 +14,7 @@ Step 10: Dashboard updates environmental & operational impact (Distance avoided:
 """
 
 import uuid
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 
 from app.services.data_store import data_store
@@ -164,7 +164,7 @@ class DemoRunner:
             "zone": "Bodakdev",
             "message": "CRITICAL ALERT: Bin AHM-104 reached 82% capacity with organic stream. Overflow expected in 3h 42m.",
             "status": "Active",
-            "created_at": datetime.utcnow(),
+            "created_at": datetime.now(timezone.utc),
         }
         # Insert alert in memory and SQLite
         data_store.alerts.insert(0, alert_obj)
@@ -202,7 +202,7 @@ class DemoRunner:
             "other_percentage": 2.0,
             "confidence": 0.91,
             "source": "AI Detected from Image",
-            "created_at": datetime.utcnow(),
+            "created_at": datetime.now(timezone.utc),
         }
         data_store.waste_classifications["AHM-104"] = wc_data
         try:
@@ -440,7 +440,7 @@ class DemoRunner:
             "fuel_saved_liters": 5.1,
             "co2e_avoided_kg": 12.4,
             "landfill_diversion_pct": 64.0,
-            "execution_timestamp": datetime.utcnow().isoformat(),
+            "execution_timestamp": datetime.now(timezone.utc).isoformat(),
         }
 
         return {

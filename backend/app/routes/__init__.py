@@ -12,8 +12,10 @@ from app.routes.simulation import router as simulation_router
 from app.routes.ai import router as ai_router
 from app.routes.demo import router as demo_router
 from app.routes.zones import router as zones_router
+from app.routes.auth import router as auth_router
 
 ROUTER_CONFIGS = [
+    (auth_router, ["Authentication & Security"]),
     (bins_router, ["Bins & Digital Twins"]),
     (readings_router, ["Bins & Digital Twins"]),
     (vehicles_router, ["Vehicles & Capacity"]),
@@ -36,6 +38,7 @@ def register_routes(app: FastAPI) -> None:
 
 
 __all__ = [
+    "auth_router",
     "bins_router",
     "vehicles_router",
     "routes_router",

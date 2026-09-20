@@ -5,7 +5,7 @@ bin states, vehicle loads, and active anomalies to answer natural-language opera
 with markdown answers, actionable UI cards, and concrete recommendations.
 """
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 
 from app.services.data_store import data_store
@@ -83,7 +83,7 @@ def _handle_immediate_collection_query(query: str) -> Dict[str, Any]:
         "answer": "\n".join(answer_lines),
         "cards": cards,
         "recommended_actions": actions,
-        "timestamp": datetime.utcnow(),
+        "timestamp": datetime.now(timezone.utc),
     }
 
 
@@ -102,7 +102,7 @@ def _handle_why_bin_critical_query(query: str, bin_code: str = "AHM-104") -> Dic
             "answer": f"Bin **{bin_code}** was not found in the Ahmedabad operational network.",
             "cards": [],
             "recommended_actions": ["Verify the bin code in the municipal registry."],
-            "timestamp": datetime.utcnow(),
+            "timestamp": datetime.now(timezone.utc),
         }
 
     p_data = calculate_priority(b)
@@ -165,7 +165,7 @@ def _handle_why_bin_critical_query(query: str, bin_code: str = "AHM-104") -> Dic
         "answer": "\n".join(answer_lines),
         "cards": cards,
         "recommended_actions": actions,
-        "timestamp": datetime.utcnow(),
+        "timestamp": datetime.now(timezone.utc),
     }
 
 
@@ -190,7 +190,7 @@ def _handle_which_vehicle_query(query: str, bin_code: str = "AHM-104") -> Dict[s
             "answer": f"No available collection vehicles currently have sufficient payload capacity for {bin_code}.",
             "cards": [],
             "recommended_actions": ["Direct an on-route vehicle to offload at the nearest depot."],
-            "timestamp": datetime.utcnow(),
+            "timestamp": datetime.now(timezone.utc),
         }
 
     v_code = best["vehicle_code"]
@@ -245,7 +245,7 @@ def _handle_which_vehicle_query(query: str, bin_code: str = "AHM-104") -> Dict[s
         "answer": "\n".join(answer_lines),
         "cards": cards,
         "recommended_actions": actions,
-        "timestamp": datetime.utcnow(),
+        "timestamp": datetime.now(timezone.utc),
     }
 
 
@@ -301,7 +301,7 @@ def _handle_waste_generation_zone_query(query: str) -> Dict[str, Any]:
         "answer": "\n".join(answer_lines),
         "cards": cards,
         "recommended_actions": actions,
-        "timestamp": datetime.utcnow(),
+        "timestamp": datetime.now(timezone.utc),
     }
 
 
@@ -349,7 +349,7 @@ def _handle_recyclable_material_query(query: str) -> Dict[str, Any]:
         "answer": "\n".join(answer_lines),
         "cards": cards,
         "recommended_actions": actions,
-        "timestamp": datetime.utcnow(),
+        "timestamp": datetime.now(timezone.utc),
     }
 
 
@@ -390,7 +390,7 @@ def _handle_remove_vehicle_query(query: str) -> Dict[str, Any]:
         "answer": "\n".join(answer_lines),
         "cards": cards,
         "recommended_actions": actions,
-        "timestamp": datetime.utcnow(),
+        "timestamp": datetime.now(timezone.utc),
     }
 
 
@@ -430,7 +430,7 @@ def _handle_general_query(query: str) -> Dict[str, Any]:
                 "answer": answer,
                 "cards": cards,
                 "recommended_actions": [f"View real-time location for {v_code} on GIS map."],
-                "timestamp": datetime.utcnow(),
+                "timestamp": datetime.now(timezone.utc),
             }
 
     # Default general system overview
@@ -472,7 +472,7 @@ def _handle_general_query(query: str) -> Dict[str, Any]:
         "answer": answer,
         "cards": cards,
         "recommended_actions": ["Review critical bins in Bodakdev and Navrangpura."],
-        "timestamp": datetime.utcnow(),
+        "timestamp": datetime.now(timezone.utc),
     }
 
 

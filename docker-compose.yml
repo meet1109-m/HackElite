@@ -1,0 +1,126 @@
+version: "3.8"
+
+services:
+  # =========================================================================
+  # 1. Frontend: React 18 + Vite (Served via Nginx Reverse Proxy)
+  # =========================================================================
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: smartbinx-frontend
+    restart: unless-stopped
+    ports:
+      - "${FRONTEND_PORT:-5173}:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:80/"]
+      interval: 20s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+    networks:
+      - smartbinx-network
+
+  # =========================================================================
+  # 2. Backend: FastAPI REST Service (Python 3.11, Uvicorn)
+  # =========================================================================
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: smartbinx-backend
+    restart: unless-stopped
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"
+    environment:
+      # Use PostgreSQL service by default in multi-tier Docker stack; fallback to SQLite volume if desired
+      - DATABASE_URL=${DATABASE_URL:-postgresql://smartbinx_user:smartbinx_pass@db:5432/smartbinx_db}
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379/0}
+      - REDIS_ENABLED=True
+      - ENVIRONMENT=production-container
+      - SECRET_KEY=${SECRET_KEY:-smartbinx-secure-jwt-secret-key-ahmedabad-2026}
+      - MUNICIPAL_API_KEY=${MUNICIPAL_API_KEY:-smartbinx-ahmedabad-municipal-key-2026}
+      - CORS_ORIGINS=${CORS_ORIGINS:-http://localhost:5173,http://127.0.0.1:5173,http://localhost:8000,http://127.0.0.1:8000}
+    volumes:
+      # Persistent volume for SQLite data if DATABASE_URL is set to sqlite
+      - sqlite_data:/app/data
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    networks:
+      - smartbinx-network
+
+  # =========================================================================
+  # 3. Redis: Distributed Caching & Telemetry Acceleration
+  # =========================================================================
+  redis:
+    image: redis:7-alpine
+    container_name: smartbinx-redis
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
+    networks:
+      - smartbinx-network
+
+  # =========================================================================
+  # 4. Database: PostgreSQL 16 (Relational Municipal Persistence)
+  # =========================================================================
+  db:
+    image: postgres:16-alpine
+    container_name: smartbinx-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-smartbinx_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-smartbinx_pass}
+      POSTGRES_DB: ${POSTGRES_DB:-smartbinx_db}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-smartbinx_user} -d ${POSTGRES_DB:-smartbinx_db}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - smartbinx-network
+
+# ===========================================================================
+# Persistent Storage Volumes
+# ===========================================================================
+volumes:
+  sqlite_data:
+    driver: local
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+
+# ===========================================================================
+# Isolated Virtual Network
+# ===========================================================================
+networks:
+  smartbinx-network:
+    driver: bridge
+    name: smartbinx-network

@@ -22,6 +22,16 @@ import app.models  # Ensure models are registered on Base.metadata
 from app.services.data_store import data_store
 from app.routes import register_routes
 
+from app.observability import (
+    setup_logging,
+    ObservabilityMiddleware,
+    metrics_router,
+    get_correlation_id,
+)
+
+# Initialize structured logging subsystem
+setup_logging(log_level=settings.LOG_LEVEL, log_format=settings.LOG_FORMAT)
+
 def ensure_db_migrations(db_engine):
     """Automatically apply any missing column migrations to SQLite tables."""
     try:
@@ -46,6 +56,8 @@ async def lifespan(app: FastAPI):
     """Application lifespan handler: hydrates cache from DB or auto-seeds if empty."""
     db = SessionLocal()
     try:
+        from app.routes.auth import ensure_canonical_users
+        ensure_canonical_users(db)
         # If DB already populated, hydrate in-memory cache directly from SQLite; otherwise seed
         if not data_store.load_from_database(db):
             data_store.seed_database_if_empty(db)
@@ -66,30 +78,44 @@ app = FastAPI(
     redoc_url="/redoc",
 )
 
-# CORS Middleware configured for Frontend and local dev environments
+# 1. Observability Middleware (Correlation IDs, Prometheus Latency, Structured Access Logs)
+app.add_middleware(ObservabilityMiddleware)
+
+# 2. CORS Middleware configured strictly adhering to W3C specifications
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-        "http://localhost:8000",
-        "http://127.0.0.1:8000",
-    ],
-    allow_origin_regex=r"^https?://(localhost|127\.0\.0\.1)(:[0-9]+)?$",
+    allow_origins=settings.CORS_ORIGINS,
+    allow_origin_regex=settings.CORS_ORIGIN_REGEX,
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allow_headers=[
+        "Authorization",
+        "Content-Type",
+        "Accept",
+        "Origin",
+        "X-Requested-With",
+        "X-API-Key",
+        "X-Correlation-ID",
+        "X-Request-ID",
+    ],
+    expose_headers=[
+        "X-Correlation-ID",
+        "X-Request-ID",
+        "X-Process-Time",
+    ],
 )
 
-# Mount all 9 API route controllers (/api/bins, /api/vehicles, /api/routes, etc.)
+# 3. Mount Prometheus Metrics Endpoint (/metrics)
+if settings.PROMETHEUS_METRICS_ENABLED:
+    app.include_router(metrics_router)
+
+# 4. Mount all 9 API route controllers (/api/bins, /api/vehicles, /api/routes, etc.)
 register_routes(app)
 
 
 @app.get("/", tags=["System"])
 def root():
-    """Service metadata and system status."""
+    """Service metadata, endpoints, and system status."""
     return {
         "project": "SmartBinX",
         "title": settings.PROJECT_NAME,
@@ -99,10 +125,29 @@ def root():
         "environment": settings.ENVIRONMENT,
         "docs_url": "/docs",
         "health_check": "/health",
+        "metrics_url": "/metrics",
+        "correlation_id": get_correlation_id(),
     }
 
 
 @app.get("/health", tags=["System"])
 def health_check():
-    """System liveness probe."""
-    return {"status": "ok", "project": "SmartBinX"}
+    """System liveness and readiness probe with database and cache health reporting."""
+    db_ok = True
+    try:
+        with engine.connect() as conn:
+            conn.execute(text("SELECT 1"))
+    except Exception:
+        db_ok = False
+
+    from app.services.cache_service import cache
+    cache_status = cache.health()
+
+    return {
+        "status": "ok" if db_ok else "degraded",
+        "project": "SmartBinX",
+        "database": "connected" if db_ok else "disconnected",
+        "cache": cache_status,
+        "correlation_id": get_correlation_id(),
+        "metrics": "/metrics",
+    }

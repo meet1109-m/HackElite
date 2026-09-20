@@ -1,0 +1,12 @@
+.git
+.gitignore
+backend/venv/
+backend/__pycache__/
+backend/*.pyc
+backend/.pytest_cache/
+frontend/node_modules/
+frontend/dist/
+reports/
+ml_model/notebooks/
+ml_model/data/raw/
+*.log

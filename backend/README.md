@@ -62,15 +62,41 @@ pip install -r requirements.txt
 ```
 
 ### 2. Start the Backend Server
+
+#### A. Development Mode (Local Code Editing Only)
+> [!NOTE]
+> `--reload` enables the file watcher to auto-restart the process during active development. **Do not use in production** due to high CPU file-polling overhead, single-worker bottlenecks, and lack of worker crash recovery.
+
 ```bash
+# Start local development server with live reload:
 uvicorn app.main:app --reload --port 8000
+```
+
+#### B. Production Mode (High-Performance Process Manager)
+For production deployments, bare-metal servers, and staging environments, use a robust process manager with worker pool supervision, automatic core scaling, and graceful recycling:
+
+```bash
+# Universal cross-platform production runner (Linux, macOS, Windows):
+python run_production.py --port 8000
+
+# Linux / Container / Production (Gunicorn Master + UvicornWorker pool):
+gunicorn -c gunicorn_conf.py app.main:app
+
+# Windows Multi-Worker Production:
+uvicorn app.main:app --workers 4 --host 0.0.0.0 --port 8000
+```
+
+#### C. Multi-Tier Containerized Stack (Recommended)
+```bash
+# Launch full stack (Frontend + Backend Gunicorn + Redis + PostgreSQL):
+docker compose up --build -d
 ```
 
 ### 3. Open Interactive API Documentation
 Once running, open your browser to test and inspect all endpoints:
 - **Swagger UI:** 👉 [`http://localhost:8000/docs`](http://localhost:8000/docs)
 - **ReDoc:** 👉 [`http://localhost:8000/redoc`](http://localhost:8000/redoc)
-- **Health Check:** `http://localhost:8000/health`
+- **Health Check Probe:** [`http://localhost:8000/health`](http://localhost:8000/health)
 
 ---
 

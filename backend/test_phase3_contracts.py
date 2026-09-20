@@ -22,6 +22,16 @@ def run_phase3_verification():
     print("SmartBinX Phase 3: Comprehensive Frontend-to-Backend Contract Verification Suite")
     print("================================================================================\n")
 
+    # Authenticate client with canonical municipal admin credentials
+    login_res = client.post("/api/auth/login", json={
+        "email_or_username": "amc-admin@ahmedabadcity.gov.in",
+        "password": "8821"
+    })
+    assert login_res.status_code == 200, f"Auth login failed: {login_res.text}"
+    token = login_res.json()["access_token"]
+    client.headers["Authorization"] = f"Bearer {token}"
+    print("[Auth] Successfully authenticated TestClient with signed JWT Bearer token.\n")
+
     passed_tests = 0
     total_tests = 13
 

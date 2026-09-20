@@ -21,6 +21,8 @@ from app.services.route_optimizer import optimize_cvrp_route
 from app.services.replan_service import dynamic_replan_route
 from app.utils.constants import COLLECTION_DEPOTS
 from app.utils.geo import calculate_route_distance, estimate_travel_time_minutes
+from app.models.entities import User
+from app.services.security import get_current_active_user
 
 router = APIRouter(prefix="/api/routes", tags=["Routes"])
 
@@ -188,6 +190,7 @@ def format_route_response(r: Dict[str, Any]) -> Dict[str, Any]:
 @router.post("/optimize", response_model=RouteResponse)
 def optimize_route_endpoint(
     payload: OptimizeRouteRequest,
+    current_user: User = Depends(get_current_active_user),
     db: Session = Depends(get_db),
 ):
     """Generate a capacity-constrained collection route for a vehicle based on priority bins."""
@@ -221,6 +224,7 @@ def optimize_route_endpoint(
 @router.post("/replan", response_model=ReplanResponse)
 def replan_route_endpoint(
     payload: ReplanRequest,
+    current_user: User = Depends(get_current_active_user),
     db: Session = Depends(get_db),
 ):
     """Dynamically insert an emergency bin into an active collection route with minimum added distance."""

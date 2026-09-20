@@ -3,7 +3,7 @@
 Endpoints for What-If scenario simulations and Ahmedabad Event Mode resource sizing.
 """
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 
 from app.schemas.simulation import (
     WhatIfRequest,
@@ -12,21 +12,28 @@ from app.schemas.simulation import (
     EventModeResponse,
 )
 from app.services.simulation_service import run_what_if_simulation, simulate_event_mode
+from app.models.entities import User
+from app.services.security import get_current_active_user
 
 router = APIRouter(prefix="/api/simulation", tags=["Simulation"])
 
 
 @router.post("", response_model=WhatIfResponse)
 @router.post("/what-if", response_model=WhatIfResponse)
-def what_if_simulation_endpoint(payload: WhatIfRequest):
+def what_if_simulation_endpoint(
+    payload: WhatIfRequest,
+    current_user: User = Depends(get_current_active_user),
+):
     """Execute What-If scenario simulation on the municipal collection fleet."""
     result = run_what_if_simulation(payload.model_dump())
     return result
 
 
-
 @router.post("/event-mode", response_model=EventModeResponse)
-def event_mode_endpoint(payload: EventModeRequest):
+def event_mode_endpoint(
+    payload: EventModeRequest,
+    current_user: User = Depends(get_current_active_user),
+):
     """Activate Ahmedabad Event Mode to size temporary bins, extra vehicles, and collection cycles."""
     result = simulate_event_mode(
         event_name=payload.event_name,
