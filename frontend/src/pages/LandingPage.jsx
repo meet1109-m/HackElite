@@ -238,7 +238,7 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
                 <span className="text-xs font-black font-mono text-[#D64545] tracking-wider">LIVE TELEMETRY SIGNAL</span>
               </div>
               <span className="text-xs font-mono font-bold text-[#66736C] bg-[#F1F6F3] px-2.5 py-1 rounded-lg border border-[#E3EAE6]">
-                Node AHM-104 (Sabarmati)
+                Node AHM-104 (Bodakdev)
               </span>
             </div>
 
@@ -546,7 +546,7 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
                 <span className="w-2.5 h-2.5 rounded-full bg-[#D64545] animate-pulse"></span>
               </div>
               <div className="space-y-1">
-                <span className="font-mono font-bold text-base text-[#17201B]">AHM-104 (Sabarmati)</span>
+                <span className="font-mono font-bold text-base text-[#17201B]">AHM-104 (Bodakdev)</span>
                 <div className="text-2xl font-black font-mono text-[#D64545]">82% FULL</div>
               </div>
               <div className="text-xs text-[#66736C] space-y-1">

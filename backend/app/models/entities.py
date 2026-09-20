@@ -72,6 +72,8 @@ class Vehicle(Base):
     longitude = Column(Float, nullable=False)
     status = Column(String(50), default="Available")  # Available, On Route, Maintenance, Off Duty
     assigned_route_id = Column(String(36), nullable=True)
+    driver_name = Column(String(100), nullable=True, default="Ramesh Patel")
+    driver_phone = Column(String(50), nullable=True, default="+91 98250 14210")
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
 

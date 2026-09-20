@@ -4,104 +4,155 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 import { Flame, AlertTriangle, TrendingUp, Clock, Sparkles, Filter, ShieldCheck, ChevronRight, HelpCircle } from 'lucide-react';
 
 export default function AnalyticsHotspotsPage() {
-  const { zones } = useWasteData();
+  const { zones, hotspots, anomalies: backendAnomalies } = useWasteData();
   const [timeRange, setTimeRange] = useState('7d'); // 'today' | '7d' | '30d'
 
-  // Dynamic Zone Generation vs Baseline comparison dataset based on time range
-  const zoneChartData = {
-    today: [
-      { name: 'Sabarmati', current: 780, baseline: 520, status: 'Hotspot', surge: '+50%' },
-      { name: 'Navrangpura', current: 840, baseline: 610, status: 'Hotspot', surge: '+37.7%' },
-      { name: 'Maninagar', current: 620, baseline: 580, status: 'Normal', surge: '+6.9%' },
-      { name: 'Vastrapur', current: 590, baseline: 550, status: 'Normal', surge: '+7.2%' },
-      { name: 'Bodakdev', current: 480, baseline: 510, status: 'Low', surge: '-5.8%' },
-      { name: 'Paldi', current: 430, baseline: 470, status: 'Low', surge: '-8.5%' },
-    ],
-    '7d': [
-      { name: 'Sabarmati', current: 5460, baseline: 3640, status: 'Hotspot', surge: '+50%' },
-      { name: 'Navrangpura', current: 5880, baseline: 4270, status: 'Hotspot', surge: '+37.7%' },
-      { name: 'Maninagar', current: 4340, baseline: 4060, status: 'Normal', surge: '+6.9%' },
-      { name: 'Vastrapur', current: 4130, baseline: 3850, status: 'Normal', surge: '+7.2%' },
-      { name: 'Bodakdev', current: 3360, baseline: 3570, status: 'Low', surge: '-5.8%' },
-      { name: 'Paldi', current: 3010, baseline: 3290, status: 'Low', surge: '-8.5%' },
-    ],
-    '30d': [
-      { name: 'Sabarmati', current: 23400, baseline: 15600, status: 'Hotspot', surge: '+50%' },
-      { name: 'Navrangpura', current: 25200, baseline: 18300, status: 'Hotspot', surge: '+37.7%' },
-      { name: 'Maninagar', current: 18600, baseline: 17400, status: 'Normal', surge: '+6.9%' },
-      { name: 'Vastrapur', current: 17700, baseline: 16500, status: 'Normal', surge: '+7.2%' },
-      { name: 'Bodakdev', current: 14400, baseline: 15300, status: 'Low', surge: '-5.8%' },
-      { name: 'Paldi', current: 12900, baseline: 14100, status: 'Low', surge: '-8.5%' },
-    ]
-  };
+  // Dynamic Zone Generation vs Baseline comparison dataset based on live hotspots or zones
+  const mult = timeRange === 'today' ? 1 : (timeRange === '7d' ? 7 : 30);
+  const dataSource = (hotspots && hotspots.length > 0) ? hotspots : (zones || []);
 
-  const currentChartData = zoneChartData[timeRange] || zoneChartData['7d'];
+  const currentChartData = dataSource.map(z => {
+    const name = z.zone_name || z.name || 'Zone';
+    const current = Math.round((z.current_generation_kg || z.waste_generation || 750) * mult);
+    const baseline = Math.round((z.baseline_generation_kg || z.baseline_generation || 750) * mult);
+    const diff = current - baseline;
+    const surgePct = Math.round((diff / Math.max(1, baseline)) * 100);
+    const surge = `${surgePct >= 0 ? '+' : ''}${surgePct}%`;
+    const status = surgePct >= 40 ? 'Hotspot' : (surgePct <= -5 ? 'Low' : 'Normal');
+    return { name, current, baseline, status, surge };
+  }).sort((a, b) => b.current - a.current);
 
-  // Frequency optimizer recommendations
-  const frequencyRecommendations = [
+  // Frequency optimizer recommendations dynamically generated from live zone surge metrics
+  const dynamicFrequencyRecs = dataSource.map(z => {
+    const name = z.zone_name || z.name || 'Zone';
+    const current = z.current_generation_kg || z.waste_generation || 750;
+    const baseline = z.baseline_generation_kg || z.baseline_generation || 750;
+    const surgePct = Math.round(((current - baseline) / Math.max(1, baseline)) * 100);
+
+    if (surgePct >= 40) {
+      return {
+        zone: `${name} (${surgePct >= 70 ? 'Zone E' : 'High Surge'})`,
+        currentFreq: 'Every 24 hours',
+        recommendedFreq: 'Every 12 hours',
+        urgency: 'HIGH',
+        reason: `Generation is +${surgePct}% above baseline with recurring overflow risk along commercial dining corridor.`,
+        estimatedSavings: 'Zero overflow spills & odor mitigation'
+      };
+    } else if (surgePct >= 15) {
+      return {
+        zone: `${name} (Commercial Corridor)`,
+        currentFreq: 'Every 24 hours',
+        recommendedFreq: 'Every 16 hours',
+        urgency: 'MEDIUM',
+        reason: `Commercial packaging and transit hub surge (+${surgePct}%) drives rapid waste accumulation.`,
+        estimatedSavings: 'Prevents midday bin overflow'
+      };
+    } else if (surgePct <= 5) {
+      return {
+        zone: `${name} (West)`,
+        currentFreq: 'Every 24 hours',
+        recommendedFreq: 'Every 36 hours',
+        urgency: 'OPTIMIZE',
+        reason: 'Generation is stable at baseline with high segregation compliance and low fill velocity.',
+        estimatedSavings: 'Saves 11.5 km vehicle transit/week'
+      };
+    }
+    return null;
+  }).filter(Boolean);
+
+  const frequencyRecommendations = dynamicFrequencyRecs.length >= 2 ? dynamicFrequencyRecs.slice(0, 4) : [
     {
-      zone: 'Zone C (Sabarmati Riverfront)',
+      zone: 'Zone E (Bodakdev Commercial Corridor)',
       currentFreq: 'Every 24 hours',
       recommendedFreq: 'Every 12 hours',
       urgency: 'HIGH',
-      reason: 'Generation is +50% above baseline with recurring 4-hour overflow risk in evening promenade peak hours.',
-      estimatedSavings: 'Zero overflow spills'
+      reason: 'Generation is +82% above baseline with recurring overflow risk along Sindhu Bhavan dining corridor.',
+      estimatedSavings: 'Zero overflow spills & odor mitigation'
+    },
+    {
+      zone: 'Zone SG (SG Highway Corridor)',
+      currentFreq: 'Every 24 hours',
+      recommendedFreq: 'Every 16 hours',
+      urgency: 'MEDIUM',
+      reason: 'IT park cafeterias and banquet halls generate +31.8% surge during weekday evening peaks.',
+      estimatedSavings: 'Prevents midday bin overflow'
     },
     {
       zone: 'Zone B (Navrangpura Commercial)',
       currentFreq: 'Every 24 hours',
-      recommendedFreq: 'Every 16 hours',
+      recommendedFreq: 'Every 18 hours',
       urgency: 'MEDIUM',
-      reason: 'Commercial packaging surge on weekdays drives rapid plastic and carton accumulation.',
-      estimatedSavings: 'Prevents midday overflow'
-    },
-    {
-      zone: 'Zone E (Bodakdev Residential)',
-      currentFreq: 'Every 24 hours',
-      recommendedFreq: 'Every 36 hours',
-      urgency: 'OPTIMIZE',
-      reason: 'Average bin fill consistently remains below 62% at 24h marks.',
-      estimatedSavings: 'Saves 14.2 km vehicle transit/week'
+      reason: 'Commercial packaging and university hub surge (+22.7%) drives rapid dry recyclable accumulation.',
+      estimatedSavings: 'Maintains recyclable stream purity'
     },
     {
       zone: 'Zone G (Paldi West)',
       currentFreq: 'Every 24 hours',
       recommendedFreq: 'Every 36 hours',
       urgency: 'OPTIMIZE',
-      reason: 'Generation is 8.5% below baseline with high segregation compliance.',
+      reason: 'Generation is stable at baseline with high segregation compliance and low fill velocity.',
       estimatedSavings: 'Saves 11.5 km vehicle transit/week'
     }
   ];
 
-  const anomalies = [
-    {
-      id: 'ANOM-01',
-      zone: 'Sabarmati Riverfront (Zone C)',
-      type: 'Generation Surge',
-      delta: '+50.0%',
-      baseline: '520 kg/day',
-      current: '780 kg/day',
-      severity: 'Critical',
-      hypotheses: [
-        'Evening food festival / riverfront walkway weekend influx',
-        'Seasonal tourism cluster near Atal Foot Bridge',
-        'Commercial vendor packaging disposal surge'
-      ]
-    },
-    {
-      id: 'ANOM-02',
-      zone: 'Navrangpura CG Road (Zone B)',
-      type: 'Plastic Packaging Spike',
-      delta: '+37.7%',
-      baseline: '610 kg/day',
-      current: '840 kg/day',
-      severity: 'Warning',
-      hypotheses: [
-        'Commercial retail unboxing hours (14:00 - 18:00)',
-        'Delivery hub consolidated packaging disposal'
-      ]
-    }
-  ];
+  const anomalies = (backendAnomalies && backendAnomalies.length > 0)
+    ? backendAnomalies.map((a, idx) => ({
+        id: `ANOM-0${idx + 1}`,
+        zone: `${a.zone_name} (Zone)`,
+        type: a.increase_pct >= 50 ? 'Severe Generation Surge' : 'Generation Surge',
+        delta: `+${a.increase_pct}%`,
+        baseline: `${Math.round(a.baseline_generation_kg)} kg/day`,
+        current: `${Math.round(a.current_generation_kg)} kg/day`,
+        severity: a.severity || (a.increase_pct >= 50 ? 'Critical' : 'Warning'),
+        hypotheses: a.hypotheses || [
+          'Commercial dining and restaurant waste surge along Sindhu Bhavan Road.',
+          'High packaging waste from quick-commerce fulfillment hubs.'
+        ]
+      }))
+    : [
+        {
+          id: 'ANOM-01',
+          zone: 'Bodakdev Sindhu Bhavan (Zone E)',
+          type: 'Critical Generation Surge',
+          delta: '+82.0%',
+          baseline: '900 kg/day',
+          current: '1,638 kg/day',
+          severity: 'Critical',
+          hypotheses: [
+            'Commercial dining and restaurant waste surge along Sindhu Bhavan Road / Judges Bungalow',
+            'High packaging waste from quick-commerce fulfillment hubs',
+            'Corporate park bulk disposal and event catering waste'
+          ]
+        },
+        {
+          id: 'ANOM-02',
+          zone: 'SG Highway Corridor',
+          type: 'Commercial Packaging Surge',
+          delta: '+31.8%',
+          baseline: '1,100 kg/day',
+          current: '1,450 kg/day',
+          severity: 'Warning',
+          hypotheses: [
+            'Weekend transit and IT corridor cafeteria bulk waste surge',
+            'Hospitality sector and banquet hall wedding event concentration',
+            'Automobile showroom and dealership promotional events'
+          ]
+        },
+        {
+          id: 'ANOM-03',
+          zone: 'Navrangpura CG Road (Zone B)',
+          type: 'Plastic Packaging Spike',
+          delta: '+22.7%',
+          baseline: '750 kg/day',
+          current: '920 kg/day',
+          severity: 'Warning',
+          hypotheses: [
+            'College festival or university youth convention at Gujarat University / LD Engineering',
+            'Commercial retail unboxing hours (14:00 - 18:00)',
+            'Delivery hub consolidated packaging disposal'
+          ]
+        }
+      ];
 
   return (
     <div className="p-4 sm:p-8 space-y-6 max-w-7xl mx-auto bg-pattern-analytics min-h-full">

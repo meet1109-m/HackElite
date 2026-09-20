@@ -128,19 +128,29 @@ export default function WasteVisionPage() {
     const file = e.target.files?.[0];
     if (file) {
       const reader = new FileReader();
-      reader.onload = () => {
+      reader.onload = async () => {
         setUploadedImagePreview(reader.result);
-        setAnalysisResult({
-          plastic: 62.0,
-          organic: 18.0,
-          paper: 12.0,
-          metal: 5.0,
-          glass: 2.0,
-          other: 1.0,
-          confidence: 0.87,
-          purity_score: 62.0,
-          contamination_level: 'Moderate Contamination'
-        });
+        setAnalyzing(true);
+        try {
+          const res = await classifyWasteImage(file);
+          if (res) {
+            setAnalysisResult({
+              plastic: res.plastic ?? 0,
+              organic: res.organic ?? 0,
+              paper: res.paper ?? 0,
+              metal: res.metal ?? 0,
+              glass: res.glass ?? 0,
+              other: res.other ?? 0,
+              confidence: res.confidence || ((res.confidence_pct || 88) / 100),
+              purity_score: res.purity_score || res.recycling_purity_score || 72,
+              contamination_level: res.contamination_level || (res.purity_score >= 75 ? 'Low Contamination' : (res.purity_score >= 50 ? 'Moderate Contamination' : 'Critical Contamination'))
+            });
+          }
+        } catch (err) {
+          console.error('[WasteVision] Image classification failed:', err);
+        } finally {
+          setAnalyzing(false);
+        }
       };
       reader.readAsDataURL(file);
     }

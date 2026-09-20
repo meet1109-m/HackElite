@@ -14,14 +14,29 @@ export const BinDigitalTwinModal = (props) => {
   const onNavigateTab = props.onNavigateTab;
 
   const [readings, setReadings] = useState([]);
+  const [readingsLoading, setReadingsLoading] = useState(false);
   const [bestVehicle, setBestVehicle] = useState(null);
   const [loadingVehicle, setLoadingVehicle] = useState(false);
+  const [vehicleError, setVehicleError] = useState(null);
   const [predictionRun, setPredictionRun] = useState(false);
 
   useEffect(() => {
     if (bin) {
-      apiService.getBinReadings(bin.id).then(r => setReadings(r || []));
+      let isMounted = true;
+      setReadingsLoading(true);
+      apiService.getBinReadings(bin.id)
+        .then(r => {
+          if (isMounted) setReadings(r || []);
+        })
+        .catch(err => {
+          console.warn('[BinDigitalTwinModal] Readings fetch failed:', err.message);
+        })
+        .finally(() => {
+          if (isMounted) setReadingsLoading(false);
+        });
+
       setBestVehicle(null);
+      setVehicleError(null);
       setPredictionRun(false);
 
       const handleKeyDown = (e) => {
@@ -30,7 +45,10 @@ export const BinDigitalTwinModal = (props) => {
         }
       };
       window.addEventListener('keydown', handleKeyDown);
-      return () => window.removeEventListener('keydown', handleKeyDown);
+      return () => {
+        isMounted = false;
+        window.removeEventListener('keydown', handleKeyDown);
+      };
     }
   }, [bin, onClose]);
 
@@ -38,11 +56,18 @@ export const BinDigitalTwinModal = (props) => {
 
   const handleFindVehicle = async () => {
     setLoadingVehicle(true);
-    const res = await apiService.getBestVehicleForBin(bin.id);
-    if (res) {
-      setBestVehicle(res);
+    setVehicleError(null);
+    try {
+      const res = await apiService.getBestVehicleForBin(bin.id);
+      if (res) {
+        setBestVehicle(res);
+      }
+    } catch (err) {
+      setVehicleError(err.message);
+      context.showToast?.(`Vehicle dispatch calculation failed: ${err.message}`, 'error');
+    } finally {
+      setLoadingVehicle(false);
     }
-    setLoadingVehicle(false);
   };
 
   const handleRunPrediction = () => {
@@ -241,6 +266,13 @@ export const BinDigitalTwinModal = (props) => {
               </button>
             )}
           </div>
+
+          {vehicleError && (
+            <div className="p-3 mb-3 bg-[#FEF2F2] border border-[#FECACA] rounded-xl text-xs text-[#991B1B] flex items-center gap-2">
+              <AlertTriangle className="w-4 h-4 shrink-0 text-[#D64545]" />
+              <span>{vehicleError}</span>
+            </div>
+          )}
 
           {bestVehicle ? (
             <div className="space-y-3">

@@ -18,14 +18,14 @@ export default function AIWasteManagerPage() {
     {
       id: 'welcome',
       sender: 'assistant',
-      text: 'Namaste! I am your Ahmedabad SmartBinX AI Decision Intelligence Assistant. I have live access to 120 smart bins, 16 collection vehicles, and predictive fill forecasting across Ahmedabad. How can I assist municipal operations today?',
+      text: 'Namaste! I am your Ahmedabad SmartBinX AI Decision Intelligence Assistant. I have live access to 125 smart bins, 12 collection vehicles, and predictive fill forecasting across Ahmedabad. How can I assist municipal operations today?',
       cards: [
         {
           title: 'Current Operational Snapshot',
           data: [
             { label: 'Critical Bins', value: '4 Bins (<4h overflow)' },
-            { label: 'Active Fleet', value: '3 Trucks Monitored' },
-            { label: 'Top Hotspot', value: 'Zone C (Sabarmati)' }
+            { label: 'Active Fleet', value: '12 Trucks Monitored' },
+            { label: 'Top Hotspot', value: 'Zone E (Bodakdev +82%)' }
           ]
         }
       ],
@@ -71,7 +71,7 @@ export default function AIWasteManagerPage() {
       setMessages(prev => [...prev, {
         id: `err-${Date.now()}`,
         sender: 'assistant',
-        text: 'I analyzed cached telemetry: Bin AHM-104 (Sabarmati) requires collection within 4 hours; assign Truck V-01 (1,700 kg available payload margin).',
+        text: 'I analyzed cached telemetry: Bin AHM-104 (Bodakdev) requires collection within 4 hours; assign Truck V-01 (1,550 kg available payload margin).',
         cards: [],
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       }]);

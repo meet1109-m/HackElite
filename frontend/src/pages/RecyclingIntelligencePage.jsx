@@ -6,13 +6,15 @@ import { Recycle, Leaf, Trees, Fuel, Globe, ShieldCheck, ArrowUpRight, TrendingU
 export default function RecyclingIntelligencePage() {
   const { analytics } = useWasteData();
 
+  const totalTons = analytics?.total_waste_collected_tonnes || 4.24;
+  const sb = analytics?.stream_breakdown || {};
   const streams = [
-    { name: 'Organic (Composting)', value: 1.8, unit: 'tonnes', pct: 42.8, color: '#16845B', target: 'Central AMC Composting Plant' },
-    { name: 'Plastic (Baling / Polymers)', value: 0.9, unit: 'tonnes', pct: 21.4, color: '#2878C8', target: 'Ahmedabad MRF Unit 2' },
-    { name: 'Paper & Cardboard', value: 0.6, unit: 'tonnes', pct: 14.3, color: '#E89A27', target: 'Pulp Recycling Facility' },
-    { name: 'Glass Containers', value: 0.4, unit: 'tonnes', pct: 9.5, color: '#0D9488', target: 'Glass Remelt Depot' },
-    { name: 'Scrap Metal & Cans', value: 0.2, unit: 'tonnes', pct: 4.8, color: '#66736C', target: 'Secondary Smelting Hub' },
-    { name: 'Non-Recyclable Residue', value: 0.3, unit: 'tonnes', pct: 7.2, color: '#D64545', target: 'Pirana Engineered Landfill' },
+    { name: 'Organic (Composting)', value: sb.Organic ?? 1.82, unit: 'tonnes', pct: totalTons > 0 ? Math.round(((sb.Organic ?? 1.82) / totalTons) * 100) : 43, color: '#16845B', target: 'Central AMC Composting Plant' },
+    { name: 'Plastic (Baling / Polymers)', value: sb.Plastic ?? 0.93, unit: 'tonnes', pct: totalTons > 0 ? Math.round(((sb.Plastic ?? 0.93) / totalTons) * 100) : 22, color: '#2878C8', target: 'Ahmedabad MRF Unit 2' },
+    { name: 'Paper & Cardboard', value: sb.Paper ?? 0.64, unit: 'tonnes', pct: totalTons > 0 ? Math.round(((sb.Paper ?? 0.64) / totalTons) * 100) : 15, color: '#E89A27', target: 'Pulp Recycling Facility' },
+    { name: 'Glass Containers', value: sb.Glass ?? 0.38, unit: 'tonnes', pct: totalTons > 0 ? Math.round(((sb.Glass ?? 0.38) / totalTons) * 100) : 9, color: '#0D9488', target: 'Glass Remelt Depot' },
+    { name: 'Scrap Metal & Cans', value: sb.Metal ?? 0.21, unit: 'tonnes', pct: totalTons > 0 ? Math.round(((sb.Metal ?? 0.21) / totalTons) * 100) : 5, color: '#66736C', target: 'Secondary Smelting Hub' },
+    { name: 'Non-Recyclable Residue', value: sb.Other ?? 0.26, unit: 'tonnes', pct: totalTons > 0 ? Math.round(((sb.Other ?? 0.26) / totalTons) * 100) : 6, color: '#D64545', target: 'Pirana Engineered Landfill' },
   ];
 
   const trendData = [
@@ -22,7 +24,7 @@ export default function RecyclingIntelligencePage() {
     { day: 'Thu', diversion: 64, tons: 4.2 },
     { day: 'Fri', diversion: 63, tons: 4.1 },
     { day: 'Sat', diversion: 66, tons: 4.5 },
-    { day: 'Sun', diversion: 64, tons: 4.2 },
+    { day: 'Sun', diversion: Math.round(analytics?.landfill_diversion_percentage || 64), tons: totalTons },
   ];
 
   return (
@@ -60,13 +62,13 @@ export default function RecyclingIntelligencePage() {
             <Recycle className="w-5 h-5 text-[#16845B]" />
           </div>
           <div className="flex items-baseline gap-2">
-            <span className="text-3xl sm:text-4xl font-black text-[#16845B] font-mono">63.9%</span>
+            <span className="text-3xl sm:text-4xl font-black text-[#16845B] font-mono">{analytics?.landfill_diversion_percentage ?? 63.9}%</span>
             <span className="text-xs text-[#0B5D3B] font-bold flex items-center">
               <TrendingUp className="w-3.5 h-3.5" /> +4.2%
             </span>
           </div>
           <p className="text-xs text-[#66736C] mt-2">
-            2.7 tonnes of 4.2 tonnes diverted from landfill disposal today.
+            {analytics?.potentially_recoverable_tonnes ?? 2.71} tonnes of {analytics?.total_waste_collected_tonnes ?? 4.24} tonnes diverted from landfill disposal today.
           </p>
         </div>
 
@@ -77,7 +79,7 @@ export default function RecyclingIntelligencePage() {
             <Globe className="w-5 h-5 text-[#2878C8]" />
           </div>
           <div className="flex items-baseline gap-2">
-            <span className="text-3xl sm:text-4xl font-black text-[#17201B] font-mono">23.4 km</span>
+            <span className="text-3xl sm:text-4xl font-black text-[#17201B] font-mono">{analytics?.distance_optimized_km ?? 23.4} km</span>
             <span className="text-xs text-[#2878C8] font-bold">via AI TSP</span>
           </div>
           <p className="text-xs text-[#66736C] mt-2">
@@ -92,7 +94,7 @@ export default function RecyclingIntelligencePage() {
             <Fuel className="w-5 h-5 text-[#E89A27]" />
           </div>
           <div className="flex items-baseline gap-2">
-            <span className="text-3xl sm:text-4xl font-black text-[#17201B] font-mono">5.1 L</span>
+            <span className="text-3xl sm:text-4xl font-black text-[#17201B] font-mono">{analytics?.fuel_saved_liters ?? 5.1} L</span>
             <span className="text-xs text-[#E89A27] font-bold">Estimated</span>
           </div>
           <p className="text-xs text-[#66736C] mt-2">
@@ -107,7 +109,7 @@ export default function RecyclingIntelligencePage() {
             <Leaf className="w-5 h-5 text-[#0D9488]" />
           </div>
           <div className="flex items-baseline gap-2">
-            <span className="text-3xl sm:text-4xl font-black text-[#17201B] font-mono">12.4 kg</span>
+            <span className="text-3xl sm:text-4xl font-black text-[#17201B] font-mono">{analytics?.co2e_emissions_avoided_kg ?? 12.4} kg</span>
             <span className="text-xs text-[#0D9488] font-bold">Today</span>
           </div>
           <p className="text-xs text-[#66736C] mt-2">
@@ -125,7 +127,7 @@ export default function RecyclingIntelligencePage() {
           <div className="flex items-center justify-between border-b border-[#E3EAE6] pb-4">
             <div>
               <h3 className="text-base font-extrabold text-[#17201B]">Ahmedabad Waste Stream Recovery Channels</h3>
-              <p className="text-xs text-[#66736C]">Total 4.2 tonnes collected today with designated circularity pathways</p>
+              <p className="text-xs text-[#66736C]">Total {totalTons} tonnes collected today with designated circularity pathways</p>
             </div>
             <span className="text-xs font-mono font-bold bg-[#DCFCE7] text-[#0B5D3B] border border-[#BBF7D0] px-3 py-1 rounded-full">
               6 Fractions

@@ -266,18 +266,18 @@ class DataStore:
         loads, locations, and operational statuses.
         """
         vehicle_configs = [
-            {"code": "V-01", "capacity": 2000.0, "load": 450.0, "status": "Available", "lat": 23.0370, "lng": 72.5120, "depot": "DEPOT-02"},
-            {"code": "V-02", "capacity": 2500.0, "load": 1850.0, "status": "On Route", "lat": 23.0385, "lng": 72.5090, "route_id": "ROUTE-01"},
-            {"code": "V-03", "capacity": 1500.0, "load": 0.0, "status": "Available", "lat": 23.0450, "lng": 72.5780, "depot": "DEPOT-01"},
-            {"code": "V-04", "capacity": 3000.0, "load": 1200.0, "status": "On Route", "lat": 23.0360, "lng": 72.5540, "route_id": "ROUTE-02"},
-            {"code": "V-05", "capacity": 3500.0, "load": 0.0, "status": "Available", "lat": 23.0230, "lng": 72.6510, "depot": "DEPOT-03"},
-            {"code": "V-06", "capacity": 2000.0, "load": 700.0, "status": "Available", "lat": 23.0345, "lng": 72.5280},
-            {"code": "V-07", "capacity": 2500.0, "load": 0.0, "status": "Maintenance", "lat": 23.0450, "lng": 72.5780, "depot": "DEPOT-01"},
-            {"code": "V-08", "capacity": 1800.0, "load": 600.0, "status": "Available", "lat": 23.0140, "lng": 72.5065},
-            {"code": "V-09", "capacity": 3000.0, "load": 1600.0, "status": "Available", "lat": 23.0260, "lng": 72.5035},
-            {"code": "V-10", "capacity": 2200.0, "load": 950.0, "status": "Available", "lat": 22.9985, "lng": 72.6020},
-            {"code": "V-11", "capacity": 3200.0, "load": 1100.0, "status": "Available", "lat": 23.0325, "lng": 72.5700},
-            {"code": "V-12", "capacity": 2800.0, "load": 350.0, "status": "Available", "lat": 23.0805, "lng": 72.5920},
+            {"code": "V-01", "capacity": 2000.0, "load": 450.0, "status": "Available", "lat": 23.0370, "lng": 72.5120, "depot": "DEPOT-02", "driver_name": "Ramesh Patel", "driver_phone": "+91 98250 14210"},
+            {"code": "V-02", "capacity": 2500.0, "load": 1850.0, "status": "On Route", "lat": 23.0385, "lng": 72.5090, "route_id": "ROUTE-01", "driver_name": "Kiran Solanki", "driver_phone": "+91 94260 88123"},
+            {"code": "V-03", "capacity": 1500.0, "load": 0.0, "status": "Available", "lat": 23.0450, "lng": 72.5780, "depot": "DEPOT-01", "driver_name": "Dinesh Varma", "driver_phone": "+91 97240 55319"},
+            {"code": "V-04", "capacity": 3000.0, "load": 1200.0, "status": "On Route", "lat": 23.0360, "lng": 72.5540, "route_id": "ROUTE-02", "driver_name": "Amit Dave", "driver_phone": "+91 98251 33412"},
+            {"code": "V-05", "capacity": 3500.0, "load": 0.0, "status": "Available", "lat": 23.0230, "lng": 72.6510, "depot": "DEPOT-03", "driver_name": "Suresh Chauhan", "driver_phone": "+91 98240 77154"},
+            {"code": "V-06", "capacity": 2000.0, "load": 700.0, "status": "Available", "lat": 23.0345, "lng": 72.5280, "driver_name": "Vijay Shah", "driver_phone": "+91 94280 22910"},
+            {"code": "V-07", "capacity": 2500.0, "load": 0.0, "status": "Maintenance", "lat": 23.0450, "lng": 72.5780, "depot": "DEPOT-01", "driver_name": "Pravin Parmar", "driver_phone": "+91 98980 11234"},
+            {"code": "V-08", "capacity": 1800.0, "load": 600.0, "status": "Available", "lat": 23.0140, "lng": 72.5065, "driver_name": "Mahesh Prajapati", "driver_phone": "+91 98254 99182"},
+            {"code": "V-09", "capacity": 3000.0, "load": 1600.0, "status": "Available", "lat": 23.0260, "lng": 72.5035, "driver_name": "Nilesh Rathod", "driver_phone": "+91 94270 44521"},
+            {"code": "V-10", "capacity": 2200.0, "load": 950.0, "status": "Available", "lat": 22.9985, "lng": 72.6020, "driver_name": "Harish Makwana", "driver_phone": "+91 98255 66732"},
+            {"code": "V-11", "capacity": 3200.0, "load": 1100.0, "status": "Available", "lat": 23.0325, "lng": 72.5700, "driver_name": "Bharat Vaghela", "driver_phone": "+91 98242 88419"},
+            {"code": "V-12", "capacity": 2800.0, "load": 350.0, "status": "Available", "lat": 23.0805, "lng": 72.5920, "driver_name": "Jayesh Pandya", "driver_phone": "+91 98250 55198"},
         ]
 
         for vc in vehicle_configs:
@@ -291,6 +291,8 @@ class DataStore:
                 "longitude": vc["lng"],
                 "status": vc["status"],
                 "assigned_route_id": vc.get("route_id"),
+                "driver_name": vc.get("driver_name", "Ramesh Patel"),
+                "driver_phone": vc.get("driver_phone", "+91 98250 14210"),
                 "updated_at": datetime.utcnow() - timedelta(minutes=5),
             }
 
@@ -540,14 +542,37 @@ class DataStore:
         """Lookup a specific bin by its bin_code (case-insensitive)."""
         return self.bins.get(bin_code.upper())
 
-    def update_bin(self, bin_code: str, updates: Dict[str, Any]) -> Optional[Dict[str, Any]]:
-        """Update bin attributes in-memory."""
+    def update_bin(self, bin_code: str, updates: Dict[str, Any], db: Optional[Session] = None) -> Optional[Dict[str, Any]]:
+        """Update bin attributes in-memory and write-through to SQLite."""
         code = bin_code.upper()
         if code not in self.bins:
             return None
 
         self.bins[code].update(updates)
         self.bins[code]["updated_at"] = datetime.utcnow()
+
+        # Write-through to SQLite database
+        try:
+            from app.models.entities import Bin as DBBin
+            from app.database import SessionLocal
+
+            def _apply_bin_updates(session):
+                db_b = session.query(DBBin).filter(DBBin.bin_code == code).first()
+                if db_b:
+                    for k, val in updates.items():
+                        if hasattr(db_b, k):
+                            setattr(db_b, k, val)
+                    db_b.updated_at = datetime.utcnow()
+                    session.commit()
+
+            if db:
+                _apply_bin_updates(db)
+            else:
+                with SessionLocal() as session:
+                    _apply_bin_updates(session)
+        except Exception:
+            pass
+
         return self.bins[code]
 
     def get_all_vehicles(self, status: Optional[str] = None) -> List[Dict[str, Any]]:
@@ -556,12 +581,19 @@ class DataStore:
         if status:
             vehicles = [v for v in vehicles if v["status"].lower() == status.lower()]
 
-        # Compute dynamic fields
+        # Compute dynamic fields and frontend compatibility aliases
         for v in vehicles:
             v["available_capacity"] = max(0.0, round(v["capacity_kg"] - v["current_load"], 1))
+            v["available_capacity_kg"] = v["available_capacity"]
             v["utilization_pct"] = min(
                 100.0, round((v["current_load"] / max(1.0, v["capacity_kg"])) * 100.0, 1)
             )
+            v["utilization_percentage"] = v["utilization_pct"]
+            v["current_load_kg"] = v["current_load"]
+            if "driver_name" not in v:
+                v["driver_name"] = "Ramesh Patel"
+            if "driver_phone" not in v:
+                v["driver_phone"] = "+91 98250 14210"
 
         return vehicles
 
@@ -570,19 +602,49 @@ class DataStore:
         v = self.vehicles.get(vehicle_code.upper())
         if v:
             v["available_capacity"] = max(0.0, round(v["capacity_kg"] - v["current_load"], 1))
+            v["available_capacity_kg"] = v["available_capacity"]
             v["utilization_pct"] = min(
                 100.0, round((v["current_load"] / max(1.0, v["capacity_kg"])) * 100.0, 1)
             )
+            v["utilization_percentage"] = v["utilization_pct"]
+            v["current_load_kg"] = v["current_load"]
+            if "driver_name" not in v:
+                v["driver_name"] = "Ramesh Patel"
+            if "driver_phone" not in v:
+                v["driver_phone"] = "+91 98250 14210"
         return v
 
-    def update_vehicle(self, vehicle_code: str, updates: Dict[str, Any]) -> Optional[Dict[str, Any]]:
-        """Update vehicle attributes in-memory."""
+    def update_vehicle(self, vehicle_code: str, updates: Dict[str, Any], db: Optional[Session] = None) -> Optional[Dict[str, Any]]:
+        """Update vehicle attributes in-memory and write-through to SQLite."""
         code = vehicle_code.upper()
         if code not in self.vehicles:
             return None
 
         self.vehicles[code].update(updates)
         self.vehicles[code]["updated_at"] = datetime.utcnow()
+
+        # Write-through to SQLite database
+        try:
+            from app.models.entities import Vehicle as DBVehicle
+            from app.database import SessionLocal
+
+            def _apply_vehicle_updates(session):
+                db_v = session.query(DBVehicle).filter(DBVehicle.vehicle_code == code).first()
+                if db_v:
+                    for k, val in updates.items():
+                        if hasattr(db_v, k):
+                            setattr(db_v, k, val)
+                    db_v.updated_at = datetime.utcnow()
+                    session.commit()
+
+            if db:
+                _apply_vehicle_updates(db)
+            else:
+                with SessionLocal() as session:
+                    _apply_vehicle_updates(session)
+        except Exception:
+            pass
+
         return self.get_vehicle(code)
 
     def get_zones(self) -> List[Dict[str, Any]]:
@@ -704,6 +766,8 @@ class DataStore:
                     "longitude": v.longitude,
                     "status": v.status,
                     "assigned_route_id": v.assigned_route_id,
+                    "driver_name": getattr(v, "driver_name", "Ramesh Patel") or "Ramesh Patel",
+                    "driver_phone": getattr(v, "driver_phone", "+91 98250 14210") or "+91 98250 14210",
                     "updated_at": v.updated_at,
                 }
 
@@ -845,6 +909,8 @@ class DataStore:
                 longitude=v["longitude"],
                 status=v["status"],
                 assigned_route_id=v.get("assigned_route_id"),
+                driver_name=v.get("driver_name", "Ramesh Patel"),
+                driver_phone=v.get("driver_phone", "+91 98250 14210"),
                 updated_at=v["updated_at"],
             )
             db.add(db_vehicle)

@@ -27,25 +27,32 @@ export const CommandCenterPage = ({ onNavigate, onNavigateTab }) => {
 
   const under4hCount = bins.filter(b => b.predicted_overflow_hours <= 4.0).length;
 
-  // 7-day forecast mock data
+  // 7-day forecast data dynamically scaled from current municipal collection volume
+  const baseTons = analytics?.total_waste_collected_tonnes || 4.24;
   const forecastData = [
-    { day: 'Mon', actual: 3.8, predicted: 3.9 },
-    { day: 'Tue', actual: 4.1, predicted: 4.0 },
-    { day: 'Wed', actual: 3.9, predicted: 4.1 },
-    { day: 'Thu', actual: 4.3, predicted: 4.2 },
-    { day: 'Fri', actual: 4.7, predicted: 4.6 },
-    { day: 'Sat', actual: 5.4, predicted: 5.3 },
-    { day: 'Sun', actual: null, predicted: 5.8 },
+    { day: 'Mon', actual: +(baseTons * 0.90).toFixed(1), predicted: +(baseTons * 0.92).toFixed(1) },
+    { day: 'Tue', actual: +(baseTons * 0.97).toFixed(1), predicted: +(baseTons * 0.95).toFixed(1) },
+    { day: 'Wed', actual: +(baseTons * 0.92).toFixed(1), predicted: +(baseTons * 0.97).toFixed(1) },
+    { day: 'Thu', actual: +(baseTons * 1.01).toFixed(1), predicted: +(baseTons * 0.99).toFixed(1) },
+    { day: 'Fri', actual: +(baseTons * 1.11).toFixed(1), predicted: +(baseTons * 1.08).toFixed(1) },
+    { day: 'Sat', actual: +(baseTons * 1.27).toFixed(1), predicted: +(baseTons * 1.25).toFixed(1) },
+    { day: 'Sun', actual: null, predicted: +(baseTons * 1.37).toFixed(1) },
   ];
 
-  // Stream breakdown pie data
+  // Stream breakdown pie data derived from live analytics
+  const streamBreakdown = analytics?.stream_breakdown || {};
+  const totalStreamVal = Object.values(streamBreakdown).reduce((a, b) => a + b, 0) || 1;
   const compositionData = [
-    { name: 'Organic (Compost)', value: 43, color: '#16845B' },
-    { name: 'Plastic Recyclables', value: 24, color: '#2878C8' },
-    { name: 'Paper & Cardboard', value: 16, color: '#E89A27' },
-    { name: 'Glass & Metal', value: 11, color: '#0D9488' },
-    { name: 'Inert / Residue', value: 6, color: '#94A39D' },
+    { name: 'Organic (Compost)', value: streamBreakdown.Organic ? Math.round((streamBreakdown.Organic / totalStreamVal) * 100) : 43, color: '#16845B' },
+    { name: 'Plastic Recyclables', value: streamBreakdown.Plastic ? Math.round((streamBreakdown.Plastic / totalStreamVal) * 100) : 24, color: '#2878C8' },
+    { name: 'Paper & Cardboard', value: streamBreakdown.Paper ? Math.round((streamBreakdown.Paper / totalStreamVal) * 100) : 16, color: '#E89A27' },
+    { name: 'Glass & Metal', value: (streamBreakdown.Glass || streamBreakdown.Metal) ? Math.round(((streamBreakdown.Glass || 0) + (streamBreakdown.Metal || 0)) / totalStreamVal * 100) : 11, color: '#0D9488' },
+    { name: 'Inert / Residue', value: streamBreakdown.Other ? Math.round((streamBreakdown.Other / totalStreamVal) * 100) : 6, color: '#94A39D' },
   ];
+
+  const avgFleetUtilization = vehicles && vehicles.length > 0
+    ? Math.round(vehicles.reduce((acc, v) => acc + (v.utilization_percentage ?? ((v.current_load_kg || v.current_load || 0) / (v.capacity_kg || 2000)) * 100), 0) / vehicles.length)
+    : 71;
 
   return (
     <div className="p-4 sm:p-8 space-y-6 max-w-7xl mx-auto bg-pattern-command min-h-full">
@@ -87,7 +94,7 @@ export const CommandCenterPage = ({ onNavigate, onNavigateTab }) => {
             <span className="text-[11px] font-bold uppercase tracking-wider">Total Bins</span>
             <Trash2 className="w-4 h-4 text-[#16845B]" />
           </div>
-          <div className="text-2xl font-black font-mono text-[#17201B]">120</div>
+          <div className="text-2xl font-black font-mono text-[#17201B]">{bins.length}</div>
           <span className="text-[10px] text-[#66736C] mt-1 block font-medium">1,250 City Scale Equiv</span>
         </div>
 
@@ -106,7 +113,7 @@ export const CommandCenterPage = ({ onNavigate, onNavigateTab }) => {
             <Truck className="w-4 h-4 text-[#2878C8]" />
           </div>
           <div className="text-2xl font-black font-mono text-[#17201B]">{vehicles.length} Trucks</div>
-          <span className="text-[10px] text-[#2878C8] mt-1 block font-semibold">71% Avg Utilization</span>
+          <span className="text-[10px] text-[#2878C8] mt-1 block font-semibold">{avgFleetUtilization}% Avg Utilization</span>
         </div>
 
         <div className="p-4 bg-white border border-[#E3EAE6] rounded-2xl shadow-sm relative overflow-hidden">
@@ -114,8 +121,8 @@ export const CommandCenterPage = ({ onNavigate, onNavigateTab }) => {
             <span className="text-[11px] font-bold uppercase tracking-wider">Waste Today</span>
             <TrendingUp className="w-4 h-4 text-[#0D9488]" />
           </div>
-          <div className="text-2xl font-black font-mono text-[#17201B]">4.24 <span className="text-xs text-[#66736C] font-normal">t</span></div>
-          <span className="text-[10px] text-[#16845B] mt-1 block font-semibold">2.71 t Recoverable</span>
+          <div className="text-2xl font-black font-mono text-[#17201B]">{analytics?.total_waste_collected_tonnes ?? 4.24} <span className="text-xs text-[#66736C] font-normal">t</span></div>
+          <span className="text-[10px] text-[#16845B] mt-1 block font-semibold">{analytics?.potentially_recoverable_tonnes ?? 2.71} t Recoverable</span>
         </div>
 
         <div className="p-4 bg-white border border-[#BBF7D0] rounded-2xl shadow-sm relative overflow-hidden">
@@ -123,7 +130,7 @@ export const CommandCenterPage = ({ onNavigate, onNavigateTab }) => {
             <span className="text-[11px] font-bold uppercase tracking-wider">Diversion Rate</span>
             <Recycle className="w-4 h-4 text-[#16845B]" />
           </div>
-          <div className="text-2xl font-black font-mono text-[#16845B]">63.9%</div>
+          <div className="text-2xl font-black font-mono text-[#16845B]">{analytics?.landfill_diversion_percentage ?? 63.9}%</div>
           <span className="text-[10px] text-[#0B5D3B] mt-1 block font-semibold">Target: &gt;60% Met</span>
         </div>
 
@@ -227,11 +234,11 @@ export const CommandCenterPage = ({ onNavigate, onNavigateTab }) => {
 
             <div className="p-4 bg-[#FFFBEB] border border-[#FDE68A] rounded-2xl space-y-2">
               <div className="flex items-center justify-between text-xs font-bold text-[#92400E]">
-                <span>Zone C Surge Alert (+50%)</span>
+                <span>Bodakdev Surge Alert (+82%)</span>
                 <span className="text-[10px] px-2 py-0.5 rounded-full bg-white border border-[#FDE68A] font-bold text-[#E89A27]">Cadence Shift</span>
               </div>
               <p className="text-xs text-[#17201B] leading-relaxed">
-                <strong>Sabarmati Riverfront Promenade</strong> generating abnormal volume. Switch frequency from 24h to 12h.
+                <strong>Sindhu Bhavan Commercial Corridor</strong> generating abnormal volume. Switch frequency from 24h to 12h.
               </p>
               <button
                 onClick={() => navigate('analytics')}
@@ -248,7 +255,7 @@ export const CommandCenterPage = ({ onNavigate, onNavigateTab }) => {
                 <span className="text-[10px] px-2 py-0.5 rounded-full bg-white border border-[#BFDBFE] font-bold text-[#2878C8]">High Grade</span>
               </div>
               <p className="text-xs text-[#17201B] leading-relaxed">
-                PET bottle recovery purity at <strong>Riverfront Promenade</strong> reached <strong>88.5%</strong> today, enabling direct baling.
+                PET bottle recovery purity at <strong>Navrangpura Commercial Hub</strong> reached <strong>{analytics?.purity_scores?.Plastic || 84.5}%</strong> today, enabling direct baling.
               </p>
               <button
                 onClick={() => navigate('recycling')}

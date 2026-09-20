@@ -8,7 +8,7 @@ const DEMO_STEPS = [
     title: 'IoT Telemetry Influx & Fill Spike',
     tag: 'Telemetry Trigger',
     icon: '📡',
-    description: 'Sensory telemetry from Bin AHM-104 (Sabarmati Riverfront Walkway) indicates rapid waste accumulation, reaching 82% volumetric fill capacity (31.4 kg payload).',
+    description: 'Sensory telemetry from Bin AHM-104 (Bodakdev Commercial Plaza) indicates rapid waste accumulation, reaching 82% volumetric fill capacity (31.4 kg payload).',
     detailBadge: 'Bin AHM-104 • 82% Full • 31.4 kg',
     highlight: 'Fill level cross-referenced with recent weekend velocity pattern.'
   },
@@ -35,8 +35,8 @@ const DEMO_STEPS = [
     title: 'Automated Dispatch Alert Broadcast',
     tag: 'Alert System',
     icon: '🚨',
-    description: 'A priority alert is published to the AMC Central Command Queue and tagged to Zone C supervisor with high visibility countdown indicators.',
-    detailBadge: 'Alert #AMC-7829 dispatched to West Zone Console',
+    description: 'A priority alert is published to the AMC Central Command Queue and tagged to Zone E supervisor with high visibility countdown indicators.',
+    detailBadge: 'Alert #AMC-7829 dispatched to Bodakdev Console',
     highlight: 'Live notification pushed to supervisory mobile units.'
   },
   {
@@ -54,7 +54,7 @@ const DEMO_STEPS = [
     tag: 'Fleet Matching',
     icon: '🚛',
     description: 'System compares active fleet: Truck V-02 rejected due to insufficient capacity (200kg avail < 280kg required). Truck V-01 selected: 2.4 km proximity and 1,700 kg available margin.',
-    detailBadge: 'Assigned: Truck V-01 (Sabarmati Heavy Compactor)',
+    detailBadge: 'Assigned: Truck V-01 (Bodakdev Heavy Compactor)',
     highlight: 'Zero risk of vehicle overloading; optimal proximity efficiency.'
   },
   {
@@ -62,7 +62,7 @@ const DEMO_STEPS = [
     title: 'Capacitated TSP Route Sequence Generation',
     tag: 'Route Optimization',
     icon: '🗺️',
-    description: 'OR-Tools solver calculates optimal collection route: Sabarmati AMC Depot → AHM-104 (Critical) → AHM-118 → AHM-091 → AHM-127 → Depot. Distance: 27.4 km, Payload: 1,740 kg (87% Utilization).',
+    description: 'OR-Tools solver calculates optimal collection route: Bodakdev West Depot → AHM-104 (Critical) → AHM-118 → AHM-091 → AHM-127 → Depot. Distance: 27.4 km, Payload: 1,740 kg (87% Utilization).',
     detailBadge: '27.4 km • 1h 38m • 87% Vehicle Utilization',
     highlight: 'Multi-bin consolidation eliminates dead-head mileage.'
   },
@@ -71,7 +71,7 @@ const DEMO_STEPS = [
     title: 'Dynamic Mid-Route Emergency Event',
     tag: 'Dynamic Surge',
     icon: '⚡',
-    description: 'While Truck V-01 is en route, a sudden surge triggers at Bin AHM-156 (Sabarmati Riverfront Promenade) with a 45-minute overflow countdown alert.',
+    description: 'While Truck V-01 is en route, a sudden surge triggers at Bin AHM-156 (Bodakdev Judges Bungalow) with a 45-minute overflow countdown alert.',
     detailBadge: 'EMERGENCY: Bin AHM-156 overflow in 45m',
     highlight: 'Real-time Hungarian waypoint insertion algorithm triggered.'
   },

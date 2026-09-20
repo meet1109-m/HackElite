@@ -57,6 +57,7 @@ export default function EventPlacementPage() {
   const { eventMode, toggleEventMode, binPlacements, showToast } = useWasteData();
   const [selectedEvent, setSelectedEvent] = useState(AHMEDABAD_EVENTS[0]);
   const [activeEventId, setActiveEventId] = useState(eventMode ? eventMode.id : null);
+  const [submittedPlacements, setSubmittedPlacements] = useState({});
 
   const handleToggleEvent = (event) => {
     setSelectedEvent(event);
@@ -70,7 +71,15 @@ export default function EventPlacementPage() {
   };
 
   const handleGisSubmit = (place) => {
-    showToast(`✓ Recommendation for ${place.location_name} submitted to AMC GIS Planning Queue.`, 'success');
+    const ticketId = `AMC-GIS-${Math.floor(1000 + Math.random() * 9000)}`;
+    setSubmittedPlacements(prev => ({
+      ...prev,
+      [place.id]: {
+        ticketId,
+        submittedAt: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      }
+    }));
+    showToast(`✓ Recommendation for ${place.location_name} submitted to AMC GIS Planning Queue (Ticket #${ticketId}).`, 'success');
   };
 
   return (
@@ -230,12 +239,19 @@ export default function EventPlacementPage() {
 
               <div className="pt-3 border-t border-[#E3EAE6] flex items-center justify-between text-xs font-bold text-[#16845B]">
                 <span>-38% overflow risk</span>
-                <button
-                  onClick={() => handleGisSubmit(place)}
-                  className="px-3 py-1.5 bg-[#DCFCE7] hover:bg-[#BBF7D0] text-[#0B5D3B] border border-[#BBF7D0] rounded-xl text-[11px] font-bold transition shadow-sm"
-                >
-                  Submit to AMC GIS
-                </button>
+                {submittedPlacements[place.id] ? (
+                  <span className="px-3 py-1 bg-[#DCFCE7] text-[#0B5D3B] border border-[#BBF7D0] rounded-xl text-[10px] font-mono font-bold flex items-center gap-1.5 shadow-sm">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#16845B]" />
+                    <span>Queued #{submittedPlacements[place.id].ticketId}</span>
+                  </span>
+                ) : (
+                  <button
+                    onClick={() => handleGisSubmit(place)}
+                    className="px-3 py-1.5 bg-[#DCFCE7] hover:bg-[#BBF7D0] text-[#0B5D3B] border border-[#BBF7D0] rounded-xl text-[11px] font-bold transition shadow-sm"
+                  >
+                    Submit to AMC GIS
+                  </button>
+                )}
               </div>
             </div>
           ))}

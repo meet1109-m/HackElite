@@ -16,6 +16,12 @@ class VehicleResponse(VehicleBase):
     id: str
     available_capacity: float = Field(..., description="capacity_kg - current_load")
     utilization_pct: float = Field(..., description="(current_load / capacity_kg) * 100")
+    # Compatibility fields for frontend components
+    available_capacity_kg: Optional[float] = Field(None, description="Frontend alias for available_capacity")
+    utilization_percentage: Optional[float] = Field(None, description="Frontend alias for utilization_pct")
+    current_load_kg: Optional[float] = Field(None, description="Frontend alias for current_load")
+    driver_name: Optional[str] = Field("Ramesh Patel", description="Name of assigned vehicle driver")
+    driver_phone: Optional[str] = Field("+91 98250 14210", description="Contact phone of driver")
 
     model_config = ConfigDict(from_attributes=True)
 
