@@ -21,6 +21,7 @@ import L from 'leaflet';
 import { useWasteData } from '../context/WasteDataContext';
 import OverflowCountdownBadge from '../components/Common/OverflowCountdownBadge';
 import ProvenanceBadge from '../components/Common/ProvenanceBadge';
+import LeafletMapResizer from '../components/Common/LeafletMapResizer';
 
 // Custom SVG map icons with light theme borders & clean styling
 const createCustomIcon = (color, text, isCritical = false) => {
@@ -93,8 +94,8 @@ export const LiveOperationsPage = ({ onNavigate, onNavigateTab }) => {
   const [selectedZoneFilter, setSelectedZoneFilter] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   
-  // Map Provider View Toggle: Leaflet Light GIS vs Google Maps Embed Satellite View
-  const [mapMode, setMapMode] = useState('leaflet'); // 'leaflet' or 'google_embed'
+  // Map Layer View Toggle: GIS Light Map vs ESRI Satellite View
+  const [mapMode, setMapMode] = useState('light'); // 'light' or 'satellite'
 
   const filteredBins = useMemo(() => {
     return bins.filter(b => {
@@ -170,17 +171,17 @@ export const LiveOperationsPage = ({ onNavigate, onNavigateTab }) => {
           {/* Map Mode Switcher */}
           <div className="flex items-center bg-[#F1F6F3] p-1 rounded-xl border border-[#E3EAE6]">
             <button
-              onClick={() => setMapMode('leaflet')}
+              onClick={() => setMapMode('light')}
               className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
-                mapMode === 'leaflet' ? 'bg-[#16845B] text-white shadow-sm' : 'text-[#66736C] hover:text-[#17201B]'
+                mapMode === 'light' ? 'bg-[#16845B] text-white shadow-sm' : 'text-[#66736C] hover:text-[#17201B]'
               }`}
             >
               GIS Light Map
             </button>
             <button
-              onClick={() => setMapMode('google_embed')}
+              onClick={() => setMapMode('satellite')}
               className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
-                mapMode === 'google_embed' ? 'bg-[#16845B] text-white shadow-sm' : 'text-[#66736C] hover:text-[#17201B]'
+                mapMode === 'satellite' ? 'bg-[#16845B] text-white shadow-sm' : 'text-[#66736C] hover:text-[#17201B]'
               }`}
             >
               Satellite View
@@ -191,19 +192,36 @@ export const LiveOperationsPage = ({ onNavigate, onNavigateTab }) => {
 
       {/* Main Map Canvas Area */}
       <div className="flex-1 w-full h-full relative">
-        {mapMode === 'leaflet' ? (
-          <MapContainer
-            center={[23.0300, 72.5500]}
-            zoom={13}
-            scrollWheelZoom={true}
-            className="w-full h-full"
-          >
-            {/* Crisp Light GIS CartoDB Voyager Tile Layer */}
+        <MapContainer
+          center={[23.0300, 72.5500]}
+          zoom={13}
+          scrollWheelZoom={true}
+          className="w-full h-full"
+        >
+          <LeafletMapResizer />
+          
+          {/* Tile Layers: High-Resolution Satellite with Labels vs Crisp Light GIS */}
+          {mapMode === 'satellite' ? (
+            <>
+              <TileLayer
+                attribution='&copy; <a href="https://www.esri.com">Esri</a>, Maxar, Earthstar Geographics'
+                url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+                maxZoom={19}
+              />
+              <TileLayer
+                attribution='&copy; Esri'
+                url="https://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}"
+                maxZoom={19}
+                opacity={0.85}
+              />
+            </>
+          ) : (
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
               url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
               maxZoom={19}
             />
+          )}
 
             {/* Zone Surge Heatmap Circles */}
             {showHeatmaps && zones.map(z => {
@@ -325,26 +343,12 @@ export const LiveOperationsPage = ({ onNavigate, onNavigateTab }) => {
               </Marker>
             ))}
           </MapContainer>
-        ) : (
-          /* Google Map Embed Mode */
-          <div className="w-full h-full relative">
-            <iframe
-              title="Ahmedabad Urban Operations Google Map"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              loading="lazy"
-              allowFullScreen
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117502.89981881792!2d72.48624641666497!3d23.020497793132644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e848aba5bd449%3A0x4fcedd11614f6516!2sAhmedabad%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
-            ></iframe>
-            <div className="absolute top-4 left-4 bg-white/95 border border-[#E3EAE6] p-4 rounded-2xl shadow-xl max-w-sm text-xs text-[#17201B]">
-              <div className="font-bold text-[#17201B] flex items-center gap-1.5 mb-1">
-                <Globe className="w-4 h-4 text-[#16845B]" /> Google Map Satellite Embed
-              </div>
-              <p className="text-[11px] text-[#66736C]">
-                Displaying Ahmedabad geographic corridor. Switch back to 'GIS Light Map' for interactive pin telemetry and layer inspection.
-              </p>
-            </div>
+
+        {/* Satellite Mode Active Overlay Badge */}
+        {mapMode === 'satellite' && (
+          <div className="absolute top-4 right-4 z-20 bg-black/80 backdrop-blur-md text-white border border-white/20 px-3.5 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-2 shadow-lg animate-fade-in pointer-events-none">
+            <span className="w-2 h-2 rounded-full bg-[#16845B] animate-ping"></span>
+            <span>ESRI High-Res Satellite Imagery (Ahmedabad AMC)</span>
           </div>
         )}
 

@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useWasteData } from '../context/WasteDataContext';
+import { apiService } from '../services/api';
 import { 
   Truck, 
   Navigation, 
@@ -15,10 +16,12 @@ import {
   ShieldAlert,
   Layers,
   Fuel,
-  TrendingDown
+  TrendingDown,
+  Maximize2
 } from 'lucide-react';
-import { MapContainer, TileLayer, Marker, Popup, Polyline, Tooltip as LeafletTooltip } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, Polyline, Tooltip as LeafletTooltip, useMap } from 'react-leaflet';
 import L from 'leaflet';
+import LeafletMapResizer from '../components/Common/LeafletMapResizer';
 
 // Custom Map Marker Icons for Route Optimizer
 const createStopIcon = (stopNumber, isCritical = false, isDepot = false, isMrf = false, isInserted = false, color = '#16845B') => {
@@ -96,6 +99,55 @@ const createTruckMarkerIcon = (code, color = '#16845B') => {
   });
 };
 
+// Smoothly animates camera and fits bounds when route coordinates change without unmounting the map
+function RouteBoundsFitter({ polylineCoords, stops }) {
+  const map = useMap();
+
+  const fitAll = useCallback(() => {
+    if (!map) return;
+
+    const points = [];
+    if (polylineCoords && polylineCoords.length > 0) {
+      polylineCoords.forEach(c => {
+        if (Array.isArray(c) && c.length >= 2 && !isNaN(c[0]) && !isNaN(c[1])) {
+          points.push(c);
+        }
+      });
+    }
+    if (stops && stops.length > 0) {
+      stops.forEach(s => {
+        if (s.lat && s.lng && !isNaN(s.lat) && !isNaN(s.lng)) {
+          points.push([s.lat, s.lng]);
+        }
+      });
+    }
+
+    if (points.length > 0) {
+      const bounds = L.latLngBounds(points);
+      if (bounds.isValid()) {
+        map.fitBounds(bounds, {
+          padding: [45, 45],
+          maxZoom: 13,
+          animate: true,
+          duration: 0.8
+        });
+      }
+    }
+  }, [map, polylineCoords, stops]);
+
+  useEffect(() => {
+    fitAll();
+    const timer1 = setTimeout(fitAll, 150);
+    const timer2 = setTimeout(fitAll, 500);
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
+  }, [fitAll]);
+
+  return null;
+}
+
 export default function RouteOptimizerPage({ onNavigate }) {
   const { 
     vehicles, 
@@ -112,6 +164,7 @@ export default function RouteOptimizerPage({ onNavigate }) {
   const [replanning, setReplanning] = useState(false);
   const [selectedPriorityFilter, setSelectedPriorityFilter] = useState('All');
   const [selectedBinForMatch, setSelectedBinForMatch] = useState('AHM-104');
+  const [bestVehicleMatch, setBestVehicleMatch] = useState(null);
   const [currentRoute, setCurrentRoute] = useState(null);
 
   // Load route when vehicle selection changes
@@ -127,6 +180,23 @@ export default function RouteOptimizerPage({ onNavigate }) {
     return () => { isMounted = false; };
   }, [selectedVehicleId, optimizeRoute]);
 
+  // Fetch optimal vehicle match for selected emergency bin
+  useEffect(() => {
+    let isMounted = true;
+    const fetchBestMatch = async () => {
+      try {
+        const res = await apiService.getBestVehicleForBin(selectedBinForMatch);
+        if (isMounted && res) {
+          setBestVehicleMatch(res);
+        }
+      } catch (err) {
+        console.warn('[RouteOptimizer] Could not fetch best vehicle match:', err.message);
+      }
+    };
+    fetchBestMatch();
+    return () => { isMounted = false; };
+  }, [selectedBinForMatch]);
+
   const activeVehicle = vehicles.find(v => v.id === selectedVehicleId) || vehicles[0];
 
   const activeRoute = currentRoute || routes[selectedVehicleId] || {
@@ -139,17 +209,17 @@ export default function RouteOptimizerPage({ onNavigate }) {
     vehicle_capacity_kg: 2000,
     utilization_pct: 87.0,
     polyline_coords: [
-      [23.0520, 72.5800],
-      [23.0560, 72.5850],
-      [23.0370, 72.5620],
+      [23.0370, 72.5120],
+      [23.0392, 72.5061],
+      [23.0378, 72.5519],
       [23.0350, 72.5290],
       [23.0420, 72.5110],
       [23.0010, 72.5830]
     ],
     stops: [
-      { stop_number: 0, bin_id: 'DEPOT', bin_code: 'DEPOT-01 (Sabarmati AMC Hub)', is_depot: true, weight_kg: 0, priority: 0, lat: 23.0520, lng: 72.5800 },
-      { stop_number: 1, bin_id: 'AHM-104', bin_code: 'AHM-104 (Sabarmati Riverfront)', is_depot: false, weight_kg: 340, priority: 94, is_critical: true, lat: 23.0560, lng: 72.5850 },
-      { stop_number: 2, bin_id: 'AHM-118', bin_code: 'AHM-118 (Navrangpura CG Road)', is_depot: false, weight_kg: 420, priority: 89, is_critical: true, lat: 23.0370, lng: 72.5620 },
+      { stop_number: 0, bin_id: 'DEPOT', bin_code: 'DEPOT-02 (Bodakdev West Depot)', is_depot: true, weight_kg: 0, priority: 0, lat: 23.0370, lng: 72.5120 },
+      { stop_number: 1, bin_id: 'AHM-104', bin_code: 'AHM-104 (Bodakdev SBR Plaza)', is_depot: false, weight_kg: 340, priority: 94, is_critical: true, lat: 23.0392, lng: 72.5061 },
+      { stop_number: 2, bin_id: 'AHM-118', bin_code: 'AHM-118 (Navrangpura CG Road)', is_depot: false, weight_kg: 420, priority: 89, is_critical: true, lat: 23.0378, lng: 72.5519 },
       { stop_number: 3, bin_id: 'AHM-091', bin_code: 'AHM-091 (Vastrapur Food Court)', is_depot: false, weight_kg: 510, priority: 76, is_critical: false, lat: 23.0350, lng: 72.5290 },
       { stop_number: 4, bin_id: 'AHM-127', bin_code: 'AHM-127 (Bodakdev SBR Plaza)', is_depot: false, weight_kg: 470, priority: 72, is_critical: false, lat: 23.0420, lng: 72.5110 },
       { stop_number: 5, bin_id: 'MRF', bin_code: 'MRF-01 (Pirana Material Recovery Facility)', is_mrf: true, weight_kg: 0, priority: 0, lat: 23.0010, lng: 72.5830 }
@@ -182,13 +252,40 @@ export default function RouteOptimizerPage({ onNavigate }) {
   };
 
   // Candidate Vehicles for Best Match Widget
-  const candidateVehicles = [
-    { id: 'V-01', name: 'Truck V-01 (Heavy Compactor)', distance_km: 2.4, avail_kg: 1700, status: 'Active (Sabarmati)', eligible: true, score: 94 },
-    { id: 'V-02', name: 'Truck V-02 (Medium Electric)', distance_km: 1.2, avail_kg: 200, status: 'Near Full (Navrangpura)', eligible: false, reason: 'Insufficient capacity (200kg < 280kg required)' },
-    { id: 'V-03', name: 'Truck V-03 (Standard Tipper)', distance_km: 4.1, avail_kg: 1100, status: 'Active (Vastrapur)', eligible: true, score: 81 }
-  ];
+  const candidateVehicles = (vehicles && vehicles.length > 0 ? vehicles : [
+    { id: 'V-01', vehicle_code: 'V-01 (Bodakdev Heavy Compactor)', available_capacity_kg: 1550, status: 'Available (Bodakdev)' },
+    { id: 'V-02', vehicle_code: 'V-02 (Bodakdev Medium Tipper)', available_capacity_kg: 650, status: 'On Route (Bodakdev)' },
+    { id: 'V-03', vehicle_code: 'V-03 (Dudheshwar Central Compactor)', available_capacity_kg: 1500, status: 'Available (Dudheshwar)' }
+  ]).map((v, i) => {
+    const avail = v.available_capacity_kg ?? (v.capacity_kg ? v.capacity_kg - (v.current_load_kg || v.current_load || 0) : 1200);
+    return {
+      id: v.id || v.vehicle_code,
+      name: v.vehicle_code || v.id,
+      distance_km: (v.latitude && activeRoute.stops?.[1])
+        ? +(Math.sqrt(Math.pow((v.latitude - (activeRoute.stops[1].lat || 23.0392)) * 111, 2) + Math.pow((v.longitude - (activeRoute.stops[1].lng || 72.5061)) * 102, 2))).toFixed(1)
+        : +(i * 1.3 + 0.8).toFixed(1),
+      avail_kg: avail,
+      status: v.status || 'Available',
+      eligible: avail >= 280,
+      reason: avail < 280 ? 'Insufficient capacity (< 280kg required)' : undefined,
+      score: Math.max(65, 96 - i * 3)
+    };
+  });
 
-  const mapCenter = activeRoute.polyline_coords?.[0] || [23.0380, 72.5600];
+  const mapCenter = useMemo(() => {
+    const coords = activeRoute.polyline_coords;
+    if (coords && coords.length > 0) {
+      const lats = coords.map(c => c[0]).filter(n => typeof n === 'number' && !isNaN(n));
+      const lngs = coords.map(c => c[1]).filter(n => typeof n === 'number' && !isNaN(n));
+      if (lats.length > 0 && lngs.length > 0) {
+        return [
+          +((Math.min(...lats) + Math.max(...lats)) / 2).toFixed(5),
+          +((Math.min(...lngs) + Math.max(...lngs)) / 2).toFixed(5)
+        ];
+      }
+    }
+    return [23.0280, 72.5450]; // Canonical Ahmedabad central corridor
+  }, [activeRoute.polyline_coords]);
 
   return (
     <div className="p-4 sm:p-8 space-y-6 max-w-7xl mx-auto">
@@ -236,7 +333,7 @@ export default function RouteOptimizerPage({ onNavigate }) {
               Dynamic Mid-Route Waypoint Insertion
             </h3>
             <p className="text-xs text-[#66736C] leading-relaxed">
-              Bin <strong className="text-[#17201B]">AHM-156 (Sabarmati Riverfront Flower Park)</strong> is predicted to overflow in <strong className="text-[#D64545]">45 minutes</strong>. The optimizer recalculates the optimal waypoint sequence with minimum route deviation.
+              Bin <strong className="text-[#17201B]">AHM-156 (Bodakdev Judges Bungalow)</strong> is predicted to overflow in <strong className="text-[#D64545]">45 minutes</strong>. The optimizer recalculates the optimal waypoint sequence with minimum route deviation.
             </p>
           </div>
 
@@ -438,14 +535,15 @@ export default function RouteOptimizerPage({ onNavigate }) {
             </div>
 
             {/* INTERACTIVE ROUTE MAP CANVAS */}
-            <div className="h-80 w-full rounded-2xl overflow-hidden border border-[#E3EAE6] relative shadow-inner">
+            <div className="h-96 sm:h-[440px] w-full rounded-2xl overflow-hidden border border-[#E3EAE6] relative shadow-inner">
               <MapContainer
-                key={`${selectedVehicleId}-${activeRoute.distance_km}`}
                 center={mapCenter}
-                zoom={13}
+                zoom={12}
                 scrollWheelZoom={false}
                 className="w-full h-full"
               >
+                <LeafletMapResizer />
+                <RouteBoundsFitter polylineCoords={activeRoute.polyline_coords} stops={filteredStops} />
                 <TileLayer
                   attribution='&copy; <a href="https://carto.com/attributions">CARTO</a>'
                   url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
@@ -642,7 +740,17 @@ export default function RouteOptimizerPage({ onNavigate }) {
             <div className="p-3.5 bg-[#F0FDF4] border border-[#BBF7D0] rounded-2xl text-xs text-[#17201B] flex items-center justify-between">
               <span className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-[#16845B] shrink-0" />
-                <span>AI Recommendation: Assign <strong>Truck V-01 (Sabarmati Heavy Compactor)</strong> — Closest proximity (2.4 km) with 1,700 kg available margin.</span>
+                <span>
+                  {bestVehicleMatch ? (
+                    <>
+                      AI Recommendation: Assign <strong>Truck {bestVehicleMatch.best_vehicle?.vehicle_code || bestVehicleMatch.vehicle_code}</strong> ({bestVehicleMatch.best_vehicle?.driver_name || 'Driver'}) — Closest proximity ({bestVehicleMatch.distance_km || bestVehicleMatch.best_vehicle?.distance_km} km) with {bestVehicleMatch.available_capacity_kg || bestVehicleMatch.best_vehicle?.available_capacity_kg} kg available margin.
+                    </>
+                  ) : (
+                    <>
+                      AI Recommendation: Assign <strong>Truck V-02 (Bodakdev Medium Tipper)</strong> — Closest proximity (0.3 km) with 650 kg available margin.
+                    </>
+                  )}
+                </span>
               </span>
             </div>
           </div>

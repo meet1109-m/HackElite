@@ -20,6 +20,7 @@ from app.services.data_store import data_store
 from app.services.route_optimizer import optimize_cvrp_route
 from app.services.replan_service import dynamic_replan_route
 from app.utils.constants import COLLECTION_DEPOTS
+from app.utils.geo import calculate_route_distance, estimate_travel_time_minutes
 
 router = APIRouter(prefix="/api/routes", tags=["Routes"])
 
@@ -105,7 +106,7 @@ def format_route_response(r: Dict[str, Any]) -> Dict[str, Any]:
         r_copy["waypoints"] = wps
 
     # Find depot coordinates
-    depot_coords = [23.0520, 72.5800]  # Default Sabarmati / Dudheshwar
+    depot_coords = [23.0370, 72.5120]  # Default Bodakdev West Depot (DEPOT-02)
     for _, d in COLLECTION_DEPOTS.items():
         if d["name"].lower() in depot_name.lower() or depot_name.lower() in d["name"].lower():
             depot_coords = [d["latitude"], d["longitude"]]
@@ -119,6 +120,15 @@ def format_route_response(r: Dict[str, Any]) -> Dict[str, Any]:
         coords.append([wp["latitude"], wp["longitude"]])
     coords.append(mrf_coords)
     r_copy["polyline_coords"] = coords
+
+    # Calculate exact distance and duration from the actual physical polyline: Depot -> Waypoints -> Pirana MRF
+    exact_polyline_distance = calculate_route_distance(coords)
+    r_copy["total_distance_km"] = exact_polyline_distance
+    r_copy["distance_km"] = exact_polyline_distance
+    driving_mins = estimate_travel_time_minutes(exact_polyline_distance, average_speed_kmh=25.0)
+    service_mins = len(r_copy["waypoints"]) * 3
+    r_copy["estimated_duration_mins"] = driving_mins + service_mins
+    r_copy["duration_minutes"] = driving_mins + service_mins
 
     # Construct Leaflet stops: Stop 0 (Depot) -> Stops 1..N -> Stop N+1 (MRF)
     stops = [
@@ -168,7 +178,8 @@ def format_route_response(r: Dict[str, Any]) -> Dict[str, Any]:
     if "ai_recommendation" not in r_copy:
         r_copy["ai_recommendation"] = (
             f"Truck {v_code}: High-priority corridor clearance covering "
-            f"{len(r_copy['waypoints'])} collection points. Total distance: {total_dist} km."
+            f"{len(r_copy['waypoints'])} collection points from {r_copy['start_depot']} "
+            f"to {r_copy['end_mrf']}. Exact route distance: {exact_polyline_distance} km."
         )
 
     return r_copy

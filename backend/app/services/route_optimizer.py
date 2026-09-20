@@ -128,10 +128,11 @@ def optimize_cvrp_route(
             }
         )
 
-    # Return leg to depot
+    # Final leg to Pirana Material Recovery Facility (MRF-01)
+    mrf_lat, mrf_lng = 23.0010, 72.5830
     if ordered_bins:
-        return_dist = haversine_distance(curr_lat, curr_lng, depot_lat, depot_lng)
-        total_distance_km += return_dist
+        mrf_dist = haversine_distance(curr_lat, curr_lng, mrf_lat, mrf_lng)
+        total_distance_km += mrf_dist
 
     total_distance_km = round(total_distance_km, 2)
     # 25 km/h urban speed + 3 minutes collection service time per bin
