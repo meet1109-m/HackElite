@@ -163,34 +163,22 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
         </div>
 
         {/* ══════════════════════════════════════════════════════════════════
-          HERO SECTION — Full Viewport Height
-          Layout zones (approximate, relative to viewport height):
-            0–10%  : top banner already rendered above
-           10–38%  : AI badge + H1 heading (above the bridge / in sky zone)
-           38–55%  : Bridge clearly visible — NO content here
-           42–52%  : Telemetry panel RIGHT column (vertical center)
-           54–74%  : Compact predict-waste card + CTA Buttons (below bridge)
-           74–82%  : Stat pills row
-      ══════════════════════════════════════════════════════════════════ */}
-        <section className="relative w-full" style={{ minHeight: '100vh' }}>
+          HERO SECTION
+          Desktop (lg+): Balanced scenic framing over the Ahmedabad riverfront
+          Mobile/Tablet (<lg): Fluid responsive flow with zero collision/overlap
+        ══════════════════════════════════════════════════════════════════ */}
+        <section className="relative w-full lg:min-h-screen flex flex-col justify-start px-6 sm:px-12 pt-10 pb-16 lg:py-0 lg:px-0 lg:block">
 
-          {/* ── HEADING LAYER: Badge + H1 in the sky zone, slightly above the bridge ── */}
+          {/* ── HEADING LAYER: H1 (Top) + AI Badge (Below) in the sky zone ── */}
           <div
-            className="absolute left-0 right-0 flex flex-col items-start px-6 sm:px-14"
-            style={{ top: '26vh' }}
+            className="flex flex-col items-start lg:absolute lg:left-12 xl:left-14 lg:top-[11vh] z-20 mb-8 lg:mb-0"
           >
-            {/* AI Pill Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DCFCE7]/90 backdrop-blur-md border border-[#BBF7D0] text-[#0B5D3B] text-xs font-extrabold tracking-wide shadow-sm mb-3">
-              <Zap className="w-3.5 h-3.5 text-[#16845B]" />
-              <span>AI DECISION SUPPORT SYSTEM • AHMEDABAD</span>
-            </div>
-
-            {/* H1 — sits just above the bridge (bridge is ~40-55% vh) */}
+            {/* H1 — sits in the open sky zone above the AI badge */}
             <h1
-              className="font-black tracking-tight text-[#05120a] leading-[1.1]"
+              className="font-black tracking-tight text-[#05120a] leading-[1.08] mb-3.5"
               style={{
-                fontSize: 'clamp(2.4rem, 4.8vw, 3.8rem)',
-                textShadow: '0 2px 16px rgba(255,255,255,1), 0 0 8px rgba(255,255,255,1)',
+                fontSize: 'clamp(2.3rem, 4.4vw, 3.8rem)',
+                textShadow: '0 2px 18px rgba(255,255,255,0.95), 0 0 10px rgba(255,255,255,0.9)',
                 whiteSpace: 'nowrap'
               }}
             >
@@ -199,18 +187,24 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
                 className="text-[#0a4f2e]"
                 style={{
                   display: 'block',
-                  textShadow: '0 2px 16px rgba(255,255,255,1), 0 0 8px rgba(255,255,255,1)'
+                  textShadow: '0 2px 18px rgba(255,255,255,0.95), 0 0 10px rgba(255,255,255,0.9)'
                 }}
               >
                 Managed Intelligently.
               </span>
             </h1>
+
+            {/* AI Pill Badge — positioned directly below the heading */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#DCFCE7]/95 backdrop-blur-md border border-[#BBF7D0] text-[#0B5D3B] text-xs font-extrabold tracking-wide shadow-sm">
+              <Zap className="w-3.5 h-3.5 text-[#16845B]" />
+              <span>AI DECISION SUPPORT SYSTEM • AHMEDABAD</span>
+            </div>
           </div>
 
-          {/* ── TELEMETRY PANEL — Right side, vertically centered at 50vh ── */}
+          {/* ── TELEMETRY PANEL — Right side (desktop only, vertically centered) ── */}
           <div
-            className="absolute right-6 sm:right-14 hidden lg:block"
-            style={{ top: '50vh', transform: 'translateY(-50%)', width: 'min(44vw, 560px)' }}
+            className="hidden lg:block lg:absolute lg:right-12 xl:right-14 z-20"
+            style={{ top: '50vh', transform: 'translateY(-50%)', width: 'min(42vw, 540px)' }}
           >
             <div className="bg-white border border-[#E3EAE6] rounded-3xl p-5 shadow-2xl relative overflow-hidden">
               {/* LIVE TELEMETRY SIGNAL header */}
@@ -265,14 +259,13 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
             </div>
           </div>
 
-          {/* ── LEFT CONTENT BELOW BRIDGE: Compact predict-waste card + Buttons + Stats ── */}
+          {/* ── LEFT CONTENT: Predict-waste card + Buttons + Stats (positioned lower so bridge remains visible) ── */}
           <div
-            className="absolute left-6 sm:left-14 right-6 sm:right-14 lg:right-auto"
-            style={{ top: '56vh', maxWidth: '540px' }}
+            className="flex flex-col items-start lg:absolute lg:left-12 xl:left-14 lg:top-[58vh] xl:top-[60vh] z-20 max-w-2xl mb-8 lg:mb-0"
           >
-            {/* COMPACT Predict-waste card — minimal height */}
-            <div className="landing-glass-card px-4 py-3 mb-3 flex items-center gap-3">
-              <div className="p-2 bg-[#F0FDF4]/90 rounded-xl border border-[#BBF7D0] shrink-0 shadow-sm">
+            {/* COMPACT Predict-waste card with comfortable padding */}
+            <div className="landing-glass-card px-5 py-3.5 mb-4 flex items-center gap-3.5 shadow-md">
+              <div className="p-2 bg-[#F0FDF4]/95 rounded-xl border border-[#BBF7D0] shrink-0 shadow-sm">
                 <Zap className="w-4 h-4 text-[#16845B]" />
               </div>
               <p className="text-xs sm:text-sm font-black text-[#042e1a] leading-snug">
@@ -281,48 +274,51 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
               </p>
             </div>
 
-            {/* CTA Buttons — always visible on first load */}
-            <div className="flex flex-wrap gap-2.5 mb-3">
+            {/* CTA Buttons — neatly organized on a single row with comfortable gaps */}
+            <div className="flex flex-wrap items-center gap-3 sm:gap-3.5 mb-4">
               <button
                 onClick={handleLaunch}
-                className="px-6 py-3 bg-[#16845B] hover:bg-[#0B5D3B] text-white font-extrabold text-sm rounded-xl shadow-lg shadow-[#16845B]/25 flex items-center gap-2 transition-all transform hover:scale-[1.02] active:scale-[0.98]"
+                className="px-5 sm:px-6 py-3 bg-[#16845B] hover:bg-[#0B5D3B] text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-lg shadow-[#16845B]/25 flex items-center gap-2 transition-all transform hover:scale-[1.02] active:scale-[0.98] whitespace-nowrap"
               >
                 <span>Explore Command Center</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
               <button
                 onClick={() => onNavigate?.('login')}
-                className="px-5 py-3 bg-[#DCFCE7] hover:bg-[#BBF7D0] border border-[#BBF7D0] text-[#065F46] text-sm font-extrabold rounded-xl flex items-center gap-2 transition-all shadow-sm"
+                className="px-4 sm:px-5 py-3 bg-[#DCFCE7] hover:bg-[#BBF7D0] border border-[#BBF7D0] text-[#065F46] text-xs sm:text-sm font-extrabold rounded-xl flex items-center gap-1.5 transition-all shadow-sm whitespace-nowrap"
               >
                 <span>Operator Login</span>
               </button>
               <a
                 href="#workflow"
-                className="px-4 py-3 bg-white/85 hover:bg-white backdrop-blur-md border border-white/70 text-[#17201B] text-sm font-bold rounded-xl flex items-center gap-1.5 transition-all shadow-sm"
+                className="px-4 sm:px-5 py-3 bg-white/90 hover:bg-white backdrop-blur-md border border-white/80 text-[#17201B] text-xs sm:text-sm font-bold rounded-xl flex items-center gap-1.5 transition-all shadow-sm whitespace-nowrap"
               >
                 <span>How It Works</span>
                 <ChevronRight className="w-4 h-4 text-[#66736C]" />
               </a>
             </div>
 
-            {/* Stat pills row */}
-            <div className="flex flex-wrap items-center gap-2 text-xs text-[#0a1a10]">
+            {/* Stat pills row — all 4 pills side by side in an organized, structured row */}
+            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs text-[#0a1a10]">
               {[
                 '120 Smart Nodes',
                 '16 EV & Tipper Trucks',
                 '12 AMC Zones',
                 '63.9% Recovery Rate'
               ].map((label) => (
-                <div key={label} className="flex items-center gap-1.5 font-bold px-3 py-1.5 rounded-full bg-white/80 backdrop-blur-md shadow-sm border border-white/60">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-[#16845B]" />
+                <div
+                  key={label}
+                  className="flex items-center gap-1.5 font-bold px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md shadow-sm border border-white/80 whitespace-nowrap"
+                >
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#16845B] shrink-0" />
                   <span>{label}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Telemetry panel for mobile/tablet (stacked below content) */}
-          <div className="lg:hidden absolute left-6 sm:left-14 right-6 sm:right-14" style={{ top: '90vh' }}>
+          {/* Telemetry panel for mobile/tablet (rendered naturally in document flow without collision) */}
+          <div className="lg:hidden w-full mt-4 z-20">
             <div className="bg-white border border-[#E3EAE6] rounded-3xl p-5 shadow-xl relative overflow-hidden">
               <div className="flex items-center justify-between border-b border-[#E3EAE6] pb-3 mb-3">
                 <div className="flex items-center gap-2">
@@ -352,9 +348,9 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
         </section>
 
         {/* THE PROBLEM VS SMARTBINX (Section 17) */}
-        <section className="py-20 px-6 sm:px-12">
-          <div className="max-w-6xl mx-auto space-y-12">
-            <div className="landing-glass-card p-6 sm:p-8 text-center max-w-2xl mx-auto space-y-2.5">
+        <section className="py-24 sm:py-28 px-6 sm:px-12">
+          <div className="max-w-6xl mx-auto space-y-14 sm:space-y-16">
+            <div className="landing-glass-card p-6 sm:p-8 text-center max-w-2xl mx-auto space-y-3">
               <span className="text-xs font-black text-[#0B5D3B] uppercase tracking-widest bg-[#DCFCE7]/90 px-3 py-1 rounded-full border border-[#BBF7D0] inline-block shadow-sm">
                 Paradigm Shift
               </span>
@@ -366,9 +362,9 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 items-stretch">
               {/* Traditional Fixed Model */}
-              <div className="p-8 bg-[#FEF2F2]/60 border border-[#FECACA] rounded-3xl space-y-6 flex flex-col justify-between shadow-sm">
+              <div className="p-8 sm:p-9 bg-[#FEF2F2]/60 border border-[#FECACA] rounded-3xl space-y-6 sm:space-y-7 flex flex-col justify-between shadow-sm">
                 <div className="space-y-4">
                   <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#FEE2E2] text-[#991B1B] text-xs font-bold rounded-full border border-[#FECACA]">
                     <AlertTriangle className="w-3.5 h-3.5" /> Traditional Fixed Schedule
@@ -411,7 +407,7 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
               </div>
 
               {/* SmartBinX AI Closed-Loop Model */}
-              <div className="p-8 bg-[#F0FDF4]/80 border border-[#BBF7D0] rounded-3xl space-y-6 flex flex-col justify-between shadow-md">
+              <div className="p-8 sm:p-9 bg-[#F0FDF4]/80 border border-[#BBF7D0] rounded-3xl space-y-6 sm:space-y-7 flex flex-col justify-between shadow-md">
                 <div className="space-y-4">
                   <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#DCFCE7] text-[#0B5D3B] text-xs font-bold rounded-full border border-[#BBF7D0]">
                     <ShieldCheck className="w-3.5 h-3.5 text-[#16845B]" /> SmartBinX AI Paradigm
@@ -456,8 +452,8 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
         </section>
 
         {/* HOW WASTEWISE AI THINKS — 6-STEP WORKFLOW (Section 18) */}
-        <section id="workflow" className="py-20 px-6 sm:px-12 max-w-7xl mx-auto">
-          <div className="landing-glass-card p-6 sm:p-8 text-center max-w-2xl mx-auto mb-16 space-y-2">
+        <section id="workflow" className="py-24 sm:py-28 px-6 sm:px-12 max-w-7xl mx-auto">
+          <div className="landing-glass-card p-6 sm:p-8 text-center max-w-2xl mx-auto mb-14 sm:mb-16 space-y-3">
             <span className="text-xs font-black text-[#0B5D3B] uppercase tracking-widest bg-[#DCFCE7]/90 px-3 py-1 rounded-full border border-[#BBF7D0] inline-block shadow-sm">
               Automated Decision Pipeline
             </span>
@@ -469,14 +465,14 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
             {workflowSteps.map((item, idx) => {
               const isSelected = activeWorkflowStep === idx;
               return (
                 <div
                   key={item.step}
                   onClick={() => setActiveWorkflowStep(idx)}
-                  className={`p-6 rounded-3xl border cursor-pointer transition-all duration-300 flex flex-col justify-between ${isSelected
+                  className={`p-6 sm:p-7 rounded-3xl border cursor-pointer transition-all duration-300 flex flex-col justify-between ${isSelected
                     ? 'bg-white border-[#16845B] ring-2 ring-[#16845B]/20 shadow-xl'
                     : 'bg-white border-[#E3EAE6] hover:border-[#16845B]/50 shadow-card hover:shadow-card-hover'
                     }`}
@@ -512,9 +508,9 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
         </section>
 
         {/* FROM ONE BIN TO THE WHOLE CITY — SCALE ZOOM CONCEPT (Section 19) */}
-        <section className="py-20 px-6 sm:px-12">
-          <div className="max-w-6xl mx-auto space-y-12">
-            <div className="landing-glass-card p-6 sm:p-8 text-center max-w-2xl mx-auto space-y-2">
+        <section className="py-24 sm:py-28 px-6 sm:px-12">
+          <div className="max-w-6xl mx-auto space-y-14 sm:space-y-16">
+            <div className="landing-glass-card p-6 sm:p-8 text-center max-w-2xl mx-auto space-y-3">
               <span className="text-xs font-black text-[#0B5D3B] uppercase tracking-widest bg-[#DCFCE7]/90 px-3 py-1 rounded-full border border-[#BBF7D0] inline-block shadow-sm">
                 Scalability Architecture
               </span>
@@ -527,12 +523,12 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
             </div>
 
             {/* Scale Step Navigation Tabs */}
-            <div className="flex items-center justify-between max-w-4xl mx-auto bg-[#F7FAF8] p-1.5 rounded-2xl border border-[#E3EAE6] overflow-x-auto gap-2">
+            <div className="flex items-center justify-between max-w-4xl mx-auto bg-[#F7FAF8] p-2 rounded-2xl border border-[#E3EAE6] overflow-x-auto gap-2 sm:gap-2.5">
               {scaleSteps.map((step, idx) => (
                 <button
                   key={step.level}
                   onClick={() => setActiveScaleIndex(idx)}
-                  className={`flex-1 py-2.5 px-3 rounded-xl text-xs font-bold transition-all whitespace-nowrap flex items-center justify-center gap-1.5 ${activeScaleIndex === idx
+                  className={`flex-1 py-3 px-3.5 rounded-xl text-xs sm:text-sm font-bold transition-all whitespace-nowrap flex items-center justify-center gap-1.5 ${activeScaleIndex === idx
                     ? 'bg-[#16845B] text-white shadow-md shadow-[#16845B]/20'
                     : 'text-[#66736C] hover:text-[#17201B] hover:bg-white'
                     }`}
@@ -544,13 +540,13 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
             </div>
 
             {/* Active Scale Details Showcase */}
-            <div className="bg-[#F7FAF8] border border-[#E3EAE6] rounded-3xl p-8 max-w-4xl mx-auto shadow-sm flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="bg-[#F7FAF8] border border-[#E3EAE6] rounded-3xl p-8 sm:p-10 max-w-4xl mx-auto shadow-sm flex flex-col md:flex-row items-center justify-between gap-8 sm:gap-12">
               <div className="space-y-4 max-w-lg">
                 <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#DCFCE7] text-[#0B5D3B] text-xs font-bold rounded-full border border-[#BBF7D0]">
                   <span>Scale Tier {activeScaleIndex + 1} of 5</span>
                 </div>
-                <h3 className="text-2xl font-black text-[#17201B]">{scaleSteps[activeScaleIndex].title}</h3>
-                <p className="text-xs text-[#16845B] font-semibold flex items-center gap-1.5">
+                <h3 className="text-2xl sm:text-3xl font-black text-[#17201B]">{scaleSteps[activeScaleIndex].title}</h3>
+                <p className="text-xs sm:text-sm text-[#16845B] font-semibold flex items-center gap-1.5">
                   <MapPin className="w-3.5 h-3.5" />
                   <span>{scaleSteps[activeScaleIndex].location}</span>
                 </p>
@@ -561,7 +557,7 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
 
               <div className="bg-white p-6 rounded-2xl border border-[#E3EAE6] text-center shadow-sm w-full md:w-60 shrink-0 space-y-2">
                 <span className="text-xs font-bold text-[#66736C] uppercase tracking-wider block">Operational Metric</span>
-                <div className="text-2xl font-black text-[#16845B] font-mono">
+                <div className="text-2xl sm:text-3xl font-black text-[#16845B] font-mono">
                   {scaleSteps[activeScaleIndex].stat}
                 </div>
                 <span className="text-[11px] text-[#66736C] block">Live Telemetry Stamped</span>
@@ -571,8 +567,8 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
         </section>
 
         {/* SEE AI MAKE A DECISION — LIVE DEMO SECTION (Section 20) */}
-        <section className="py-20 px-6 sm:px-12 max-w-6xl mx-auto">
-          <div className="landing-glass-card p-6 sm:p-8 text-center max-w-2xl mx-auto mb-12 space-y-2">
+        <section className="py-24 sm:py-28 px-6 sm:px-12 max-w-6xl mx-auto">
+          <div className="landing-glass-card p-6 sm:p-8 text-center max-w-2xl mx-auto mb-12 sm:mb-14 space-y-3">
             <span className="text-xs font-black text-[#0B5D3B] uppercase tracking-widest bg-[#DCFCE7]/90 px-3 py-1 rounded-full border border-[#BBF7D0] inline-block shadow-sm">
               Interactive Demonstration
             </span>
@@ -584,11 +580,11 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
             </p>
           </div>
 
-          <div className="bg-white border border-[#E3EAE6] rounded-3xl p-8 shadow-xl space-y-8">
+          <div className="bg-white border border-[#E3EAE6] rounded-3xl p-8 sm:p-10 shadow-xl space-y-8 sm:space-y-10">
             {/* 3-Stage Progression */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7">
               {/* Stage 1: Problem */}
-              <div className="p-5 bg-[#FEF2F2] rounded-2xl border border-[#FECACA] space-y-3">
+              <div className="p-6 bg-[#FEF2F2] rounded-2xl border border-[#FECACA] space-y-3.5">
                 <div className="flex items-center justify-between text-xs font-bold text-[#991B1B]">
                   <span>01. PROBLEM DETECTED</span>
                   <span className="w-2.5 h-2.5 rounded-full bg-[#D64545] animate-pulse"></span>
@@ -604,7 +600,7 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
               </div>
 
               {/* Stage 2: AI Decision */}
-              <div className="p-5 bg-[#EFF6FF] rounded-2xl border border-[#BFDBFE] space-y-3">
+              <div className="p-6 bg-[#EFF6FF] rounded-2xl border border-[#BFDBFE] space-y-3.5">
                 <div className="flex items-center justify-between text-xs font-bold text-[#1E40AF]">
                   <span>02. AI DECISION LOGIC</span>
                   <Sparkles className="w-4 h-4 text-[#2878C8]" />
@@ -621,7 +617,7 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
               </div>
 
               {/* Stage 3: Optimal Action */}
-              <div className="p-5 bg-[#F0FDF4] rounded-2xl border border-[#BBF7D0] space-y-3">
+              <div className="p-6 bg-[#F0FDF4] rounded-2xl border border-[#BBF7D0] space-y-3.5">
                 <div className="flex items-center justify-between text-xs font-bold text-[#0B5D3B]">
                   <span>03. DISPATCH ACTION</span>
                   <CheckCircle2 className="w-4 h-4 text-[#16845B]" />
@@ -638,13 +634,13 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
             </div>
 
             {/* Interactive Trigger Button */}
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-[#E3EAE6]">
-              <div className="text-xs text-[#66736C]">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-[#E3EAE6]">
+              <div className="text-xs sm:text-sm text-[#66736C]">
                 Click below to launch the step-by-step interactive 10-step AI operations walkthrough.
               </div>
               <button
                 onClick={startAIDemo}
-                className="px-6 py-3 bg-[#16845B] hover:bg-[#0B5D3B] text-white text-xs font-extrabold rounded-xl shadow-md shadow-[#16845B]/20 flex items-center gap-2 transition-all transform hover:scale-105"
+                className="px-6 py-3.5 bg-[#16845B] hover:bg-[#0B5D3B] text-white text-xs sm:text-sm font-extrabold rounded-xl shadow-md shadow-[#16845B]/20 flex items-center gap-2 transition-all transform hover:scale-105 whitespace-nowrap"
               >
                 <Play className="w-4 h-4 fill-white" />
                 <span>Launch 10-Step AI Walkthrough</span>
@@ -654,9 +650,9 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
         </section>
 
         {/* IMPACT SECTION (Section 21) */}
-        <section className="py-20 px-6 sm:px-12">
-          <div className="max-w-6xl mx-auto space-y-12">
-            <div className="landing-glass-card p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <section className="py-24 sm:py-28 px-6 sm:px-12">
+          <div className="max-w-6xl mx-auto space-y-12 sm:space-y-14">
+            <div className="landing-glass-card p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-5 sm:gap-6">
               <div>
                 <span className="text-xs font-black text-[#0B5D3B] uppercase tracking-widest bg-[#DCFCE7]/90 px-3 py-1 rounded-full border border-[#BBF7D0] inline-block shadow-sm">
                   Measurable Sustainability
@@ -665,32 +661,32 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
                   Projected Operational Impact
                 </h2>
               </div>
-              <div className="px-3.5 py-1.5 bg-[#FFFBEB]/90 border border-[#FDE68A] text-[#92400E] text-xs font-bold rounded-xl flex items-center gap-2 shadow-sm self-start sm:self-auto">
+              <div className="px-3.5 py-2 bg-[#FFFBEB]/90 border border-[#FDE68A] text-[#92400E] text-xs font-bold rounded-xl flex items-center gap-2 shadow-sm self-start sm:self-auto">
                 <AlertTriangle className="w-4 h-4 text-[#E89A27]" />
                 <span>Prototype / Simulated Operational Metrics</span>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="p-6 bg-[#F7FAF8] rounded-3xl border border-[#E3EAE6] space-y-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7">
+              <div className="p-6 sm:p-7 bg-[#F7FAF8] rounded-3xl border border-[#E3EAE6] space-y-2.5">
                 <span className="text-3xl sm:text-4xl font-black font-mono text-[#D64545]">12</span>
                 <h3 className="text-sm font-bold text-[#17201B]">Overflow Events Averted</h3>
                 <p className="text-xs text-[#66736C]">Pre-emptive collections before public spillage threshold.</p>
               </div>
 
-              <div className="p-6 bg-[#F7FAF8] rounded-3xl border border-[#E3EAE6] space-y-2">
+              <div className="p-6 sm:p-7 bg-[#F7FAF8] rounded-3xl border border-[#E3EAE6] space-y-2.5">
                 <span className="text-3xl sm:text-4xl font-black font-mono text-[#16845B]">87%</span>
                 <h3 className="text-sm font-bold text-[#17201B]">Vehicle Utilization</h3>
                 <p className="text-xs text-[#66736C]">Payload density maximized without exceeding 2,000 kg capacity.</p>
               </div>
 
-              <div className="p-6 bg-[#F7FAF8] rounded-3xl border border-[#E3EAE6] space-y-2">
+              <div className="p-6 sm:p-7 bg-[#F7FAF8] rounded-3xl border border-[#E3EAE6] space-y-2.5">
                 <span className="text-3xl sm:text-4xl font-black font-mono text-[#0D9488]">64%</span>
                 <h3 className="text-sm font-bold text-[#17201B]">Recovery & Diversion Rate</h3>
                 <p className="text-xs text-[#66736C]">Diverted from Pirana landfill to MRFs and composting hubs.</p>
               </div>
 
-              <div className="p-6 bg-[#F7FAF8] rounded-3xl border border-[#E3EAE6] space-y-2">
+              <div className="p-6 sm:p-7 bg-[#F7FAF8] rounded-3xl border border-[#E3EAE6] space-y-2.5">
                 <span className="text-3xl sm:text-4xl font-black font-mono text-[#2878C8]">23.4 km</span>
                 <h3 className="text-sm font-bold text-[#17201B]">Distance Avoided Daily</h3>
                 <p className="text-xs text-[#66736C]">Eliminated unnecessary routes across AMC West zone.</p>
@@ -700,8 +696,8 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
         </section>
 
         {/* AHMEDABAD SECTION (Section 22) */}
-        <section className="py-20 px-6 sm:px-12 max-w-7xl mx-auto space-y-12">
-          <div className="landing-glass-card p-6 sm:p-8 text-center max-w-3xl mx-auto space-y-2">
+        <section className="py-24 sm:py-28 px-6 sm:px-12 max-w-7xl mx-auto space-y-12 sm:space-y-14">
+          <div className="landing-glass-card p-6 sm:p-8 text-center max-w-3xl mx-auto space-y-3">
             <span className="text-xs font-black text-[#0B5D3B] uppercase tracking-widest bg-[#DCFCE7]/90 px-3 py-1 rounded-full border border-[#BBF7D0] inline-block shadow-sm">
               Urban Scalability
             </span>
@@ -713,7 +709,7 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4 text-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 sm:gap-6 text-center">
             {[
               { title: "Municipal Operations", desc: "City-wide ward and zone collections", icon: "🏛️" },
               { title: "University Campuses", desc: "High footfall academic institutions", icon: "🎓" },
@@ -721,19 +717,19 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
               { title: "Commercial Areas", desc: "Retail plazas & business corridors", icon: "🏢" },
               { title: "Industrial Zones", desc: "Manufacturing parks & logistics depots", icon: "🏭" },
             ].map((item, idx) => (
-              <div key={idx} className="p-5 bg-white rounded-2xl border border-[#E3EAE6] shadow-sm space-y-2">
+              <div key={idx} className="p-6 bg-white rounded-2xl border border-[#E3EAE6] shadow-sm space-y-2.5">
                 <span className="text-3xl">{item.icon}</span>
                 <h3 className="text-sm font-bold text-[#17201B]">{item.title}</h3>
-                <p className="text-[11px] text-[#66736C]">{item.desc}</p>
+                <p className="text-[11px] text-[#66736C] leading-snug">{item.desc}</p>
               </div>
             ))}
           </div>
         </section>
 
         {/* FINAL LANDING PAGE CTA (Section 23) */}
-        <section className="py-20 bg-gradient-to-b from-[#E6F4EA] to-[#F7FAF8] border-t border-[#C2E7CB] text-center px-6">
-          <div className="max-w-3xl mx-auto space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-[#BBF7D0] text-[#0B5D3B] text-xs font-bold shadow-sm">
+        <section className="py-24 sm:py-32 bg-gradient-to-b from-[#E6F4EA] to-[#F7FAF8] border-t border-[#C2E7CB] text-center px-6 sm:px-12">
+          <div className="max-w-3xl mx-auto space-y-8 sm:space-y-10">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#BBF7D0] text-[#0B5D3B] text-xs font-bold shadow-sm">
               <span>SmartBinX • Smarter Bins • Cleaner Cities</span>
             </div>
 
@@ -745,7 +741,7 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
               Predict it. Prioritize it. Optimize it. Recover it.
             </p>
 
-            <p className="text-sm text-[#66736C] max-w-xl mx-auto">
+            <p className="text-sm text-[#66736C] max-w-xl mx-auto leading-relaxed">
               Launch the interactive command center to explore live Ahmedabad telemetry, simulate routing, and interact with the AI assistant.
             </p>
 
@@ -761,7 +757,7 @@ export const LandingPage = ({ onLaunchApp, onEnterCommandCenter, onNavigate }) =
         </section>
 
         {/* Footer */}
-        <footer className="bg-white/80 backdrop-blur-md border-t border-white/60 py-8 px-6 sm:px-12 text-xs text-[#66736C]">
+        <footer className="bg-white/80 backdrop-blur-md border-t border-white/60 py-10 px-6 sm:px-12 text-xs text-[#66736C]">
           <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <img src="/smartbinx-logo.png" alt="SmartBinX" className="h-8 w-auto" />

@@ -9,6 +9,7 @@ Tests:
 """
 from fastapi.testclient import TestClient
 from app.main import app
+from app.config import settings
 from app.database import SessionLocal
 from app.services.data_store import DataStore
 from app.models.entities import (
@@ -25,6 +26,7 @@ def run_phase2_verification():
     print("=================================================================\n")
 
     client = TestClient(app)
+    client.headers["X-API-Key"] = settings.MUNICIPAL_API_KEY
     db = SessionLocal()
 
     # -----------------------------------------------------------------

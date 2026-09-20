@@ -1348,7 +1348,8 @@ class DataStore:
 
         route_id = route_data.get("id") or route_data.get("route_id") or f"route-{uuid.uuid4().hex[:8]}"
         vehicle_code = route_data.get("vehicle_code", "V-01")
-        vehicle_id = route_data.get("vehicle_id") or f"veh-{vehicle_code.lower()}"
+        raw_vid = str(route_data.get("vehicle_id") or "")
+        vehicle_id = raw_vid if raw_vid.startswith("veh-") else f"veh-{vehicle_code.lower()}"
         distance_km = float(route_data.get("distance_km") or route_data.get("total_distance_km", 0.0))
         duration_mins = int(route_data.get("estimated_duration_mins", 0))
         load_kg = float(route_data.get("load_kg") or route_data.get("collected_weight_kg", 0.0))

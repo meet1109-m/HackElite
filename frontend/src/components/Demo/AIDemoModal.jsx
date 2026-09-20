@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useWasteData } from '../../context/WasteDataContext';
-import { Sparkles, X, Play, Pause, ChevronRight, ChevronLeft, CheckCircle2, AlertTriangle, Truck, MapPin, Recycle, ArrowRight, ShieldCheck, Zap } from 'lucide-react';
+import { apiService } from '../../services/api';
+import { Sparkles, X, Play, Pause, ChevronRight, ChevronLeft, CheckCircle2, AlertTriangle, Truck, MapPin, Recycle, ArrowRight, ShieldCheck, Zap, RotateCcw } from 'lucide-react';
 
 const DEMO_STEPS = [
   {
@@ -96,9 +97,20 @@ const DEMO_STEPS = [
 ];
 
 export default function AIDemoModal({ isOpen, onClose }) {
-  const { triggerDynamicReplan } = useWasteData();
+  const { triggerDynamicReplan, refreshData } = useWasteData();
   const [currentStep, setCurrentStep] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
+
+  // Sync step execution with backend demo_runner when step advances
+  useEffect(() => {
+    if (!isOpen) return;
+    const stepNum = currentStep + 1;
+    apiService.getDemoStep(stepNum)
+      .then(() => {
+        if (refreshData) refreshData();
+      })
+      .catch(() => {});
+  }, [currentStep, isOpen, refreshData]);
 
   useEffect(() => {
     let timer;
@@ -122,6 +134,15 @@ export default function AIDemoModal({ isOpen, onClose }) {
       triggerDynamicReplan();
     }
   }, [currentStep, triggerDynamicReplan]);
+
+  const handleResetDemo = async () => {
+    try {
+      await apiService.resetDemo();
+    } catch (e) {}
+    setCurrentStep(0);
+    setIsPlaying(false);
+    if (refreshData) refreshData();
+  };
 
   if (!isOpen) return null;
 
@@ -211,6 +232,15 @@ export default function AIDemoModal({ isOpen, onClose }) {
             >
               {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
               <span>{isPlaying ? 'Pause' : 'Auto Play'}</span>
+            </button>
+
+            <button
+              onClick={handleResetDemo}
+              title="Reset Demo State to Initial Baseline"
+              className="px-3 py-2 bg-white hover:bg-[#F1F6F3] text-[#66736C] hover:text-[#17201B] border border-[#E3EAE6] rounded-xl text-xs font-bold flex items-center gap-1.5 transition shadow-sm"
+            >
+              <RotateCcw className="w-3.5 h-3.5 text-[#16845B]" />
+              <span>Reset</span>
             </button>
 
             <button

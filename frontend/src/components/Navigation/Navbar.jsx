@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Play, AlertCircle, Search, Activity, ShieldAlert, ChevronRight, CheckCircle2 } from 'lucide-react';
+import { Play, AlertCircle, Search, Activity, ShieldAlert, ChevronRight, CheckCircle2, Sparkles } from 'lucide-react';
 import { useWasteData } from '../../context/WasteDataContext';
 
 export const Navbar = ({ currentPage, activeTab, onNavigate, onTabChange, isAuthenticated, onLogout }) => {
@@ -129,6 +129,17 @@ export const Navbar = ({ currentPage, activeTab, onNavigate, onTabChange, isAuth
           <Activity className="w-3.5 h-3.5 text-[#16845B]" />
           <span>{time} IST</span>
         </div>
+
+        {/* Interactive 10-Step AI Demo Launcher */}
+        <button
+          onClick={startAIDemo}
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-[#16845B] to-[#0D9488] text-white text-xs font-bold hover:brightness-110 shadow-md shadow-[#16845B]/20 transition-all cursor-pointer"
+          title="Launch Autonomous 10-Step Hackathon Demo"
+        >
+          <Sparkles className="w-3.5 h-3.5" />
+          <span className="hidden sm:inline">10-Step AI Demo</span>
+          <span className="sm:hidden">Demo</span>
+        </button>
 
         {/* Critical Alerts Badge (when on dashboard) */}
         {!isAuthPage && criticalCount > 0 && (

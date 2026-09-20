@@ -7,10 +7,12 @@ Verifies:
 from fastapi.testclient import TestClient
 from app.main import app
 from app.database import SessionLocal
+from app.config import settings
 from app.models.entities import Prediction as DBPrediction, BinReading as DBBinReading, Bin as DBBin
 
 def test_telemetry_and_prediction_logging():
     client = TestClient(app)
+    client.headers["X-API-Key"] = settings.MUNICIPAL_API_KEY
     db = SessionLocal()
 
     print("=======================================================")

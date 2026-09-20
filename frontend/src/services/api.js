@@ -810,6 +810,19 @@ export const apiService = {
     });
   },
 
+  // 10-Step Automated Hackathon Demo Runner
+  async runFullDemo() {
+    return await request('/demo/run', { method: 'POST' });
+  },
+
+  async getDemoStep(stepNumber) {
+    return await request(`/demo/step/${stepNumber}`);
+  },
+
+  async resetDemo() {
+    return await request('/demo/reset', { method: 'POST' });
+  },
+
   // Authentication & Security
   async login(credentials) {
     const res = await request('/auth/login', {

@@ -7,10 +7,12 @@ Verifies:
 from fastapi.testclient import TestClient
 from app.main import app
 from app.database import SessionLocal
+from app.config import settings
 from app.models.entities import Route as DBRoute, Collection as DBCollection, Bin as DBBin
 
 def test_mutations():
     client = TestClient(app)
+    client.headers["X-API-Key"] = settings.MUNICIPAL_API_KEY
     db = SessionLocal()
     
     print("=======================================================")

@@ -61,6 +61,22 @@ async def lifespan(app: FastAPI):
         # If DB already populated, hydrate in-memory cache directly from SQLite; otherwise seed
         if not data_store.load_from_database(db):
             data_store.seed_database_if_empty(db)
+
+        # Pre-warm ML models in background thread to eliminate first-request cold start latency
+        import threading
+        def _prewarm_ml():
+            try:
+                from ml_model.src.predict import predictor
+                predictor._load_fill_models()
+                predictor._load_comp_models()
+            except Exception:
+                pass
+            try:
+                from ml_model.image_classification.src.predict import _classifier
+                _classifier._load_model()
+            except Exception:
+                pass
+        threading.Thread(target=_prewarm_ml, daemon=True, name="ml-warmup").start()
     finally:
         db.close()
     yield
