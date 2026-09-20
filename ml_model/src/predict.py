@@ -203,6 +203,11 @@ class WasteWisePredictor:
             "anomaly_status": "ANOMALY_DETECTED" if is_anomaly else "NORMAL"
         }
 
+    def detect_waste_hotspots(self, data: Optional[Any] = None, eps_km: Optional[float] = None, min_samples: Optional[int] = None, include_forecast: bool = True) -> Dict[str, Any]:
+        """Detects spatial waste hotspots across Ahmedabad bins and zones."""
+        from src.hotspots.detector import detect_waste_hotspots as _detect_hotspots
+        return _detect_hotspots(data=data, eps_km=eps_km, min_samples=min_samples, include_forecast=include_forecast, forecast_func=self.predict_zone_waste)
+
 # Global Singleton Instance
 _predictor = WasteWisePredictor()
 
@@ -220,6 +225,9 @@ def predict_zone_waste(features: Dict[str, Any]) -> Dict[str, Any]:
 
 def detect_anomaly(features: Dict[str, Any]) -> Dict[str, Any]:
     return _predictor.detect_anomaly(features)
+
+def detect_waste_hotspots(data: Optional[Any] = None, eps_km: Optional[float] = None, min_samples: Optional[int] = None, include_forecast: bool = True) -> Dict[str, Any]:
+    return _predictor.detect_waste_hotspots(data=data, eps_km=eps_km, min_samples=min_samples, include_forecast=include_forecast)
 
 if __name__ == "__main__":
     print("Testing Unified Predictor with sample payloads...")
