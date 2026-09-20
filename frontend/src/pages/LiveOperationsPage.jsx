@@ -107,7 +107,7 @@ export const LiveOperationsPage = ({ onNavigate, onNavigateTab }) => {
   }, [bins, filterCriticalOnly, selectedZoneFilter, searchQuery]);
 
   return (
-    <div className="h-[calc(100vh-4rem)] flex flex-col relative overflow-hidden bg-[#F7FAF8]">
+    <div className="h-[calc(100vh-4rem)] flex flex-col relative overflow-hidden bg-transparent">
       {/* Top Map Control Bar */}
       <div className="p-3.5 bg-white border-b border-[#E3EAE6] z-10 flex flex-wrap items-center justify-between gap-3 text-xs shadow-sm">
         {/* Left: Filters & Search */}
