@@ -18,10 +18,11 @@ from api.routes.composition import router as composition_router
 from api.routes.forecasting import router as forecasting_router
 from api.routes.anomaly import router as anomaly_router
 from api.routes.image import router as image_router
+from api.routes.hotspots import router as hotspots_router
 
 app = FastAPI(
     title="WasteWise AI — Ahmedabad Machine Learning Service",
-    description="Intelligent municipal waste analytics, fill forecasting, composition estimation, anomaly detection, and vision classification for Ahmedabad.",
+    description="Intelligent municipal waste analytics, fill forecasting, composition estimation, anomaly detection, hotspot clustering, and vision classification for Ahmedabad.",
     version="1.0.0"
 )
 
@@ -40,6 +41,7 @@ app.include_router(composition_router)
 app.include_router(forecasting_router)
 app.include_router(anomaly_router)
 app.include_router(image_router)
+app.include_router(hotspots_router)
 
 @app.get("/health", response_model=HealthResponse, tags=["Health"])
 def health_check():
@@ -52,7 +54,8 @@ def health_check():
             "waste_composition_estimation": "active",
             "zone_waste_forecasting": "active",
             "anomaly_detection": "active",
-            "waste_image_classification": "active"
+            "waste_image_classification": "active",
+            "waste_hotspot_detection": "active"
         }
     )
 

@@ -134,3 +134,70 @@ class HealthResponse(BaseModel):
     status: str
     city: str
     subsystems: Dict[str, str]
+
+# ----------------- Hotspot Detection Schemas ----------------- #
+class HotspotBinInput(BaseModel):
+    bin_id: Optional[str] = Field(default=None, description="Bin identifier")
+    latitude: float = Field(..., description="GPS Latitude in degrees WGS84")
+    longitude: float = Field(..., description="GPS Longitude in degrees WGS84")
+    zone_id: Optional[str] = Field(default=None, description="Zone identifier")
+    zone_name: Optional[str] = Field(default="Navrangpura", description="Zone name")
+    total_waste_kg: Optional[float] = Field(default=80.0, ge=0.0, description="Observed or estimated waste generation (kg)")
+    baseline_waste_kg: Optional[float] = Field(default=70.0, ge=0.0, description="Expected baseline waste generation (kg)")
+    fill_percentage: Optional[float] = Field(default=50.0, ge=0.0, le=135.0, description="Bin fill level (%)")
+    overflow_count: Optional[int] = Field(default=0, ge=0, description="Recorded overflow count")
+    anomaly_count: Optional[int] = Field(default=0, ge=0, description="Recorded anomaly count")
+    waste_stream: Optional[str] = Field(default="Mixed", description="Primary waste stream")
+
+class HotspotRequest(BaseModel):
+    bins: Optional[List[HotspotBinInput]] = Field(default=None, description="Optional custom list of bins to evaluate. If omitted, uses active Ahmedabad municipal dataset.")
+    eps_km: Optional[float] = Field(default=0.8, gt=0.0, description="DBSCAN spatial neighborhood radius in kilometers")
+    min_samples: Optional[int] = Field(default=3, ge=1, description="Minimum bins to form a spatial cluster core")
+    include_forecast: Optional[bool] = Field(default=True, description="Whether to include future projected risk from zone forecasting model")
+
+class HotspotItem(BaseModel):
+    hotspot_id: str
+    latitude: float
+    longitude: float
+    severity: str
+    affected_bins: int
+    affected_zones: int
+    waste_generation_kg: float
+    baseline_waste_kg: float
+    deviation_percent: float
+    average_fill_percent: float
+    overflow_events: int
+    anomaly_events: int
+    trend: str
+    recommendation: str
+    zone_names: Optional[List[str]] = None
+    composite_score: Optional[float] = None
+    primary_waste_stream: Optional[str] = None
+
+class FutureHotspotItem(BaseModel):
+    hotspot_id: str
+    latitude: float
+    longitude: float
+    affected_zones: List[str]
+    current_severity: str
+    future_predicted_risk: str
+    forecasted_waste_kg: float
+    forecast_deviation_percent: float
+    forecast_horizon: str = "next_day"
+    early_warning_alert: bool
+
+class HotspotSummary(BaseModel):
+    critical_hotspots: int
+    high_hotspots: int
+    medium_hotspots: int
+    low_hotspots: int
+    total_waste_in_hotspots_kg: float
+
+class HotspotResponse(BaseModel):
+    status: str = "success"
+    total_bins_analyzed: int
+    hotspots_count: int
+    hotspots: List[HotspotItem]
+    future_hotspots: List[FutureHotspotItem] = []
+    summary: HotspotSummary
+
