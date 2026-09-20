@@ -92,10 +92,7 @@ def dynamic_replan_route(
     for idx, wp in enumerate(new_waypoints, 1):
         wp["stop_number"] = idx
 
-    added_dist_km = round(max(0.8, min_added_dist), 2)
-    # Pinned realistic adjustment for demo consistency if AHM-156
-    if e_code == "AHM-156":
-        added_dist_km = 2.2
+    added_dist_km = round(max(0.1, min_added_dist), 2)
 
     added_drive_mins = estimate_travel_time_minutes(added_dist_km, average_speed_kmh=25.0)
     added_duration_mins = added_drive_mins + 3  # 3 min collection time

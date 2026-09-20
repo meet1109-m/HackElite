@@ -61,44 +61,17 @@ def calculate_overflow_countdown(bin_data: Dict[str, Any]) -> Dict[str, Any]:
     """Calculate the hours remaining before a bin overflows.
 
     Formula: Hours remaining = (Capacity - Current Weight) / Hourly Generation Rate
+    Dynamically responds to live fill level, weight, and generation rates.
     """
     code = bin_data.get("bin_code", "")
-
-    # Preserve exact pinned demo bin specifications
-    if code == "AHM-104":
-        return {
-            "bin_code": "AHM-104",
-            "hours_remaining": 4.3,
-            "formatted_countdown": "04h 18m",
-            "severity": "Red",
-            "is_urgent": True,
-            "alert_message": "Critical: Overflow predicted within 4h 18m. Collection required.",
-        }
-    elif code == "AHM-118":
-        return {
-            "bin_code": "AHM-118",
-            "hours_remaining": 4.17,
-            "formatted_countdown": "04h 10m",
-            "severity": "Orange",
-            "is_urgent": True,
-            "alert_message": "High Priority: Overflow predicted in 4h 10m for Recyclables.",
-        }
-    elif code == "AHM-156":
-        return {
-            "bin_code": "AHM-156",
-            "hours_remaining": 0.75,
-            "formatted_countdown": "45m",
-            "severity": "Red",
-            "is_urgent": True,
-            "alert_message": "EMERGENCY: Overflow imminent in 45m. Immediate reroute required.",
-        }
-
     capacity = float(bin_data.get("capacity_kg", 40.0))
     current_wt = float(bin_data.get("estimated_weight", 0.0))
     fill_pct = float(bin_data.get("fill_percentage", 0.0))
 
-    if current_wt <= 0:
+    if current_wt <= 0 and fill_pct > 0:
         current_wt = (fill_pct / 100.0) * capacity
+    elif fill_pct <= 0:
+        current_wt = 0.0
 
     hourly_rate = calculate_hourly_generation_rate(bin_data)
     remaining_capacity = max(0.0, capacity - current_wt)
@@ -108,13 +81,22 @@ def calculate_overflow_countdown(bin_data: Dict[str, Any]) -> Dict[str, Any]:
     severity = determine_overflow_severity(hours_remaining)
     is_urgent = hours_remaining < 6.0
 
+    if severity == "Red":
+        alert_msg = f"Critical: Overflow predicted within {formatted}. Immediate collection required."
+    elif severity == "Orange":
+        alert_msg = f"High Priority: Overflow predicted in {formatted}. Schedule collection."
+    elif severity == "Yellow":
+        alert_msg = f"Moderate: Overflow expected in {formatted}."
+    else:
+        alert_msg = f"Healthy: {formatted} buffer remaining."
+
     return {
         "bin_code": code,
         "hours_remaining": hours_remaining,
         "formatted_countdown": formatted,
         "severity": severity,
         "is_urgent": is_urgent,
-        "alert_message": f"Overflow status: {formatted} remaining ({severity}).",
+        "alert_message": alert_msg,
     }
 
 
